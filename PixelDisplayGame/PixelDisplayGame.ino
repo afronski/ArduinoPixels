@@ -23,6 +23,7 @@ PixelMain pixelMain;
 int count =0;
 unsigned long secTime=0;
 unsigned long lastTime=0;
+unsigned long timeR=0;
 boolean chekBrightness =true;
 void setup(){
      Serial.begin(57600);
@@ -46,7 +47,7 @@ void loop() {
   float timestep  = currentTime-lastTime;
   lastTime = currentTime;
   
-  
+  timeR +=timestep;
   
   
    if (Serial3.available() > 0) 
@@ -55,10 +56,10 @@ void loop() {
                 incomingByte = Serial3.read();
                 
                 pixelMain.setInput((int)incomingByte);
-             
+            timeR=0; 
                 
     }
-
+if(timeR>10000000){pixelMain.setGameState(STATE_INTRO);}
     pixelMain.update(timestep /200);
     pixelMain.draw();
 }
