@@ -6,6 +6,9 @@
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/gl.h"
 
+#include "PixelGameInclude.h"
+#include "PixelRenderer.h"
+#include "SoundPlayer.h"
 
 #include "PixelMain.h"
 using namespace ci;

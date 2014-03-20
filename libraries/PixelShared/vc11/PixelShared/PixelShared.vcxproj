@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3E595C04-344A-4E48-8C8D-BFEEC4EE085F}</ProjectGuid>
+    <RootNamespace>PixelShared</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(CINDER_HOME)/include;$(CINDER_HOME)/boost;$(SolutionDir)/../../libraries/PixelGame</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(CINDER_HOME)/lib;$(CINDER_HOME)/lib/msw</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(CINDER_HOME)/include;$(CINDER_HOME)/boost;$(SolutionDir)/../../libraries/PixelGame</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(CINDER_HOME)/lib;$(CINDER_HOME)/lib/msw</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Hero.cpp" />
+    <ClCompile Include="..\..\PixelMain.cpp" />
+    <ClCompile Include="..\..\PixelMain_Game.cpp" />
+    <ClCompile Include="..\..\PixelMain_Game_p1.cpp" />
+    <ClCompile Include="..\..\PixelMain_Game_p2.cpp" />
+    <ClCompile Include="..\..\PixelMain_Game_vs.cpp" />
+    <ClCompile Include="..\..\PixelMain_Intro.cpp" />
+    <ClCompile Include="..\..\PixelMain_Menu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Alien.h" />
+    <ClInclude Include="..\..\Alien1.h" />
+    <ClInclude Include="..\..\Alien2.h" />
+    <ClInclude Include="..\..\Alien3.h" />
+    <ClInclude Include="..\..\AlienPond.h" />
+    <ClInclude Include="..\..\Blood.h" />
+    <ClInclude Include="..\..\Cloud.h" />
+    <ClInclude Include="..\..\DataAlien1Dead.h" />
+    <ClInclude Include="..\..\DataAlien1Feed.h" />
+    <ClInclude Include="..\..\DataAlien1Head.h" />
+    <ClInclude Include="..\..\DataAlien2Dead.h" />
+    <ClInclude Include="..\..\DataAlien2Feed.h" />
+    <ClInclude Include="..\..\DataAlien2Head.h" />
+    <ClInclude Include="..\..\DataAliens.h" />
+    <ClInclude Include="..\..\DataAlienShoot1.h" />
+    <ClInclude Include="..\..\DataAlienShoot2.h" />
+    <ClInclude Include="..\..\DataBackGrass.h" />
+    <ClInclude Include="..\..\DataBackScroll.h" />
+    <ClInclude Include="..\..\DataBackSky.h" />
+    <ClInclude Include="..\..\DataBackSpace.h" />
+    <ClInclude Include="..\..\DataBlood1.h" />
+    <ClInclude Include="..\..\DataBlood2.h" />
+    <ClInclude Include="..\..\DataBlood3.h" />
+    <ClInclude Include="..\..\DataBoyDeath.h" />
+    <ClInclude Include="..\..\DataBoyShoot1.h" />
+    <ClInclude Include="..\..\DataBoyShoot2.h" />
+    <ClInclude Include="..\..\DataBush.h" />
+    <ClInclude Include="..\..\DataCalibration.h" />
+    <ClInclude Include="..\..\DataCity.h" />
+    <ClInclude Include="..\..\DataCloud1.h" />
+    <ClInclude Include="..\..\DataDuckBig.h" />
+    <ClInclude Include="..\..\DataDuckSmall.h" />
+    <ClInclude Include="..\..\DataFlower.h" />
+    <ClInclude Include="..\..\DataGirl.h" />
+    <ClInclude Include="..\..\DataGirlBall.h" />
+    <ClInclude Include="..\..\DataGirlBallStroke1.h" />
+    <ClInclude Include="..\..\DataGirlCrouch.h" />
+    <ClInclude Include="..\..\DataGirlCrouchBlock.h" />
+    <ClInclude Include="..\..\DataGirlCrouchHit.h" />
+    <ClInclude Include="..\..\DataGirlCrouchKick.h" />
+    <ClInclude Include="..\..\DataGirlCrouchWalk1.h" />
+    <ClInclude Include="..\..\DataGirlCrouchWalk2.h" />
+    <ClInclude Include="..\..\DataGirlDeath.h" />
+    <ClInclude Include="..\..\DataGirlGotHit1.h" />
+    <ClInclude Include="..\..\DataGirlGotHit2.h" />
+    <ClInclude Include="..\..\DataGirlJump.h" />
+    <ClInclude Include="..\..\DataGirlJumpBlock.h" />
+    <ClInclude Include="..\..\DataGirlJumpHit.h" />
+    <ClInclude Include="..\..\DataGirlJumpKick.h" />
+    <ClInclude Include="..\..\DataGirlShoot1.h" />
+    <ClInclude Include="..\..\DataGirlShoot2.h" />
+    <ClInclude Include="..\..\DataGirlStand.h" />
+    <ClInclude Include="..\..\DataGirlStandBlock.h" />
+    <ClInclude Include="..\..\DataGirlStandHit1.h" />
+    <ClInclude Include="..\..\DataGirlStandHit2.h" />
+    <ClInclude Include="..\..\DataGirlStandKick.h" />
+    <ClInclude Include="..\..\DataGirlWalk1.h" />
+    <ClInclude Include="..\..\DataGirlWalk2.h" />
+    <ClInclude Include="..\..\DataGirlWalk3.h" />
+    <ClInclude Include="..\..\DataHitPointTest.h" />
+    <ClInclude Include="..\..\DataInstructions.h" />
+    <ClInclude Include="..\..\DataInterface.h" />
+    <ClInclude Include="..\..\DataInterface2.h" />
+    <ClInclude Include="..\..\DataLife0.h" />
+    <ClInclude Include="..\..\DataLife1.h" />
+    <ClInclude Include="..\..\DataLife2.h" />
+    <ClInclude Include="..\..\DataLife3.h" />
+    <ClInclude Include="..\..\DataLife4.h" />
+    <ClInclude Include="..\..\DataLife5.h" />
+    <ClInclude Include="..\..\DataLife6.h" />
+    <ClInclude Include="..\..\DataLife7.h" />
+    <ClInclude Include="..\..\DataLifeLight.h" />
+    <ClInclude Include="..\..\DataManCrouch.h" />
+    <ClInclude Include="..\..\DataManCrouchBlock.h" />
+    <ClInclude Include="..\..\DataManCrouchHit.h" />
+    <ClInclude Include="..\..\DataManCrouchKick.h" />
+    <ClInclude Include="..\..\DataManCrouchWalk1.h" />
+    <ClInclude Include="..\..\DataManCrouchWalk2.h" />
+    <ClInclude Include="..\..\DataManGitHit1.h" />
+    <ClInclude Include="..\..\DataManGitHit2.h" />
+    <ClInclude Include="..\..\DataManJump.h" />
+    <ClInclude Include="..\..\DataManJumpBlock.h" />
+    <ClInclude Include="..\..\DataManJumpHit.h" />
+    <ClInclude Include="..\..\DataManJumpKick.h" />
+    <ClInclude Include="..\..\DataManRay1.h" />
+    <ClInclude Include="..\..\DataManRay2.h" />
+    <ClInclude Include="..\..\DataManStand.h" />
+    <ClInclude Include="..\..\DataManStandBlock.h" />
+    <ClInclude Include="..\..\DataManStandHit1.h" />
+    <ClInclude Include="..\..\DataManStandHit2.h" />
+    <ClInclude Include="..\..\DataManStandKick.h" />
+    <ClInclude Include="..\..\DataManWalk1.h" />
+    <ClInclude Include="..\..\DataManWalk2.h" />
+    <ClInclude Include="..\..\DataManWalk3.h" />
+    <ClInclude Include="..\..\DataManWalk4.h" />
+    <ClInclude Include="..\..\DataMenuMain.h" />
+    <ClInclude Include="..\..\DataMenuSelect1.h" />
+    <ClInclude Include="..\..\DataMenuSelect2.h" />
+    <ClInclude Include="..\..\DataMenuSelect3.h" />
+    <ClInclude Include="..\..\DataPaddo.h" />
+    <ClInclude Include="..\..\DataPond.h" />
+    <ClInclude Include="..\..\DataSpaceArmL.h" />
+    <ClInclude Include="..\..\DataSpaceArmR.h" />
+    <ClInclude Include="..\..\DataSpaceBottem.h" />
+    <ClInclude Include="..\..\DataSpaceHead.h" />
+    <ClInclude Include="..\..\DataSpaceShip.h" />
+    <ClInclude Include="..\..\DataSplash1.h" />
+    <ClInclude Include="..\..\DataSplash2.h" />
+    <ClInclude Include="..\..\DataStarBig.h" />
+    <ClInclude Include="..\..\DataStarSmall.h" />
+    <ClInclude Include="..\..\DataTextBoyWins.h" />
+    <ClInclude Include="..\..\DataTextGameOver.h" />
+    <ClInclude Include="..\..\DataTextGirlWins.h" />
+    <ClInclude Include="..\..\DataTextInvasion.h" />
+    <ClInclude Include="..\..\DataTextPressToPlay.h" />
+    <ClInclude Include="..\..\DataTextYouWin.h" />
+    <ClInclude Include="..\..\DataThreeClose.h" />
+    <ClInclude Include="..\..\DataThreeFar.h" />
+    <ClInclude Include="..\..\DecorSprite.h" />
+    <ClInclude Include="..\..\GameOverText.h" />
+    <ClInclude Include="..\..\Hero.h" />
+    <ClInclude Include="..\..\Life.h" />
+    <ClInclude Include="..\..\Live.h" />
+    <ClInclude Include="..\..\npRect.h" />
+    <ClInclude Include="..\..\PixelData.h" />
+    <ClInclude Include="..\..\PixelMain.h" />
+    <ClInclude Include="..\..\SpaceShip.h" />
+    <ClInclude Include="..\..\SpecialAttack.h" />
+    <ClInclude Include="..\..\Sprite.h" />
+    <ClInclude Include="..\..\Stage.h" />
+    <ClInclude Include="..\..\Star.h" />
+    <ClInclude Include="..\..\Vector.h" />
+    <ClInclude Include="..\..\WaterSplash.h" />
+    <ClInclude Include="..\..\WinSprite.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

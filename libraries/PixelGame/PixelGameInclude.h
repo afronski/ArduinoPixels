@@ -9,6 +9,10 @@
 #ifndef PixelGame_PixelGameInclude_h
 #define PixelGame_PixelGameInclude_h
 
+#ifdef _WINDOWS
+#include "cinder/app/AppBasic.h"
+#else
 #include <Arduino.h>
+#endif
 
 #endif

@@ -807,7 +807,7 @@ void PixelMain::setupGame()
     
     for(int i =0;i<3;i++)
     {
-        Stage *stage;
+        Stage *stage = NULL;
         if(i==0) stage  =&stage1p;
         if(i==1) stage  =&stage2p;
         if(i==2) stage  =&stageVS;
