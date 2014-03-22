@@ -8,13 +8,11 @@
 
 #include "PixelRenderer.h"
 
-#ifndef _WINDOWS
-
-PixelRenderer::PixelRenderer()
+NeopixelPixelRenderer::NeopixelPixelRenderer()
 {
 
 }
-void PixelRenderer::setBrightness(int br)
+void NeopixelPixelRenderer::setBrightness(int br)
 {
 strip1->setBrightness(br);
  strip2->setBrightness(br);
@@ -24,7 +22,7 @@ strip1->setBrightness(br);
       strip6->setBrightness(br);
 
 }
-void PixelRenderer::setup()
+void NeopixelPixelRenderer::setup()
 {
     int br =50;
     strip1 =new Adafruit_NeoPixel(270, 7, NEO_GRB + NEO_KHZ800);
@@ -61,7 +59,7 @@ void PixelRenderer::setup()
     
     
 }
-void PixelRenderer::fade()
+void NeopixelPixelRenderer::fade()
 {
     for(int i=0;i<270*3;i++)
     {
@@ -82,7 +80,7 @@ void PixelRenderer::fade()
   
     
 }
-void PixelRenderer::draw()
+void NeopixelPixelRenderer::draw()
 {
 
    strip1->show();
@@ -94,7 +92,7 @@ void PixelRenderer::draw()
     
 }
 
-void PixelRenderer::setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b,uint8_t a)
+void NeopixelPixelRenderer::setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b,uint8_t a)
 {
     if(y<8)
     {
@@ -179,6 +177,3 @@ void PixelRenderer::setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b,uint8_
     }
     
 }
-
-#endif
-

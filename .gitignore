@@ -5,3 +5,7 @@ Release
 *.suo
 *.user
 
+
+*.o
+
+*.a

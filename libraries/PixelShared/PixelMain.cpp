@@ -9,8 +9,9 @@
 #include "PixelMain.h"
 
 
-PixelMain::PixelMain()
+PixelMain::PixelMain(PixelRenderer *renderer)
 {
+	this->renderer = renderer;
     brightness =20;
 }
 void PixelMain::setGameState(int state)
@@ -74,7 +75,6 @@ void PixelMain::setGameState(int state)
 }
 void PixelMain::setup()
 {
-    renderer =new PixelRenderer();
     renderer->setup();
    
     stage1p.renderer =renderer;
