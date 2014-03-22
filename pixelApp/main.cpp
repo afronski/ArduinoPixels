@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <thread>
 
 #include "SDL2/SDL.h"
 
@@ -23,15 +24,29 @@ int main(int argc, char** argv) {
 		cout << "SDL_Init Error: " << SDL_GetError() << endl;
 		return 1;
 	}
+	atexit(SDL_Quit);
 
-	SDLPixelRenderer renderer(90, 16);
+	SDLPixelRenderer renderer(90, 16, 12);
 	PixelMain pixelMain(&renderer);
 	pixelMain.setup();
 
-	while (true) {
-		pixelMain.update(0.1);
+	bool running = true;
+	SDL_Event event;
+	int fps = 30;
+
+	while (running) {
+		while(SDL_PollEvent(&event)) {
+			if (event.type == SDL_QUIT) {
+				running = false;
+			}
+		}
+
+		pixelMain.update(1.0f / fps);
 		pixelMain.draw();
+
+		this_thread::sleep_for(milliseconds(1000 / fps));
 	}
+
 	return 0;
 }
 

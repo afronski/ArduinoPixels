@@ -22,7 +22,7 @@ void SDLPixelRenderer::setup() {
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 			width * scale, height * scale, SDL_WINDOW_SHOWN);
 
-	pixels = SDL_CreateRGBSurface(0,width,height,24,0,0,0,0);
+	pixels = SDL_CreateRGBSurface(0,width,height,32,0,0,0,0);
 }
 
 void SDLPixelRenderer::draw() {
