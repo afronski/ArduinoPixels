@@ -11,7 +11,7 @@
 
 
 
-#include "PixelgameInclude.h"
+#include "PixelGameInclude.h"
 class PixelData
 {
 public:

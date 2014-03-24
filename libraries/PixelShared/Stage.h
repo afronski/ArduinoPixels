@@ -12,7 +12,7 @@
 
 
 
-#include "pixelgameInclude.h"
+#include "PixelGameInclude.h"
 #include "Sprite.h"
 #include "PixelRenderer.h"
 

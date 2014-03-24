@@ -3,7 +3,7 @@ CXX = g++
 # Mac
 SDL = -framework SDL2
 
-CXXFLAGS = -Wall -c -std=c++11
+CXXFLAGS = -g -Wall -c -std=c++11
 INCLUDE = -I../libraries/PixelGame -I../libraries/PixelShared
 LDFLAGS = $(SDL) -L../libraries/PixelGame -L../libraries/PixelShared
 EXE = pixelApp

@@ -1,7 +1,7 @@
 CXX = g++
 AR = ar
 
-CXXFLAGS = -Wall -c -std=c++11
+CXXFLAGS = -g -Wall -c -std=c++11
 INCLUDE = -I../PixelGame -I.
 OBJS = PixelMain_Game_p1.o \
 	PixelMain_Game_p2.o \

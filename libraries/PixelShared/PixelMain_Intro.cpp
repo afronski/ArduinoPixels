@@ -18,9 +18,9 @@
 void PixelMain::allocIntro()
 {
    
-    if(invasionText->currentData==0)
-    invasionText->currentData = new DataTextInvasion();
-    pressKeyText->currentData = new DataTextPressToPlay();
+    //if(invasionText->currentData==0)
+    // invasionText->currentData = new DataTextInvasion();
+    // pressKeyText->currentData = new DataTextPressToPlay();
 }
 void PixelMain::deallocInto()
 {
@@ -56,13 +56,12 @@ void PixelMain::setupIntro()
     
     
     invasionText =new Sprite();
-    //invasionText->currentData = new DataTextInvasion();
+    invasionText->currentData = new DataTextInvasion();
     stageIntro.addChild(invasionText);
     invasionText->fx = 45;
     invasionText->fy = 12;
     
     spaceShip =new SpaceShip();
-    //spaceShip->currentData =new DataSpaceShip();
     spaceShip->setup();
    stageIntro.addChild(spaceShip);
     spaceShip->fx = 45;
@@ -70,7 +69,7 @@ void PixelMain::setupIntro()
     
     
     pressKeyText=new Sprite();
-  // pressKeyText->currentData = new DataTextPressToPlay();
+    pressKeyText->currentData = new DataTextPressToPlay();
     stageIntro.addChild(pressKeyText);
     pressKeyText->fx = 45;
     pressKeyText->fy = 12;

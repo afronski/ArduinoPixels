@@ -1,7 +1,7 @@
 CXX = g++
 AR = ar
 
-CXXFLAGS = -Wall -c -std=c++11
+CXXFLAGS = -g -Wall -c -std=c++11
 INCLUDE = -I../PixelShared -I.
 OBJS = SDLPixelRenderer.o
 	

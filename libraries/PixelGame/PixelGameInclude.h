@@ -16,6 +16,8 @@
 
 #ifdef ARDUINO
 #include <Arduino.h>
+#else
+#define uint8_t unsigned char
 #endif
 
 #endif
