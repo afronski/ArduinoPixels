@@ -426,7 +426,7 @@ void PixelMain::deallocGame()
 void PixelMain::setAliens(const Vector<Alien *> &aliens)
 {
 
-    for(int i=0;i<aliens.size();i++)
+    for(size_t i=0;i<aliens.size();i++)
     {
         Alien * a = aliens[i];
         if(a->heroType==2)
@@ -459,7 +459,7 @@ void PixelMain::setAliens(const Vector<Alien *> &aliens)
 void PixelMain::alienHitTest(Hero * hero,const Vector <Alien *> &aliens,const Vector<Blood *> &bloods)
 {
     if(hero->saveTime >0)return;
-    for(int i=0;i<aliens.size();i++)
+    for(size_t i=0;i<aliens.size();i++)
     {
         if(aliens[i]->intHidden)continue;
     
@@ -542,7 +542,7 @@ void PixelMain::alienHitTest(Hero * hero,const Vector <Alien *> &aliens,const Ve
 void  PixelMain::resolveAttack(const Vector<Live *> &lives,const Vector<Blood *> &bloods)
 {
 
-    for(int j=0;j<lives.size();j++)
+    for(size_t j=0;j<lives.size();j++)
     {
          if(lives[j]->intHidden)continue;
         Live *attacker=lives[j];
@@ -551,7 +551,7 @@ void  PixelMain::resolveAttack(const Vector<Live *> &lives,const Vector<Blood *>
             int hitPosX=attacker->fxReal+attacker->hitX;
             int hitPosY = attacker->y+attacker->hitY;
            
-            for(int i=0;i<lives.size();i++)
+            for(size_t i=0;i<lives.size();i++)
             {
                     if( lives[i]->heroType==5)continue;
                    if(lives[i]->intHidden)continue;
@@ -638,13 +638,13 @@ void  PixelMain::resolveAttack(const Vector<Live *> &lives,const Vector<Blood *>
 void  PixelMain::checkShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs,const Vector<Blood *> &bloods)
 {
 
-    for(int j=0;j<attacs.size();j++)
+    for(size_t j=0;j<attacs.size();j++)
     {
         if(attacs[j]->isUsed)
         {
           
             SpecialAttack * attack = attacs[j];
-            for(int i=0;i<lives.size();i++)
+            for(size_t i=0;i<lives.size();i++)
             {
                 
                 if(gameType == GAME_TYPE_2P)
@@ -735,7 +735,7 @@ void  PixelMain::checkShoot(const Vector<Live *> &lives,const Vector<SpecialAtta
 }
 void  PixelMain::resolveShoot(const Vector<Live *> &lives,const  Vector<SpecialAttack *> &attacts)
 {
-    for(int i=0;i< lives.size();i++)
+    for(size_t i=0;i< lives.size();i++)
     
     if(lives[i]->startShoot)
     {
@@ -756,7 +756,7 @@ void  PixelMain::resolveShoot(const Vector<Live *> &lives,const  Vector<SpecialA
 
 Blood * PixelMain::getBlood(const Vector<Blood *> &bloods)
 {
-    for (int i=0;i<bloods.size();i++)
+    for (size_t i=0;i<bloods.size();i++)
     {
         if(!bloods[i]->isUsed) return bloods[i];
         
@@ -766,7 +766,7 @@ Blood * PixelMain::getBlood(const Vector<Blood *> &bloods)
 SpecialAttack * PixelMain::getSpecialAttack(const  Vector<SpecialAttack *> &attacts)
 {
     
-    for (int i=0;i<attacts.size();i++)
+    for (size_t i=0;i<attacts.size();i++)
     {
         if(!attacts[i]->isUsed) return attacts[i];
         

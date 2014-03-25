@@ -112,7 +112,7 @@ void PixelMain::setupGame2p()
     bool sorted =false;
     while(!sorted){
         sorted  =true;
-        for (int i=0;i<   decor2p.size()-1;i++)
+        for (size_t i=0;i<   decor2p.size()-1;i++)
         {
             if(decor2p[i]->depth >decor2p[i+1]->depth)
             {
@@ -123,7 +123,7 @@ void PixelMain::setupGame2p()
             }
         }
     }
-    for (int i=0;i<   decor2p.size();i++)
+    for (size_t i=0;i<   decor2p.size();i++)
     {
         stage2p.addChild( decor2p[i]);
         
@@ -289,7 +289,7 @@ hero2pF->groundY =14;
     lifeGirlHolder2p->fy =16;
    lifeGirl2p->reset();
     lifeBoy2p->reset();
-    for(int i=0;i< aliens2p.size();i++)
+    for(size_t i=0;i< aliens2p.size();i++)
     {
         
         aliens2p[i]->reset();
@@ -299,7 +299,7 @@ hero2pF->groundY =14;
     
     hero2pM->setLevelPos(stagefx);
     
-    for(int i=0;i< aliens2p.size();i++)
+    for(size_t i=0;i< aliens2p.size();i++)
     {
         
         aliens2p[i]->setLevelPos(stagefx);
@@ -308,7 +308,7 @@ hero2pF->groundY =14;
     
     
     
-    for (int i=0;i<   decor2p.size();i++)
+    for (size_t i=0;i<   decor2p.size();i++)
     {
         decor2p[i]->setLevelPos(stagefx);
     }
@@ -357,7 +357,7 @@ void PixelMain::updateGame2p (float timeElapsed)
         return;
         
     }
-       for(int i=0;i< aliens2p.size();i++)
+       for(size_t i=0;i< aliens2p.size();i++)
     {
         
         aliens2p[i]->update(timeElapsed);
@@ -374,7 +374,7 @@ void PixelMain::updateGame2p (float timeElapsed)
     
     
     ;
-    for (int i=0;i<specialAttackBuffer2p.size();i++)
+    for (size_t i=0;i<specialAttackBuffer2p.size();i++)
     {
         specialAttackBuffer2p[i]->update(timeElapsed,stagefx);
     }
@@ -440,7 +440,7 @@ void PixelMain::updateGame2p (float timeElapsed)
     
     hero2pM->setLevelPos(stagefx);
     
-    for(int i=0;i< aliens2p.size();i++)
+    for(size_t i=0;i< aliens2p.size();i++)
     {
         
         aliens2p[i]->setLevelPos(stagefx);
@@ -449,7 +449,7 @@ void PixelMain::updateGame2p (float timeElapsed)
     
     
     
-    for (int i=0;i<   decor2p.size();i++)
+    for (size_t i=0;i<   decor2p.size();i++)
     {
         decor2p[i]->setLevelPos(stagefx);
     }
@@ -467,7 +467,7 @@ void PixelMain::updateGame2p (float timeElapsed)
 
     
     
-    for (int i=0;i<bloodBuffer2p.size();i++)
+    for (size_t i=0;i<bloodBuffer2p.size();i++)
     {
         bloodBuffer2p[i]->update(timeElapsed,stagefx);
         

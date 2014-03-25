@@ -113,7 +113,7 @@ void PixelMain::setupGame1p()
     bool sorted =false;
     while(!sorted){
         sorted  =true;
-        for (int i=0;i<   decor1p.size()-1;i++)
+        for (size_t i=0;i<   decor1p.size()-1;i++)
         {
             if(decor1p[i]->depth >decor1p[i+1]->depth)
             {
@@ -124,7 +124,7 @@ void PixelMain::setupGame1p()
             }
         }
     }
-    for (int i=0;i<   decor1p.size();i++)
+    for (size_t i=0;i<   decor1p.size();i++)
     {
         stage1p.addChild( decor1p[i]);
     
@@ -256,7 +256,7 @@ void PixelMain::resetGame1p()
     hero1pm->fy = -16;
     hero1pm->reset();
     gameOverText1p->fy = 0;
-    for(int i=0;i< aliens1p.size();i++)
+    for(size_t i=0;i< aliens1p.size();i++)
     {
         
         aliens1p[i]->reset();
@@ -266,7 +266,7 @@ void PixelMain::resetGame1p()
     
     hero1pm->setLevelPos(stagefx);
     
-    for(int i=0;i< aliens1p.size();i++)
+    for(size_t i=0;i< aliens1p.size();i++)
     {
         
         aliens1p[i]->setLevelPos(stagefx);
@@ -275,7 +275,7 @@ void PixelMain::resetGame1p()
     
     
     
-    for (int i=0;i<   decor1p.size();i++)
+    for (size_t i=0;i<   decor1p.size();i++)
     {
         decor1p[i]->setLevelPos(stagefx);
     }
@@ -323,7 +323,7 @@ void PixelMain::updateGame1p (float timeElapsed)
         
     }
   
-    for(int i=0;i< aliens1p.size();i++)
+    for(size_t i=0;i< aliens1p.size();i++)
     {
     
          aliens1p[i]->update(timeElapsed);
@@ -376,7 +376,7 @@ void PixelMain::updateGame1p (float timeElapsed)
         
     }
     
-    for (int i=0;i<specialAttackBuffer1p.size();i++)
+    for (size_t i=0;i<specialAttackBuffer1p.size();i++)
     {
         specialAttackBuffer1p[i]->update(timeElapsed, stagefx);
     }
@@ -391,7 +391,7 @@ void PixelMain::updateGame1p (float timeElapsed)
     
     hero1pm->setLevelPos(stagefx);
 
-    for(int i=0;i< aliens1p.size();i++)
+    for(size_t i=0;i< aliens1p.size();i++)
     {
         
         aliens1p[i]->setLevelPos(stagefx);
@@ -400,7 +400,7 @@ void PixelMain::updateGame1p (float timeElapsed)
     
     
     
-    for (int i=0;i<   decor1p.size();i++)
+    for (size_t i=0;i<   decor1p.size();i++)
     {
         decor1p[i]->setLevelPos(stagefx);
     }
@@ -416,7 +416,7 @@ void PixelMain::updateGame1p (float timeElapsed)
     
     
     
-    for (int i=0;i<bloodBuffer1p.size();i++)
+    for (size_t i=0;i<bloodBuffer1p.size();i++)
     {
         bloodBuffer1p[i]->update(timeElapsed,stagefx);
         

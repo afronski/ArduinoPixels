@@ -145,7 +145,7 @@ void PixelMain::updateIntro(float timeElapsed)
     
     spaceShip->update(timeElapsed);
     
-    for (int i=0;i<stars.size();i++)
+    for (size_t i=0;i<stars.size();i++)
     {
         stars[i]->update(timeElapsed);
     
