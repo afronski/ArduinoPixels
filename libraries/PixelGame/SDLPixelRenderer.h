@@ -30,7 +30,7 @@ public:
 private:
     unsigned int width, height, scale;
     SDL_Window *window;
-    SDL_Surface *pixels;
+    SDL_Surface *surface;
 };
 
 #endif /* SDLPIXELRENDERER_H_ */

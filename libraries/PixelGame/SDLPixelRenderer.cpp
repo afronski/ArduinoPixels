@@ -8,12 +8,12 @@
 #include "SDLPixelRenderer.h"
 
 SDLPixelRenderer::SDLPixelRenderer(unsigned int width, unsigned int height, unsigned int scale)
-	: width(width), height(height), scale(scale), window(NULL), pixels(NULL) {
+	: width(width), height(height), scale(scale), window(NULL), surface(NULL) {
 
 }
 
 SDLPixelRenderer::~SDLPixelRenderer() {
-	if (pixels != NULL) SDL_FreeSurface(pixels);
+	if (surface != NULL) SDL_FreeSurface(surface);
 	if (window != NULL) SDL_DestroyWindow(window);
 }
 
@@ -22,26 +22,31 @@ void SDLPixelRenderer::setup() {
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 			width * scale, height * scale, SDL_WINDOW_SHOWN);
 
-	pixels = SDL_CreateRGBSurface(0,width,height,32,0,0,0,0);
+	surface = SDL_CreateRGBSurface(0,width,height,32,0,0,0,0);
 }
 
 void SDLPixelRenderer::draw() {
 	SDL_Surface *screen = SDL_GetWindowSurface(window);
-	SDL_BlitScaled(pixels, NULL, screen, NULL);
+	SDL_BlitScaled(surface, NULL, screen, NULL);
 	SDL_UpdateWindowSurface(window);
 }
 
 void SDLPixelRenderer::setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b, uint8_t a) {
-	uint32_t c = SDL_MapRGB(this->pixels->format,r,g,b);
+	uint32_t c = SDL_MapRGB(surface->format,r,g,b);
 	setPixel(x, y, c);
 }
 
 void SDLPixelRenderer::setPixel(int x, int y, uint32_t c) {
-	SDL_LockSurface(this->pixels);
-	Uint32* p_pixels = (Uint32*)this->pixels->pixels;
-	p_pixels += y* this->pixels->w + x;
-	*p_pixels = c;
-	SDL_UnlockSurface(this->pixels);
+	if (x < 0 || x >= surface->w || y < 0 || y >= surface->h)
+		return; // off screen
+
+	SDL_LockSurface(surface);
+
+	Uint8 * pixel = (Uint8*)surface->pixels;
+	pixel += (y * surface->pitch) + (x * sizeof(Uint32));
+	*((Uint32*)pixel) = c;
+
+	SDL_UnlockSurface(surface);
 }
 
 void SDLPixelRenderer::setBrightness(int val) {
