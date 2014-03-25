@@ -110,13 +110,13 @@ void PixelMain::updateIntro(float timeElapsed)
     {
       
        
-        invasionText->fx = backEaseOut(stepTime,-45,90,1);
+        invasionText->fx = Sprite::backEaseOut(stepTime,-45,90,1);
     
     }else if(step==4)
     {
     
-        invasionText->fx = linearEase(stepTime,45,90+45,1);
-        spaceShip->fx = linearEase(stepTime,-20,20+45+2,1);
+        invasionText->fx = Sprite::linearEase(stepTime,45,90+45,1);
+        spaceShip->fx = Sprite::linearEase(stepTime,-20,20+45+2,1);
 
 
     }else if(step==5)
@@ -126,7 +126,7 @@ void PixelMain::updateIntro(float timeElapsed)
     }
     else if(step==12)
     {
-        spaceShip->fx = linearEase(stepTime,45+2,20+45,1);
+        spaceShip->fx = Sprite::linearEase(stepTime,45+2,20+45,1);
     }
     else if(step>13&& step<16 )
     {

@@ -74,8 +74,8 @@ public:
         if(headTime>4.5)return;
         if(headTime<0.3)
         {
-            head->fy  =backEaseOut(headTime,-2 , -2, 0.3);
-           ship->fy  =backEaseOut(headTime,0 , 1, 0.3);
+            head->fy  =Sprite::backEaseOut(headTime,-2 , -2, 0.3);
+           ship->fy  =Sprite::backEaseOut(headTime,0 , 1, 0.3);
             
         
         }if(headTime>0.3)
@@ -145,19 +145,7 @@ public:
     Sprite *ship;
     Sprite *armL;
     Sprite *armR;
-    //t is the current time (or position) of the tween. This can be seconds or frames, steps, seconds, ms, whatever – as long as the unit is the same as is used for the total time [3].
-    //b is the beginning value of the property.
-    //c is the change between the beginning and destination value of the property.
-    //d is the total time of the tween.
-    
-    float backEaseOut(float t,float b , float c, float d) {
-        float s = 1.70158f;
-        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
-    }
-    float cubicEaseOut(float t,float b , float c, float d) {
-      
-        return c*((t=t/d-1)*t*t + 1) + b;
-    }
+
 
 };
 

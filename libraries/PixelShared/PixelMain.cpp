@@ -209,7 +209,7 @@ void PixelMain::update(float timeElapsed)
     {
         
         updateIntro( timeElapsed);
-        stageIntro.fy = linearEase(1-switchTime,0,-16,1);;
+        stageIntro.fy = Sprite::linearEase(1-switchTime,0,-16,1);;
         stageIntro.int_update();
         stageIntro.draw(&stageIntro);
     //  cout << switchTime<< "-- "<< timeElapsed <<endl;
@@ -234,7 +234,7 @@ void PixelMain::update(float timeElapsed)
     {
         
         updateMenu( timeElapsed);
-        stageMenu.fy = linearEase(1-switchTime,0,-16,1);;
+        stageMenu.fy = Sprite::linearEase(1-switchTime,0,-16,1);;
         stageMenu.int_update();
         stageMenu.draw(&stageMenu);
         

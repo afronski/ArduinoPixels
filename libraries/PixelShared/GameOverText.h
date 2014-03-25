@@ -86,16 +86,6 @@ public:
     
     }
     Sprite * textSprite;
-    
-    float backEaseOut(float t,float b , float c, float d) {
-        float s = 1.70158f;
-        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
-    }
-    
-    
-    float expoEaseIn (float t,float b , float c, float d) {
-        return (t==0) ? b : c * pow(2, 10 * (t/d - 1)) + b;
-    }
 };
 
 

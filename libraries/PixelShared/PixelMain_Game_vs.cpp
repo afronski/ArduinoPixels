@@ -220,8 +220,8 @@ void PixelMain::updateGameVS(float timeElapsed)
     {
         
         
-        lifeBoyHolderVS->fx = linearEase(1-switchTime,-15,19,1);
-        lifeGirlHolderVS->fx = linearEase(1-switchTime,104,-19,1);
+        lifeBoyHolderVS->fx = Sprite::linearEase(1-switchTime,-15,19,1);
+        lifeGirlHolderVS->fx = Sprite::linearEase(1-switchTime,104,-19,1);
         
         switchTime -=timeElapsed;
         if(switchTime<0){

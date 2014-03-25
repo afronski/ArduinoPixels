@@ -336,8 +336,8 @@ void PixelMain::updateGame2p (float timeElapsed)
     {
         
         
-        lifeBoyHolder2p->fx = linearEase(1-switchTime,-15,19,1);
-        lifeGirlHolder2p->fx = linearEase(1-switchTime,104,-19,1);
+        lifeBoyHolder2p->fx = Sprite::linearEase(1-switchTime,-15,19,1);
+        lifeGirlHolder2p->fx = Sprite::linearEase(1-switchTime,104,-19,1);
         
         switchTime -=timeElapsed;
         if(switchTime<0){
