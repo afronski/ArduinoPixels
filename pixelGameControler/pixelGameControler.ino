@@ -1,4 +1,21 @@
 
+// button input pins
+#define BTN_P1_BLUE    34
+#define BTN_P1_RED     32
+#define BTN_P1_YELLOW  30
+#define BTN_P1_UP      28
+#define BTN_P1_DOWN    24
+#define BTN_P1_LEFT    26
+#define BTN_P1_RIGHT   22
+
+#define BTN_P2_BLUE    40
+#define BTN_P2_RED     38
+#define BTN_P2_YELLOW  36
+#define BTN_P2_UP      48
+#define BTN_P2_DOWN    44
+#define BTN_P2_LEFT    46
+#define BTN_P2_RIGHT   42
+
 #define NOTE_B0  31
 #define NOTE_C1  33
 #define NOTE_CS1 35
@@ -504,18 +521,21 @@ for(int i=0;i<2;i++)
    p+=16;}
  SerialUSB.println(p);
  
- pinMode(22, INPUT); 
- pinMode(24, INPUT); 
- pinMode(26, INPUT); 
- pinMode(28, INPUT); 
- pinMode(30, INPUT); 
- pinMode(32, INPUT); 
- pinMode(34, INPUT);
- pinMode(36, INPUT); 
- pinMode(38, INPUT); 
- pinMode(40, INPUT); 
- pinMode(42, INPUT); 
- pinMode(44, INPUT); 
+ pinMode(BTN_P1_BLUE, INPUT); 
+ pinMode(BTN_P1_RED, INPUT); 
+ pinMode(BTN_P1_YELLOW, INPUT); 
+ pinMode(BTN_P1_UP, INPUT); 
+ pinMode(BTN_P1_DOWN, INPUT); 
+ pinMode(BTN_P1_LEFT, INPUT); 
+ pinMode(BTN_P1_RIGHT, INPUT);
+ pinMode(BTN_P2_BLUE, INPUT); 
+ pinMode(BTN_P2_RED, INPUT); 
+ pinMode(BTN_P2_YELLOW, INPUT); 
+ pinMode(BTN_P2_UP, INPUT); 
+ pinMode(BTN_P2_DOWN, INPUT); 
+ pinMode(BTN_P2_LEFT, INPUT);
+ pinMode(BTN_P2_RIGHT, INPUT);
+ 
 analogWriteResolution(8) ;
  pinMode(DAC1, OUTPUT);
 
@@ -554,20 +574,20 @@ void loop() {
   
     
   
-    int btnRightBlueTemp= digitalRead(22);
+    int btnRightBlueTemp= digitalRead(BTN_P2_BLUE);
     if(btnRightBlueTemp!= btnRightBlue)
     {
       btnRightBlue =btnRightBlueTemp;
       send(20,btnRightBlue);
      
     }
-    int btnRightRedTemp= digitalRead(24);
+    int btnRightRedTemp= digitalRead(BTN_P2_RED);
     if(btnRightRedTemp!= btnRightRed)
     {
       btnRightRed =btnRightRedTemp;
       send(22,btnRightRed);
     }
-    int btnRightYellowTemp= digitalRead(52);
+    int btnRightYellowTemp= digitalRead(BTN_P2_YELLOW);
     if(btnRightYellowTemp!= btnRightYellow)
     {
       btnRightYellow =btnRightYellowTemp;
@@ -575,19 +595,19 @@ void loop() {
     
      
     }
-   int btnLeftBlueTemp= digitalRead(44);
+   int btnLeftBlueTemp= digitalRead(BTN_P1_BLUE);
     if(btnLeftBlueTemp!= btnLeftBlue)
     {
       btnLeftBlue =btnLeftBlueTemp;
       send(0,btnLeftBlue);
     }
-    int btnLeftRedTemp= digitalRead(42);
+    int btnLeftRedTemp= digitalRead(BTN_P1_RED);
     if(btnLeftRedTemp!= btnLeftRed)
     {
       btnLeftRed =btnLeftRedTemp;
       send(2,btnLeftRed);
     }
-    int btnLeftYellowTemp= digitalRead(48);
+    int btnLeftYellowTemp= digitalRead(BTN_P1_YELLOW);
   if(btnLeftYellowTemp!= btnLeftYellow)
     {
       btnLeftYellow=btnLeftYellowTemp;
@@ -597,10 +617,10 @@ void loop() {
   
   
   
-  downRightState = digitalRead(28);
-  upRightState = digitalRead(30);
-  rightRightState = digitalRead(26);
-  leftRightState = digitalRead(32);
+  downRightState = digitalRead(BTN_P2_DOWN);
+  upRightState = digitalRead(BTN_P2_UP);
+  rightRightState = digitalRead(BTN_P2_RIGHT);
+  leftRightState = digitalRead(BTN_P2_LEFT);
   int rightStateTemp =0;
   if(downRightState )
   {
@@ -649,10 +669,10 @@ void loop() {
   }
   
   
-  downLeftState = digitalRead(40);
-  upLeftState = digitalRead(34);
-  rightLeftState = digitalRead(38);
-  leftLeftState = digitalRead(36);
+  downLeftState = digitalRead(BTN_P1_DOWN);
+  upLeftState = digitalRead(BTN_P1_UP);
+  rightLeftState = digitalRead(BTN_P1_RIGHT);
+  leftLeftState = digitalRead(BTN_P1_LEFT);
    int leftStateTemp =0;
    if(downLeftState )
   {
