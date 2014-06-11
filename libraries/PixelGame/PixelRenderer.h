@@ -12,10 +12,14 @@
 #include "cinder/Color.h"
 #include "cinder/gl/gl.h"
 #else
-#include "Adafruit_NeoPixel.h"
+#include "Adafruit_NeoMatrix.h"
 #endif
 
 #include "PixelGameInclude.h"
+
+#define PIXEL_WIDTH		90
+#define PIXEL_HEIGHT	16
+#define PIXEL_PIN		2
 
 class PixelRenderer
 {
@@ -118,13 +122,7 @@ public:
     int size;
 #else
     
-    Adafruit_NeoPixel *strip1;
-    Adafruit_NeoPixel *strip2;
-    Adafruit_NeoPixel *strip3;
-    Adafruit_NeoPixel *strip4;
-    Adafruit_NeoPixel *strip5;
-    Adafruit_NeoPixel *strip6;
-    
+    Adafruit_NeoMatrix *pixels;
     
     PixelRenderer();
    
@@ -133,8 +131,6 @@ public:
     void draw();
         
     void setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b, uint8_t a);
-       
-    void setPixel(int x, int y, uint32_t c);
     void setBrightness(int val);
     void fade();
 #endif    

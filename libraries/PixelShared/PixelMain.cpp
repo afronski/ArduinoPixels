@@ -11,7 +11,7 @@
 
 PixelMain::PixelMain()
 {
-    brightness =20;
+    brightness = 180;
 }
 void PixelMain::setGameState(int state)
 {

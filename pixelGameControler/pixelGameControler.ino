@@ -141,8 +141,9 @@ DrumNote tt2 ;
 
 void setup() {
   
-   SerialUSB.begin(57600); 
+   SerialUSB.begin(57600);
  Serial3.begin(57600); 
+
  int dp =3;
  int dp2 =3+2; 
  
@@ -734,10 +735,5 @@ void send(int type, int val)
 {
  byte valb  =type+val; 
 Serial3.write(valb);
-
 Serial3.flush();
-
-
-
-
 } 

@@ -14,6 +14,9 @@
 #endif
 
 //#include <Adafruit_NeoPixel.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_NeoPixel.h>
+#include <Adafruit_NeoMatrix.h>
 
 #include <Hero.h>
 #include <PixelMain.h>
@@ -53,10 +56,7 @@ void loop() {
    {
               // chekBrightness =false;
                 incomingByte = Serial3.read();
-                
                 pixelMain.setInput((int)incomingByte);
-             
-                
     }
 
     pixelMain.update(timestep /200);
