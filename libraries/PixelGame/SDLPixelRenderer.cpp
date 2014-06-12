@@ -5,6 +5,7 @@
  *      Author: michael
  */
 
+#ifndef ARDUINO
 #include "SDLPixelRenderer.h"
 
 SDLPixelRenderer::SDLPixelRenderer(unsigned int width, unsigned int height, unsigned int scale)
@@ -56,3 +57,5 @@ void SDLPixelRenderer::setBrightness(int val) {
 void SDLPixelRenderer::fade() {
 	// not implemented
 }
+
+#endif // ARDUINO

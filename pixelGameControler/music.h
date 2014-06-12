@@ -1,7 +1,7 @@
 #ifndef music_h
 #define music_h
 
-#include <arduino.h>
+#include <Arduino.h>
 #include "note.h"
 class music
 {

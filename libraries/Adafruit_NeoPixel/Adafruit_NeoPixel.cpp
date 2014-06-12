@@ -33,7 +33,8 @@
 
 #include "Adafruit_NeoPixel.h"
 
-Adafruit_NeoPixel::Adafruit_NeoPixel(uint16_t n, uint8_t p, uint8_t t) : numLEDs(n), numBytes(n * 3), pin(p), type(t), pixels(NULL)
+Adafruit_NeoPixel::Adafruit_NeoPixel(uint16_t n, uint8_t p, uint8_t t) : numLEDs(n), numBytes(n * 3), pin(p), pixels(NULL)
+  ,type(t)
 #ifdef __AVR__
   ,port(portOutputRegister(digitalPinToPort(p))),
    pinMask(digitalPinToBitMask(p))
@@ -42,19 +43,26 @@ Adafruit_NeoPixel::Adafruit_NeoPixel(uint16_t n, uint8_t p, uint8_t t) : numLEDs
   if((pixels = (uint8_t *)malloc(numBytes))) {
     memset(pixels, 0, numBytes);
   }
+  if(t & NEO_GRB) { // GRB vs RGB; might add others if needed
+    rOffset = 1;
+    gOffset = 0;
+    bOffset = 2;
+  } else if (t & NEO_BRG) {
+    rOffset = 1;
+    gOffset = 2;
+    bOffset = 0;
+  } else {
+    rOffset = 0;
+    gOffset = 1;
+    bOffset = 2;
+  }
+  
 }
 
-#ifdef __MK20DX128__ // Teensy 3.0
-static inline void delayShort(uint32_t) __attribute__((always_inline, unused));
-static inline void delayShort(uint32_t num) {
-  asm volatile(
-    "L_%=_delay:"       "\n\t"
-    "subs   %0, #1"     "\n\t"
-    "bne    L_%=_delay" "\n"
-    : "+r" (num) :
-  );
+Adafruit_NeoPixel::~Adafruit_NeoPixel() {
+  if(pixels) free(pixels);
+  pinMode(pin, INPUT);
 }
-#endif // __arm__
 
 void Adafruit_NeoPixel::begin(void) {
   pinMode(pin, OUTPUT);
@@ -115,7 +123,9 @@ void Adafruit_NeoPixel::show(void) {
 // 8 MHz(ish) AVR ---------------------------------------------------------
 #if (F_CPU >= 7400000UL) && (F_CPU <= 9500000UL)
 
+#ifdef NEO_KHZ400
   if((type & NEO_SPDMASK) == NEO_KHZ800) { // 800 KHz bitstream
+#endif
 
     volatile uint8_t n1, n2 = 0;  // First, next bits out
 
@@ -315,6 +325,7 @@ void Adafruit_NeoPixel::show(void) {
     }    // endif PORTB
 #endif
 
+#ifdef NEO_KHZ400
   } else { // end 800 KHz, do 400 KHz
 
     // Timing is more relaxed; unrolling the inner loop for each bit is
@@ -365,11 +376,14 @@ void Adafruit_NeoPixel::show(void) {
         [lo]    "r" (lo),
         [ptr]   "e" (ptr));
   }
+#endif
 
 // 12 MHz(ish) AVR --------------------------------------------------------
 #elif (F_CPU >= 11100000UL) && (F_CPU <= 14300000UL)
 
+#ifdef NEO_KHZ400
   if((type & NEO_SPDMASK) == NEO_KHZ800) { // 800 KHz bitstream
+#endif
 
     // In the 12 MHz case, an optimized 800 KHz datastream (no dead time
     // between bytes) requires a PORT-specific loop similar to the 8 MHz
@@ -494,6 +508,7 @@ void Adafruit_NeoPixel::show(void) {
     }
 #endif
 
+#ifdef NEO_KHZ400
   } else { // 400 KHz
 
     // 30 instruction clocks per bit: HHHHHHxxxxxxxxxLLLLLLLLLLLLLLL
@@ -541,11 +556,14 @@ void Adafruit_NeoPixel::show(void) {
         [lo]     "r" (lo),
         [ptr]    "e" (ptr));
   }
+#endif
 
 // 16 MHz(ish) AVR --------------------------------------------------------
 #elif (F_CPU >= 15400000UL) && (F_CPU <= 19000000L)
 
+#ifdef NEO_KHZ400
   if((type & NEO_SPDMASK) == NEO_KHZ800) { // 800 KHz bitstream
+#endif
 
     // WS2811 and WS2812 have different hi/lo duty cycles; this is
     // similar but NOT an exact copy of the prior 400-on-8 code.
@@ -592,6 +610,7 @@ void Adafruit_NeoPixel::show(void) {
         [hi]     "r" (hi),
         [lo]     "r" (lo));
 
+#ifdef NEO_KHZ400
   } else { // 400 KHz
 
     // The 400 KHz clock on 16 MHz MCU is the most 'relaxed' version.
@@ -649,6 +668,7 @@ void Adafruit_NeoPixel::show(void) {
         [hi]     "r" (hi),
         [lo]     "r" (lo));
   }
+#endif
 
 #else
  #error "CPU SPEED NOT SUPPORTED"
@@ -656,111 +676,75 @@ void Adafruit_NeoPixel::show(void) {
 
 #elif defined(__arm__)
 
-  // Paul Stoffregen: "This implementation may not be quite perfect, but
-  // it seems to work reasonably well with an actual 20 LED WS2811 strip.
-  // The timing at 48 MHz is off a bit, perhaps due to flash cache misses?
-  // Ideally this code should execute from RAM to eliminate slight timing
-  // differences between flash caches hits and misses.  But it seems to
-  // [run] quite well.  More testing is needed with longer strips."
+#if defined(__MK20DX128__) || defined(__MK20DX256__) // Teensy 3.0 & 3.1
+#define CYCLES_800_T0H  (F_CPU / 2500000)
+#define CYCLES_800_T1H  (F_CPU / 1250000)
+#define CYCLES_800      (F_CPU /  800000)
+#define CYCLES_400_T0H  (F_CPU / 2000000)
+#define CYCLES_400_T1H  (F_CPU /  833333)
+#define CYCLES_400      (F_CPU /  400000)
 
-/* If timing can be stabilized, something like this should work:
- #define DELAY_800_T0H (0.40 * F_CPU / 1000000L / DCYC + 0.5)
- #define DELAY_800_T0L (0.85 * F_CPU / 1000000L / DCYC + 0.5)
- #define DELAY_800_T1H (0.80 * F_CPU / 1000000L / DCYC + 0.5)
- #define DELAY_800_T1L (0.45 * F_CPU / 1000000L / DCYC + 0.5)
- #define DELAY_400_T0H (0.50 * F_CPU / 1000000L / DCYC + 0.5)
- #define DELAY_400_T0L (2.00 * F_CPU / 1000000L / DCYC + 0.5)
- #define DELAY_400_T1H (1.20 * F_CPU / 1000000L / DCYC + 0.5)
- #define DELAY_400_T1L (1.30 * F_CPU / 1000000L / DCYC + 0.5)
-  But in the meantime, a fixed set of tables is used:
-*/
+  uint8_t          *p   = pixels,
+                   *end = p + numBytes, pix, mask;
+  volatile uint8_t *set = portSetRegister(pin),
+                   *clr = portClearRegister(pin);
+  uint32_t          cyc;
 
-#ifdef __MK20DX128__ // Teensy 3.0
+  ARM_DEMCR    |= ARM_DEMCR_TRCENA;
+  ARM_DWT_CTRL |= ARM_DWT_CTRL_CYCCNTENA;
 
-#if (F_CPU == 24000000)
- #define DELAY_800_T0H  2
- #define DELAY_800_T0L  4
- #define DELAY_800_T1H  5
- #define DELAY_800_T1L  1
- #define DELAY_400_T0H  3
- #define DELAY_400_T0L 10
- #define DELAY_400_T1H  9
- #define DELAY_400_T1L  5
-#elif (F_CPU == 48000000)
- #define DELAY_800_T0H  4
- #define DELAY_800_T0L  9
- #define DELAY_800_T1H 12
- #define DELAY_800_T1L  1
- #define DELAY_400_T0H  6
- #define DELAY_400_T0L 20
- #define DELAY_400_T1H 18
- #define DELAY_400_T1L 11
-#elif (F_CPU == 96000000)
- #define DELAY_800_T0H  7
- #define DELAY_800_T0L 17
- #define DELAY_800_T1H 22
- #define DELAY_800_T1L  2
- #define DELAY_400_T0H 12
- #define DELAY_400_T0L 40
- #define DELAY_400_T1H 36
- #define DELAY_400_T1L 22
-#else
- #error "CPU SPEED NOT SUPPORTED"
-#endif
-
-  volatile uint8_t *set = portSetRegister(pin);
-  volatile uint8_t *clr = portClearRegister(pin);
-  #define SET_HI   *set = 1;
-  #define SET_LO   *clr = 1;
-  uint8_t *p   = pixels,
-          *end = p + numBytes, pix, mask;
-
+#ifdef NEO_KHZ400
   if((type & NEO_SPDMASK) == NEO_KHZ800) { // 800 KHz bitstream
+#endif
+    cyc = ARM_DWT_CYCCNT + CYCLES_800;
     while(p < end) {
       pix = *p++;
       for(mask = 0x80; mask; mask >>= 1) {
-        SET_HI
+        while(ARM_DWT_CYCCNT - cyc < CYCLES_800);
+        cyc  = ARM_DWT_CYCCNT;
+        *set = 1;
         if(pix & mask) {
-          delayShort(DELAY_800_T1H);
-          SET_LO
-          delayShort(DELAY_800_T1L);
+          while(ARM_DWT_CYCCNT - cyc < CYCLES_800_T1H);
         } else {
-          delayShort(DELAY_800_T0H);
-          SET_LO
-          delayShort(DELAY_800_T0L);
+          while(ARM_DWT_CYCCNT - cyc < CYCLES_800_T0H);
         }
+        *clr = 1;
       }
     }
+    while(ARM_DWT_CYCCNT - cyc < CYCLES_800);
+#ifdef NEO_KHZ400
   } else { // 400 kHz bitstream
+    cyc = ARM_DWT_CYCCNT + CYCLES_400;
     while(p < end) {
       pix = *p++;
       for(mask = 0x80; mask; mask >>= 1) {
-        SET_HI
+        while(ARM_DWT_CYCCNT - cyc < CYCLES_400);
+        cyc  = ARM_DWT_CYCCNT;
+        *set = 1;
         if(pix & mask) {
-          delayShort(DELAY_400_T1H);
-          SET_LO
-          delayShort(DELAY_400_T1L);
+          while(ARM_DWT_CYCCNT - cyc < CYCLES_400_T1H);
         } else {
-          delayShort(DELAY_400_T0H);
-          SET_LO
-          delayShort(DELAY_400_T0L);
+          while(ARM_DWT_CYCCNT - cyc < CYCLES_400_T0H);
         }
+        *clr = 1;
       }
     }
+    while(ARM_DWT_CYCCNT - cyc < CYCLES_400);
   }
+#endif
 
 #else // Arduino Due
 
   #define SCALE      VARIANT_MCK / 2UL / 1000000UL
   #define INST       (2UL * F_CPU / VARIANT_MCK)
-  #define TIME_800_L ((int)(0.40 * SCALE + 0.5) - (5 * INST))
-  #define TIME_800_H ((int)(0.80 * SCALE + 0.5) - (5 * INST))
+  #define TIME_800_0 ((int)(0.40 * SCALE + 0.5) - (5 * INST))
+  #define TIME_800_1 ((int)(0.80 * SCALE + 0.5) - (5 * INST))
   #define PERIOD_800 ((int)(1.25 * SCALE + 0.5) - (5 * INST))
-  #define TIME_400_L ((int)(0.50 * SCALE + 0.5) - (5 * INST))
-  #define TIME_400_H ((int)(1.20 * SCALE + 0.5) - (5 * INST))
+  #define TIME_400_0 ((int)(0.50 * SCALE + 0.5) - (5 * INST))
+  #define TIME_400_1 ((int)(1.20 * SCALE + 0.5) - (5 * INST))
   #define PERIOD_400 ((int)(2.50 * SCALE + 0.5) - (5 * INST))
 
-  int             pinMask, timeLo, timeHi, period, t;
+  int             pinMask, time0, time1, period, t;
   Pio            *port;
   volatile WoReg *portSet, *portClear, *timeValue, *timeReset;
   uint8_t        *p, *end, pix, mask;
@@ -782,18 +766,22 @@ void Adafruit_NeoPixel::show(void) {
   pix       = *p++;
   mask      = 0x80;
 
+#ifdef NEO_KHZ400
   if((type & NEO_SPDMASK) == NEO_KHZ800) { // 800 KHz bitstream
-    timeLo = TIME_800_L;
-    timeHi = TIME_800_H;
+#endif
+    time0 = TIME_800_0;
+    time1 = TIME_800_1;
     period = PERIOD_800;
+#ifdef NEO_KHZ400
   } else { // 400 KHz bitstream
-    timeLo = TIME_400_L;
-    timeHi = TIME_400_H;
+    time0 = TIME_400_0;
+    time1 = TIME_400_1;
     period = PERIOD_400;
   }
+#endif
 
-  for(t = timeLo;; t = timeLo) {
-    if(pix & mask) t = timeHi;
+  for(t = time0;; t = time0) {
+    if(pix & mask) t = time1;
     while(*timeValue < period);
     *portSet   = pinMask;
     *timeReset = TC_CCR_CLKEN | TC_CCR_SWTRG;
@@ -816,30 +804,32 @@ void Adafruit_NeoPixel::show(void) {
   endTime = micros(); // Save EOD time for latch on next call
 }
 
+// Set the output pin number
+void Adafruit_NeoPixel::setPin(uint8_t p) {
+  pinMode(pin, INPUT);
+  pin = p;
+  pinMode(p, OUTPUT);
+  digitalWrite(p, LOW);
+#ifdef __AVR__
+  port    = portOutputRegister(digitalPinToPort(p));
+  pinMask = digitalPinToBitMask(p);
+#endif
+}
+
 // Set pixel color from separate R,G,B components:
 void Adafruit_NeoPixel::setPixelColor(
- uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
-
-    uint8_t *pr  = &pixels[n * 3];
-    uint8_t *pg =pr+1;
-    uint8_t *pb =pr+2;
-    
-    r = (r * brightness) >> 8;
-    g = (g * brightness) >> 8;
-    b = (b * brightness) >> 8;
-    
-    if(a!=255){
-    
-        float alpha = (float)a/255;
-        float alpha1 =1-alpha ;
-        r = (float)*pr*alpha1 +(float)g*alpha;
-        g = (float)*pg*alpha1 +(float)r *alpha;
-        b  = (float)*pb*alpha1 +(float)b *alpha;
+ uint16_t n, uint8_t r, uint8_t g, uint8_t b) {
+  if(n < numLEDs) {
+    if(brightness) { // See notes in setBrightness()
+      r = (r * brightness) >> 8;
+      g = (g * brightness) >> 8;
+      b = (b * brightness) >> 8;
     }
-    *pr = g;
-    *pg = r;
-    *pb = b;
- 
+    uint8_t *p = &pixels[n * 3];
+    p[rOffset] = r;
+    p[gOffset] = g;
+    p[bOffset] = b;
+  }
 }
 
 // Set pixel color from 'packed' 32-bit RGB color:
@@ -855,9 +845,9 @@ void Adafruit_NeoPixel::setPixelColor(uint16_t n, uint32_t c) {
       b = (b * brightness) >> 8;
     }
     uint8_t *p = &pixels[n * 3];
-    if((type & NEO_COLMASK) == NEO_GRB) { *p++ = g; *p++ = r; }
-    else                                { *p++ = r; *p++ = g; }
-    *p = b;
+    p[rOffset] = r;
+    p[gOffset] = g;
+    p[bOffset] = b;
   }
 }
 
@@ -868,23 +858,26 @@ uint32_t Adafruit_NeoPixel::Color(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 // Query color from previously-set pixel (returns packed 32-bit RGB value)
-uint32_t Adafruit_NeoPixel::getPixelColor(uint16_t n) {
+uint32_t Adafruit_NeoPixel::getPixelColor(uint16_t n) const {
 
   if(n < numLEDs) {
-    uint16_t ofs = n * 3;
-    return (uint32_t)(pixels[ofs + 2]) |
-      (((type & NEO_COLMASK) == NEO_GRB) ?
-        ((uint32_t)(pixels[ofs    ]) <<  8) |
-        ((uint32_t)(pixels[ofs + 1]) << 16)
-      :
-        ((uint32_t)(pixels[ofs    ]) << 16) |
-        ((uint32_t)(pixels[ofs + 1]) <<  8) );
+    uint8_t *p = &pixels[n * 3];
+    return ((uint32_t)p[rOffset] << 16) |
+           ((uint32_t)p[gOffset] <<  8) |
+            (uint32_t)p[bOffset];
   }
 
   return 0; // Pixel # is out of bounds
 }
 
-uint16_t Adafruit_NeoPixel::numPixels(void) {
+// Returns pointer to pixels[] array.  Pixel data is stored in device-
+// native format and is not translated here.  Application will need to be
+// aware whether pixels are RGB vs. GRB and handle colors appropriately.
+uint8_t *Adafruit_NeoPixel::getPixels(void) const {
+  return pixels;
+}
+
+uint16_t Adafruit_NeoPixel::numPixels(void) const {
   return numLEDs;
 }
 

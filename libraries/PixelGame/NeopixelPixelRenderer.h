@@ -8,20 +8,19 @@
 
 #ifndef PixelGame_NeopixelPixelRenderer_h
 #define PixelGame_NeopixelPixelRenderer_h
-#include "Adafruit_NeoPixel.h"
+#include "Adafruit_NeoMatrix.h"
 
 #include "PixelGameInclude.h"
+#include "PixelRenderer.h"
+
+#define PIXEL_WIDTH     90
+#define PIXEL_HEIGHT    16
+#define PIXEL_PIN       2
 
 class NeopixelPixelRenderer : public PixelRenderer
 {
 public:
-    Adafruit_NeoPixel *strip1;
-    Adafruit_NeoPixel *strip2;
-    Adafruit_NeoPixel *strip3;
-    Adafruit_NeoPixel *strip4;
-    Adafruit_NeoPixel *strip5;
-    Adafruit_NeoPixel *strip6;
-    
+    Adafruit_NeoMatrix *pixels;
     
     NeopixelPixelRenderer();
    
