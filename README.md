@@ -21,16 +21,14 @@ Prerequisites:
 - Arduino IDE 1.5.x (must support Arduino Due)
 
 
-1. Copy the folders `PixelGame` and `PixelShared` from `libraries` into your Arduino library folder (usually `~/Arduino/libraries`).
+1. Copy all folders from `libraries` into your Arduino library folder (usually `~/Arduino/libraries`).
 2. Open the `PixelDisplayGame/PixelDisplayGame.ino` sketch in the Arduino IDE
 3. Set Tools -> Board -> Arduino Due
 4. Compile and upload the sketch to the first Arduino Due - the one that will run the display and game logic.
 5. Open the `pixelGameController/pixelGameController.ino` sketch in the Arduino IDE
 6. Compile and upload the sketch to the second Arduino Due - this will handle the joysticks and music playback.
 
-Now build the hardware as described here:
-http://www.neuroproductions.be/arduino/arduino-video-game/ 
-and enjoy the game!
+Now build the hardware as described [here](#hardware) and enjoy the game!
 
 Windows
 -------
@@ -55,6 +53,26 @@ Prerequisites:
 - Cinder for Mac (http://libcinder.org/download/)
 
 TODO describe Mac setup
+
+Hardware
+========
+
+![HSHB Hardware](assets/hshb_hardware.png)
+
+Display
+-------
+
+The display is a 90x16 matrix of WS2812 RGB LEDs (16 strips, 90 LEDs each).
+The strips are connected in a "zigzag" configuration, that means the "DO" pad of one strip is connected to the "DI" pad of the next one. A single data line, connected to pin 2 of the Arduino, is sufficient to drive the whole display.
+
+Power should be fed from both sides of each strip to avoid brightness falloff on one side. Depending on the brightness, the display can draw up to 60A at 5V, so a good power supply and thick cables should be used.
+
+Player Controls
+---------------
+
+Each player has a 4-way arcade joystick and 3 buttons ("red", "yellow", "blue"), connected to Arduino pins 22 through 48 (see above diagram for the exact wiring).  All buttons need a pulldown resistor.
+
+The two Arduinos are connected using the "Serial3" serial port (pins 14 and 15). Make sure to swap RX and TX on one side.
 
 License
 =======
