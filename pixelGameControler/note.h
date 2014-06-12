@@ -1,7 +1,7 @@
 #ifndef note_h
 #define note_h
 
-#include <arduino.h>
+#include <Arduino.h>
 
 class note
 {

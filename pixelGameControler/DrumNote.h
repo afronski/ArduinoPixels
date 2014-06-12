@@ -2,7 +2,7 @@
 #ifndef drumnote_h
 #define drumnote_h
 
-#include <arduino.h>
+#include <Arduino.h>
 
 class DrumNote :public note
 {

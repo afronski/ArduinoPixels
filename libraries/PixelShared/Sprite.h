@@ -8,7 +8,7 @@
 
 #ifndef pixelgame_Sprite_h
 #define pixelgame_Sprite_h
-#include "pixelGameInclude.h"
+#include "PixelGameInclude.h"
 #include "PixelData.h"
 #include "Vector.h"
 #include "npRect.h"
