@@ -33,26 +33,27 @@ Now build the hardware as described [here](#hardware) and enjoy the game!
 Windows
 -------
 
-Prerequisites:
-
-- Visual Studio Express 2012 for Windows Desktop (http://www.microsoft.com/de-de/download/details.aspx?id=34673)
-- Cinder for Visual C++ 2012 (http://libcinder.org/download/)
-
-
-1. Set an environment variable named `CINDER_HOME`, pointing to the directory where you extracted Cinder
-2. Open the file `vc11\ArduinoPixels\ArduinoPixels.sln` in Visual Studio 2012
-3. Set the `pixelGameApp` project as StartUp project
-4. Compile & Run!
+TODO
 
 Mac
 ---
 
 Prerequisites:
 
-- XCode
-- Cinder for Mac (http://libcinder.org/download/)
+- XCode command line tools
+- SDL2 http://libsdl.org/download-2.0.php
 
-TODO describe Mac setup
+Run `build.sh` to compile everything. After that, start the binary `pixelApp/pixelApp`.
+
+Linux
+-----
+
+Prerequisites:
+
+- A working GCC toolchain (install "build-essential" on Debian/Ubuntu)
+- SDL2 (install "libsdl2-dev")
+
+Run `build.sh` to compile everything. After that, start the binary `pixelApp/pixelApp`.
 
 Hardware
 ========

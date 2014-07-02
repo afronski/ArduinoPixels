@@ -263,18 +263,7 @@ public:
     Sprite *ship;
     Sprite *armL;
     Sprite *armR;
-    float backEaseOut(float t,float b , float c, float d) {
-        float s = 1.70158f;
-        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
-    }
-    float cubicEaseOut(float t,float b , float c, float d) {
-        
-        return c*((t=t/d-1)*t*t + 1) + b;
-    }
-    float cubicEaseInOut(float t,float b , float c, float d) {
-        if ((t/=d/2) < 1) return c/2*t*t*t + b;
-        return c/2*((t-=2)*t*t + 2) + b;
-    }
+
     
 };
 

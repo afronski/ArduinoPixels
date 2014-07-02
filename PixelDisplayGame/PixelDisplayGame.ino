@@ -21,8 +21,11 @@
 #include <Hero.h>
 #include <PixelMain.h>
 #include <PixelGameInclude.h>
-#include <PixelRenderer.h>
-PixelMain pixelMain;
+#include <NeopixelPixelRenderer.h>
+
+NeopixelPixelRenderer *renderer;
+PixelMain *pixelMain;
+
 int count =0;
 unsigned long secTime=0;
 unsigned long lastTime=0;
@@ -32,7 +35,9 @@ void setup(){
      Serial3.begin(57600);
      Serial.println("start2");
    
-   pixelMain.setup();
+   renderer = new NeopixelPixelRenderer();
+   pixelMain = new PixelMain(renderer);
+   pixelMain->setup();
 secTime =millis();
 lastTime =millis(); 
 }
@@ -42,7 +47,7 @@ void loop() {
   if(chekBrightness)
   {
     
-       pixelMain.brightness = analogRead(0)/4;
+       pixelMain->brightness = analogRead(0)/4;
   }
   
   unsigned long  currentTime =millis();
@@ -56,11 +61,11 @@ void loop() {
    {
               // chekBrightness =false;
                 incomingByte = Serial3.read();
-                pixelMain.setInput((int)incomingByte);
+                pixelMain->setInput((int)incomingByte);
     }
 
-    pixelMain.update(timestep /200);
-    pixelMain.draw();
+    pixelMain->update(timestep /200);
+    pixelMain->draw();
 }
   
 

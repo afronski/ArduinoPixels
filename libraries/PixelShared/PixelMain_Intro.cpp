@@ -19,8 +19,8 @@ void PixelMain::allocIntro()
 {
    
     if(invasionText->currentData==0)
-    invasionText->currentData = new DataTextInvasion();
-    pressKeyText->currentData = new DataTextPressToPlay();
+     invasionText->currentData = new DataTextInvasion();
+     pressKeyText->currentData = new DataTextPressToPlay();
 }
 void PixelMain::deallocInto()
 {
@@ -56,13 +56,12 @@ void PixelMain::setupIntro()
     
     
     invasionText =new Sprite();
-    //invasionText->currentData = new DataTextInvasion();
+    // invasionText->currentData = new DataTextInvasion();
     stageIntro.addChild(invasionText);
     invasionText->fx = 45;
     invasionText->fy = 12;
     
     spaceShip =new SpaceShip();
-    //spaceShip->currentData =new DataSpaceShip();
     spaceShip->setup();
    stageIntro.addChild(spaceShip);
     spaceShip->fx = 45;
@@ -70,7 +69,7 @@ void PixelMain::setupIntro()
     
     
     pressKeyText=new Sprite();
-  // pressKeyText->currentData = new DataTextPressToPlay();
+    // pressKeyText->currentData = new DataTextPressToPlay();
     stageIntro.addChild(pressKeyText);
     pressKeyText->fx = 45;
     pressKeyText->fy = 12;
@@ -111,13 +110,13 @@ void PixelMain::updateIntro(float timeElapsed)
     {
       
        
-        invasionText->fx = backEaseOut(stepTime,-45,90,1);
+        invasionText->fx = Sprite::backEaseOut(stepTime,-45,90,1);
     
     }else if(step==4)
     {
     
-        invasionText->fx = linearEase(stepTime,45,90+45,1);
-        spaceShip->fx = linearEase(stepTime,-20,20+45+2,1);
+        invasionText->fx = Sprite::linearEase(stepTime,45,90+45,1);
+        spaceShip->fx = Sprite::linearEase(stepTime,-20,20+45+2,1);
 
 
     }else if(step==5)
@@ -127,7 +126,7 @@ void PixelMain::updateIntro(float timeElapsed)
     }
     else if(step==12)
     {
-        spaceShip->fx = linearEase(stepTime,45+2,20+45,1);
+        spaceShip->fx = Sprite::linearEase(stepTime,45+2,20+45,1);
     }
     else if(step>13&& step<16 )
     {
@@ -146,7 +145,7 @@ void PixelMain::updateIntro(float timeElapsed)
     
     spaceShip->update(timeElapsed);
     
-    for (int i=0;i<stars.size();i++)
+    for (size_t i=0;i<stars.size();i++)
     {
         stars[i]->update(timeElapsed);
     

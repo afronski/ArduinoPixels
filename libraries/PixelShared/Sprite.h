@@ -49,7 +49,7 @@ public:
             
             
         }
-        for(int i=0;i<children.size();i++)
+        for(size_t i=0;i<children.size();i++)
         {
             children[i]->int_update();
         }
@@ -132,6 +132,40 @@ public:
         }
     */
         return false;
+    }
+
+    //t is the current time (or position) of the tween. This can be seconds or frames, steps, seconds, ms, whatever – as long as the unit is the same as is used for the total time [3].
+    //b is the beginning value of the property.
+    //c is the change between the beginning and destination value of the property.
+    //d is the total time of the tween.
+    
+    static float backEaseOut(float t,float b , float c, float d) {
+        float s = 1.70158f;
+	t = t/d-1;
+        return c*(t*t*((s+1)*t + s) + 1) + b;
+    }
+    static float cubicEaseOut(float t,float b , float c, float d) {
+        t = t/d-1;
+        return c*(t*t*t + 1) + b;
+    }
+
+    static float cubicEaseInOut(float t,float b , float c, float d) {
+	t/=d/2;
+        if (t < 1) return c/2*t*t*t + b;
+	t-=2;
+        return c/2*(t*t*t + 2) + b;
+    }
+
+    static float expoEaseIn (float t,float b , float c, float d) {
+        return (t==0) ? b : c * pow(2, 10 * (t/d - 1)) + b;
+    }
+
+    static float expoEaseOut(float t,float b , float c, float d) {
+        return (t==d) ? b+c : c * (-pow(2, -10 * t/d) + 1) + b;
+    }
+    
+    static float linearEase(float t,float b , float c, float d) {
+        return c*t/d + b;;
     }
 };
 

@@ -37,7 +37,7 @@ public:
     void draw(Sprite *child )
     {
         drawSprite( child);
-        for(int i=0;i<child->children.size();i++)
+        for(size_t i=0;i<child->children.size();i++)
         {
            
            draw(child->children[i]);

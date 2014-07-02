@@ -83,7 +83,7 @@ void PixelMain::setupGameVS()
     bool sorted =false;
     while(!sorted){
         sorted  =true;
-        for (int i=0;i<   decorVS.size()-1;i++)
+        for (size_t i=0;i<   decorVS.size()-1;i++)
         {
             if(decorVS[i]->depth >decorVS[i+1]->depth)
             {
@@ -94,7 +94,7 @@ void PixelMain::setupGameVS()
             }
         }
     }
-    for (int i=0;i<   decorVS.size();i++)
+    for (size_t i=0;i<   decorVS.size();i++)
     {
         stageVS.addChild( decorVS[i]);
         
@@ -220,8 +220,8 @@ void PixelMain::updateGameVS(float timeElapsed)
     {
         
         
-        lifeBoyHolderVS->fx = linearEase(1-switchTime,-15,19,1);
-        lifeGirlHolderVS->fx = linearEase(1-switchTime,104,-19,1);
+        lifeBoyHolderVS->fx = Sprite::linearEase(1-switchTime,-15,19,1);
+        lifeGirlHolderVS->fx = Sprite::linearEase(1-switchTime,104,-19,1);
         
         switchTime -=timeElapsed;
         if(switchTime<0){
@@ -250,7 +250,7 @@ void PixelMain::updateGameVS(float timeElapsed)
     resolveAttack(liveVS,bloodBufferVS);
     
         
-    for (int i=0;i<specialAttackBufferVS.size();i++)
+    for (size_t i=0;i<specialAttackBufferVS.size();i++)
     {
         specialAttackBufferVS[i]->update(timeElapsed,stagefx);
     }
@@ -306,7 +306,7 @@ void PixelMain::updateGameVS(float timeElapsed)
     
    
 
-    for (int i=0;i<   decorVS.size();i++)
+    for (size_t i=0;i<   decorVS.size();i++)
     {
         decorVS[i]->setLevelPos(stagefx);
     }
@@ -315,7 +315,7 @@ void PixelMain::updateGameVS(float timeElapsed)
         cloudsVS[i]->update(timeElapsed);
         
     }
-    for (int i=0;i<bloodBufferVS.size();i++)
+    for (size_t i=0;i<bloodBufferVS.size();i++)
     {
         bloodBufferVS[i]->update(timeElapsed,stagefx);
         
