@@ -79,9 +79,8 @@ set(SRC
     src/classgeneratorApp.cpp
 )
 
-# Headers
-set(HDR
-)
+# Set GENERATOR_DIR macro
+add_definitions(-DGENERATOR_DIR="${CMAKE_SOURCE_DIR}")
 
 
 #
@@ -89,7 +88,7 @@ set(HDR
 #
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-add_executable(ClassGenerator WIN32 ${SRC} ${HDR})
+add_executable(ClassGenerator WIN32 ${SRC})
 
 
 #

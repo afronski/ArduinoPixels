@@ -13,10 +13,10 @@ using namespace std;
 
 class classgeneratorApp : public AppBasic {
   public:
-	void setup();
-	void mouseDown( MouseEvent event );	
-	void update();
-	void draw();
+    void setup();
+    void mouseDown(MouseEvent);
+    void update();
+    void draw();
     void setFile( int w,int h, unsigned char *data,string name);
     bool alpha ;
     int getIndex(int r, int g,int b,int a);
@@ -27,8 +27,9 @@ void classgeneratorApp::setup()
 {
     
     string filetype = ".png";
-    
-    fs::path p( getHomeDirectory().string() +"dropbox/pixelgame/" );
+    string assetFolder = string(GENERATOR_DIR) + "/../../assets/";
+
+    fs::path p( assetFolder );
     for( fs::directory_iterator it( p ); it != fs::directory_iterator(); ++it ) {
         if( ! is_directory( *it ) )
         {
@@ -49,23 +50,13 @@ void classgeneratorApp::setup()
             }
         }
     }
-    
-   
-      
- 
-    
-    
-    
-    
-    
-    
 }
 void classgeneratorApp::setFile( int w,int h, unsigned char *data,string name)
 {
     colorData.clear();
 
-    std::ofstream oStream ;
-    std::string filename=  getHomeDirectory().string() +"Documents/Arduino/libraries/PixelShared/Data"+ name+".h";
+    ofstream oStream ;
+    string filename= string(GENERATOR_DIR) + "/../../libraries/PixelShared";
      console() <<"writing:  "<<filename<<" "<<endl;
     oStream.open(filename.c_str() );
      oStream << "//generated pixeldata"<< endl;
@@ -124,13 +115,6 @@ void classgeneratorApp::setFile( int w,int h, unsigned char *data,string name)
     
     
      oStream << "   };"<< endl;
- 
-    
-    
-    
-    
-    
-    
     
     oStream << "};"<< endl;
     oStream << "#endif" << endl;
@@ -145,15 +129,12 @@ int classgeneratorApp::getIndex(int r, int g,int b,int a)
 
     for (int j=0;j<colorData.size();j+=4)
     {
-        
         if(colorData[j]==r  && colorData[j+1]==g && colorData[j+2]==b && colorData[j+3]==a )
         {
-        
             return j;
         }
-        
     }
-   
+
         colorData.push_back(r );
         colorData.push_back(g  );
         colorData.push_back(b );
@@ -162,7 +143,7 @@ int classgeneratorApp::getIndex(int r, int g,int b,int a)
     return colorData.size()-4;
 }
 
-void classgeneratorApp::mouseDown( MouseEvent event )
+void classgeneratorApp::mouseDown( MouseEvent /*unused*/ )
 {
 }
 
