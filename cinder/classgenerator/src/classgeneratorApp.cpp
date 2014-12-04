@@ -22,12 +22,18 @@ void setFile(rgba8_image_t &image, string name);
 int getIndex(int r, int g,int b,int a);
 vector<int> colorData;
 
-int main(int /*unused*/, char **/*unused*/)
+int main(int argc, char *argv[])
 {
     string filetype = ".png";
-    string assetFolder = string(GENERATOR_DIR) + "/../../assets/";
+    string assetFolder;
+
+    if (argc == 2)
+        assetFolder = argv[1];
+    else
+        assetFolder = string(GENERATOR_DIR) + "/../../assets/";
 
     fs::path p( assetFolder );
+    cout << "Parsing " << p.string() << endl;
     for( fs::directory_iterator it( p ); it != fs::directory_iterator(); ++it ) {
         if( ! is_directory( *it ) )
         {
