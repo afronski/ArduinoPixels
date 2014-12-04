@@ -48,25 +48,11 @@ if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
 endif()
 
-# Curl
-find_package(CURL REQUIRED)
-if(CURL_FOUND)
-  message(STATUS "Including Boost from: ${CURL_INCLUDE_DIRS}")
-  include_directories(${CURL_INCLUDE_DIRS})
-endif()
-
-# OpenGL
-find_package(OpenGL REQUIRED)
-if(OPENGL_FOUND)
-  message(STATUS "Including Boost from: ${OPENGL_INCLUDE_DIRS}")
-  include_directories(${OPENGL_INCLUDE_DIRS})
-endif()
-
-# Zlib
-find_package(ZLIB REQUIRED)
-if(ZLIB_FOUND)
-  message(STATUS "Including Boost from: ${ZLIB_INCLUDE_DIRS}")
-  include_directories(${ZLIB_INCLUDE_DIRS})
+# PNG
+find_package(PNG REQUIRED)
+if(PNG_FOUND)
+  message(STATUS "Including Boost from: ${PNG_INCLUDE_DIRS}")
+  include_directories(${PNG_INCLUDE_DIRS})
 endif()
 
 
@@ -95,11 +81,7 @@ add_executable(ClassGenerator WIN32 ${SRC})
 # Linking
 #
 
-INCLUDE_DIRECTORIES(${CINDER_INCLUDE_DIR})
 target_link_libraries(ClassGenerator
     ${Boost_LIBRARIES}
-    ${CURL_LIBRARIES}
-    ${OPENGL_LIBRARIES}
-    ${ZLIB_LIBRARIES}
-    ${CINDER_LIB_DIR}/libcinder.a
+    ${PNG_LIBRARIES}
 )
