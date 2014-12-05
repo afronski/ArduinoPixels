@@ -308,7 +308,7 @@ void PixelMain::update(float timeElapsed)
     
     
 }
-void PixelMain::setWin(int heroType)
+void PixelMain::setWin(int /*heroType*/)
 {
 
 

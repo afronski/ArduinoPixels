@@ -15,7 +15,7 @@
 class Sprite
 {
 public:
-    Sprite(){x =0;y=0;fx =0;fy=0;drawType=0;depth =1;visible =true; parent =0;currentData=0;hasHitRect =false;};
+    Sprite(){x =0;y=0;fx =0;fy=0;drawType=0;depth =1;visible =true; parent =0;currentData=0;hasHitRect =false;}
     virtual void addChild(Sprite *child)
     {
         child->parent =this;

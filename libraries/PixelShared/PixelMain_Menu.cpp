@@ -134,7 +134,7 @@ void PixelMain::menuRight()
 
    //   cout << "gDown"<<  menuPos<< endl;
 }
-void PixelMain::updateMenu(float timeElapsed)
+void PixelMain::updateMenu(float /*timeElapsed*/)
 {
     
     

@@ -86,5 +86,9 @@ Contributors
 ============
 
 - Kris Temmerman - original design and implementation
+
 - Michael Koetter - Ported to SDL2 for Linux compatibility
-- Hans Robeers - Ported to CMake & Removed Cinder dependency of the ClassGenerator for Linux compatibility
+
+- Hans Robeers - Ported to CMake
+               - Removed Cinder dependency of the ClassGenerator for Linux compatibility
+               - Reduced memory footprint & increased performance by stack allocating const bitmap data

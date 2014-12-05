@@ -2,7 +2,8 @@
 //  classgeneratorApp.cpp
 //
 //  Created by Kris Temmerman
-//  Modified by Hans Robeers: Replace cinder dependency by boost::gil
+//  Modified by Hans Robeers: - Replace cinder dependency by boost::gil
+//                            - Stack allocation of data (lower memory footprint & increased performance)
 //
 
 #include <fstream>

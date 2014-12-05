@@ -14,8 +14,6 @@
 class PixelData
 {
 public:
-    PixelData(){color =0;indices=0;};
-
     const uint8_t *color;
     const uint8_t *indices;
     int width;
@@ -25,6 +23,14 @@ public:
   
 };
 
+//
+// PixelDataImpl
+// Glue class for stack allocated data.
+//  * Lower memory footprint
+//  * Increased performance
+//
+// Created by Hans Robeers on 2014/12/05
+//
 template<typename T>
 class PixelDataImpl : public PixelData
 {

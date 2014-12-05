@@ -46,7 +46,7 @@ struct joystickState {
 void handleKeyEvent(PixelMain &main, SDL_KeyboardEvent *key);
 void handleJoystick(PixelMain &main, joystickState &input, int offset);
 
-int main(int argc, char** argv) {
+int main(int /*argc*/, char** /*argv*/) {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 		cout << "SDL_Init Error: " << SDL_GetError() << endl;
 		return 1;

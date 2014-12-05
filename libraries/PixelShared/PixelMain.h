@@ -73,7 +73,7 @@ public:
     void draw();
     
     void setInput(int key);
-    void setWin(int heroType);
+    void setWin(int);
     
     Stage stage2p;
     Stage stage1p;
@@ -107,7 +107,7 @@ public:
     ///////////////////////////////////////
     
     void setupMenu();
-    void updateMenu(float timeElapsed);
+    void updateMenu(float);
     void menuRight();
     void menuLeft();
     void allocMenu();
@@ -130,7 +130,7 @@ public:
     
     
     void setupGame();
-    void updateGame(float timeElapsed);
+    void updateGame(float);
     void setHeroData(Hero * hero,int type);
      void setLifeData(Life * life);
     

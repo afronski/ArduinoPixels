@@ -246,7 +246,7 @@ gotHit2G->centerY-=1;
     
     waterSplash2p->frame1 = splashFrame1;
     waterSplash2p->frame2 = splashFrame2;
-};
+}
 
 void PixelMain::deallocGame()
 {
@@ -421,7 +421,7 @@ void PixelMain::deallocGame()
     splashFrame1 =0;
     splashFrame2 =0;
     
-};
+}
 
 void PixelMain::setAliens(const Vector<Alien *> &aliens)
 {
@@ -1195,18 +1195,8 @@ void  PixelMain::setHeroData(Hero * hero,int type)
 
 
 }
-void PixelMain::updateGame(float timeElapsed)
+void PixelMain::updateGame(float /*timeElapsed*/)
 {
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
     /*
     for (int i=0;i<3;i++)
     {

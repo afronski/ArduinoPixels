@@ -65,12 +65,13 @@ void PixelMain::setupGameVS()
     int posFlower[6] = { 12,28, 77,55,23,45};
     
    
-    for(int i=0;i<10;i++)
+    for(int i=0;i<6;i++)
     {
         DecorSprite * flower  = new  DecorSprite();
         flower ->currentData =flowerData;
         
-        flower->fx = flower->fxReal = posFlower[i];
+        flower->fx = posFlower[i];
+        flower->fxReal = posFlower[i];
         int rPos = -rand()%4;
         flower->fy = rPos+15;
         flower->depth =1;
