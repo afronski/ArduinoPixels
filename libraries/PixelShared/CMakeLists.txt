@@ -52,7 +52,7 @@ set(HDR
     DataCloud1.h
     DataDuckBig.h
     DataDuckSmall.h
-    DataFlower.h
+    Dataflower.h
     DataGirl.h
     DataGirlBall.h
     DataGirlBallStroke1.h

@@ -39,7 +39,7 @@ void PixelMain::setupGame2p()
         // cout << treeFar->fx<<",";
         int rPos = treePosSH[i];
         
-        treeFar ->fy = -rand()%2+treeFarData->height;
+        treeFar ->fy = -rand()%2+treeFarData->height();
         treeFar ->depth=0.3;
         if( rPos ==-1) treeFar ->depth=0.25;
         
@@ -59,7 +59,7 @@ void PixelMain::setupGame2p()
         // cout << treeClose->fx<<",";
         int rPos = treePosH[i]  ;
         
-        treeClose->fy = rPos+treeCloseData->height-5;
+        treeClose->fy = rPos+treeCloseData->height()-5;
         treeClose->depth =0.8;
         if( rPos ==-1)treeClose->depth=0.5;
         if( rPos ==-2)treeClose->depth=0.4;

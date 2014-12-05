@@ -2,34 +2,34 @@
 #ifndef _DataAlienShoot2_h
 #define _DataAlienShoot2_h
 #include "PixelData.h"
-class DataAlienShoot2:public PixelData{ 
+namespace _AlienShoot2_ {
+    const uint8_t indices[9] = {
+        255
+        ,0
+        ,255
+        ,0
+        ,4
+        ,0
+        ,255
+        ,0
+        ,255
+    };
+    const uint8_t color[8] = {
+        141
+        ,198
+        ,63
+        ,255
+        ,0
+        ,0
+        ,0
+        ,255
+    };
+}
+class DataAlienShoot2 : public PixelDataImpl<DataAlienShoot2> { 
 public:
-    DataAlienShoot2()
-   {
-       width =3;
-        height=3;
-       centerX=1;
-        centerY=3;
-        int size =width*height;
-        indices= new uint8_t[size];
-        indices[0]=255;
-        indices[1]=0;
-        indices[2]=255;
-        indices[3]=0;
-        indices[4]=4;
-        indices[5]=0;
-        indices[6]=255;
-        indices[7]=0;
-        indices[8]=255;
-        color= new uint8_t[8];
-        color[0] =141;
-        color[1] =198;
-        color[2] =63;
-        color[3] =255;
-        color[4] =0;
-        color[5] =0;
-        color[6] =0;
-        color[7] =255;
-   };
+       static int width() { return 3; }
+       static int height() { return 3; }
+       static const uint8_t* indices() { return _AlienShoot2_::indices; }
+       static const uint8_t* color() { return _AlienShoot2_::color; }
 };
 #endif

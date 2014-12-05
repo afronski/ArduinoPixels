@@ -76,52 +76,43 @@ void setFile(rgba8_image_t &image, string name)
     oStream << "#ifndef _Data" <<name <<"_h"<< endl;
     oStream <<  "#define _Data" <<name <<"_h"<< endl;
      oStream <<  "#include \"PixelData.h\""<< endl;
-    oStream << "class Data"<<name <<":public PixelData{ "<< endl;
-    oStream << "public:"<< endl;
 
-
-     oStream <<"    Data"<<name<< "()"<< endl;
-     oStream << "   {"<< endl;
-
-    oStream << "       width ="<< w<<";"<<endl;
-    oStream << "        height="<< h<<";" <<endl;
-    int w2  =w/2;
-
-    oStream << "       centerX="<< w2<<";"<<endl;
-    oStream << "        centerY="<< h<<";" <<endl;
-    oStream << "        int size =width*height;"<<endl;
-    oStream << "        indices= new uint8_t[size];"<<endl;
-    //oStream << "        alpha = new uint8_t[size];"<<endl;
+     oStream << "namespace _" << name << "_ {" << endl;
+    oStream << "    const uint8_t indices[" << w*h << "] = {"<<endl;
 
     for (int j=0;j<w*h;j++)
     {
-        int r = image._view[j][0];
-        int g = image._view[j][1];
-        int b = image._view[j][2];
-        int a = image._view[j][3];
-
-         oStream << "        indices["<<j<<"]="<< getIndex(r,g,b,a)<<";"<<endl;
-
+         oStream << "        ";
+         if (j!=0) oStream << ",";
+         oStream << getIndex(image._view[j][0],
+                             image._view[j][1],
+                             image._view[j][2],
+                             image._view[j][3]);
+         oStream << endl;
     }
-     oStream << "        color= new uint8_t["<<colorData.size() <<"];"<<endl;
+    oStream << "    };"<<endl;
 
 
+    oStream << "    const uint8_t color[" << colorData.size() << "] = {" <<endl;
     for (unsigned int j=0;j<colorData.size();j+=4)
     {
-        int r=colorData[j ];
-        int g=colorData[j+1 ];
-        int b=colorData[j+2 ];
-        int a=colorData[j +3];
-        oStream << "        color["<< (j)<<"] ="<< r<<";"<<endl;
-        oStream << "        color["<< (j+1)<<"] ="<< g<<";"<<endl;
-        oStream << "        color["<< (j+2)<<"] ="<< b<<";"<<endl;
-        oStream << "        color["<< (j+3)<<"] ="<< a<<";"<<endl;
+        oStream << "        ";
+        if (j!=0) oStream << ",";
+        oStream << colorData[j] <<endl;
+        oStream << "        ,"<< colorData[j+1] <<endl;
+        oStream << "        ,"<< colorData[j+2] <<endl;
+        oStream << "        ,"<< colorData[j+3] <<endl;
     }
+    oStream << "    };"<<endl;
+    oStream << "}" << endl;
 
+    oStream << "class Data"<< name <<" : public PixelDataImpl<Data" << name << "> { "<< endl;
+    oStream << "public:"<< endl;
 
-
-     oStream << "   };"<< endl;
-
+    oStream << "       static int width() { return "<< w <<"; }"<<endl;
+    oStream << "       static int height() { return "<< h <<"; }" <<endl;
+    oStream << "       static const uint8_t* indices() { return _" << name << "_::indices; }" <<endl;
+    oStream << "       static const uint8_t* color() { return _" << name << "_::color; }" <<endl;
     oStream << "};"<< endl;
     oStream << "#endif" << endl;
 

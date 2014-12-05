@@ -28,7 +28,7 @@ void PixelMain::setupGameVS()
         treeFar ->currentData =treeFarData;
         treeFar ->fx  =treeFar ->fxReal =  posTreeFar[i] ;
         int rPos = -rand()%2;
-        treeFar ->fy = -rand()%2+treeFarData->height;
+        treeFar ->fy = -rand()%2+treeFarData->height();
         treeFar ->depth=0.3;
         if( rPos ==-1) treeFar ->depth=0.4;
         

@@ -10,7 +10,7 @@
 
 
 
-#include "DataFlower.h"
+#include "Dataflower.h"
 #include "DataCity.h"
 #include "DataPond.h"
 #include "DataBush.h"
@@ -826,7 +826,7 @@ void PixelMain::setupGame()
             Cloud *c = new Cloud();
             c->currentData  = cloudData;
             c->fx = rand()%90;
-            c->fy = rand()%5  -4+cloudData->height;;
+            c->fy = rand()%5  -4+cloudData->height();
             c->setup();
             if(i==0) clouds1p.push_back(c);
             if(i==1) clouds2p.push_back(c);

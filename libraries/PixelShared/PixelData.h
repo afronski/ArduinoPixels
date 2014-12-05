@@ -9,28 +9,35 @@
 #ifndef PixelShared_PixelData_h
 #define PixelShared_PixelData_h
 
-
-
 #include "PixelGameInclude.h"
+
 class PixelData
 {
 public:
     PixelData(){color =0;indices=0;};
-    ~PixelData() {
-    
-        delete [] color ;
-        color  =0;
-        delete [] indices ;
-        indices =0;
-    
-    }
-    uint8_t *color;
-    uint8_t * indices;
+
+    const uint8_t *color;
+    const uint8_t *indices;
     int width;
     int height;
     int centerX;
     int centerY;
   
+};
+
+template<typename T>
+class PixelDataImpl : public PixelData
+{
+public:
+    PixelDataImpl()
+    {
+        color = T::color();
+        indices = T::indices();
+        width = T::width();
+        height = T::height();
+        centerX = width/2;
+        centerY = height;
+    }
 };
 
 #endif
