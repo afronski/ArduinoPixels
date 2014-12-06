@@ -86,9 +86,9 @@ namespace _ManGitHit1_ {
 }
 class DataManGitHit1 : public PixelDataImpl<DataManGitHit1> { 
 public:
-       static int width() { return 6; }
-       static int height() { return 10; }
-       static const uint8_t* indices() { return _ManGitHit1_::indices; }
-       static const uint8_t* color() { return _ManGitHit1_::color; }
+       static constexpr int width() { return 6; }
+       static constexpr int height() { return 10; }
+       static constexpr const uint8_t* indices() { return _ManGitHit1_::indices; }
+       static constexpr const uint8_t* color() { return _ManGitHit1_::color; }
 };
 #endif

@@ -78,9 +78,9 @@ namespace _Alien2Dead_ {
 }
 class DataAlien2Dead : public PixelDataImpl<DataAlien2Dead> { 
 public:
-       static int width() { return 8; }
-       static int height() { return 7; }
-       static const uint8_t* indices() { return _Alien2Dead_::indices; }
-       static const uint8_t* color() { return _Alien2Dead_::color; }
+       static constexpr int width() { return 8; }
+       static constexpr int height() { return 7; }
+       static constexpr const uint8_t* indices() { return _Alien2Dead_::indices; }
+       static constexpr const uint8_t* color() { return _Alien2Dead_::color; }
 };
 #endif

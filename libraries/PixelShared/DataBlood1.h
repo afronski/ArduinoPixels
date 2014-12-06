@@ -23,9 +23,9 @@ namespace _Blood1_ {
 }
 class DataBlood1 : public PixelDataImpl<DataBlood1> { 
 public:
-       static int width() { return 3; }
-       static int height() { return 3; }
-       static const uint8_t* indices() { return _Blood1_::indices; }
-       static const uint8_t* color() { return _Blood1_::color; }
+       static constexpr int width() { return 3; }
+       static constexpr int height() { return 3; }
+       static constexpr const uint8_t* indices() { return _Blood1_::indices; }
+       static constexpr const uint8_t* color() { return _Blood1_::color; }
 };
 #endif

@@ -146,9 +146,9 @@ namespace _Cloud1_ {
 }
 class DataCloud1 : public PixelDataImpl<DataCloud1> { 
 public:
-       static int width() { return 24; }
-       static int height() { return 5; }
-       static const uint8_t* indices() { return _Cloud1_::indices; }
-       static const uint8_t* color() { return _Cloud1_::color; }
+       static constexpr int width() { return 24; }
+       static constexpr int height() { return 5; }
+       static constexpr const uint8_t* indices() { return _Cloud1_::indices; }
+       static constexpr const uint8_t* color() { return _Cloud1_::color; }
 };
 #endif

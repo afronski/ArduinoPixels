@@ -27,9 +27,9 @@ namespace _AlienShoot1_ {
 }
 class DataAlienShoot1 : public PixelDataImpl<DataAlienShoot1> { 
 public:
-       static int width() { return 3; }
-       static int height() { return 3; }
-       static const uint8_t* indices() { return _AlienShoot1_::indices; }
-       static const uint8_t* color() { return _AlienShoot1_::color; }
+       static constexpr int width() { return 3; }
+       static constexpr int height() { return 3; }
+       static constexpr const uint8_t* indices() { return _AlienShoot1_::indices; }
+       static constexpr const uint8_t* color() { return _AlienShoot1_::color; }
 };
 #endif

@@ -49,9 +49,9 @@ namespace _Alien1Feed_ {
 }
 class DataAlien1Feed : public PixelDataImpl<DataAlien1Feed> { 
 public:
-       static int width() { return 5; }
-       static int height() { return 7; }
-       static const uint8_t* indices() { return _Alien1Feed_::indices; }
-       static const uint8_t* color() { return _Alien1Feed_::color; }
+       static constexpr int width() { return 5; }
+       static constexpr int height() { return 7; }
+       static constexpr const uint8_t* indices() { return _Alien1Feed_::indices; }
+       static constexpr const uint8_t* color() { return _Alien1Feed_::color; }
 };
 #endif

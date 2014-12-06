@@ -94,9 +94,9 @@ namespace _SpaceHead_ {
 }
 class DataSpaceHead : public PixelDataImpl<DataSpaceHead> { 
 public:
-       static int width() { return 7; }
-       static int height() { return 8; }
-       static const uint8_t* indices() { return _SpaceHead_::indices; }
-       static const uint8_t* color() { return _SpaceHead_::color; }
+       static constexpr int width() { return 7; }
+       static constexpr int height() { return 8; }
+       static constexpr const uint8_t* indices() { return _SpaceHead_::indices; }
+       static constexpr const uint8_t* color() { return _SpaceHead_::color; }
 };
 #endif

@@ -107,9 +107,9 @@ namespace _Bush_ {
 }
 class DataBush : public PixelDataImpl<DataBush> { 
 public:
-       static int width() { return 11; }
-       static int height() { return 7; }
-       static const uint8_t* indices() { return _Bush_::indices; }
-       static const uint8_t* color() { return _Bush_::color; }
+       static constexpr int width() { return 11; }
+       static constexpr int height() { return 7; }
+       static constexpr const uint8_t* indices() { return _Bush_::indices; }
+       static constexpr const uint8_t* color() { return _Bush_::color; }
 };
 #endif

@@ -39,9 +39,9 @@ namespace _Life0_ {
 }
 class DataLife0 : public PixelDataImpl<DataLife0> { 
 public:
-       static int width() { return 5; }
-       static int height() { return 5; }
-       static const uint8_t* indices() { return _Life0_::indices; }
-       static const uint8_t* color() { return _Life0_::color; }
+       static constexpr int width() { return 5; }
+       static constexpr int height() { return 5; }
+       static constexpr const uint8_t* indices() { return _Life0_::indices; }
+       static constexpr const uint8_t* color() { return _Life0_::color; }
 };
 #endif

@@ -42,9 +42,9 @@ namespace _Splash1_ {
 }
 class DataSplash1 : public PixelDataImpl<DataSplash1> { 
 public:
-       static int width() { return 6; }
-       static int height() { return 4; }
-       static const uint8_t* indices() { return _Splash1_::indices; }
-       static const uint8_t* color() { return _Splash1_::color; }
+       static constexpr int width() { return 6; }
+       static constexpr int height() { return 4; }
+       static constexpr const uint8_t* indices() { return _Splash1_::indices; }
+       static constexpr const uint8_t* color() { return _Splash1_::color; }
 };
 #endif

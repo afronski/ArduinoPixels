@@ -112,9 +112,9 @@ namespace _ManJumpHit_ {
 }
 class DataManJumpHit : public PixelDataImpl<DataManJumpHit> { 
 public:
-       static int width() { return 9; }
-       static int height() { return 10; }
-       static const uint8_t* indices() { return _ManJumpHit_::indices; }
-       static const uint8_t* color() { return _ManJumpHit_::color; }
+       static constexpr int width() { return 9; }
+       static constexpr int height() { return 10; }
+       static constexpr const uint8_t* indices() { return _ManJumpHit_::indices; }
+       static constexpr const uint8_t* color() { return _ManJumpHit_::color; }
 };
 #endif

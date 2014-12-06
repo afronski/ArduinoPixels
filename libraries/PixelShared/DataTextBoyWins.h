@@ -790,9 +790,9 @@ namespace _TextBoyWins_ {
 }
 class DataTextBoyWins : public PixelDataImpl<DataTextBoyWins> { 
 public:
-       static int width() { return 54; }
-       static int height() { return 14; }
-       static const uint8_t* indices() { return _TextBoyWins_::indices; }
-       static const uint8_t* color() { return _TextBoyWins_::color; }
+       static constexpr int width() { return 54; }
+       static constexpr int height() { return 14; }
+       static constexpr const uint8_t* indices() { return _TextBoyWins_::indices; }
+       static constexpr const uint8_t* color() { return _TextBoyWins_::color; }
 };
 #endif

@@ -35,9 +35,9 @@ namespace _Blood3_ {
 }
 class DataBlood3 : public PixelDataImpl<DataBlood3> { 
 public:
-       static int width() { return 7; }
-       static int height() { return 3; }
-       static const uint8_t* indices() { return _Blood3_::indices; }
-       static const uint8_t* color() { return _Blood3_::color; }
+       static constexpr int width() { return 7; }
+       static constexpr int height() { return 3; }
+       static constexpr const uint8_t* indices() { return _Blood3_::indices; }
+       static constexpr const uint8_t* color() { return _Blood3_::color; }
 };
 #endif

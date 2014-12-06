@@ -23,9 +23,9 @@ namespace _StarBig_ {
 }
 class DataStarBig : public PixelDataImpl<DataStarBig> { 
 public:
-       static int width() { return 3; }
-       static int height() { return 3; }
-       static const uint8_t* indices() { return _StarBig_::indices; }
-       static const uint8_t* color() { return _StarBig_::color; }
+       static constexpr int width() { return 3; }
+       static constexpr int height() { return 3; }
+       static constexpr const uint8_t* indices() { return _StarBig_::indices; }
+       static constexpr const uint8_t* color() { return _StarBig_::color; }
 };
 #endif

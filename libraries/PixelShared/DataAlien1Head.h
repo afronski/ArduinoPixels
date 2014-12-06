@@ -52,9 +52,9 @@ namespace _Alien1Head_ {
 }
 class DataAlien1Head : public PixelDataImpl<DataAlien1Head> { 
 public:
-       static int width() { return 6; }
-       static int height() { return 5; }
-       static const uint8_t* indices() { return _Alien1Head_::indices; }
-       static const uint8_t* color() { return _Alien1Head_::color; }
+       static constexpr int width() { return 6; }
+       static constexpr int height() { return 5; }
+       static constexpr const uint8_t* indices() { return _Alien1Head_::indices; }
+       static constexpr const uint8_t* color() { return _Alien1Head_::color; }
 };
 #endif

@@ -814,9 +814,9 @@ namespace _TextGirlWins_ {
 }
 class DataTextGirlWins : public PixelDataImpl<DataTextGirlWins> { 
 public:
-       static int width() { return 56; }
-       static int height() { return 14; }
-       static const uint8_t* indices() { return _TextGirlWins_::indices; }
-       static const uint8_t* color() { return _TextGirlWins_::color; }
+       static constexpr int width() { return 56; }
+       static constexpr int height() { return 14; }
+       static constexpr const uint8_t* indices() { return _TextGirlWins_::indices; }
+       static constexpr const uint8_t* color() { return _TextGirlWins_::color; }
 };
 #endif

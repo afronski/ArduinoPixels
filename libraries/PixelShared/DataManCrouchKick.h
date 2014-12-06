@@ -90,9 +90,9 @@ namespace _ManCrouchKick_ {
 }
 class DataManCrouchKick : public PixelDataImpl<DataManCrouchKick> { 
 public:
-       static int width() { return 8; }
-       static int height() { return 8; }
-       static const uint8_t* indices() { return _ManCrouchKick_::indices; }
-       static const uint8_t* color() { return _ManCrouchKick_::color; }
+       static constexpr int width() { return 8; }
+       static constexpr int height() { return 8; }
+       static constexpr const uint8_t* indices() { return _ManCrouchKick_::indices; }
+       static constexpr const uint8_t* color() { return _ManCrouchKick_::color; }
 };
 #endif

@@ -235,9 +235,9 @@ namespace _Pond_ {
 }
 class DataPond : public PixelDataImpl<DataPond> { 
 public:
-       static int width() { return 17; }
-       static int height() { return 9; }
-       static const uint8_t* indices() { return _Pond_::indices; }
-       static const uint8_t* color() { return _Pond_::color; }
+       static constexpr int width() { return 17; }
+       static constexpr int height() { return 9; }
+       static constexpr const uint8_t* indices() { return _Pond_::indices; }
+       static constexpr const uint8_t* color() { return _Pond_::color; }
 };
 #endif

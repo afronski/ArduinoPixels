@@ -110,10 +110,10 @@ void setFile(rgba8_image_t &image, string name)
     oStream << "class Data"<< name <<" : public PixelDataImpl<Data" << name << "> { "<< endl;
     oStream << "public:"<< endl;
 
-    oStream << "       static int width() { return "<< w <<"; }"<<endl;
-    oStream << "       static int height() { return "<< h <<"; }" <<endl;
-    oStream << "       static const uint8_t* indices() { return _" << name << "_::indices; }" <<endl;
-    oStream << "       static const uint8_t* color() { return _" << name << "_::color; }" <<endl;
+    oStream << "       static constexpr int width() { return "<< w <<"; }"<<endl;
+    oStream << "       static constexpr int height() { return "<< h <<"; }" <<endl;
+    oStream << "       static constexpr const uint8_t* indices() { return _" << name << "_::indices; }" <<endl;
+    oStream << "       static constexpr const uint8_t* color() { return _" << name << "_::color; }" <<endl;
     oStream << "};"<< endl;
     oStream << "#endif" << endl;
 

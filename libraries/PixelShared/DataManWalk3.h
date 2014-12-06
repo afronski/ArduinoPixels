@@ -82,9 +82,9 @@ namespace _ManWalk3_ {
 }
 class DataManWalk3 : public PixelDataImpl<DataManWalk3> { 
 public:
-       static int width() { return 6; }
-       static int height() { return 10; }
-       static const uint8_t* indices() { return _ManWalk3_::indices; }
-       static const uint8_t* color() { return _ManWalk3_::color; }
+       static constexpr int width() { return 6; }
+       static constexpr int height() { return 10; }
+       static constexpr const uint8_t* indices() { return _ManWalk3_::indices; }
+       static constexpr const uint8_t* color() { return _ManWalk3_::color; }
 };
 #endif

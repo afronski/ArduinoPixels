@@ -958,9 +958,9 @@ namespace _Instructions_ {
 }
 class DataInstructions : public PixelDataImpl<DataInstructions> { 
 public:
-       static int width() { return 84; }
-       static int height() { return 11; }
-       static const uint8_t* indices() { return _Instructions_::indices; }
-       static const uint8_t* color() { return _Instructions_::color; }
+       static constexpr int width() { return 84; }
+       static constexpr int height() { return 11; }
+       static constexpr const uint8_t* indices() { return _Instructions_::indices; }
+       static constexpr const uint8_t* color() { return _Instructions_::color; }
 };
 #endif

@@ -34,9 +34,9 @@ namespace _BackGrass_ {
 }
 class DataBackGrass : public PixelDataImpl<DataBackGrass> { 
 public:
-       static int width() { return 1; }
-       static int height() { return 16; }
-       static const uint8_t* indices() { return _BackGrass_::indices; }
-       static const uint8_t* color() { return _BackGrass_::color; }
+       static constexpr int width() { return 1; }
+       static constexpr int height() { return 16; }
+       static constexpr const uint8_t* indices() { return _BackGrass_::indices; }
+       static constexpr const uint8_t* color() { return _BackGrass_::color; }
 };
 #endif

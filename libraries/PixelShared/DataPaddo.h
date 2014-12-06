@@ -90,9 +90,9 @@ namespace _Paddo_ {
 }
 class DataPaddo : public PixelDataImpl<DataPaddo> { 
 public:
-       static int width() { return 6; }
-       static int height() { return 6; }
-       static const uint8_t* indices() { return _Paddo_::indices; }
-       static const uint8_t* color() { return _Paddo_::color; }
+       static constexpr int width() { return 6; }
+       static constexpr int height() { return 6; }
+       static constexpr const uint8_t* indices() { return _Paddo_::indices; }
+       static constexpr const uint8_t* color() { return _Paddo_::color; }
 };
 #endif

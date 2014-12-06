@@ -11,9 +11,8 @@
 
 #include "PixelGameInclude.h"
 
-class PixelData
+struct PixelData
 {
-public:
     const uint8_t *color;
     const uint8_t *indices;
     int width;
@@ -21,6 +20,9 @@ public:
     int centerX;
     int centerY;
   
+    PixelData(const uint8_t *color, const uint8_t *indices, int width, int height) :
+        color(color), indices(indices), width(width), height(height), centerX(width/2), centerY(height) { }
+
 };
 
 //
@@ -35,15 +37,11 @@ template<typename T>
 class PixelDataImpl : public PixelData
 {
 public:
-    PixelDataImpl()
-    {
-        color = T::color();
-        indices = T::indices();
-        width = T::width();
-        height = T::height();
-        centerX = width/2;
-        centerY = height;
-    }
+    PixelDataImpl() : PixelData(T::color(),
+                                T::indices(),
+                                T::width(),
+                                T::height())
+    { }
 };
 
 #endif

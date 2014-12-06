@@ -562,9 +562,9 @@ namespace _MenuMain_ {
 }
 class DataMenuMain : public PixelDataImpl<DataMenuMain> { 
 public:
-       static int width() { return 86; }
-       static int height() { return 6; }
-       static const uint8_t* indices() { return _MenuMain_::indices; }
-       static const uint8_t* color() { return _MenuMain_::color; }
+       static constexpr int width() { return 86; }
+       static constexpr int height() { return 6; }
+       static constexpr const uint8_t* indices() { return _MenuMain_::indices; }
+       static constexpr const uint8_t* color() { return _MenuMain_::color; }
 };
 #endif

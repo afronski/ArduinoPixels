@@ -102,9 +102,9 @@ namespace _GirlJumpKick_ {
 }
 class DataGirlJumpKick : public PixelDataImpl<DataGirlJumpKick> { 
 public:
-       static int width() { return 9; }
-       static int height() { return 8; }
-       static const uint8_t* indices() { return _GirlJumpKick_::indices; }
-       static const uint8_t* color() { return _GirlJumpKick_::color; }
+       static constexpr int width() { return 9; }
+       static constexpr int height() { return 8; }
+       static constexpr const uint8_t* indices() { return _GirlJumpKick_::indices; }
+       static constexpr const uint8_t* color() { return _GirlJumpKick_::color; }
 };
 #endif

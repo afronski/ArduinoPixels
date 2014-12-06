@@ -632,9 +632,9 @@ namespace _TextGameOver_ {
 }
 class DataTextGameOver : public PixelDataImpl<DataTextGameOver> { 
 public:
-       static int width() { return 61; }
-       static int height() { return 10; }
-       static const uint8_t* indices() { return _TextGameOver_::indices; }
-       static const uint8_t* color() { return _TextGameOver_::color; }
+       static constexpr int width() { return 61; }
+       static constexpr int height() { return 10; }
+       static constexpr const uint8_t* indices() { return _TextGameOver_::indices; }
+       static constexpr const uint8_t* color() { return _TextGameOver_::color; }
 };
 #endif

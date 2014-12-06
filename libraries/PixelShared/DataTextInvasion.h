@@ -690,9 +690,9 @@ namespace _TextInvasion_ {
 }
 class DataTextInvasion : public PixelDataImpl<DataTextInvasion> { 
 public:
-       static int width() { return 81; }
-       static int height() { return 8; }
-       static const uint8_t* indices() { return _TextInvasion_::indices; }
-       static const uint8_t* color() { return _TextInvasion_::color; }
+       static constexpr int width() { return 81; }
+       static constexpr int height() { return 8; }
+       static constexpr const uint8_t* indices() { return _TextInvasion_::indices; }
+       static constexpr const uint8_t* color() { return _TextInvasion_::color; }
 };
 #endif

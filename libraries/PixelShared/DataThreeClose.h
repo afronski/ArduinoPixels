@@ -300,9 +300,9 @@ namespace _ThreeClose_ {
 }
 class DataThreeClose : public PixelDataImpl<DataThreeClose> { 
 public:
-       static int width() { return 15; }
-       static int height() { return 18; }
-       static const uint8_t* indices() { return _ThreeClose_::indices; }
-       static const uint8_t* color() { return _ThreeClose_::color; }
+       static constexpr int width() { return 15; }
+       static constexpr int height() { return 18; }
+       static constexpr const uint8_t* indices() { return _ThreeClose_::indices; }
+       static constexpr const uint8_t* color() { return _ThreeClose_::color; }
 };
 #endif

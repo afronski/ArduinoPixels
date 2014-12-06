@@ -531,9 +531,9 @@ namespace _TextPressToPlay_ {
 }
 class DataTextPressToPlay : public PixelDataImpl<DataTextPressToPlay> { 
 public:
-       static int width() { return 57; }
-       static int height() { return 9; }
-       static const uint8_t* indices() { return _TextPressToPlay_::indices; }
-       static const uint8_t* color() { return _TextPressToPlay_::color; }
+       static constexpr int width() { return 57; }
+       static constexpr int height() { return 9; }
+       static constexpr const uint8_t* indices() { return _TextPressToPlay_::indices; }
+       static constexpr const uint8_t* color() { return _TextPressToPlay_::color; }
 };
 #endif

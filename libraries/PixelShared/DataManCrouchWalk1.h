@@ -74,9 +74,9 @@ namespace _ManCrouchWalk1_ {
 }
 class DataManCrouchWalk1 : public PixelDataImpl<DataManCrouchWalk1> { 
 public:
-       static int width() { return 6; }
-       static int height() { return 8; }
-       static const uint8_t* indices() { return _ManCrouchWalk1_::indices; }
-       static const uint8_t* color() { return _ManCrouchWalk1_::color; }
+       static constexpr int width() { return 6; }
+       static constexpr int height() { return 8; }
+       static constexpr const uint8_t* indices() { return _ManCrouchWalk1_::indices; }
+       static constexpr const uint8_t* color() { return _ManCrouchWalk1_::color; }
 };
 #endif

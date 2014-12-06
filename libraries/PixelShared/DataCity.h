@@ -173,9 +173,9 @@ namespace _City_ {
 }
 class DataCity : public PixelDataImpl<DataCity> { 
 public:
-       static int width() { return 21; }
-       static int height() { return 7; }
-       static const uint8_t* indices() { return _City_::indices; }
-       static const uint8_t* color() { return _City_::color; }
+       static constexpr int width() { return 21; }
+       static constexpr int height() { return 7; }
+       static constexpr const uint8_t* indices() { return _City_::indices; }
+       static constexpr const uint8_t* color() { return _City_::color; }
 };
 #endif

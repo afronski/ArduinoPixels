@@ -135,7 +135,7 @@ void PixelMain::allocGame()
 {
     if(jumpDataB!=0)return;
    //cout << "allocgame"<<endl;;
-    
+
     jumpDataB = new DataManJump();
     jumpKickDataB = new DataManJumpKick();
     jumpKickDataB->centerX-=1;

@@ -58,9 +58,9 @@ namespace _GirlShoot1_ {
 }
 class DataGirlShoot1 : public PixelDataImpl<DataGirlShoot1> { 
 public:
-       static int width() { return 8; }
-       static int height() { return 4; }
-       static const uint8_t* indices() { return _GirlShoot1_::indices; }
-       static const uint8_t* color() { return _GirlShoot1_::color; }
+       static constexpr int width() { return 8; }
+       static constexpr int height() { return 4; }
+       static constexpr const uint8_t* indices() { return _GirlShoot1_::indices; }
+       static constexpr const uint8_t* color() { return _GirlShoot1_::color; }
 };
 #endif

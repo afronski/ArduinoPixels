@@ -102,9 +102,9 @@ namespace _ManStandHit2_ {
 }
 class DataManStandHit2 : public PixelDataImpl<DataManStandHit2> { 
 public:
-       static int width() { return 8; }
-       static int height() { return 10; }
-       static const uint8_t* indices() { return _ManStandHit2_::indices; }
-       static const uint8_t* color() { return _ManStandHit2_::color; }
+       static constexpr int width() { return 8; }
+       static constexpr int height() { return 10; }
+       static constexpr const uint8_t* indices() { return _ManStandHit2_::indices; }
+       static constexpr const uint8_t* color() { return _ManStandHit2_::color; }
 };
 #endif

@@ -24,9 +24,9 @@ namespace _DuckSmall_ {
 }
 class DataDuckSmall : public PixelDataImpl<DataDuckSmall> { 
 public:
-       static int width() { return 3; }
-       static int height() { return 2; }
-       static const uint8_t* indices() { return _DuckSmall_::indices; }
-       static const uint8_t* color() { return _DuckSmall_::color; }
+       static constexpr int width() { return 3; }
+       static constexpr int height() { return 2; }
+       static constexpr const uint8_t* indices() { return _DuckSmall_::indices; }
+       static constexpr const uint8_t* color() { return _DuckSmall_::color; }
 };
 #endif

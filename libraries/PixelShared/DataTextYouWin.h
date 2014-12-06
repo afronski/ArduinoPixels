@@ -1530,9 +1530,9 @@ namespace _TextYouWin_ {
 }
 class DataTextYouWin : public PixelDataImpl<DataTextYouWin> { 
 public:
-       static int width() { return 90; }
-       static int height() { return 16; }
-       static const uint8_t* indices() { return _TextYouWin_::indices; }
-       static const uint8_t* color() { return _TextYouWin_::color; }
+       static constexpr int width() { return 90; }
+       static constexpr int height() { return 16; }
+       static constexpr const uint8_t* indices() { return _TextYouWin_::indices; }
+       static constexpr const uint8_t* color() { return _TextYouWin_::color; }
 };
 #endif

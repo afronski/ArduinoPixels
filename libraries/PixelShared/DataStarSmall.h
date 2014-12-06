@@ -15,9 +15,9 @@ namespace _StarSmall_ {
 }
 class DataStarSmall : public PixelDataImpl<DataStarSmall> { 
 public:
-       static int width() { return 1; }
-       static int height() { return 1; }
-       static const uint8_t* indices() { return _StarSmall_::indices; }
-       static const uint8_t* color() { return _StarSmall_::color; }
+       static constexpr int width() { return 1; }
+       static constexpr int height() { return 1; }
+       static constexpr const uint8_t* indices() { return _StarSmall_::indices; }
+       static constexpr const uint8_t* color() { return _StarSmall_::color; }
 };
 #endif

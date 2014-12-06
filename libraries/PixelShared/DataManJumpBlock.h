@@ -82,9 +82,9 @@ namespace _ManJumpBlock_ {
 }
 class DataManJumpBlock : public PixelDataImpl<DataManJumpBlock> { 
 public:
-       static int width() { return 6; }
-       static int height() { return 10; }
-       static const uint8_t* indices() { return _ManJumpBlock_::indices; }
-       static const uint8_t* color() { return _ManJumpBlock_::color; }
+       static constexpr int width() { return 6; }
+       static constexpr int height() { return 10; }
+       static constexpr const uint8_t* indices() { return _ManJumpBlock_::indices; }
+       static constexpr const uint8_t* color() { return _ManJumpBlock_::color; }
 };
 #endif

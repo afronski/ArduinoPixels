@@ -16,9 +16,9 @@ namespace _HitPointTest_ {
 }
 class DataHitPointTest : public PixelDataImpl<DataHitPointTest> { 
 public:
-       static int width() { return 2; }
-       static int height() { return 1; }
-       static const uint8_t* indices() { return _HitPointTest_::indices; }
-       static const uint8_t* color() { return _HitPointTest_::color; }
+       static constexpr int width() { return 2; }
+       static constexpr int height() { return 1; }
+       static constexpr const uint8_t* indices() { return _HitPointTest_::indices; }
+       static constexpr const uint8_t* color() { return _HitPointTest_::color; }
 };
 #endif
