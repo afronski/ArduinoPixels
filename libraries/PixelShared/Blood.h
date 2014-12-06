@@ -15,7 +15,7 @@
 class Blood:public Sprite
 {
 public:
-   Blood(){};
+   Blood(){}
     void setup()
     {
         isUsed =false;
@@ -56,12 +56,12 @@ public:
     }
     
     
-    float fxReal;
-    float currentTime;
-   bool isUsed;
+    float fxReal = 0;
+    float currentTime = 0;
+    bool isUsed = false;
     PixelData *frame1;
-     PixelData *frame2;
-     PixelData *frame3;
+    PixelData *frame2;
+    PixelData *frame3;
 };
 
 

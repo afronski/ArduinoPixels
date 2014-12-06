@@ -15,7 +15,21 @@
 class Sprite
 {
 public:
-    Sprite(){x =0;y=0;fx =0;fy=0;drawType=0;depth =1;visible =true; parent =0;currentData=0;hasHitRect =false;}
+    bool intHidden = false;
+    int x = 0;
+    int y = 0;
+    float fxReal = 0;
+    float fx = 0;
+    float fy = 0;
+    float drawfY = 0;
+    float drawfX = 0;
+    bool visible = true;
+    float depth = 1;
+    bool hasHitRect = false;
+    npRect hitRect;
+    PixelData * currentData = nullptr;
+    int drawType = 0;
+
     virtual void addChild(Sprite *child)
     {
         child->parent =this;
@@ -25,7 +39,7 @@ public:
     
     
     Vector<Sprite *> children;
-    Sprite * parent;
+    Sprite * parent = nullptr;
     
     virtual void int_update()
     {
@@ -55,21 +69,6 @@ public:
         }
     
     }
-    
-    bool intHidden;
-    int x;
-    int y;
-    float fxReal;
-    float fx;
-    float fy;
-    float drawfY;
-    float drawfX;
-    bool visible;
-    float depth;
-    bool hasHitRect;
-    npRect hitRect;
-    PixelData * currentData;
-    int drawType;
     
     
   /* void updateLevelPos(float levelx)
