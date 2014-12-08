@@ -137,22 +137,18 @@ liveVS.push_back( heroVSM);
     
     lifeBoyHolderVS= new Sprite();
     stageVS.addChild(lifeBoyHolderVS);
-    lifeBoyHolderVS->currentData =boyInterData;
+    lifeBoyHolderVS->currentData = &boyInterData;
     lifeGirlHolderVS= new Sprite();
     stageVS.addChild(lifeGirlHolderVS);
-    lifeGirlHolderVS->currentData =girlInterData;
-    lifeGirlVS =new Life();
-    lifeBoyVS =new Life();
-    setLifeData(lifeGirlVS);
-    setLifeData(lifeBoyVS);
-    lifeBoyVS->setup();
-    lifeGirlVS->setup();
-    lifeGirlVS->fx =1;
-    lifeGirlVS->fy=-2;
-    lifeBoyVS->fx =0;
-    lifeBoyVS->fy=-2;
-    lifeBoyHolderVS->addChild( lifeBoyVS);
-    lifeGirlHolderVS->addChild( lifeGirlVS);
+    lifeGirlHolderVS->currentData = &girlInterData;
+    lifeBoyVS.setup();
+    lifeGirlVS.setup();
+    lifeGirlVS.fx =1;
+    lifeGirlVS.fy=-2;
+    lifeBoyVS.fx =0;
+    lifeBoyVS.fy=-2;
+    lifeBoyHolderVS->addChild(&lifeBoyVS);
+    lifeGirlHolderVS->addChild(&lifeGirlVS);
     
     
     gameOverTextVS = new GameOverText();
@@ -170,8 +166,8 @@ void PixelMain::resetGameVS()
     lifeBoyHolderVS->fy =16;
     lifeGirlHolderVS->fx =104;
     lifeGirlHolderVS->fy =16;
-    lifeGirlVS->reset();
-    lifeBoyVS->reset();
+    lifeGirlVS.reset();
+    lifeBoyVS.reset();
     
     
    
@@ -341,10 +337,10 @@ void PixelMain::updateGameVS(float timeElapsed)
         
         
     }
-    lifeGirlVS->setLife(heroVSF->life);
-    lifeBoyVS->setLife(heroVSM->life);
+    lifeGirlVS.setLife(heroVSF->life);
+    lifeBoyVS.setLife(heroVSM->life);
     
-    lifeBoyVS->update(timeElapsed);
-    lifeGirlVS->update(timeElapsed);
+    lifeBoyVS.update(timeElapsed);
+    lifeGirlVS.update(timeElapsed);
   
 }

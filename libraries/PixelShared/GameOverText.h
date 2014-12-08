@@ -16,6 +16,12 @@
 #include "DataBackSpace.h"
 class GameOverText:public Sprite
 {
+    const DataTextGameOver gameOver;
+    DataTextGirlWins girlWins;
+    DataTextBoyWins boyWins;
+    DataTextYouWin youWin;
+
+    Sprite * textSprite;
 
 public:
     GameOverText()
@@ -26,31 +32,21 @@ public:
         textSprite->currentData =0;
         textSprite->fx =45;
         addChild(textSprite);
-        
+
+        girlWins.centerY = 12;
+        boyWins.centerY = 12;
+        youWin.centerY = 13;
+
         visible =false;
     }
     void show(int type =0)
     {
         visible =true;
         if( textSprite->currentData==0){
-            if(type==0)textSprite->currentData = new DataTextGameOver();
-            if(type==2)
-            {
-                textSprite->currentData = new DataTextGirlWins();
-                textSprite->currentData-> centerY=12;
-            }
-            if(type==1)
-            {
-                textSprite->currentData= new DataTextBoyWins();
-                textSprite->currentData-> centerY=12;
-            }
-            if(type==3)
-            {
-                textSprite->currentData = new DataTextYouWin();
-                textSprite->currentData-> centerY=13;
-            }
-            
-           
+            if(type==0) textSprite->currentData = &gameOver;
+            if(type==2) textSprite->currentData = &girlWins;
+            if(type==1) textSprite->currentData= &boyWins;
+            if(type==3) textSprite->currentData = &youWin;
         }
        
        // currentData->color[3] =0;
@@ -77,15 +73,8 @@ public:
     }
     void hide()
     {
-        delete currentData;
-        currentData =0;
-        delete textSprite->currentData;
-        textSprite->currentData =0;
-        
         visible =false;
-    
     }
-    Sprite * textSprite;
 };
 
 

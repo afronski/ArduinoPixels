@@ -14,6 +14,8 @@
 #include "Stage.h"
 #include "PixelGameInclude.h"
 
+#include "DataInterface.h"
+#include "DataInterface2.h"
 
 #include "Hero.h"
 #include "DataThreeClose.h"
@@ -238,8 +240,8 @@ public:
     PixelData * gotHit1G;
     PixelData * gotHit2G;
     //////////////////////lifedata
-        PixelData *  boyInterData;
-        PixelData *  girlInterData;
+        PixelData boyInterData = DataInterface();
+        PixelData girlInterData = DataInterface2();
     
         PixelData * life0;
         PixelData * life1;
@@ -280,7 +282,7 @@ public:
     
     Vector <Alien *> aliens1p;
     Sprite *lifeBoyHolder1p;
-    Life *lifeBoy1p;
+    Life lifeBoy1p;
   
   Vector<Live *>live1p;
     GameOverText *  gameOverText1p;
@@ -296,8 +298,8 @@ public:
     Hero *hero2pF;
     Sprite *lifeBoyHolder2p;
     Sprite *lifeGirlHolder2p;
-    Life * lifeGirl2p;
-    Life *lifeBoy2p;
+    Life lifeGirl2p;
+    Life lifeBoy2p;
      Vector<Live *>live2p;
         GameOverText *  gameOverText2p;
        Vector<DecorSprite *>decor2p;
@@ -313,8 +315,8 @@ public:
     
     Sprite *lifeBoyHolderVS;
     Sprite *lifeGirlHolderVS;
-    Life * lifeGirlVS;
-    Life *lifeBoyVS;
+    Life lifeGirlVS;
+    Life lifeBoyVS;
 
      Vector<Live *>liveVS;
     

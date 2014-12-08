@@ -27,7 +27,7 @@ public:
     float depth = 1;
     bool hasHitRect = false;
     npRect hitRect;
-    PixelData * currentData = nullptr;
+    const PixelData * currentData = nullptr;
     int drawType = 0;
 
     virtual void addChild(Sprite *child)

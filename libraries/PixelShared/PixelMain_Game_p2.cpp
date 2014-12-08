@@ -226,22 +226,18 @@ void PixelMain::setupGame2p()
     
     lifeBoyHolder2p= new Sprite();
     stage2p.addChild(lifeBoyHolder2p);
-    lifeBoyHolder2p->currentData =boyInterData;
+    lifeBoyHolder2p->currentData = &boyInterData;
     lifeGirlHolder2p= new Sprite();
     stage2p.addChild(lifeGirlHolder2p);
-    lifeGirlHolder2p->currentData =girlInterData;
-    lifeGirl2p =new Life();
-    lifeBoy2p =new Life();
-    setLifeData(lifeGirl2p);
-    setLifeData(lifeBoy2p);
-    lifeBoy2p->setup();
-    lifeGirl2p->setup();
-    lifeGirl2p->fx =1;
-    lifeGirl2p->fy=-2;
-    lifeBoy2p->fx =0;
-    lifeBoy2p->fy=-2;
-    lifeBoyHolder2p->addChild( lifeBoy2p);
-    lifeGirlHolder2p->addChild( lifeGirl2p);
+    lifeGirlHolder2p->currentData = &girlInterData;
+    lifeBoy2p.setup();
+    lifeGirl2p.setup();
+    lifeGirl2p.fx =1;
+    lifeGirl2p.fy=-2;
+    lifeBoy2p.fx =0;
+    lifeBoy2p.fy=-2;
+    lifeBoyHolder2p->addChild(&lifeBoy2p);
+    lifeGirlHolder2p->addChild(&lifeGirl2p);
 
     
     waterSplash2p =new WaterSplash();
@@ -287,8 +283,8 @@ hero2pF->groundY =14;
     lifeBoyHolder2p->fy =16;
     lifeGirlHolder2p->fx =104;
     lifeGirlHolder2p->fy =16;
-   lifeGirl2p->reset();
-    lifeBoy2p->reset();
+   lifeGirl2p.reset();
+    lifeBoy2p.reset();
     for(size_t i=0;i< aliens2p.size();i++)
     {
         
@@ -459,11 +455,11 @@ void PixelMain::updateGame2p (float timeElapsed)
         
     }
     
-    lifeBoy2p->setLife(hero2pM->life);
-    lifeGirl2p->setLife(hero2pF->life);
+    lifeBoy2p.setLife(hero2pM->life);
+    lifeGirl2p.setLife(hero2pF->life);
     
-    lifeBoy2p->update(timeElapsed);
-    lifeGirl2p->update(timeElapsed);
+    lifeBoy2p.update(timeElapsed);
+    lifeGirl2p.update(timeElapsed);
 
     
     

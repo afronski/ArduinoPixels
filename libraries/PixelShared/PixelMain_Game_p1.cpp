@@ -211,15 +211,13 @@ void PixelMain::setupGame1p()
     
     //life
     lifeBoyHolder1p =new Sprite();
-    lifeBoyHolder1p->currentData =boyInterData ;
-    lifeBoy1p = new Life();
-    setLifeData(lifeBoy1p);
-    lifeBoy1p->setup();
-    lifeBoy1p->fx =0;
-    lifeBoy1p->fy=-2;
+    lifeBoyHolder1p->currentData = &boyInterData ;
+    lifeBoy1p.setup();
+    lifeBoy1p.fx =0;
+    lifeBoy1p.fy=-2;
     
-    lifeBoyHolder1p->addChild(lifeBoy1p);
-    stage1p.addChild( lifeBoyHolder1p);
+    lifeBoyHolder1p->addChild(&lifeBoy1p);
+    stage1p.addChild(lifeBoyHolder1p);
     
     
     waterSplash1p =new WaterSplash();
@@ -248,7 +246,7 @@ void PixelMain::setupGame1p()
 }
 void PixelMain::resetGame1p()
 {
-    lifeBoy1p->reset();
+    lifeBoy1p.reset();
     lifeBoyHolder1p->fx =-15;
     lifeBoyHolder1p->fy =16;
     hero1pm->fxReal = 20;
@@ -410,8 +408,8 @@ void PixelMain::updateGame1p (float timeElapsed)
         
     }
   
-    lifeBoy1p->setLife(hero1pm->life);
-    lifeBoy1p->update(timeElapsed);
+    lifeBoy1p.setLife(hero1pm->life);
+    lifeBoy1p.update(timeElapsed);
    
     
     
