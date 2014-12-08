@@ -37,10 +37,9 @@ namespace _Life0_ {
         ,255
     };
 }
-class DataLife0 : public PixelDataImpl<DataLife0> { 
-public:
-       static constexpr int width() { return 5; }
-       static constexpr int height() { return 5; }
+struct DataLife0 : public PixelDataImpl<DataLife0> {
+       static constexpr uint8_t width() { return 5; }
+       static constexpr uint8_t height() { return 5; }
        static constexpr const uint8_t* indices() { return _Life0_::indices; }
        static constexpr const uint8_t* color() { return _Life0_::color; }
 };

@@ -560,10 +560,9 @@ namespace _MenuMain_ {
         ,255
     };
 }
-class DataMenuMain : public PixelDataImpl<DataMenuMain> { 
-public:
-       static constexpr int width() { return 86; }
-       static constexpr int height() { return 6; }
+struct DataMenuMain : public PixelDataImpl<DataMenuMain> {
+       static constexpr uint8_t width() { return 86; }
+       static constexpr uint8_t height() { return 6; }
        static constexpr const uint8_t* indices() { return _MenuMain_::indices; }
        static constexpr const uint8_t* color() { return _MenuMain_::color; }
 };

@@ -20,10 +20,9 @@ namespace _SpaceArmL_ {
         ,255
     };
 }
-class DataSpaceArmL : public PixelDataImpl<DataSpaceArmL> { 
-public:
-       static constexpr int width() { return 4; }
-       static constexpr int height() { return 2; }
+struct DataSpaceArmL : public PixelDataImpl<DataSpaceArmL> {
+       static constexpr uint8_t width() { return 4; }
+       static constexpr uint8_t height() { return 2; }
        static constexpr const uint8_t* indices() { return _SpaceArmL_::indices; }
        static constexpr const uint8_t* color() { return _SpaceArmL_::color; }
 };

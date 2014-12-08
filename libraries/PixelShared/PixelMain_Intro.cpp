@@ -14,13 +14,12 @@
 #include "DataTextPressToPlay.h"
 #include "DataBackSpace.h"
 
-
+#include <iostream>
 void PixelMain::allocIntro()
 {
-   
     if(invasionText->currentData==0)
-     invasionText->currentData = new DataTextInvasion();
-     pressKeyText->currentData = new DataTextPressToPlay();
+        invasionText->currentData = new DataTextInvasion();
+    pressKeyText->currentData = new DataTextPressToPlay();
 }
 void PixelMain::deallocInto()
 {

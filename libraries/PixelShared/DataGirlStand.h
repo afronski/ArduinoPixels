@@ -88,10 +88,9 @@ namespace _GirlStand_ {
         ,255
     };
 }
-class DataGirlStand : public PixelDataImpl<DataGirlStand> { 
-public:
-       static constexpr int width() { return 7; }
-       static constexpr int height() { return 8; }
+struct DataGirlStand : public PixelDataImpl<DataGirlStand> {
+       static constexpr uint8_t width() { return 7; }
+       static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _GirlStand_::indices; }
        static constexpr const uint8_t* color() { return _GirlStand_::color; }
 };

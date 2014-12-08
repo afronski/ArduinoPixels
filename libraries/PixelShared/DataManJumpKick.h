@@ -100,10 +100,9 @@ namespace _ManJumpKick_ {
         ,255
     };
 }
-class DataManJumpKick : public PixelDataImpl<DataManJumpKick> { 
-public:
-       static constexpr int width() { return 8; }
-       static constexpr int height() { return 10; }
+struct DataManJumpKick : public PixelDataImpl<DataManJumpKick> {
+       static constexpr uint8_t width() { return 8; }
+       static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _ManJumpKick_::indices; }
        static constexpr const uint8_t* color() { return _ManJumpKick_::color; }
 };

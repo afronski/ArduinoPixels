@@ -74,10 +74,9 @@ namespace _Alien1Dead_ {
         ,230
     };
 }
-class DataAlien1Dead : public PixelDataImpl<DataAlien1Dead> { 
-public:
-       static constexpr int width() { return 6; }
-       static constexpr int height() { return 9; }
+struct DataAlien1Dead : public PixelDataImpl<DataAlien1Dead> {
+       static constexpr uint8_t width() { return 6; }
+       static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _Alien1Dead_::indices; }
        static constexpr const uint8_t* color() { return _Alien1Dead_::color; }
 };

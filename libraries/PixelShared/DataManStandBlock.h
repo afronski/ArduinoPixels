@@ -80,10 +80,9 @@ namespace _ManStandBlock_ {
         ,255
     };
 }
-class DataManStandBlock : public PixelDataImpl<DataManStandBlock> { 
-public:
-       static constexpr int width() { return 6; }
-       static constexpr int height() { return 10; }
+struct DataManStandBlock : public PixelDataImpl<DataManStandBlock> {
+       static constexpr uint8_t width() { return 6; }
+       static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _ManStandBlock_::indices; }
        static constexpr const uint8_t* color() { return _ManStandBlock_::color; }
 };

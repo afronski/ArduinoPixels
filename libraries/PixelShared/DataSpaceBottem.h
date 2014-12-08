@@ -256,10 +256,9 @@ namespace _SpaceBottem_ {
         ,255
     };
 }
-class DataSpaceBottem : public PixelDataImpl<DataSpaceBottem> { 
-public:
-       static constexpr int width() { return 20; }
-       static constexpr int height() { return 7; }
+struct DataSpaceBottem : public PixelDataImpl<DataSpaceBottem> {
+       static constexpr uint8_t width() { return 20; }
+       static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _SpaceBottem_::indices; }
        static constexpr const uint8_t* color() { return _SpaceBottem_::color; }
 };

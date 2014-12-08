@@ -44,10 +44,9 @@ namespace _BoyShoot2_ {
         ,236
     };
 }
-class DataBoyShoot2 : public PixelDataImpl<DataBoyShoot2> { 
-public:
-       static constexpr int width() { return 10; }
-       static constexpr int height() { return 2; }
+struct DataBoyShoot2 : public PixelDataImpl<DataBoyShoot2> {
+       static constexpr uint8_t width() { return 10; }
+       static constexpr uint8_t height() { return 2; }
        static constexpr const uint8_t* indices() { return _BoyShoot2_::indices; }
        static constexpr const uint8_t* color() { return _BoyShoot2_::color; }
 };

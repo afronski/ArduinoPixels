@@ -92,10 +92,9 @@ namespace _SpaceHead_ {
         ,255
     };
 }
-class DataSpaceHead : public PixelDataImpl<DataSpaceHead> { 
-public:
-       static constexpr int width() { return 7; }
-       static constexpr int height() { return 8; }
+struct DataSpaceHead : public PixelDataImpl<DataSpaceHead> {
+       static constexpr uint8_t width() { return 7; }
+       static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _SpaceHead_::indices; }
        static constexpr const uint8_t* color() { return _SpaceHead_::color; }
 };

@@ -188,10 +188,9 @@ namespace _Interface_ {
         ,255
     };
 }
-class DataInterface : public PixelDataImpl<DataInterface> { 
-public:
-       static constexpr int width() { return 9; }
-       static constexpr int height() { return 16; }
+struct DataInterface : public PixelDataImpl<DataInterface> {
+       static constexpr uint8_t width() { return 9; }
+       static constexpr uint8_t height() { return 16; }
        static constexpr const uint8_t* indices() { return _Interface_::indices; }
        static constexpr const uint8_t* color() { return _Interface_::color; }
 };

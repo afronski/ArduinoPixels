@@ -90,10 +90,9 @@ namespace _ManStandKick_ {
         ,255
     };
 }
-class DataManStandKick : public PixelDataImpl<DataManStandKick> { 
-public:
-       static constexpr int width() { return 7; }
-       static constexpr int height() { return 10; }
+struct DataManStandKick : public PixelDataImpl<DataManStandKick> {
+       static constexpr uint8_t width() { return 7; }
+       static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _ManStandKick_::indices; }
        static constexpr const uint8_t* color() { return _ManStandKick_::color; }
 };

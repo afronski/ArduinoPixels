@@ -84,10 +84,9 @@ namespace _GirlWalk3_ {
         ,255
     };
 }
-class DataGirlWalk3 : public PixelDataImpl<DataGirlWalk3> { 
-public:
-       static constexpr int width() { return 7; }
-       static constexpr int height() { return 8; }
+struct DataGirlWalk3 : public PixelDataImpl<DataGirlWalk3> {
+       static constexpr uint8_t width() { return 7; }
+       static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _GirlWalk3_::indices; }
        static constexpr const uint8_t* color() { return _GirlWalk3_::color; }
 };

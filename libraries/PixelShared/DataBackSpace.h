@@ -28,10 +28,9 @@ namespace _BackSpace_ {
         ,255
     };
 }
-class DataBackSpace : public PixelDataImpl<DataBackSpace> { 
-public:
-       static constexpr int width() { return 1; }
-       static constexpr int height() { return 16; }
+struct DataBackSpace : public PixelDataImpl<DataBackSpace> {
+       static constexpr uint8_t width() { return 1; }
+       static constexpr uint8_t height() { return 16; }
        static constexpr const uint8_t* indices() { return _BackSpace_::indices; }
        static constexpr const uint8_t* color() { return _BackSpace_::color; }
 };

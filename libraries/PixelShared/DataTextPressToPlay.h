@@ -529,10 +529,9 @@ namespace _TextPressToPlay_ {
         ,255
     };
 }
-class DataTextPressToPlay : public PixelDataImpl<DataTextPressToPlay> { 
-public:
-       static constexpr int width() { return 57; }
-       static constexpr int height() { return 9; }
+struct DataTextPressToPlay : public PixelDataImpl<DataTextPressToPlay> {
+       static constexpr uint8_t width() { return 57; }
+       static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _TextPressToPlay_::indices; }
        static constexpr const uint8_t* color() { return _TextPressToPlay_::color; }
 };

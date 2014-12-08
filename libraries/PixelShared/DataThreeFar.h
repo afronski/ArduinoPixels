@@ -91,10 +91,9 @@ namespace _ThreeFar_ {
         ,255
     };
 }
-class DataThreeFar : public PixelDataImpl<DataThreeFar> { 
-public:
-       static constexpr int width() { return 7; }
-       static constexpr int height() { return 9; }
+struct DataThreeFar : public PixelDataImpl<DataThreeFar> {
+       static constexpr uint8_t width() { return 7; }
+       static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _ThreeFar_::indices; }
        static constexpr const uint8_t* color() { return _ThreeFar_::color; }
 };

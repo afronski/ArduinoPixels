@@ -14,10 +14,9 @@ namespace _HitPointTest_ {
         ,255
     };
 }
-class DataHitPointTest : public PixelDataImpl<DataHitPointTest> { 
-public:
-       static constexpr int width() { return 2; }
-       static constexpr int height() { return 1; }
+struct DataHitPointTest : public PixelDataImpl<DataHitPointTest> {
+       static constexpr uint8_t width() { return 2; }
+       static constexpr uint8_t height() { return 1; }
        static constexpr const uint8_t* indices() { return _HitPointTest_::indices; }
        static constexpr const uint8_t* color() { return _HitPointTest_::color; }
 };

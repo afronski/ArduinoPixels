@@ -80,10 +80,9 @@ namespace _ManJump_ {
         ,255
     };
 }
-class DataManJump : public PixelDataImpl<DataManJump> { 
-public:
-       static constexpr int width() { return 6; }
-       static constexpr int height() { return 10; }
+struct DataManJump : public PixelDataImpl<DataManJump> {
+       static constexpr uint8_t width() { return 6; }
+       static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _ManJump_::indices; }
        static constexpr const uint8_t* color() { return _ManJump_::color; }
 };

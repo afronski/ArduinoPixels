@@ -40,10 +40,9 @@ namespace _Splash1_ {
         ,255
     };
 }
-class DataSplash1 : public PixelDataImpl<DataSplash1> { 
-public:
-       static constexpr int width() { return 6; }
-       static constexpr int height() { return 4; }
+struct DataSplash1 : public PixelDataImpl<DataSplash1> {
+       static constexpr uint8_t width() { return 6; }
+       static constexpr uint8_t height() { return 4; }
        static constexpr const uint8_t* indices() { return _Splash1_::indices; }
        static constexpr const uint8_t* color() { return _Splash1_::color; }
 };

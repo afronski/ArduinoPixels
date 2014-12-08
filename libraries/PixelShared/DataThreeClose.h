@@ -298,10 +298,9 @@ namespace _ThreeClose_ {
         ,255
     };
 }
-class DataThreeClose : public PixelDataImpl<DataThreeClose> { 
-public:
-       static constexpr int width() { return 15; }
-       static constexpr int height() { return 18; }
+struct DataThreeClose : public PixelDataImpl<DataThreeClose> {
+       static constexpr uint8_t width() { return 15; }
+       static constexpr uint8_t height() { return 18; }
        static constexpr const uint8_t* indices() { return _ThreeClose_::indices; }
        static constexpr const uint8_t* color() { return _ThreeClose_::color; }
 };

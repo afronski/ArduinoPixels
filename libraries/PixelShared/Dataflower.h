@@ -25,10 +25,9 @@ namespace _flower_ {
         ,255
     };
 }
-class Dataflower : public PixelDataImpl<Dataflower> { 
-public:
-       static constexpr int width() { return 3; }
-       static constexpr int height() { return 3; }
+struct Dataflower : public PixelDataImpl<Dataflower> {
+       static constexpr uint8_t width() { return 3; }
+       static constexpr uint8_t height() { return 3; }
        static constexpr const uint8_t* indices() { return _flower_::indices; }
        static constexpr const uint8_t* color() { return _flower_::color; }
 };

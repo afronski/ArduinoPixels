@@ -32,10 +32,9 @@ namespace _DuckBig_ {
         ,255
     };
 }
-class DataDuckBig : public PixelDataImpl<DataDuckBig> { 
-public:
-       static constexpr int width() { return 4; }
-       static constexpr int height() { return 4; }
+struct DataDuckBig : public PixelDataImpl<DataDuckBig> {
+       static constexpr uint8_t width() { return 4; }
+       static constexpr uint8_t height() { return 4; }
        static constexpr const uint8_t* indices() { return _DuckBig_::indices; }
        static constexpr const uint8_t* color() { return _DuckBig_::color; }
 };

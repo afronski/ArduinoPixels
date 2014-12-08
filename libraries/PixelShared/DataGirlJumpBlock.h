@@ -88,10 +88,9 @@ namespace _GirlJumpBlock_ {
         ,255
     };
 }
-class DataGirlJumpBlock : public PixelDataImpl<DataGirlJumpBlock> { 
-public:
-       static constexpr int width() { return 7; }
-       static constexpr int height() { return 8; }
+struct DataGirlJumpBlock : public PixelDataImpl<DataGirlJumpBlock> {
+       static constexpr uint8_t width() { return 7; }
+       static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _GirlJumpBlock_::indices; }
        static constexpr const uint8_t* color() { return _GirlJumpBlock_::color; }
 };

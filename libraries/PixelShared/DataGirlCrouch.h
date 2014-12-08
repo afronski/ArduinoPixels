@@ -78,10 +78,9 @@ namespace _GirlCrouch_ {
         ,2
     };
 }
-class DataGirlCrouch : public PixelDataImpl<DataGirlCrouch> { 
-public:
-       static constexpr int width() { return 7; }
-       static constexpr int height() { return 6; }
+struct DataGirlCrouch : public PixelDataImpl<DataGirlCrouch> {
+       static constexpr uint8_t width() { return 7; }
+       static constexpr uint8_t height() { return 6; }
        static constexpr const uint8_t* indices() { return _GirlCrouch_::indices; }
        static constexpr const uint8_t* color() { return _GirlCrouch_::color; }
 };

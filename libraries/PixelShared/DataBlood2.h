@@ -37,10 +37,9 @@ namespace _Blood2_ {
         ,255
     };
 }
-class DataBlood2 : public PixelDataImpl<DataBlood2> { 
-public:
-       static constexpr int width() { return 5; }
-       static constexpr int height() { return 5; }
+struct DataBlood2 : public PixelDataImpl<DataBlood2> {
+       static constexpr uint8_t width() { return 5; }
+       static constexpr uint8_t height() { return 5; }
        static constexpr const uint8_t* indices() { return _Blood2_::indices; }
        static constexpr const uint8_t* color() { return _Blood2_::color; }
 };

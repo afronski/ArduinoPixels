@@ -13,10 +13,9 @@ namespace _StarSmall_ {
         ,255
     };
 }
-class DataStarSmall : public PixelDataImpl<DataStarSmall> { 
-public:
-       static constexpr int width() { return 1; }
-       static constexpr int height() { return 1; }
+struct DataStarSmall : public PixelDataImpl<DataStarSmall> {
+       static constexpr uint8_t width() { return 1; }
+       static constexpr uint8_t height() { return 1; }
        static constexpr const uint8_t* indices() { return _StarSmall_::indices; }
        static constexpr const uint8_t* color() { return _StarSmall_::color; }
 };

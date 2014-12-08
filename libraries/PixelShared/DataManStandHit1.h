@@ -100,10 +100,9 @@ namespace _ManStandHit1_ {
         ,255
     };
 }
-class DataManStandHit1 : public PixelDataImpl<DataManStandHit1> { 
-public:
-       static constexpr int width() { return 8; }
-       static constexpr int height() { return 10; }
+struct DataManStandHit1 : public PixelDataImpl<DataManStandHit1> {
+       static constexpr uint8_t width() { return 8; }
+       static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _ManStandHit1_::indices; }
        static constexpr const uint8_t* color() { return _ManStandHit1_::color; }
 };

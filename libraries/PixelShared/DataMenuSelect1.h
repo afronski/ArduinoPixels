@@ -212,10 +212,9 @@ namespace _MenuSelect1_ {
         ,255
     };
 }
-class DataMenuSelect1 : public PixelDataImpl<DataMenuSelect1> { 
-public:
-       static constexpr int width() { return 23; }
-       static constexpr int height() { return 8; }
+struct DataMenuSelect1 : public PixelDataImpl<DataMenuSelect1> {
+       static constexpr uint8_t width() { return 23; }
+       static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _MenuSelect1_::indices; }
        static constexpr const uint8_t* color() { return _MenuSelect1_::color; }
 };

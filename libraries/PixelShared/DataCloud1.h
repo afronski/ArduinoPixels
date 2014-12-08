@@ -144,10 +144,9 @@ namespace _Cloud1_ {
         ,255
     };
 }
-class DataCloud1 : public PixelDataImpl<DataCloud1> { 
-public:
-       static constexpr int width() { return 24; }
-       static constexpr int height() { return 5; }
+struct DataCloud1 : public PixelDataImpl<DataCloud1> {
+       static constexpr uint8_t width() { return 24; }
+       static constexpr uint8_t height() { return 5; }
        static constexpr const uint8_t* indices() { return _Cloud1_::indices; }
        static constexpr const uint8_t* color() { return _Cloud1_::color; }
 };

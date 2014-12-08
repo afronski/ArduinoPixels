@@ -33,10 +33,9 @@ namespace _Blood3_ {
         ,255
     };
 }
-class DataBlood3 : public PixelDataImpl<DataBlood3> { 
-public:
-       static constexpr int width() { return 7; }
-       static constexpr int height() { return 3; }
+struct DataBlood3 : public PixelDataImpl<DataBlood3> {
+       static constexpr uint8_t width() { return 7; }
+       static constexpr uint8_t height() { return 3; }
        static constexpr const uint8_t* indices() { return _Blood3_::indices; }
        static constexpr const uint8_t* color() { return _Blood3_::color; }
 };

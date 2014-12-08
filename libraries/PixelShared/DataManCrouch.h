@@ -68,10 +68,9 @@ namespace _ManCrouch_ {
         ,255
     };
 }
-class DataManCrouch : public PixelDataImpl<DataManCrouch> { 
-public:
-       static constexpr int width() { return 6; }
-       static constexpr int height() { return 8; }
+struct DataManCrouch : public PixelDataImpl<DataManCrouch> {
+       static constexpr uint8_t width() { return 6; }
+       static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _ManCrouch_::indices; }
        static constexpr const uint8_t* color() { return _ManCrouch_::color; }
 };

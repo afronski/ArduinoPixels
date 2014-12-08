@@ -80,10 +80,9 @@ namespace _BoyDeath_ {
         ,230
     };
 }
-class DataBoyDeath : public PixelDataImpl<DataBoyDeath> { 
-public:
-       static constexpr int width() { return 6; }
-       static constexpr int height() { return 10; }
+struct DataBoyDeath : public PixelDataImpl<DataBoyDeath> {
+       static constexpr uint8_t width() { return 6; }
+       static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _BoyDeath_::indices; }
        static constexpr const uint8_t* color() { return _BoyDeath_::color; }
 };

@@ -3,6 +3,7 @@
 //  PixelShared
 //
 //  Created by Kris Temmerman on 05/10/13.
+//  Optimized by Hans Robeers on 2014/12/05
 //  Copyright (c) 2013 Kris Temmerman. All rights reserved.
 //
 
@@ -11,16 +12,18 @@
 
 #include "PixelGameInclude.h"
 
+// PixelData objects are cheap to copy and construct.
+// Make sure to allocate them on the stack!
 struct PixelData
 {
     const uint8_t *color;
     const uint8_t *indices;
-    int width;
-    int height;
-    int centerX;
-    int centerY;
+    const uint8_t width;
+    const uint8_t height;
+    uint8_t centerX;
+    uint8_t centerY;
   
-    PixelData(const uint8_t *color, const uint8_t *indices, int width, int height) :
+    PixelData(const uint8_t *color, const uint8_t *indices, const uint8_t width, const uint8_t height) :
         color(color), indices(indices), width(width), height(height), centerX(width/2), centerY(height) { }
 
 };
@@ -34,9 +37,8 @@ struct PixelData
 // Created by Hans Robeers on 2014/12/05
 //
 template<typename T>
-class PixelDataImpl : public PixelData
+struct PixelDataImpl : public PixelData
 {
-public:
     PixelDataImpl() : PixelData(T::color(),
                                 T::indices(),
                                 T::width(),

@@ -104,10 +104,9 @@ namespace _GirlStandKick_ {
         ,255
     };
 }
-class DataGirlStandKick : public PixelDataImpl<DataGirlStandKick> { 
-public:
-       static constexpr int width() { return 9; }
-       static constexpr int height() { return 8; }
+struct DataGirlStandKick : public PixelDataImpl<DataGirlStandKick> {
+       static constexpr uint8_t width() { return 9; }
+       static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _GirlStandKick_::indices; }
        static constexpr const uint8_t* color() { return _GirlStandKick_::color; }
 };
