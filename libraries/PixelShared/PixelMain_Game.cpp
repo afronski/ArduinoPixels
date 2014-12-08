@@ -8,8 +8,6 @@
 
 #include "PixelMain.h"
 
-
-
 #include "Dataflower.h"
 #include "DataCity.h"
 #include "DataPond.h"
@@ -18,10 +16,6 @@
 #include "DataInterface2.h"
 
 #include "DataHitPointTest.h"
-
-
-
-
 
 #include "DataLife0.h"
 #include "DataLife1.h"
@@ -33,7 +27,6 @@
 #include "DataLife6.h"
 #include "DataLife7.h"
 #include "DataLifeLight.h"
-
 
 #include "DataBlood1.h"
 #include "DataBlood2.h"
@@ -47,8 +40,6 @@
 #include "DataAlienShoot2.h"
 
 #include "DataBackGrass.h"
-
-
 
 #include "DataManJump.h"
 #include "DataManStand.h"
@@ -104,7 +95,6 @@
 #include "DataGirlCrouchBlock.h"
 #include "DataGirlStandBlock.h"
 #include "DataGirlDeath.h"
-
 
 #include "DataGirlGotHit1.h"
 #include "DataGirlGotHit2.h"

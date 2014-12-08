@@ -25,7 +25,9 @@ struct PixelData
   
     PixelData(const uint8_t *color, const uint8_t *indices, const uint8_t width, const uint8_t height) :
         color(color), indices(indices), width(width), height(height), centerX(width/2), centerY(height) { }
-
+    PixelData() : PixelData(nullptr, nullptr, 0, 0) { }
+    PixelData(const PixelData &other) : PixelData(other.color, other.indices, other.width, other.height) { }
+    PixelData operator=(const PixelData &other) { return PixelData(other); }
 };
 
 //

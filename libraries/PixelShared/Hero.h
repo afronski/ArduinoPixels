@@ -28,7 +28,6 @@ public:
         isCrouching =false;
         isDead =false;
         hitType=0;
-        currentData=0;
         isWaterHit =false;
         isCrouchingWalking =false;
     };

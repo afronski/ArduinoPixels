@@ -66,9 +66,6 @@ public:
     
     
     void update(float timeElapsed);
- 
-
-    
     
     void draw();
     
@@ -98,7 +95,7 @@ public:
     Sprite *pressKeyText;
     Vector <Star *> stars;
     
-     Sprite * backgroundIntro;
+    Sprite * backgroundIntro;
     
     ////////////////////////////////////////
     /*
@@ -160,29 +157,26 @@ public:
     
     //shared
     
-    PixelData *  girlShoot1 ;
-    PixelData *  girlShoot2 ;
-    
-    PixelData * boyShoot1 ;
-    PixelData * boyShoot2;
-    
-    PixelData * alienShoot1;
-    PixelData * alienShoot2;
+        PixelData * girlShoot1 ;
+        PixelData * girlShoot2 ;
 
-     PixelData * splashFrame1;
-     PixelData * splashFrame2;
+        PixelData * boyShoot1 ;
+        PixelData * boyShoot2;
+
+        PixelData * alienShoot1;
+        PixelData * alienShoot2;
+
+        PixelData * splashFrame1;
+        PixelData * splashFrame2;
     
-    
-    
-    
-    DataThreeClose *treeCloseData;
+        DataThreeClose *treeCloseData;
         DataThreeFar *treeFarData;
         DataCloud1 *cloudData;
         Dataflower *flowerData;
-PixelData *paddoData;
+        PixelData *paddoData;
         PixelData * backGrass ;
-     PixelData * cityData;
-    PixelData * bushData;
+        PixelData * cityData;
+        PixelData * bushData;
     //heroData
     
         PixelData * jumpDataB;
@@ -192,8 +186,8 @@ PixelData *paddoData;
     
     
         PixelData * crouchDataB;
-    PixelData * crouchDataWalk1B;
-     PixelData * crouchDataWalk2B;
+        PixelData * crouchDataWalk1B;
+        PixelData * crouchDataWalk2B;
         PixelData * crouchKickDataB;
         PixelData * crouchHitDataB;
         PixelData * crouchBlockDataB;

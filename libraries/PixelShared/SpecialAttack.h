@@ -15,13 +15,12 @@
 class SpecialAttack:public Sprite
 {
 public:
-    SpecialAttack(){};
+    SpecialAttack(){}
     
     void setup()
     {
-              isUsed =false;
+        isUsed =false;
         visible=false;
-      
     }
     
     void start(int dir, int type)
@@ -35,20 +34,17 @@ public:
         heroType =type;
         if(type ==0)
         {
-            shoot1=boyShoot1  ;
-            shoot2  =boyShoot2;
-        
+            shoot1 = boyShoot1;
+            shoot2 = boyShoot2;
         }
         else if(type ==1)
         {
-             shoot1=girlShoot1  ;
-             shoot2  =girlShoot2;
-            
+             shoot1 = girlShoot1;
+             shoot2 = girlShoot2;
         }else
         {
-            shoot1=alienShoot1  ;
-            shoot2  =alienShoot2;
-        
+            shoot1 = alienShoot1;
+            shoot2 = alienShoot2;
         }
 
         
@@ -85,7 +81,7 @@ public:
           
         }else
         {
-              currentData  = shoot2;
+              currentData = shoot2;
         }
         
         if(x<-5 || x>90)
@@ -106,16 +102,15 @@ public:
     float lastTime;
     float speed;
     bool isUsed;
-    PixelData *  shoot1 ;
-    PixelData *  shoot2 ;
-    
-    
-    PixelData *  girlShoot1 ;
-    PixelData *  girlShoot2 ;
-    
+    PixelData * shoot1 ;
+    PixelData * shoot2 ;
+
+    PixelData * girlShoot1 ;
+    PixelData * girlShoot2 ;
+
     PixelData * boyShoot1 ;
     PixelData * boyShoot2;
-    
+
     PixelData * alienShoot1;
     PixelData * alienShoot2;
     int _dir;
