@@ -259,12 +259,9 @@ void PixelMain::setupGame2p()
     }
 
     //gameOver
-    gameOverText2p = new GameOverText();
-    gameOverText2p->fy = 0;
-    gameOverText2p->fx = 0;
-    stage2p.addChild(   gameOverText2p );
-    
-  
+    gameOverText.fy = 0;
+    gameOverText.fx = 0;
+    stage2p.addChild(&gameOverText);
 }
 void PixelMain::resetGame2p()
 {
@@ -318,11 +315,11 @@ void PixelMain::updateGame2p (float timeElapsed)
     if (gameState == STATE_GAME_OVER)
     {
         switchTime -=timeElapsed;
-          gameOverText2p->update(switchTime);
+          gameOverText.update(switchTime);
      
         if(switchTime<0)
         {
-            gameOverText2p->hide();
+            gameOverText.hide();
             setGameState(STATE_INTRO);
             return;
         }
@@ -471,14 +468,14 @@ void PixelMain::updateGame2p (float timeElapsed)
      waterSplash2p->update(timeElapsed,stagefx);
     if( alienBoss2p->isDead && gameState ==STATE_GAME)
     {
-        gameOverText2p->show(3);
+        gameOverText.show(3);
      
         setGameState(STATE_GAME_OVER);
         return;
     }
     if(hero2pM->life<=0  && hero2pF->life<=0 && gameState ==STATE_GAME)
     {
-        gameOverText2p->show();
+        gameOverText.show();
   
         setGameState(STATE_GAME_OVER); ;
     }

@@ -126,18 +126,18 @@ public:
     //GAME STUFF SHARED
     void allocGame();
     void deallocGame();
-    
-    
+
     void setupGame();
     void updateGame(float);
     void setHeroData(Hero * hero,int type);
-     void setLifeData(Life * life);
+    void setLifeData(Life * life);
     
     void setAliens(const Vector<Alien *> &aliens);
     
     Blood * getBlood(const Vector<Blood *> & bloods);
     SpecialAttack * getSpecialAttack(const Vector<SpecialAttack *> &attacs);
     
+    GameOverText gameOverText;
     
     Vector<SpecialAttack *>specialAttackBuffer1p;
     Vector<Blood *>bloodBuffer1p;
@@ -284,8 +284,7 @@ public:
     Sprite *lifeBoyHolder1p;
     Life lifeBoy1p;
   
-  Vector<Live *>live1p;
-    GameOverText *  gameOverText1p;
+    Vector<Live *>live1p;
     WaterSplash * waterSplash1p;
     //GAME 2 PLAYER
     
@@ -293,16 +292,15 @@ public:
     void updateGame2p(float timeElapsed);
     void resetGame2p();
     Vector<Cloud *>clouds2p;
-      Vector <Alien *> aliens2p;
+    Vector <Alien *> aliens2p;
     Hero *hero2pM;
     Hero *hero2pF;
     Sprite *lifeBoyHolder2p;
     Sprite *lifeGirlHolder2p;
     Life lifeGirl2p;
     Life lifeBoy2p;
-     Vector<Live *>live2p;
-        GameOverText *  gameOverText2p;
-       Vector<DecorSprite *>decor2p;
+    Vector<Live *>live2p;
+    Vector<DecorSprite *>decor2p;
     WaterSplash * waterSplash2p;
     //GAME VS
     
@@ -317,23 +315,14 @@ public:
     Sprite *lifeGirlHolderVS;
     Life lifeGirlVS;
     Life lifeBoyVS;
-
-     Vector<Live *>liveVS;
-    
-       Vector<DecorSprite *>decorVS;
-     GameOverText *  gameOverTextVS;
+    Vector<Live *>liveVS;
+    Vector<DecorSprite *>decorVS;
     
     void resetGame();
     bool readyToStart;
- 
-    
-    
-   
-   
-    
+
     bool endGame ;
-  
-    
+
     int brightness;
 };
 

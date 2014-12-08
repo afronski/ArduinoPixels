@@ -21,17 +21,15 @@ class GameOverText:public Sprite
     DataTextBoyWins boyWins;
     DataTextYouWin youWin;
 
-    Sprite * textSprite;
+    Sprite textSprite;
 
 public:
     GameOverText()
     {
-       // currentData=new DataBackSpace();
         drawType =3;
-        textSprite =new Sprite();
-        textSprite->currentData =0;
-        textSprite->fx =45;
-        addChild(textSprite);
+        textSprite.currentData =0;
+        textSprite.fx =45;
+        addChild(&textSprite);
 
         girlWins.centerY = 12;
         boyWins.centerY = 12;
@@ -42,34 +40,39 @@ public:
     void show(int type =0)
     {
         visible =true;
-        if( textSprite->currentData==0){
-            if(type==0) textSprite->currentData = &gameOver;
-            if(type==2) textSprite->currentData = &girlWins;
-            if(type==1) textSprite->currentData= &boyWins;
-            if(type==3) textSprite->currentData = &youWin;
+
+        switch (type) {
+        case 0:
+            textSprite.currentData = &gameOver;
+            break;
+        case 1:
+            textSprite.currentData= &boyWins;
+            break;
+        case 2:
+            textSprite.currentData = &girlWins;
+            break;
+        case 3:
+            textSprite.currentData = &youWin;
+            break;
         }
-       
-       // currentData->color[3] =0;
-         textSprite->fy =-4;
+
+        textSprite.fy =-4;
     }
     void update(float switchTime)
     {
        
         if( switchTime>8&& switchTime<9)
         {
-            // currentData->color[3] =(int)expoEaseIn (1-(switchTime-8),0,255,1);;
-            textSprite->fy = backEaseOut(1-(switchTime-8),-4,13+4,1);
-        }else  if( switchTime<8 && switchTime>1 )
-        {
-            
-            textSprite->fy = 13;
-        }else if(switchTime<1 )
-        {
-        
-         textSprite->fy = expoEaseIn (1-switchTime,13,16,1);
+            textSprite.fy = backEaseOut(1-(switchTime-8),-4,13+4,1);
         }
-        
-    
+        else  if( switchTime<8 && switchTime>1 )
+        {
+            textSprite.fy = 13;
+        }
+        else if(switchTime<1 )
+        {
+            textSprite.fy = expoEaseIn (1-switchTime,13,16,1);
+        }
     }
     void hide()
     {

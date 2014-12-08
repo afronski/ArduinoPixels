@@ -149,12 +149,10 @@ liveVS.push_back( heroVSM);
     lifeBoyVS.fy=-2;
     lifeBoyHolderVS->addChild(&lifeBoyVS);
     lifeGirlHolderVS->addChild(&lifeGirlVS);
-    
-    
-    gameOverTextVS = new GameOverText();
-    gameOverTextVS->fy = 0;
-    gameOverTextVS->fx = 0;
-    stageVS.addChild(   gameOverTextVS );
+
+    gameOverText.fy = 0;
+    gameOverText.fx = 0;
+    stageVS.addChild(&gameOverText);
     
     
     
@@ -196,19 +194,19 @@ void PixelMain::updateGameVS(float timeElapsed)
     if (gameState == STATE_GAME_OVER)
     {
         switchTime -=timeElapsed;
-        gameOverTextVS->update(switchTime);
+        gameOverText.update(switchTime);
        /* if( switchTime>8&& switchTime<9)
         {
         
-            gameOverTextVS->fy = backEaseOut(1-(switchTime-8),0,15,1);
+            gameOverText.fy = backEaseOut(1-(switchTime-8),0,15,1);
         } if( switchTime<8)
         {
         
-            gameOverTextVS->fy = 15;
+            gameOverText.fy = 15;
         }*/
         if(switchTime<0)
         {
-            gameOverTextVS->hide();
+            gameOverText.hide();
             setGameState(STATE_INTRO);
             return;
         }
@@ -319,7 +317,7 @@ void PixelMain::updateGameVS(float timeElapsed)
     }
     if(heroVSF->life==0 && gameState ==STATE_GAME)
     {
-        gameOverTextVS->show(1);
+        gameOverText.show(1);
         
         setGameState(STATE_GAME_OVER); ;
    
@@ -329,7 +327,7 @@ void PixelMain::updateGameVS(float timeElapsed)
     }
     if(heroVSM->life==0&& gameState ==STATE_GAME)
     {
-        gameOverTextVS->show(2);
+        gameOverText.show(2);
         
         setGameState(STATE_GAME_OVER); ;
         

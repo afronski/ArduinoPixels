@@ -237,10 +237,9 @@ void PixelMain::setupGame1p()
         
         stage1p.addChild( blood);
     }
-    gameOverText1p = new GameOverText();
-    gameOverText1p->fy = 0;
-     gameOverText1p->fx =0;
-    stage1p.addChild(   gameOverText1p );
+    gameOverText.fy = 0;
+    gameOverText.fx =0;
+    stage1p.addChild(&gameOverText);
     
     
 }
@@ -253,7 +252,7 @@ void PixelMain::resetGame1p()
     hero1pm->fx =20;
     hero1pm->fy = -16;
     hero1pm->reset();
-    gameOverText1p->fy = 0;
+    gameOverText.fy = 0;
     for(size_t i=0;i< aliens1p.size();i++)
     {
         
@@ -287,11 +286,11 @@ void PixelMain::updateGame1p (float timeElapsed)
     if (gameState == STATE_GAME_OVER)
     {
         switchTime -=timeElapsed;
-        gameOverText1p->update(switchTime);
+        gameOverText.update(switchTime);
     
         if(switchTime<0)
         {
-            gameOverText1p->hide();
+            gameOverText.hide();
             setGameState(STATE_INTRO);
             return;
         
@@ -423,7 +422,7 @@ void PixelMain::updateGame1p (float timeElapsed)
     
     if( alienBoss1p->isDead && gameState ==STATE_GAME)
     {
-        gameOverText1p->show(3);
+        gameOverText.show(3);
         
         setGameState(STATE_GAME_OVER);
         return;
@@ -431,7 +430,7 @@ void PixelMain::updateGame1p (float timeElapsed)
     
     if(hero1pm->life==0  && gameState ==STATE_GAME)
     {
-        gameOverText1p->show();
+        gameOverText.show();
       
          setGameState(STATE_GAME_OVER); ;
     }
