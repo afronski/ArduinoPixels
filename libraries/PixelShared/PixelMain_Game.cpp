@@ -15,10 +15,6 @@
 
 #include "DataHitPointTest.h"
 
-#include "DataBlood1.h"
-#include "DataBlood2.h"
-#include "DataBlood3.h"
-
 #include "DataGirlShoot1.h"
 #include "DataGirlShoot2.h"
 #include "DataBoyShoot1.h"
@@ -768,14 +764,7 @@ void PixelMain::setupGame()
     paddoData = new DataPaddo();
   
     backGrass  =  new DataBackGrass();
-    
-     frame1b =new DataBlood1();
-    frame2b =new DataBlood2();
-    frame2b->centerY =2;
-   frame3b =new DataBlood3();
-    frame3b->centerY =0;
-    
-    
+
     for(int i =0;i<3;i++)
     {
         Stage *stage = NULL;

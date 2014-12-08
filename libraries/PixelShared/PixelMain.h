@@ -147,15 +147,12 @@ public:
     
     Vector<SpecialAttack *>specialAttackBufferVS;
     Vector<Blood *>bloodBufferVS;
+
+    void resolveShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs);
+    void checkShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs,const Vector<Blood *> &bloods);
+    void resolveAttack(const Vector<Live *> &lives,const Vector<Blood *> &bloods);
     
-    PixelData * frame1b;
-    PixelData * frame2b;
-    PixelData * frame3b;
-   void  resolveShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs);
-     void  checkShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs,const Vector<Blood *> &bloods);
-   void  resolveAttack(const Vector<Live *> &lives,const Vector<Blood *> &bloods);
-    
-      void alienHitTest(Hero * hero,const Vector<Alien *> &aliens,const Vector<Blood *> &bloods);
+    void alienHitTest(Hero * hero,const Vector<Alien *> &aliens,const Vector<Blood *> &bloods);
     
     //shared
     

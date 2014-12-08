@@ -247,14 +247,9 @@ void PixelMain::setupGame2p()
     for (int i=0;i<8;i++)
     {
         Blood *blood =new Blood();
-        blood->frame1 = frame1b;
-        blood->frame2 = frame2b;
-        blood->frame3 = frame3b;
         blood->setup();
         bloodBuffer2p.push_back(blood);
-        
-        
-        
+
         stage2p.addChild( blood);
     }
 

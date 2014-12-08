@@ -227,15 +227,9 @@ void PixelMain::setupGame1p()
     for (int i=0;i<8;i++)
     {
         Blood *blood =new Blood();
-        blood->frame1 = frame1b;
-        blood->frame2 = frame2b;
-        blood->frame3 = frame3b;
         blood->setup();
         bloodBuffer1p.push_back(blood);
-      
-        
-        
-        stage1p.addChild( blood);
+        stage1p.addChild(blood);
     }
     gameOverText.fy = 0;
     gameOverText.fx =0;
@@ -334,11 +328,11 @@ void PixelMain::updateGame1p (float timeElapsed)
     resolveShoot(live1p,specialAttackBuffer1p);
 
     checkShoot(live1p,specialAttackBuffer1p,bloodBuffer1p);
-    
 
-  
-    
-    
+
+
+
+
     if(hero1pm->fxReal < -10 )
     {
         hero1pm->fxReal  =-10;
