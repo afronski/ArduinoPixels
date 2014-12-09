@@ -145,7 +145,7 @@ void PixelMain::setupGame1p()
     
     for (int i=0;i<MAX_ATTACKS;i++)
     {
-        SpecialAttack *attack = &specialAttacks[i];
+        SpecialAttack *attack = &_specialAttacks[i];
         
         attack->setup();
         specialAttackBuffer1p.push_back(attack);
@@ -218,7 +218,7 @@ void PixelMain::setupGame1p()
     
     for (int i=0;i<MAX_BLOOD;i++)
     {
-        Blood *blood = &bloods[i];
+        Blood *blood = &_bloods[i];
         blood->setup();
         bloodBuffer1p.push_back(blood);
         stage1p.addChild(blood);

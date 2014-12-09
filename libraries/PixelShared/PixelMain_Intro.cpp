@@ -8,13 +8,11 @@
 
 #include "PixelMain.h"
 #include "DataTextInvasion.h"
-//#include "DataSpaceShip.h"
-#include "DataStarBig.h"
-#include "DataStarSmall.h"
 #include "DataTextPressToPlay.h"
 #include "DataBackSpace.h"
 
 #include <iostream>
+
 void PixelMain::allocIntro()
 {
     if(invasionText->currentData==0)
@@ -36,39 +34,30 @@ void PixelMain::setupIntro()
     backgroundIntro->currentData =new DataBackSpace();
     stageIntro.addChild(backgroundIntro);
     
-    
-    PixelData * starBig =new DataStarBig();
-    PixelData * starSmall =new DataStarSmall();
-    
-    for (int i=0;i<20;i++)
+    for (int i=0;i<MAX_STARS;i++)
     {
-        Star *s =new Star();
-        s->dataBig = starBig;
-        s->dataSmall = starSmall;
+        Star *s = &_stars[i];
         s->randomize();
         
         stageIntro.addChild(s);
         stars.push_back(s);
-        
     }
 
     
     
     invasionText =new Sprite();
-    // invasionText->currentData = new DataTextInvasion();
     stageIntro.addChild(invasionText);
     invasionText->fx = 45;
     invasionText->fy = 12;
     
     spaceShip =new SpaceShip();
     spaceShip->setup();
-   stageIntro.addChild(spaceShip);
+    stageIntro.addChild(spaceShip);
     spaceShip->fx = 45;
     spaceShip->fy = 13;
     
     
     pressKeyText=new Sprite();
-    // pressKeyText->currentData = new DataTextPressToPlay();
     stageIntro.addChild(pressKeyText);
     pressKeyText->fx = 45;
     pressKeyText->fy = 12;

@@ -95,6 +95,9 @@ public:
     Sprite * invasionText;
     SpaceShip *spaceShip;
     Sprite *pressKeyText;
+
+    #define MAX_STARS 20
+    Star _stars[MAX_STARS];
     Vector <Star *> stars;
     
     Sprite * backgroundIntro;
@@ -134,15 +137,15 @@ public:
     
     void setAliens(const Vector<Alien *> &aliens);
     
-    Blood * getBlood(const Vector<Blood *> & bloods);
+    Blood * getBlood(const Vector<Blood *> & _bloods);
     SpecialAttack * getSpecialAttack(const Vector<SpecialAttack *> &attacs);
     
     GameOverText gameOverText;
 
     #define MAX_ATTACKS 16
-    SpecialAttack specialAttacks[MAX_ATTACKS];
+    SpecialAttack _specialAttacks[MAX_ATTACKS];
     #define MAX_BLOOD 8
-    Blood bloods[MAX_BLOOD];
+    Blood _bloods[MAX_BLOOD];
     
     Vector<SpecialAttack *>specialAttackBuffer1p;
     Vector<Blood *>bloodBuffer1p;
@@ -154,10 +157,10 @@ public:
     Vector<Blood *>bloodBufferVS;
 
     void resolveShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs);
-    void checkShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs,const Vector<Blood *> &bloods);
-    void resolveAttack(const Vector<Live *> &lives,const Vector<Blood *> &bloods);
+    void checkShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs,const Vector<Blood *> &_bloods);
+    void resolveAttack(const Vector<Live *> &lives,const Vector<Blood *> &_bloods);
     
-    void alienHitTest(Hero * hero,const Vector<Alien *> &aliens,const Vector<Blood *> &bloods);
+    void alienHitTest(Hero * hero,const Vector<Alien *> &aliens,const Vector<Blood *> &_bloods);
     
     //shared
         PixelData * splashFrame1;
