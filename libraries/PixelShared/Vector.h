@@ -9,6 +9,11 @@
 #ifndef PixelGameLocal_Vector_h
 #define PixelGameLocal_Vector_h
 
+#ifdef STL_VECTOR
+#include <vector>
+template<typename T>
+using Vector = std::vector<T>;
+#else
 // Minimal class to replace std::vector
 template<typename Data>
 class Vector {
@@ -81,5 +86,7 @@ private:
         d_data = newdata;
     }// Allocates double the old space
 };
+
+#endif // STL_VECTOR
 
 #endif

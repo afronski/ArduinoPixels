@@ -34,10 +34,10 @@ public:
     {
         child->parent =this;
         children.push_back(child);
-        
+
     }
-    
-    
+
+
     Vector<Sprite *> children;
     Sprite * parent = nullptr;
     
@@ -60,8 +60,8 @@ public:
             y = drawfY;
             intHidden = false;
             if(x>100 || x<-10)intHidden = true;
-            
-            
+
+
         }
         for(size_t i=0;i<children.size();i++)
         {

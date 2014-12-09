@@ -84,8 +84,12 @@ void Hero::setKey(int key)
    //no hit
     if(isDead)return;
     lastKeys.push_back(key);
+
+#ifdef STL_VECTOR
+    if(lastKeys.size()>5)lastKeys.erase(lastKeys.begin(), lastKeys.begin()+1);
+#else
     if(lastKeys.size()>5)lastKeys.eraseFirst();
-  
+#endif
     
     if( attackTime<=0)
     {

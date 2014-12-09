@@ -11,7 +11,7 @@
 void PixelMain::setupGameVS()
 {
    
-        DecorSprite * city  = new  DecorSprite();
+        DecorSprite * city = &_citiesVS[0];
         city ->currentData =cityData;
         
         city->fx = city->fxReal = 30;
@@ -24,7 +24,7 @@ void PixelMain::setupGameVS()
     int posTreeFar [3] = { 16,25, 77 };
     for(int i=0;i<3;i++)
     {
-        DecorSprite * treeFar  = new  DecorSprite();
+        DecorSprite * treeFar = &_farTreesVS[i];
         treeFar ->currentData =treeFarData;
         treeFar ->fx  =treeFar ->fxReal =  posTreeFar[i] ;
         int rPos = -rand()%2;
@@ -37,7 +37,7 @@ void PixelMain::setupGameVS()
     }
     
    
-        DecorSprite * treeClose  = new  DecorSprite();
+        DecorSprite * treeClose = &_closeTreesVS[0];
         
         treeClose->currentData =treeCloseData;
         treeClose->fx = treeClose->fxReal = 50;
@@ -51,7 +51,7 @@ void PixelMain::setupGameVS()
     
     
     
-    DecorSprite * bush  = new  DecorSprite();
+    DecorSprite * bush = &_bushesVS[0];
     
     bush->currentData =bushData;
     bush->fx = bush->fxReal = 35;
@@ -67,7 +67,7 @@ void PixelMain::setupGameVS()
    
     for(int i=0;i<6;i++)
     {
-        DecorSprite * flower  = new  DecorSprite();
+        DecorSprite * flower = &_flowersVS[i];
         flower ->currentData =flowerData;
         
         flower->fx = posFlower[i];

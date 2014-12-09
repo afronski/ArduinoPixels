@@ -163,6 +163,32 @@ public:
     void alienHitTest(Hero * hero,const Vector<Alien *> &aliens,const Vector<Blood *> &_bloods);
     
     //shared
+
+    // TODO share data between games
+    #define MAX_CITIES 2
+    DecorSprite _cities1p[MAX_CITIES];
+    DecorSprite _cities2p[MAX_CITIES];
+    DecorSprite _citiesVS[1];
+    #define MAX_FARTREES 15
+    DecorSprite _farTrees1p[MAX_FARTREES];
+    DecorSprite _farTrees2p[MAX_FARTREES];
+    DecorSprite _farTreesVS[3];
+    #define MAX_CLOSETREES 8
+    DecorSprite _closeTrees1p[MAX_CLOSETREES];
+    DecorSprite _closeTrees2p[MAX_CLOSETREES];
+    DecorSprite _closeTreesVS[1];
+    #define MAX_FLOWERS 20
+    DecorSprite _flowers1p[MAX_FLOWERS];
+    DecorSprite _flowers2p[MAX_FLOWERS];
+    DecorSprite _flowersVS[6];
+    #define MAX_BUSHES 4
+    DecorSprite _bushes1p[MAX_BUSHES];
+    DecorSprite _bushes2p[MAX_BUSHES];
+    DecorSprite _bushesVS[1];
+    #define MAX_PADDOS 3
+    DecorSprite _paddos1p[MAX_PADDOS];
+    DecorSprite _paddos2p[MAX_PADDOS];
+
         PixelData * splashFrame1;
         PixelData * splashFrame2;
     
@@ -269,9 +295,9 @@ public:
     void setupGame1p();
     void updateGame1p(float timeElapsed);
     void resetGame1p();
+
     Vector<Cloud *>clouds1p;
-    
-     Vector<DecorSprite *>decor1p;
+    Vector<DecorSprite *>decor1p;
     
     Hero *hero1pm;
     

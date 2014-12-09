@@ -89,8 +89,8 @@ void PixelMain::setup()
     setupGame();
     
     setupGame1p();
-   setupGame2p();
-   setupGameVS();
+    setupGame2p();
+    setupGameVS();
     
     setGameState(STATE_INTRO);
     

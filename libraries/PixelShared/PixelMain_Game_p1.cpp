@@ -16,9 +16,9 @@
 void PixelMain::setupGame1p()
 {
    int posCity [2] = {30,150};
-    for(int i=0;i<2;i++)
+    for(int i=0;i<MAX_CITIES;i++)
     {
-        DecorSprite * city  = new  DecorSprite();
+        DecorSprite * city = &_cities1p[i];
         city ->currentData =cityData;
         
         city->fx = city->fxReal = posCity [i];
@@ -32,9 +32,9 @@ void PixelMain::setupGame1p()
     int treePosS [15] = { 35,296,120,157,272,221,253,90,112,55,97,35,190,158,224};
     int treePosSH [15] = {-1,0,-1,-1,0,0,0,-1,-1,0,-1,-1,0,0,-1};
    
-    for(int i=0;i<15;i++)
+    for(int i=0;i<MAX_FARTREES;i++)
     {
-        DecorSprite * treeFar  = new  DecorSprite();
+        DecorSprite * treeFar = &_farTrees1p[i];
         treeFar ->currentData =treeFarData;
         treeFar ->fx  =treeFar ->fxReal = treePosS[i];
        // cout << treeFar->fx<<",";
@@ -51,10 +51,10 @@ void PixelMain::setupGame1p()
      //srand (1);
    int treePos [8] = {50,233,270,400,430,250,252,147};
     int treePosH [8] = {-2,0,-1,-2,0,-2,-1,-1};
-    for(int i=0;i<8;i++)
+    for(int i=0;i<MAX_CLOSETREES;i++)
     {
-        DecorSprite * treeClose  = new  DecorSprite();
-      
+        DecorSprite * treeClose = &_closeTrees1p[i];
+
         treeClose->currentData =treeCloseData;
         treeClose->fx = treeClose->fxReal = treePos [i];
        // cout << treeClose->fx<<",";
@@ -68,26 +68,26 @@ void PixelMain::setupGame1p()
         decor1p.push_back(treeClose );
     }
     srand (1);
-    for(int i=0;i<20;i++)
+    for(int i=0;i<MAX_FLOWERS;i++)
     {
-        DecorSprite * flower  = new  DecorSprite();
+        DecorSprite * flower = &_flowers1p[i];
         flower ->currentData =flowerData;
-     
+
         flower->fx = flower->fxReal = rand()%600;
         int rPos = -rand()%3;
          flower->fy = rPos+16;
          flower->depth =1;
         if( rPos ==-2)  flower->depth=0.98;
         if( rPos ==-3)  flower->depth=0.95;
-       
-        
+
+
         decor1p.push_back( flower);
     }
     int posBush [] = {60,150, 400,470};
-    for(int i=0;i<4;i++)
+    for(int i=0;i<MAX_BUSHES;i++)
     {
-        DecorSprite * bush  = new  DecorSprite();
-    
+        DecorSprite * bush = &_bushes1p[i];
+
         bush->currentData =bushData;
         bush->fx = bush->fxReal = posBush[i];
     
@@ -97,10 +97,10 @@ void PixelMain::setupGame1p()
     }
     
     int posPaddo[] = {250,320,550};
-    for(int i=0;i<3;i++)
+    for(int i=0;i<MAX_PADDOS;i++)
     {
-        DecorSprite * paddo = new  DecorSprite();
-        
+        DecorSprite * paddo = &_paddos1p[i];
+
         paddo->currentData =paddoData;
         paddo->fx = paddo->fxReal = posPaddo[i];
         
@@ -127,12 +127,12 @@ void PixelMain::setupGame1p()
     for (size_t i=0;i<   decor1p.size();i++)
     {
         stage1p.addChild( decor1p[i]);
-    
+
     }
     int posAlienPond [2] = {193,350};
     for (int i=0;i<2;i++)
     {
-        
+
         AlienPond *alien  = new  AlienPond ();
         alien->setup();
         alien->fx  = alien->fxReal = posAlienPond [i];
@@ -146,7 +146,7 @@ void PixelMain::setupGame1p()
     for (int i=0;i<MAX_ATTACKS;i++)
     {
         SpecialAttack *attack = &_specialAttacks[i];
-        
+
         attack->setup();
         specialAttackBuffer1p.push_back(attack);
         stage1p.addChild(attack);
@@ -154,9 +154,9 @@ void PixelMain::setupGame1p()
        int posAlien1 [4] = {290,380, 451 , 500};
     for (int i=0;i<4;i++)
     {
-    
+
         Alien1 *alien  = new Alien1();
-      
+
         alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
         alien->fy =15;
          alien->setup();
@@ -169,7 +169,7 @@ void PixelMain::setupGame1p()
      int posAlien2 [4] = {95,150, 250 , 420};
     for (int i=0;i<4;i++)
     {
-        
+
         Alien2 *alien  = new Alien2();
       
         alien->fx  = alien->fxReal =posAlien2[i];
@@ -178,7 +178,7 @@ void PixelMain::setupGame1p()
         aliens1p.push_back( alien);
         stage1p.addChild(   alien);
         live1p.push_back(   alien);
-        
+
     }     
     {
     alienBoss1p  = new Alien3();
@@ -241,9 +241,9 @@ void PixelMain::resetGame1p()
     gameOverText.fy = 0;
     for(size_t i=0;i< aliens1p.size();i++)
     {
-        
+
         aliens1p[i]->reset();
-        
+
     }
     
     
@@ -251,19 +251,15 @@ void PixelMain::resetGame1p()
     
     for(size_t i=0;i< aliens1p.size();i++)
     {
-        
+
         aliens1p[i]->setLevelPos(stagefx);
-        
+
     }
-    
-    
-    
+
     for (size_t i=0;i<   decor1p.size();i++)
     {
         decor1p[i]->setLevelPos(stagefx);
     }
-
-    
 }
 
 void PixelMain::updateGame1p (float timeElapsed)

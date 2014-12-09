@@ -15,9 +15,9 @@
 void PixelMain::setupGame2p()
 {
     int posCity [2] = {30,150};
-    for(int i=0;i<2;i++)
+    for(int i=0;i<MAX_CITIES;i++)
     {
-        DecorSprite * city  = new  DecorSprite();
+        DecorSprite * city = &_cities2p[i];
         city ->currentData =cityData;
         
         city->fx = city->fxReal = posCity [i];
@@ -30,10 +30,10 @@ void PixelMain::setupGame2p()
     srand (5);
     int treePosS [15] = { 35,296,120,157,272,221,253,90,112,55,97,35,190,158,224};
     int treePosSH [15] = {-1,0,-1,-1,0,0,0,-1,-1,0,-1,-1,0,0,-1};
-    
-    for(int i=0;i<15;i++)
+
+    for(int i=0;i<MAX_FARTREES;i++)
     {
-        DecorSprite * treeFar  = new  DecorSprite();
+        DecorSprite * treeFar = &_farTrees2p[i];
         treeFar ->currentData =treeFarData;
         treeFar ->fx  =treeFar ->fxReal = treePosS[i];
         // cout << treeFar->fx<<",";
@@ -50,9 +50,9 @@ void PixelMain::setupGame2p()
     //srand (1);
     int treePos [8] = {50,233,270,400,430,250,252,147};
     int treePosH [8] = {-2,0,-1,-2,0,-2,-1,-1};
-    for(int i=0;i<8;i++)
+    for(int i=0;i<MAX_CLOSETREES;i++)
     {
-        DecorSprite * treeClose  = new  DecorSprite();
+        DecorSprite * treeClose = &_closeTrees2p[i];
         
         treeClose->currentData =treeCloseData;
         treeClose->fx = treeClose->fxReal = treePos [i];
@@ -67,9 +67,9 @@ void PixelMain::setupGame2p()
         decor2p.push_back(treeClose );
     }
     srand (1);
-    for(int i=0;i<20;i++)
+    for(int i=0;i<MAX_FLOWERS;i++)
     {
-        DecorSprite * flower  = new  DecorSprite();
+        DecorSprite * flower = &_flowers2p[i];
         flower ->currentData =flowerData;
         
         flower->fx = flower->fxReal = rand()%600;
@@ -85,7 +85,7 @@ void PixelMain::setupGame2p()
     int posBush [] = {60,150, 400,470};
     for(int i=0;i<4;i++)
     {
-        DecorSprite * bush  = new  DecorSprite();
+        DecorSprite * bush = &_bushes2p[i];
         
         bush->currentData =bushData;
         bush->fx = bush->fxReal = posBush[i];
@@ -96,9 +96,9 @@ void PixelMain::setupGame2p()
     }
     
     int posPaddo[] = {250,320,550};
-    for(int i=0;i<3;i++)
+    for(int i=0;i<MAX_PADDOS;i++)
     {
-        DecorSprite * paddo = new  DecorSprite();
+        DecorSprite * paddo = &_paddos2p[i];
         
         paddo->currentData =paddoData;
         paddo->fx = paddo->fxReal = posPaddo[i];
