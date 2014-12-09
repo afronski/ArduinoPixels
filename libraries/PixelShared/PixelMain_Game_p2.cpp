@@ -143,24 +143,10 @@ void PixelMain::setupGame2p()
         stage2p.addChild(   alien);
         live2p.push_back(   alien);
     }
-    
-    
-    
-    
-    
-    
-    
+
     for (int i=0;i<16;i++)
     {
         SpecialAttack *attack =new SpecialAttack();
-        attack->girlShoot1 = girlShoot1;
-        attack->girlShoot2 = girlShoot2;
-        
-        attack->boyShoot1 = boyShoot1;
-        attack->boyShoot2 = boyShoot2;
-        
-        attack->alienShoot1 = alienShoot1;
-        attack->alienShoot2 = alienShoot2;
 
         attack->setup();
         specialAttackBuffer2p.push_back(attack);

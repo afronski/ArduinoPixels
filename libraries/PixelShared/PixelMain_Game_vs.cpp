@@ -104,14 +104,6 @@ void PixelMain::setupGameVS()
     for (int i=0;i<6;i++)
     {
         SpecialAttack *attack =new SpecialAttack();
-        attack->girlShoot1 = girlShoot1;
-        attack->girlShoot2 = girlShoot2;
-        
-        attack->boyShoot1 = boyShoot1;
-        attack->boyShoot2 = boyShoot2;
-        
-        attack->alienShoot1 = alienShoot1;
-        attack->alienShoot2 = alienShoot2;
 
         attack->setup();
         specialAttackBufferVS.push_back(attack);

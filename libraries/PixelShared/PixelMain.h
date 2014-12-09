@@ -155,16 +155,6 @@ public:
     void alienHitTest(Hero * hero,const Vector<Alien *> &aliens,const Vector<Blood *> &bloods);
     
     //shared
-    
-        PixelData * girlShoot1 ;
-        PixelData * girlShoot2 ;
-
-        PixelData * boyShoot1 ;
-        PixelData * boyShoot2;
-
-        PixelData * alienShoot1;
-        PixelData * alienShoot2;
-
         PixelData * splashFrame1;
         PixelData * splashFrame2;
     

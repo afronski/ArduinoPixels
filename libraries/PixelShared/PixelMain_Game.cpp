@@ -15,13 +15,6 @@
 
 #include "DataHitPointTest.h"
 
-#include "DataGirlShoot1.h"
-#include "DataGirlShoot2.h"
-#include "DataBoyShoot1.h"
-#include "DataBoyShoot2.h"
-#include "DataAlienShoot1.h"
-#include "DataAlienShoot2.h"
-
 #include "DataBackGrass.h"
 
 #include "DataManJump.h"
@@ -860,17 +853,6 @@ void PixelMain::setupGame()
     deathDataG =0;
     gotHit1G = 0;
     gotHit2G = 0;
-//////
-    //attacs
-    
-    girlShoot1 = new DataGirlShoot1();
-    girlShoot2 = new DataGirlShoot2();
-    
-    boyShoot1 = new DataBoyShoot1();
-    boyShoot2 = new DataBoyShoot2();
-    
-    alienShoot1 = new DataAlienShoot1();
-    alienShoot2 = new DataAlienShoot2();
 }
 
 void  PixelMain::setHeroData(Hero * hero,int type)
