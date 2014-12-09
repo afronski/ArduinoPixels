@@ -143,13 +143,13 @@ void PixelMain::setupGame1p()
     }
 
     
-    for (int i=0;i<16;i++)
+    for (int i=0;i<MAX_ATTACKS;i++)
     {
-        SpecialAttack *attack =new SpecialAttack();
+        SpecialAttack *attack = &specialAttacks[i];
         
         attack->setup();
         specialAttackBuffer1p.push_back(attack);
-        stage1p.addChild( attack);
+        stage1p.addChild(attack);
     }
        int posAlien1 [4] = {290,380, 451 , 500};
     for (int i=0;i<4;i++)
@@ -216,9 +216,9 @@ void PixelMain::setupGame1p()
     stage1p.addChild( waterSplash1p);
     
     
-    for (int i=0;i<8;i++)
+    for (int i=0;i<MAX_BLOOD;i++)
     {
-        Blood *blood =new Blood();
+        Blood *blood = &bloods[i];
         blood->setup();
         bloodBuffer1p.push_back(blood);
         stage1p.addChild(blood);

@@ -138,6 +138,11 @@ public:
     SpecialAttack * getSpecialAttack(const Vector<SpecialAttack *> &attacs);
     
     GameOverText gameOverText;
+
+    #define MAX_ATTACKS 16
+    SpecialAttack specialAttacks[MAX_ATTACKS];
+    #define MAX_BLOOD 8
+    Blood bloods[MAX_BLOOD];
     
     Vector<SpecialAttack *>specialAttackBuffer1p;
     Vector<Blood *>bloodBuffer1p;

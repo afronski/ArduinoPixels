@@ -144,9 +144,9 @@ void PixelMain::setupGame2p()
         live2p.push_back(   alien);
     }
 
-    for (int i=0;i<16;i++)
+    for (int i=0;i<MAX_ATTACKS;i++)
     {
-        SpecialAttack *attack =new SpecialAttack();
+        SpecialAttack *attack = &specialAttacks[i];
 
         attack->setup();
         specialAttackBuffer2p.push_back(attack);
@@ -230,12 +230,11 @@ void PixelMain::setupGame2p()
     stage2p.addChild( waterSplash2p);
 
     
-    for (int i=0;i<8;i++)
+    for (int i=0;i<MAX_BLOOD;i++)
     {
-        Blood *blood =new Blood();
+        Blood *blood = &bloods[i];
         blood->setup();
         bloodBuffer2p.push_back(blood);
-
         stage2p.addChild( blood);
     }
 

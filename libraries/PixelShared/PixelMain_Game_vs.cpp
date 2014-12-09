@@ -103,7 +103,7 @@ void PixelMain::setupGameVS()
     
     for (int i=0;i<6;i++)
     {
-        SpecialAttack *attack =new SpecialAttack();
+        SpecialAttack *attack = &specialAttacks[i];
 
         attack->setup();
         specialAttackBufferVS.push_back(attack);
