@@ -8,10 +8,6 @@
 
 #include "PixelMain.h"
 
-#include "Alien1.h"
-#include "Alien2.h"
-#include "AlienPond.h"
-#include "Alien3.h"
 #include "GameOverText.h"
 void PixelMain::setupGame1p()
 {
@@ -105,7 +101,7 @@ void PixelMain::setupGame1p()
         paddo->fx = paddo->fxReal = posPaddo[i];
         
         paddo->fy = 13;
-       paddo->depth =1;
+        paddo->depth =1;
         decor1p.push_back( paddo);
     }
     
@@ -120,7 +116,7 @@ void PixelMain::setupGame1p()
                 DecorSprite *temp = decor1p[i];
                 decor1p[i] = decor1p[i+1];
                 decor1p[i+1] = temp;
-                 sorted  =false ;
+                sorted  =false;
             }
         }
     }
@@ -130,16 +126,15 @@ void PixelMain::setupGame1p()
 
     }
     int posAlienPond [2] = {193,350};
-    for (int i=0;i<2;i++)
+    for (int i=0;i<MAX_ALIENPOND;i++)
     {
-
-        AlienPond *alien  = new  AlienPond ();
+        AlienPond *alien = &_alienPonds[i];
         alien->setup();
         alien->fx  = alien->fxReal = posAlienPond [i];
         alien->fy =16;
-        aliens1p.push_back( alien);
-        stage1p.addChild(   alien);
-        live1p.push_back(   alien);
+        aliens1p.push_back(alien);
+        stage1p.addChild(alien);
+        live1p.push_back(alien);
     }
 
     
@@ -152,43 +147,42 @@ void PixelMain::setupGame1p()
         stage1p.addChild(attack);
     }
        int posAlien1 [4] = {290,380, 451 , 500};
-    for (int i=0;i<4;i++)
+    for (int i=0;i<MAX_ALIEN;i++)
     {
 
-        Alien1 *alien  = new Alien1();
+        Alien1 *alien  = &_alien1_1p[i];
 
         alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
         alien->fy =15;
          alien->setup();
-        aliens1p.push_back( alien);
-        stage1p.addChild(   alien);
-        live1p.push_back(   alien);
+        aliens1p.push_back(alien);
+        stage1p.addChild(alien);
+        live1p.push_back(alien);
     
     }
     
      int posAlien2 [4] = {95,150, 250 , 420};
-    for (int i=0;i<4;i++)
+    for (int i=0;i<MAX_ALIEN;i++)
     {
-
-        Alien2 *alien  = new Alien2();
+        Alien2 *alien = &_alien2_1p[i];
       
         alien->fx  = alien->fxReal =posAlien2[i];
         alien->fy =15;
-         alien->setup();//setup after fx
-        aliens1p.push_back( alien);
-        stage1p.addChild(   alien);
-        live1p.push_back(   alien);
+        alien->setup();//setup after fx
+        aliens1p.push_back(alien);
+        stage1p.addChild(alien);
+        live1p.push_back(alien);
 
     }     
     {
-    alienBoss1p  = new Alien3();
+    alienBoss1p = &_alienBoss;
     
     alienBoss1p->fx  =  alienBoss1p->fxReal =600;//40+ rand()%200;
     alienBoss1p->fy =15;
     alienBoss1p->setup();//setup after fx
-    aliens1p.push_back(  alienBoss1p);
-    stage1p.addChild(    alienBoss1p);
-    live1p.push_back(    alienBoss1p);
+    aliens1p.push_back(alienBoss1p);
+    stage1p.addChild(alienBoss1p);
+    live1p.push_back(alienBoss1p);
     }
   
     

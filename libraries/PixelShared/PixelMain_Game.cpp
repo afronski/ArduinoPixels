@@ -75,14 +75,6 @@
 #include "DataGirlGotHit1.h"
 #include "DataGirlGotHit2.h"
 
-#include "DataAlien1Head.h"
-#include "DataAlien1Feed.h"
-
-#include "DataAlien2Head.h"
-#include "DataAlien2Feed.h"
-#include "DataPond.h"
-#include "DataDuckBig.h"
-#include "DataDuckSmall.h"
 #include "Alien1.h"
 #include "Alien2.h"
 #include "AlienPond.h"
@@ -187,22 +179,7 @@ gotHit2G->centerY-=1;
     lifeGirlHolder2p->currentData = &girlInterData;
     lifeBoyHolderVS->currentData = &boyInterData;
     lifeGirlHolderVS->currentData = &girlInterData;
-    
-    
-    
-    ///
-    alien1Head =new DataAlien1Head();
-    alien1Feet=new DataAlien1Feed();
-    
-    
-    alien2Head =new DataAlien2Head();
-    alien2Feet =new DataAlien2Feed();
-    
-    alienPond =new DataPond();
-    alienDuckBig =new DataDuckBig();
-    alienDuckSmall =new DataDuckSmall();
-    
-   
+
     setAliens(aliens1p);
     setAliens(aliens2p);
     splashFrame1 = new DataSplash1();
@@ -352,29 +329,6 @@ void PixelMain::deallocGame()
     gotHit1G = 0;
     gotHit2G = 0;
     
-    
-    delete alien1Head; 
-    delete alien1Feet;
-    alien1Head =0;
-    alien1Feet=0;
-    
-    
-    delete alien2Head ;
-     delete alien2Feet ;
-    
-    delete  alienPond ;
-   delete alienDuckBig ;
-    delete alienDuckSmall;
- 
-    
-    alien2Head =0;
-    alien2Feet =0;
-    
-    alienPond =0;
-    alienDuckBig =0;
-    alienDuckSmall =0;
-    
-    
     delete splashFrame1;
     delete splashFrame2;
     
@@ -392,24 +346,14 @@ void PixelMain::setAliens(const Vector<Alien *> &aliens)
         if(a->heroType==2)
         {
             Alien1 * a1 = (Alien1 *) a;
-            a1->headSprite->currentData = alien1Head;
-           
-            a1->feetSprite->currentData = alien1Feet;
         }
         else if(a->heroType==3)
         {
             Alien2 * a1 = (Alien2 *) a;
-            a1->currentData = alien2Head;
-            a1->feet->currentData  =alien2Feet;
-           
         }
         else if(a->heroType==5)
         {
             AlienPond * a1 = (AlienPond *) a;
-            a1->currentData = alienPond;
-            
-            a1->duckBigSprite->currentData = alienDuckBig;
-             a1->duckSmallSprite->currentData = alienDuckSmall;
         }
     
     }

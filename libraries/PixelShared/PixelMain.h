@@ -32,7 +32,13 @@
 #include "Star.h"
 #include "DecorSprite.h"
 #include "Live.h"
+
 #include "Alien.h"
+#include "Alien1.h"
+#include "Alien2.h"
+#include "Alien3.h"
+#include "AlienPond.h"
+
 #include "WaterSplash.h"
 #include "GameOverText.h"
 #include "SoundPlayer.h"
@@ -165,6 +171,7 @@ public:
     //shared
 
     // TODO share data between games
+    // OR move to cpp files
     #define MAX_CITIES 2
     DecorSprite _cities1p[MAX_CITIES];
     DecorSprite _cities2p[MAX_CITIES];
@@ -188,6 +195,14 @@ public:
     #define MAX_PADDOS 3
     DecorSprite _paddos1p[MAX_PADDOS];
     DecorSprite _paddos2p[MAX_PADDOS];
+    #define MAX_ALIEN 4
+    Alien1 _alien1_1p[MAX_ALIEN];
+    Alien1 _alien1_2p[MAX_ALIEN];
+    Alien2 _alien2_1p[MAX_ALIEN];
+    Alien2 _alien2_2p[MAX_ALIEN];
+    #define MAX_ALIENPOND 2
+    AlienPond _alienPonds[MAX_ALIENPOND];
+    Alien3 _alienBoss;
 
         PixelData * splashFrame1;
         PixelData * splashFrame2;
@@ -275,17 +290,7 @@ public:
         PixelData * life7;
     
         PixelData * lifeGlow;
-    
-     //////////
-    PixelData *alien1Head;
-     PixelData *alien1Feet;
-    
-    PixelData *alien2Head;
-    PixelData *alien2Feet;
-    
-    PixelData *alienPond;
-    PixelData *alienDuckBig;
-       PixelData *alienDuckSmall;
+
     //////////////////
     float stagefx;
     Hero * boyHero;

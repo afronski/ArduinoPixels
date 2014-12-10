@@ -7,10 +7,6 @@
 //
 
 #include "PixelMain.h"
-#include "Alien1.h"
-#include "Alien2.h"
-#include "AlienPond.h"
-#include "Alien3.h"
 #include "GameOverText.h"
 void PixelMain::setupGame2p()
 {
@@ -132,16 +128,15 @@ void PixelMain::setupGame2p()
     
     
     int posAlienPond [2] = {193,350};
-    for (int i=0;i<2;i++)
+    for (int i=0;i<MAX_ALIENPOND;i++)
     {
-        
-        AlienPond *alien  = new  AlienPond ();
+        AlienPond *alien = &_alienPonds[i];
         alien->setup();
         alien->fx  = alien->fxReal = posAlienPond [i];
         alien->fy =16;
-        aliens2p.push_back( alien);
-        stage2p.addChild(   alien);
-        live2p.push_back(   alien);
+        aliens2p.push_back(alien);
+        stage2p.addChild(alien);
+        live2p.push_back(alien);
     }
 
     for (int i=0;i<MAX_ATTACKS;i++)
@@ -153,10 +148,10 @@ void PixelMain::setupGame2p()
         stage2p.addChild( attack);
     }
     int posAlien1 [4] = {290,380, 451 , 500};
-    for (int i=0;i<4;i++)
+    for (int i=0;i<MAX_ALIEN;i++)
     {
         
-        Alien1 *alien  = new Alien1();
+        Alien1 *alien = &_alien1_2p[i];
         
         alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
         alien->fy =15;
@@ -168,27 +163,25 @@ void PixelMain::setupGame2p()
     }
     
     int posAlien2 [4] = {95,150, 250 , 420};
-    for (int i=0;i<4;i++)
+    for (int i=0;i<MAX_ALIEN;i++)
     {
-        
-        Alien2 *alien  = new Alien2();
+        Alien2 *alien = &_alien2_2p[i];
         
         alien->fx  = alien->fxReal =posAlien2[i];
         alien->fy =15;
         alien->setup();//setup after fx
-        aliens2p.push_back( alien);
-        stage2p.addChild(   alien);
-        live2p.push_back(   alien);
-        
+        aliens2p.push_back(alien);
+        stage2p.addChild(alien);
+        live2p.push_back(alien);
     }
 
    {
-       alienBoss2p  = new Alien3();
-        
-       alienBoss2p->fx  =  alienBoss2p->fxReal=600 ;//=600;//40+ rand()%200;
-          alienBoss2p->fy =15;
-          alienBoss2p->setup();//setup after fx
-       aliens2p.push_back(   alienBoss2p);
+        alienBoss2p  = &_alienBoss;
+
+        alienBoss2p->fx  =  alienBoss2p->fxReal=600 ;//=600;//40+ rand()%200;
+        alienBoss2p->fy =15;
+        alienBoss2p->setup();//setup after fx
+        aliens2p.push_back(   alienBoss2p);
         stage2p.addChild(     alienBoss2p);
         live2p.push_back(     alienBoss2p);
     }

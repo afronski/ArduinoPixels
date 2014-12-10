@@ -34,9 +34,7 @@ public:
     {
         child->parent =this;
         children.push_back(child);
-
     }
-
 
     Vector<Sprite *> children;
     Sprite * parent = nullptr;
