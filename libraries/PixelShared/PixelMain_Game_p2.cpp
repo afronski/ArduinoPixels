@@ -14,7 +14,7 @@ void PixelMain::setupGame2p()
     for(int i=0;i<MAX_CITIES;i++)
     {
         DecorSprite * city = &_cities2p[i];
-        city ->currentData =cityData;
+        city ->currentData = &_cityData;
         
         city->fx = city->fxReal = posCity [i];
         
@@ -30,12 +30,12 @@ void PixelMain::setupGame2p()
     for(int i=0;i<MAX_FARTREES;i++)
     {
         DecorSprite * treeFar = &_farTrees2p[i];
-        treeFar ->currentData =treeFarData;
+        treeFar ->currentData = &_treeFarData;
         treeFar ->fx  =treeFar ->fxReal = treePosS[i];
         // cout << treeFar->fx<<",";
         int rPos = treePosSH[i];
         
-        treeFar ->fy = -rand()%2+treeFarData->height();
+        treeFar ->fy = -rand()%2+_treeFarData.height();
         treeFar ->depth=0.3;
         if( rPos ==-1) treeFar ->depth=0.25;
         
@@ -50,12 +50,12 @@ void PixelMain::setupGame2p()
     {
         DecorSprite * treeClose = &_closeTrees2p[i];
         
-        treeClose->currentData =treeCloseData;
+        treeClose->currentData = &_treeCloseData;
         treeClose->fx = treeClose->fxReal = treePos [i];
         // cout << treeClose->fx<<",";
         int rPos = treePosH[i]  ;
         
-        treeClose->fy = rPos+treeCloseData->height()-5;
+        treeClose->fy = rPos+_treeCloseData.height()-5;
         treeClose->depth =0.8;
         if( rPos ==-1)treeClose->depth=0.5;
         if( rPos ==-2)treeClose->depth=0.4;
@@ -66,7 +66,7 @@ void PixelMain::setupGame2p()
     for(int i=0;i<MAX_FLOWERS;i++)
     {
         DecorSprite * flower = &_flowers2p[i];
-        flower ->currentData =flowerData;
+        flower ->currentData = &_flowerData;
         
         flower->fx = flower->fxReal = rand()%600;
         int rPos = -rand()%3;
@@ -83,7 +83,7 @@ void PixelMain::setupGame2p()
     {
         DecorSprite * bush = &_bushes2p[i];
         
-        bush->currentData =bushData;
+        bush->currentData = &_bushData;
         bush->fx = bush->fxReal = posBush[i];
         
         bush->fy = 13;
@@ -96,7 +96,7 @@ void PixelMain::setupGame2p()
     {
         DecorSprite * paddo = &_paddos2p[i];
         
-        paddo->currentData =paddoData;
+        paddo->currentData = &_paddoData;
         paddo->fx = paddo->fxReal = posPaddo[i];
         
         paddo->fy = 13;
@@ -193,26 +193,22 @@ void PixelMain::setupGame2p()
     stage2p.addChild(&hero2pM);
     hero2pM.setup(0);
     live2p.push_back(&hero2pM);
-    
-  
 
-    
+
     //life stuff
-    
-    lifeBoyHolder2p= new Sprite();
-    stage2p.addChild(lifeBoyHolder2p);
-    lifeBoyHolder2p->currentData = &boyInterData;
-    lifeGirlHolder2p= new Sprite();
-    stage2p.addChild(lifeGirlHolder2p);
-    lifeGirlHolder2p->currentData = &girlInterData;
+
+    stage2p.addChild(&lifeBoyHolder2p);
+    lifeBoyHolder2p.currentData = &boyInterData;
+    stage2p.addChild(&lifeGirlHolder2p);
+    lifeGirlHolder2p.currentData = &girlInterData;
     lifeBoy2p.setup();
     lifeGirl2p.setup();
     lifeGirl2p.fx =1;
     lifeGirl2p.fy=-2;
     lifeBoy2p.fx =0;
     lifeBoy2p.fy=-2;
-    lifeBoyHolder2p->addChild(&lifeBoy2p);
-    lifeGirlHolder2p->addChild(&lifeGirl2p);
+    lifeBoyHolder2p.addChild(&lifeBoy2p);
+    lifeGirlHolder2p.addChild(&lifeGirl2p);
 
     stage2p.addChild(&waterSplash2p);
 
@@ -243,10 +239,10 @@ void PixelMain::resetGame2p()
     hero2pF.reset();
 hero2pF.groundY =14;
     
-    lifeBoyHolder2p->fx =-15;
-    lifeBoyHolder2p->fy =16;
-    lifeGirlHolder2p->fx =104;
-    lifeGirlHolder2p->fy =16;
+    lifeBoyHolder2p.fx =-15;
+    lifeBoyHolder2p.fy =16;
+    lifeGirlHolder2p.fx =104;
+    lifeGirlHolder2p.fy =16;
    lifeGirl2p.reset();
     lifeBoy2p.reset();
     for(size_t i=0;i< aliens2p.size();i++)
@@ -296,14 +292,14 @@ void PixelMain::updateGame2p (float timeElapsed)
     {
         
         
-        lifeBoyHolder2p->fx = Sprite::linearEase(1-switchTime,-15,19,1);
-        lifeGirlHolder2p->fx = Sprite::linearEase(1-switchTime,104,-19,1);
+        lifeBoyHolder2p.fx = Sprite::linearEase(1-switchTime,-15,19,1);
+        lifeGirlHolder2p.fx = Sprite::linearEase(1-switchTime,104,-19,1);
         
         switchTime -=timeElapsed;
         if(switchTime<0){
             setGameState(STATE_GAME);
-            lifeBoyHolder2p->fx = 4;
-            lifeGirlHolder2p->fx = 85;
+            lifeBoyHolder2p.fx = 4;
+            lifeGirlHolder2p.fx = 85;
         }
             for (int i=0;i<3;i++)
         {

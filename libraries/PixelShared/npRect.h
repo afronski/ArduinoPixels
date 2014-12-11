@@ -12,14 +12,14 @@
 class npRect
 {
 public:
-    npRect() : isHit(false), x(0), y(0), width(0), height(0)
-    { }
-
     float x;
     float y;
     float width;
     float height;
     bool isHit;
+
+    npRect() : x(0), y(0), width(0), height(0), isHit(false)
+    { }
     
     void setType(int heroType, int move,int draw)
     {

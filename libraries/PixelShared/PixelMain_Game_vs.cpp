@@ -12,7 +12,7 @@ void PixelMain::setupGameVS()
 {
    
         DecorSprite * city = &_citiesVS[0];
-        city ->currentData =cityData;
+        city ->currentData = &_cityData;
         
         city->fx = city->fxReal = 30;
         
@@ -25,10 +25,10 @@ void PixelMain::setupGameVS()
     for(int i=0;i<3;i++)
     {
         DecorSprite * treeFar = &_farTreesVS[i];
-        treeFar ->currentData =treeFarData;
+        treeFar ->currentData = &_treeFarData;
         treeFar ->fx  =treeFar ->fxReal =  posTreeFar[i] ;
         int rPos = -rand()%2;
-        treeFar ->fy = -rand()%2+treeFarData->height();
+        treeFar ->fy = -rand()%2+_treeFarData.height();
         treeFar ->depth=0.3;
         if( rPos ==-1) treeFar ->depth=0.4;
         
@@ -39,7 +39,7 @@ void PixelMain::setupGameVS()
    
         DecorSprite * treeClose = &_closeTreesVS[0];
         
-        treeClose->currentData =treeCloseData;
+        treeClose->currentData = &_treeCloseData;
         treeClose->fx = treeClose->fxReal = 50;
  
         treeClose->fy =13;
@@ -53,7 +53,7 @@ void PixelMain::setupGameVS()
     
     DecorSprite * bush = &_bushesVS[0];
     
-    bush->currentData =bushData;
+    bush->currentData = &_bushData;
     bush->fx = bush->fxReal = 35;
    
     bush->fy = 13;
@@ -68,7 +68,7 @@ void PixelMain::setupGameVS()
     for(int i=0;i<6;i++)
     {
         DecorSprite * flower = &_flowersVS[i];
-        flower ->currentData =flowerData;
+        flower ->currentData = &_flowerData;
         
         flower->fx = posFlower[i];
         flower->fxReal = posFlower[i];
@@ -122,23 +122,22 @@ void PixelMain::setupGameVS()
     stageVS.addChild(&heroVSF);
     heroVSF.setup(1);
     liveVS.push_back(&heroVSF);
+
     
     //life stuff
-    
-    lifeBoyHolderVS= new Sprite();
-    stageVS.addChild(lifeBoyHolderVS);
-    lifeBoyHolderVS->currentData = &boyInterData;
-    lifeGirlHolderVS= new Sprite();
-    stageVS.addChild(lifeGirlHolderVS);
-    lifeGirlHolderVS->currentData = &girlInterData;
+
+    stageVS.addChild(&lifeBoyHolderVS);
+    lifeBoyHolderVS.currentData = &boyInterData;
+    stageVS.addChild(&lifeGirlHolderVS);
+    lifeGirlHolderVS.currentData = &girlInterData;
     lifeBoyVS.setup();
     lifeGirlVS.setup();
     lifeGirlVS.fx =1;
     lifeGirlVS.fy=-2;
     lifeBoyVS.fx =0;
     lifeBoyVS.fy=-2;
-    lifeBoyHolderVS->addChild(&lifeBoyVS);
-    lifeGirlHolderVS->addChild(&lifeGirlVS);
+    lifeBoyHolderVS.addChild(&lifeBoyVS);
+    lifeGirlHolderVS.addChild(&lifeGirlVS);
 
     gameOverText.fy = 0;
     gameOverText.fx = 0;
@@ -150,34 +149,27 @@ void PixelMain::setupGameVS()
 
 void PixelMain::resetGameVS()
 {
-    lifeBoyHolderVS->fx =-15;
-    lifeBoyHolderVS->fy =16;
-    lifeGirlHolderVS->fx =104;
-    lifeGirlHolderVS->fy =16;
+    lifeBoyHolderVS.fx =-15;
+    lifeBoyHolderVS.fy =16;
+    lifeGirlHolderVS.fx =104;
+    lifeGirlHolderVS.fy =16;
     lifeGirlVS.reset();
     lifeBoyVS.reset();
-    
-    
-   
-    lifeBoyHolder1p->fx =-15;
-    lifeBoyHolder1p->fy =16;
-    
-    
+
+    lifeBoyHolder1p.fx =-15;
+    lifeBoyHolder1p.fy =16;
+
     heroVSM.fxReal = 20;
-     heroVSM.fx =20;
+    heroVSM.fx =20;
     heroVSM.fy = -16;
     heroVSM.isAir =true;
     heroVSM.reset();
-    
+
     heroVSF.fxReal = 70;
     heroVSF.fx =70;
     heroVSF.fy = -16;
     heroVSF.isAir =true;
-     heroVSF.reset();
-    
-    
- 
-    
+    heroVSF.reset();
 }
 void PixelMain::updateGameVS(float timeElapsed)
 {
@@ -205,14 +197,14 @@ void PixelMain::updateGameVS(float timeElapsed)
     {
         
         
-        lifeBoyHolderVS->fx = Sprite::linearEase(1-switchTime,-15,19,1);
-        lifeGirlHolderVS->fx = Sprite::linearEase(1-switchTime,104,-19,1);
+        lifeBoyHolderVS.fx = Sprite::linearEase(1-switchTime,-15,19,1);
+        lifeGirlHolderVS.fx = Sprite::linearEase(1-switchTime,104,-19,1);
         
         switchTime -=timeElapsed;
         if(switchTime<0){
             setGameState(STATE_GAME);
-            lifeBoyHolderVS->fx = 4;
-            lifeGirlHolderVS->fx = 85;
+            lifeBoyHolderVS.fx = 4;
+            lifeGirlHolderVS.fx = 85;
         }
         
         

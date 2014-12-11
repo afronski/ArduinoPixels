@@ -21,7 +21,10 @@
 #include "DataThreeClose.h"
 #include "DataThreeFar.h"
 #include "DataCloud1.h"
+#include "DataBush.h"
 #include "Dataflower.h"
+#include "DataCity.h"
+#include "DataPaddo.h"
 #include "Cloud.h"
 #include "Blood.h"
 #include "Life.h"
@@ -94,19 +97,18 @@ public:
     void updateIntro(float timeElapsed);
     void resetIntro();
     void allocIntro();
-    void deallocInto();
     float introTime;
     
     Stage stageIntro;
-    Sprite * invasionText;
+    Sprite invasionText;
     SpaceShip spaceShip;
-    Sprite *pressKeyText;
+    Sprite pressKeyText;
 
     #define MAX_STARS 20
     Star _stars[MAX_STARS];
     Vector <Star *> stars;
     
-    Sprite * backgroundIntro;
+    Sprite backgroundIntro;
     
     ////////////////////////////////////////
     /*
@@ -134,7 +136,6 @@ public:
     ////////////////////////////////////////
     //GAME STUFF SHARED
     void allocGame();
-    void deallocGame();
 
     void setupGame();
     void updateGame(float);
@@ -204,92 +205,16 @@ public:
     AlienPond _alienPonds[MAX_ALIENPOND];
     Alien3 _alienBoss;
 
-        PixelData * splashFrame1;
-        PixelData * splashFrame2;
-    
-        DataThreeClose *treeCloseData;
-        DataThreeFar *treeFarData;
-        DataCloud1 *cloudData;
-        Dataflower *flowerData;
-        PixelData *paddoData;
-        PixelData * backGrass ;
-        PixelData * cityData;
-        PixelData * bushData;
-    //heroData
-    
-        PixelData * jumpDataB;
-        PixelData * jumpKickDataB;
-        PixelData * jumpHitDataB;
-        PixelData * jumpBlockDataB;
-    
-    
-        PixelData * crouchDataB;
-        PixelData * crouchDataWalk1B;
-        PixelData * crouchDataWalk2B;
-        PixelData * crouchKickDataB;
-        PixelData * crouchHitDataB;
-        PixelData * crouchBlockDataB;
-    
-        PixelData * standDataB;
-    
-        PixelData * standKickDataB;
-        PixelData * standHitData1B;
-        PixelData * standHitData2B;
-        PixelData * standBlockDataB;
-    
-    
-        PixelData * walk1DataB;
-        PixelData * walk2DataB;
-        PixelData * walk3DataB;
-    
-        PixelData * deathDataB;
-    PixelData * gotHit1B;
-    PixelData * gotHit2B;
-    
-        PixelData * jumpDataG;
-        PixelData * jumpKickDataG;
-        PixelData * jumpHitDataG;
-        PixelData * jumpBlockDataG;
-    
-    
-        PixelData * crouchDataG;
-        PixelData * crouchDataWalk1G;
-   
-        PixelData * crouchDataWalk2G;
-        PixelData * crouchKickDataG;
-        PixelData * crouchHitDataG;
-        PixelData * crouchBlockDataG;
-    
-        PixelData * standDataG;
-    
-        PixelData * standKickDataG;
-        PixelData * standHitData1G;
-        PixelData * standHitData2G;
-        PixelData * standBlockDataG;
-    
-    
-        PixelData * walk1DataG;
-        PixelData * walk2DataG;
-        PixelData * walk3DataG;
-    
-        PixelData * deathDataG;
-    PixelData * gotHit1G;
-    PixelData * gotHit2G;
+    const DataCity _cityData;
+    const DataThreeFar _treeFarData;
+    const DataThreeClose _treeCloseData;
+    const Dataflower _flowerData;
+    const DataBush _bushData;
+    const DataPaddo _paddoData;
+
     //////////////////////lifedata
-        PixelData boyInterData = DataInterface();
-        PixelData girlInterData = DataInterface2();
-    
-        PixelData * life0;
-        PixelData * life1;
-        PixelData * life2;
-        PixelData * life3;
-    
-        PixelData * life4;
-        PixelData * life5;
-        PixelData * life6;
-        PixelData * life7;
-    
-        PixelData * lifeGlow;
+    DataInterface boyInterData;
+    DataInterface2 girlInterData;
 
     //////////////////
     float stagefx;
@@ -307,7 +232,7 @@ public:
     Hero hero1pm;
     
     Vector <Alien *> aliens1p;
-    Sprite *lifeBoyHolder1p;
+    Sprite lifeBoyHolder1p;
     Life lifeBoy1p;
   
     Vector<Live *>live1p;
@@ -321,8 +246,8 @@ public:
     Vector <Alien *> aliens2p;
     Hero hero2pM;
     Hero hero2pF;
-    Sprite *lifeBoyHolder2p;
-    Sprite *lifeGirlHolder2p;
+    Sprite lifeBoyHolder2p;
+    Sprite lifeGirlHolder2p;
     Life lifeGirl2p;
     Life lifeBoy2p;
     Vector<Live *>live2p;
@@ -337,8 +262,8 @@ public:
     Hero heroVSM;
     Hero heroVSF;
     
-    Sprite *lifeBoyHolderVS;
-    Sprite *lifeGirlHolderVS;
+    Sprite lifeBoyHolderVS;
+    Sprite lifeGirlHolderVS;
     Life lifeGirlVS;
     Life lifeBoyVS;
     Vector<Live *>liveVS;

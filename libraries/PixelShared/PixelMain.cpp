@@ -19,7 +19,6 @@ void PixelMain::setGameState(int state)
     switch (state)
     {
     case STATE_INTRO:
-        deallocGame();
         allocIntro();
         resetIntro();
         stageIntro.fy =0;
@@ -30,7 +29,6 @@ void PixelMain::setGameState(int state)
         break;
 
     case STATE_MENU:
-        deallocInto();
         stageMenu.fy =0;
         break;
 

@@ -15,7 +15,7 @@ void PixelMain::setupGame1p()
     for(int i=0;i<MAX_CITIES;i++)
     {
         DecorSprite * city = &_cities1p[i];
-        city ->currentData =cityData;
+        city ->currentData = &_cityData;
         
         city->fx = city->fxReal = posCity [i];
         
@@ -31,12 +31,12 @@ void PixelMain::setupGame1p()
     for(int i=0;i<MAX_FARTREES;i++)
     {
         DecorSprite * treeFar = &_farTrees1p[i];
-        treeFar ->currentData =treeFarData;
+        treeFar ->currentData = &_treeFarData;
         treeFar ->fx  =treeFar ->fxReal = treePosS[i];
        // cout << treeFar->fx<<",";
         int rPos = treePosSH[i];
         
-        treeFar ->fy = -rand()%2+treeFarData->height();
+        treeFar ->fy = -rand()%2+_treeFarData.height();
         treeFar ->depth=0.3;
         if( rPos ==-1) treeFar ->depth=0.25;
       
@@ -51,12 +51,12 @@ void PixelMain::setupGame1p()
     {
         DecorSprite * treeClose = &_closeTrees1p[i];
 
-        treeClose->currentData =treeCloseData;
+        treeClose->currentData = &_treeCloseData;
         treeClose->fx = treeClose->fxReal = treePos [i];
        // cout << treeClose->fx<<",";
         int rPos = treePosH[i]  ;
         
-        treeClose->fy = rPos+treeCloseData->height()-5;
+        treeClose->fy = rPos+_treeCloseData.height()-5;
         treeClose->depth =0.8;
         if( rPos ==-1)treeClose->depth=0.5;
         if( rPos ==-2)treeClose->depth=0.4;
@@ -67,7 +67,7 @@ void PixelMain::setupGame1p()
     for(int i=0;i<MAX_FLOWERS;i++)
     {
         DecorSprite * flower = &_flowers1p[i];
-        flower ->currentData =flowerData;
+        flower ->currentData = &_flowerData;
 
         flower->fx = flower->fxReal = rand()%600;
         int rPos = -rand()%3;
@@ -84,7 +84,7 @@ void PixelMain::setupGame1p()
     {
         DecorSprite * bush = &_bushes1p[i];
 
-        bush->currentData =bushData;
+        bush->currentData = &_bushData;
         bush->fx = bush->fxReal = posBush[i];
     
         bush->fy = 13;
@@ -97,7 +97,7 @@ void PixelMain::setupGame1p()
     {
         DecorSprite * paddo = &_paddos1p[i];
 
-        paddo->currentData =paddoData;
+        paddo->currentData = &_paddoData;
         paddo->fx = paddo->fxReal = posPaddo[i];
         
         paddo->fy = 13;
@@ -195,14 +195,13 @@ void PixelMain::setupGame1p()
     
     
     //life
-    lifeBoyHolder1p =new Sprite();
-    lifeBoyHolder1p->currentData = &boyInterData ;
+    lifeBoyHolder1p.currentData = &boyInterData ;
     lifeBoy1p.setup();
     lifeBoy1p.fx =0;
     lifeBoy1p.fy=-2;
     
-    lifeBoyHolder1p->addChild(&lifeBoy1p);
-    stage1p.addChild(lifeBoyHolder1p);
+    lifeBoyHolder1p.addChild(&lifeBoy1p);
+    stage1p.addChild(&lifeBoyHolder1p);
 
     stage1p.addChild(&waterSplash1p);
     
@@ -223,8 +222,8 @@ void PixelMain::setupGame1p()
 void PixelMain::resetGame1p()
 {
     lifeBoy1p.reset();
-    lifeBoyHolder1p->fx =-15;
-    lifeBoyHolder1p->fy =16;
+    lifeBoyHolder1p.fx =-15;
+    lifeBoyHolder1p.fy =16;
     hero1pm.fxReal = 20;
     hero1pm.fx =20;
     hero1pm.fy = -16;
@@ -273,12 +272,12 @@ void PixelMain::updateGame1p (float timeElapsed)
     {
         
         
-        lifeBoyHolder1p->fx = Sprite::linearEase(1-switchTime,-15,19,1);
+        lifeBoyHolder1p.fx = Sprite::linearEase(1-switchTime,-15,19,1);
                
         switchTime -=timeElapsed;
         if(switchTime<0){
             setGameState(STATE_GAME);
-            lifeBoyHolder1p->fx = 4;
+            lifeBoyHolder1p.fx = 4;
         }
                for (int i=0;i<3;i++)
         {

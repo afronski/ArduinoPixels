@@ -13,26 +13,20 @@
 
 #include <iostream>
 
+const DataTextInvasion dataTextInvasion;
+const DataTextPressToPlay dataTextPressToPlay;
+const DataBackSpace dataBackSpace;
+
 void PixelMain::allocIntro()
 {
-    if(invasionText->currentData==0)
-        invasionText->currentData = new DataTextInvasion();
-    pressKeyText->currentData = new DataTextPressToPlay();
-}
-void PixelMain::deallocInto()
-{
-  
-    delete invasionText->currentData;
-    invasionText->currentData =0;
-    delete pressKeyText->currentData ;
-    pressKeyText->currentData =0;
+    invasionText.currentData = &dataTextInvasion;
+    pressKeyText.currentData = &dataTextPressToPlay;
 }
 void PixelMain::setupIntro()
 {
-    backgroundIntro = new  Sprite();
-    backgroundIntro->drawType =3;
-    backgroundIntro->currentData =new DataBackSpace();
-    stageIntro.addChild(backgroundIntro);
+    backgroundIntro.drawType =3;
+    backgroundIntro.currentData = &dataBackSpace;
+    stageIntro.addChild(&backgroundIntro);
     
     for (int i=0;i<MAX_STARS;i++)
     {
@@ -43,34 +37,29 @@ void PixelMain::setupIntro()
         stars.push_back(s);
     }
 
-    
-    
-    invasionText =new Sprite();
-    stageIntro.addChild(invasionText);
-    invasionText->fx = 45;
-    invasionText->fy = 12;
+    stageIntro.addChild(&invasionText);
+    invasionText.fx = 45;
+    invasionText.fy = 12;
 
     spaceShip.setup();
     stageIntro.addChild(&spaceShip);
     spaceShip.fx = 45;
     spaceShip.fy = 13;
+
+    stageIntro.addChild(&pressKeyText);
+    pressKeyText.fx = 45;
+    pressKeyText.fy = 12;
     
-    
-    pressKeyText=new Sprite();
-    stageIntro.addChild(pressKeyText);
-    pressKeyText->fx = 45;
-    pressKeyText->fy = 12;
-    
-     resetIntro();
+    resetIntro();
 }
 void PixelMain::resetIntro()
 {
     
     introTime=0;
-    invasionText->fx = -45;
+    invasionText.fx = -45;
      spaceShip.fx = -20;
     spaceShip.reset();
-    pressKeyText->visible =false;
+    pressKeyText.visible =false;
 
 }
 void PixelMain::updateIntro(float timeElapsed)
@@ -97,12 +86,12 @@ void PixelMain::updateIntro(float timeElapsed)
     {
       
        
-        invasionText->fx = Sprite::backEaseOut(stepTime,-45,90,1);
+        invasionText.fx = Sprite::backEaseOut(stepTime,-45,90,1);
     
     }else if(step==4)
     {
     
-        invasionText->fx = Sprite::linearEase(stepTime,45,90+45,1);
+        invasionText.fx = Sprite::linearEase(stepTime,45,90+45,1);
         spaceShip.fx = Sprite::linearEase(stepTime,-20,20+45+2,1);
 
 
@@ -119,10 +108,10 @@ void PixelMain::updateIntro(float timeElapsed)
     {
        
         if(stepTime<0.7){
-            pressKeyText->visible =true;
+            pressKeyText.visible =true;
         }else
         {
-        pressKeyText->visible =false;
+        pressKeyText.visible =false;
         }
 
         

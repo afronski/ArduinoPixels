@@ -37,18 +37,16 @@ public:
     const DataLife7 life7;
     const DataLifeLight lifeGlow;
 
-    Sprite *glow;
+    Sprite glow;
     float currentTime;
     int lifeCount;
     void setup()
     {
-        glow  =new Sprite();
-        glow->fx =0;
-         glow->fy =1;
-        glow->currentData = &lifeGlow;
-      addChild(glow);
-        glow->visible =false;
-    
+        glow.fx =0;
+        glow.fy =1;
+        glow.currentData = &lifeGlow;
+        addChild(&glow);
+        glow.visible =false;
     }
     void reset()
     {
@@ -67,7 +65,7 @@ public:
         else if(i==1)currentData = &life1;
         else if(i==0)currentData = &life0;
        
-          glow->visible =true;
+          glow.visible =true;
             currentTime =1;
        
         
@@ -76,7 +74,7 @@ public:
     {
       if(currentTime<=0)return;
         currentTime-=timeElapsed;
-         if(currentTime<=0)glow->visible =false;
+         if(currentTime<=0)glow.visible =false;
   
     
     }
