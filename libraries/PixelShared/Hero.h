@@ -34,8 +34,8 @@ public:
     bool hitType;
    
    
-    void setKey(int key);
-    void setup(int type);
+    void setKey(uint8_t key);
+    void setup(uint8_t type);
     void update(float timeElapsed);
     void startWalking();
     void startCrouching();

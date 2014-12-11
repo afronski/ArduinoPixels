@@ -187,12 +187,11 @@ void PixelMain::setupGame1p()
   
     
      ///hero
-    hero1pm =new Hero();
-   // setHeroData(hero1pm,0);
-    stage1p.addChild(hero1pm);
-    hero1pm->setup(0);
+   // setHeroData(&hero1pm,0);
+    stage1p.addChild(&hero1pm);
+    hero1pm.setup(0);
    
-    live1p.push_back(hero1pm);
+    live1p.push_back(&hero1pm);
     
     
     //life
@@ -228,10 +227,10 @@ void PixelMain::resetGame1p()
     lifeBoy1p.reset();
     lifeBoyHolder1p->fx =-15;
     lifeBoyHolder1p->fy =16;
-    hero1pm->fxReal = 20;
-    hero1pm->fx =20;
-    hero1pm->fy = -16;
-    hero1pm->reset();
+    hero1pm.fxReal = 20;
+    hero1pm.fx =20;
+    hero1pm.fy = -16;
+    hero1pm.reset();
     gameOverText.fy = 0;
     for(size_t i=0;i< aliens1p.size();i++)
     {
@@ -241,7 +240,7 @@ void PixelMain::resetGame1p()
     }
     
     
-    hero1pm->setLevelPos(stagefx);
+    hero1pm.setLevelPos(stagefx);
     
     for(size_t i=0;i< aliens1p.size();i++)
     {
@@ -304,7 +303,7 @@ void PixelMain::updateGame1p (float timeElapsed)
     }
     
     
-        hero1pm->update(timeElapsed);
+        hero1pm.update(timeElapsed);
     
     
     resolveShoot(live1p,specialAttackBuffer1p);
@@ -315,37 +314,37 @@ void PixelMain::updateGame1p (float timeElapsed)
 
 
 
-    if(hero1pm->fxReal < -10 )
+    if(hero1pm.fxReal < -10 )
     {
-        hero1pm->fxReal  =-10;
-        hero1pm->setKey(0);
+        hero1pm.fxReal  =-10;
+        hero1pm.setKey(0);
     }
-    if(hero1pm->fxReal >550 )
+    if(hero1pm.fxReal >550 )
     {
         endGame =true;
        
     }
     if( endGame )
     {
-        if(hero1pm->fxReal <550 )
+        if(hero1pm.fxReal <550 )
         {
-            hero1pm->fxReal  =550;
-            hero1pm->setKey(0);
+            hero1pm.fxReal  =550;
+            hero1pm.setKey(0);
         }
-        if(hero1pm->fxReal >640 )
+        if(hero1pm.fxReal >640 )
         {
-            hero1pm->fxReal  =640;
-            hero1pm->setKey(0);
+            hero1pm.fxReal  =640;
+            hero1pm.setKey(0);
         }
     }
-    if(hero1pm->fxReal > stagefx+60 )
+    if(hero1pm.fxReal > stagefx+60 )
     {
-        stagefx += hero1pm->fxReal -( stagefx+60 );
+        stagefx += hero1pm.fxReal -( stagefx+60 );
     
     }
-    else  if(hero1pm->fxReal < stagefx+15)
+    else  if(hero1pm.fxReal < stagefx+15)
     {
-        stagefx -= ( stagefx+15 )-hero1pm->fxReal ;
+        stagefx -= ( stagefx+15 )-hero1pm.fxReal ;
         
     }
     
@@ -353,8 +352,8 @@ void PixelMain::updateGame1p (float timeElapsed)
     {
         specialAttackBuffer1p[i]->update(timeElapsed, stagefx);
     }
-    //if(rand()%20==0)cout << hero1pm->fxReal <<endl;
-   alienHitTest( hero1pm, aliens1p,bloodBuffer1p);
+    //if(rand()%20==0)cout << hero1pm.fxReal <<endl;
+   alienHitTest(&hero1pm, aliens1p,bloodBuffer1p);
     
     resolveAttack(live1p,bloodBuffer1p);
     
@@ -362,7 +361,7 @@ void PixelMain::updateGame1p (float timeElapsed)
    
     
     
-    hero1pm->setLevelPos(stagefx);
+    hero1pm.setLevelPos(stagefx);
 
     for(size_t i=0;i< aliens1p.size();i++)
     {
@@ -383,7 +382,7 @@ void PixelMain::updateGame1p (float timeElapsed)
         
     }
   
-    lifeBoy1p.setLife(hero1pm->life);
+    lifeBoy1p.setLife(hero1pm.life);
     lifeBoy1p.update(timeElapsed);
    
     
@@ -404,7 +403,7 @@ void PixelMain::updateGame1p (float timeElapsed)
         return;
     }
     
-    if(hero1pm->life==0  && gameState ==STATE_GAME)
+    if(&hero1pm.life==0  && gameState ==STATE_GAME)
     {
         gameOverText.show();
       

@@ -113,17 +113,15 @@ void PixelMain::setupGameVS()
     
     
     ///hero
-    heroVSM =new Hero();
     //setHeroData(heroVSM,0);
-    stageVS.addChild(heroVSM);
-    heroVSM->setup(0);
-liveVS.push_back( heroVSM);
-    
-    heroVSF =new Hero();
+    stageVS.addChild(&heroVSM);
+    heroVSM.setup(0);
+    liveVS.push_back(&heroVSM);
+
     //setHeroData(heroVSF,1);
-    stageVS.addChild(heroVSF);
-    heroVSF->setup(1);
-    liveVS.push_back( heroVSF);
+    stageVS.addChild(&heroVSF);
+    heroVSF.setup(1);
+    liveVS.push_back(&heroVSF);
     
     //life stuff
     
@@ -165,17 +163,17 @@ void PixelMain::resetGameVS()
     lifeBoyHolder1p->fy =16;
     
     
-    heroVSM->fxReal = 20;
-     heroVSM->fx =20;
-    heroVSM->fy = -16;
-    heroVSM->isAir =true;
-    heroVSM->reset();
+    heroVSM.fxReal = 20;
+     heroVSM.fx =20;
+    heroVSM.fy = -16;
+    heroVSM.isAir =true;
+    heroVSM.reset();
     
-    heroVSF->fxReal = 70;
-    heroVSF->fx =70;
-    heroVSF->fy = -16;
-    heroVSF->isAir =true;
-     heroVSF->reset();
+    heroVSF.fxReal = 70;
+    heroVSF.fx =70;
+    heroVSF.fy = -16;
+    heroVSF.isAir =true;
+     heroVSF.reset();
     
     
  
@@ -230,8 +228,8 @@ void PixelMain::updateGameVS(float timeElapsed)
     
     
     
-    heroVSM->update(timeElapsed);
-    heroVSF->update(timeElapsed);
+    heroVSM.update(timeElapsed);
+    heroVSF.update(timeElapsed);
     
  
     resolveAttack(liveVS,bloodBufferVS);
@@ -249,18 +247,18 @@ void PixelMain::updateGameVS(float timeElapsed)
     //chek hit etc
     
     
-    if(  heroVSM->hitTestRect(heroVSF))
+    if(heroVSM.hitTestRect(&heroVSF))
     {
        //cout << "hit"<<endl;
-        heroVSM->speed =0;
-        if(  heroVSM->fxReal< heroVSF->fxReal)
+        heroVSM.speed =0;
+        if(  heroVSM.fxReal< heroVSF.fxReal)
         {
-            heroVSM->fxReal-=0.5;
-            heroVSF->fxReal+=0.5;
+            heroVSM.fxReal-=0.5;
+            heroVSF.fxReal+=0.5;
         }else
         {
-            heroVSM->fxReal+=0.5;
-            heroVSF->fxReal-=0.5;
+            heroVSM.fxReal+=0.5;
+            heroVSF.fxReal-=0.5;
         
         }
     
@@ -268,28 +266,27 @@ void PixelMain::updateGameVS(float timeElapsed)
 
     }
 
-    if(heroVSF->fxReal<5)
+    if(heroVSF.fxReal<5)
     {
-    heroVSF->fxReal =84;
+    heroVSF.fxReal =84;
     
-    }if(heroVSF->fxReal>85)
+    }if(heroVSF.fxReal>85)
     {
-        heroVSF->fxReal =6;
+        heroVSF.fxReal =6;
         
     }
-    if(heroVSM->fxReal<5)
+    if(heroVSM.fxReal<5)
     {
-        heroVSM->fxReal =84;
+        heroVSM.fxReal =84;
         
-    }if(heroVSM->fxReal>85)
+    }if(heroVSM.fxReal>85)
     {
-        heroVSM->fxReal =6;
-        
+        heroVSM.fxReal =6;
     }
     //
     //
-    heroVSM->setLevelPos(stagefx);
-    heroVSF->setLevelPos(stagefx);
+    heroVSM.setLevelPos(stagefx);
+    heroVSF.setLevelPos(stagefx);
     
    
 
@@ -307,28 +304,20 @@ void PixelMain::updateGameVS(float timeElapsed)
         bloodBufferVS[i]->update(timeElapsed,stagefx);
         
     }
-    if(heroVSF->life==0 && gameState ==STATE_GAME)
+    if(heroVSF.life==0 && gameState ==STATE_GAME)
     {
         gameOverText.show(1);
         
-        setGameState(STATE_GAME_OVER); ;
-   
-
-   
-    
+        setGameState(STATE_GAME_OVER);
     }
-    if(heroVSM->life==0&& gameState ==STATE_GAME)
+    if(heroVSM.life==0&& gameState ==STATE_GAME)
     {
         gameOverText.show(2);
         
-        setGameState(STATE_GAME_OVER); ;
-        
-        
-        
-        
+        setGameState(STATE_GAME_OVER);
     }
-    lifeGirlVS.setLife(heroVSF->life);
-    lifeBoyVS.setLife(heroVSM->life);
+    lifeGirlVS.setLife(heroVSF.life);
+    lifeBoyVS.setLife(heroVSM.life);
     
     lifeBoyVS.update(timeElapsed);
     lifeGirlVS.update(timeElapsed);

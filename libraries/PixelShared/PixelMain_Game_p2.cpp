@@ -186,17 +186,13 @@ void PixelMain::setupGame2p()
         live2p.push_back(     alienBoss2p);
     }
 
-    hero2pF=new Hero();
-    stage2p.addChild(hero2pF);
-    hero2pF->setup(1);
-    live2p.push_back(hero2pF);
-    
-    
-    
-    hero2pM=new Hero();
-    stage2p.addChild(hero2pM);
-    hero2pM->setup(0);
-    live2p.push_back(hero2pM);
+    stage2p.addChild(&hero2pF);
+    hero2pF.setup(1);
+    live2p.push_back(&hero2pF);
+
+    stage2p.addChild(&hero2pM);
+    hero2pM.setup(0);
+    live2p.push_back(&hero2pM);
     
   
 
@@ -238,16 +234,16 @@ void PixelMain::setupGame2p()
 }
 void PixelMain::resetGame2p()
 {
-    hero2pM->fxReal = 20;
-    hero2pM->fx =20;
-    hero2pM->fy = -16;
-    hero2pM->reset();
+    hero2pM.fxReal = 20;
+    hero2pM.fx =20;
+    hero2pM.fy = -16;
+    hero2pM.reset();
 
-    hero2pF->fxReal = 27;
-    hero2pF->fx =27;
-    hero2pF->fy = -16;
-    hero2pF->reset();
-hero2pF->groundY =14;
+    hero2pF.fxReal = 27;
+    hero2pF.fx =27;
+    hero2pF.fy = -16;
+    hero2pF.reset();
+hero2pF.groundY =14;
     
     lifeBoyHolder2p->fx =-15;
     lifeBoyHolder2p->fy =16;
@@ -261,9 +257,9 @@ hero2pF->groundY =14;
         aliens2p[i]->reset();
         
     }
-    hero2pF->setLevelPos(stagefx);
+    hero2pF.setLevelPos(stagefx);
     
-    hero2pM->setLevelPos(stagefx);
+    hero2pM.setLevelPos(stagefx);
     
     for(size_t i=0;i< aliens2p.size();i++)
     {
@@ -331,8 +327,8 @@ void PixelMain::updateGame2p (float timeElapsed)
     }
     
     
-    hero2pM->update(timeElapsed);
-    hero2pF->update(timeElapsed);
+    hero2pM.update(timeElapsed);
+    hero2pF.update(timeElapsed);
     
     resolveShoot(live2p,specialAttackBuffer2p);
       checkShoot(live2p,specialAttackBuffer2p,bloodBuffer2p);
@@ -346,27 +342,27 @@ void PixelMain::updateGame2p (float timeElapsed)
     }
     
     
-    if(hero2pM->fxReal < -10 )
+    if(hero2pM.fxReal < -10 )
     {
-        hero2pM->fxReal  =-10;
-        hero2pM->setKey(0);
+        hero2pM.fxReal  =-10;
+        hero2pM.setKey(0);
     }
     
-    if(hero2pF->fxReal < -10 )
+    if(hero2pF.fxReal < -10 )
     {
-        hero2pF->fxReal  =-10;
-        hero2pF->setKey(0);
+        hero2pF.fxReal  =-10;
+        hero2pF.setKey(0);
     }
     Hero * first;
      Hero *last;
-    if(hero2pM->fxReal >hero2pF->fxReal )
+    if(hero2pM.fxReal >hero2pF.fxReal )
     {
-        first = hero2pM;
-        last= hero2pF;
+        first = &hero2pM;
+        last= &hero2pF;
     }else
     {
-        first = hero2pF;
-        last= hero2pM;
+        first = &hero2pF;
+        last= &hero2pM;
     
     }
     
@@ -395,16 +391,16 @@ void PixelMain::updateGame2p (float timeElapsed)
         
     }
       // cout<<endl;
-    alienHitTest( hero2pM, aliens2p,bloodBuffer2p);
-     alienHitTest( hero2pF, aliens2p,bloodBuffer2p);
+    alienHitTest(&hero2pM, aliens2p,bloodBuffer2p);
+     alienHitTest(&hero2pF, aliens2p,bloodBuffer2p);
     resolveAttack(live2p,bloodBuffer2p);
     
     
     
     
-      hero2pF->setLevelPos(stagefx);
+      hero2pF.setLevelPos(stagefx);
     
-    hero2pM->setLevelPos(stagefx);
+    hero2pM.setLevelPos(stagefx);
     
     for(size_t i=0;i< aliens2p.size();i++)
     {
@@ -425,8 +421,8 @@ void PixelMain::updateGame2p (float timeElapsed)
         
     }
     
-    lifeBoy2p.setLife(hero2pM->life);
-    lifeGirl2p.setLife(hero2pF->life);
+    lifeBoy2p.setLife(hero2pM.life);
+    lifeGirl2p.setLife(hero2pF.life);
     
     lifeBoy2p.update(timeElapsed);
     lifeGirl2p.update(timeElapsed);
@@ -446,7 +442,7 @@ void PixelMain::updateGame2p (float timeElapsed)
         setGameState(STATE_GAME_OVER);
         return;
     }
-    if(hero2pM->life<=0  && hero2pF->life<=0 && gameState ==STATE_GAME)
+    if(hero2pM.life<=0  && hero2pF.life<=0 && gameState ==STATE_GAME)
     {
         gameOverText.show();
   

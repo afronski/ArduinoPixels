@@ -135,17 +135,17 @@ void PixelMain::setInput(int key)
 
         if(gameType ==GAME_TYPE_1P)
         {
-            boyHero =hero1pm;
+            boyHero = &hero1pm;
            
         } else if(gameType ==GAME_TYPE_VS)
         {
-            boyHero =heroVSM;
-            girlHero =heroVSF;
+            boyHero = &heroVSM;
+            girlHero = &heroVSF;
         }else if(gameType ==GAME_TYPE_2P)
         {
         
-            boyHero =hero2pM;
-            girlHero =hero2pF;
+            boyHero = &hero2pM;
+            girlHero = &hero2pF;
         
         }
 

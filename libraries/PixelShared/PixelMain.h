@@ -304,7 +304,7 @@ public:
     Vector<Cloud *>clouds1p;
     Vector<DecorSprite *>decor1p;
     
-    Hero *hero1pm;
+    Hero hero1pm;
     
     Vector <Alien *> aliens1p;
     Sprite *lifeBoyHolder1p;
@@ -319,8 +319,8 @@ public:
     void resetGame2p();
     Vector<Cloud *>clouds2p;
     Vector <Alien *> aliens2p;
-    Hero *hero2pM;
-    Hero *hero2pF;
+    Hero hero2pM;
+    Hero hero2pF;
     Sprite *lifeBoyHolder2p;
     Sprite *lifeGirlHolder2p;
     Life lifeGirl2p;
@@ -334,8 +334,8 @@ public:
     void updateGameVS(float timeElapsed);
     void resetGameVS();
     Vector<Cloud *>cloudsVS;
-    Hero *heroVSM;
-    Hero *heroVSF;
+    Hero heroVSM;
+    Hero heroVSF;
     
     Sprite *lifeBoyHolderVS;
     Sprite *lifeGirlHolderVS;

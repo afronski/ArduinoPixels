@@ -13,7 +13,6 @@
 
 void  Hero::hitWater()
 {
-
     isWaterHit =true;
     setKey(0);
 }
@@ -22,7 +21,7 @@ void  Hero::hitWater()
 
 
 
-void Hero::setup(int type)
+void Hero::setup(uint8_t type)
 {
     heroType =type;
     
@@ -79,7 +78,7 @@ void Hero::setDead()
 
 
 }
-void Hero::setKey(int key)
+void Hero::setKey(uint8_t key)
 {
    //no hit
     if(isDead)return;

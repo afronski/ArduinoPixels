@@ -165,13 +165,13 @@ void PixelMain::allocGame()
     gotHit2G = new DataGirlGotHit2();
 gotHit2G->centerY-=1;
     //set the data
-    setHeroData(hero1pm,0);
+    setHeroData(&hero1pm,0);
 
-    setHeroData(hero2pF,1);
-    setHeroData(hero2pM,0);
+    setHeroData(&hero2pF,1);
+    setHeroData(&hero2pM,0);
     
-     setHeroData(heroVSF,1);
-     setHeroData(heroVSM,0);
+     setHeroData(&heroVSF,1);
+     setHeroData(&heroVSM,0);
 //    boyInterData = DataInterface();
 //    girlInterData = DataInterface2();
 
