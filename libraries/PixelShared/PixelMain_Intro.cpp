@@ -49,12 +49,11 @@ void PixelMain::setupIntro()
     stageIntro.addChild(invasionText);
     invasionText->fx = 45;
     invasionText->fy = 12;
-    
-    spaceShip =new SpaceShip();
-    spaceShip->setup();
-    stageIntro.addChild(spaceShip);
-    spaceShip->fx = 45;
-    spaceShip->fy = 13;
+
+    spaceShip.setup();
+    stageIntro.addChild(&spaceShip);
+    spaceShip.fx = 45;
+    spaceShip.fy = 13;
     
     
     pressKeyText=new Sprite();
@@ -69,8 +68,8 @@ void PixelMain::resetIntro()
     
     introTime=0;
     invasionText->fx = -45;
-     spaceShip->fx = -20;
-    spaceShip->reset();
+     spaceShip.fx = -20;
+    spaceShip.reset();
     pressKeyText->visible =false;
 
 }
@@ -104,17 +103,17 @@ void PixelMain::updateIntro(float timeElapsed)
     {
     
         invasionText->fx = Sprite::linearEase(stepTime,45,90+45,1);
-        spaceShip->fx = Sprite::linearEase(stepTime,-20,20+45+2,1);
+        spaceShip.fx = Sprite::linearEase(stepTime,-20,20+45+2,1);
 
 
     }else if(step==5)
     {
-        spaceShip->showHead();
+        spaceShip.showHead();
         
     }
     else if(step==12)
     {
-        spaceShip->fx = Sprite::linearEase(stepTime,45+2,20+45,1);
+        spaceShip.fx = Sprite::linearEase(stepTime,45+2,20+45,1);
     }
     else if(step>13&& step<16 )
     {
@@ -131,7 +130,7 @@ void PixelMain::updateIntro(float timeElapsed)
     }
        else if(step==16)resetIntro();
     
-    spaceShip->update(timeElapsed);
+    spaceShip.update(timeElapsed);
     
     for (size_t i=0;i<stars.size();i++)
     {

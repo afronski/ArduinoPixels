@@ -15,6 +15,11 @@
 #include "DataSpaceHead.h"
 #include "DataSpaceBottem.h"
 
+const DataSpaceArmL dataArmL;
+const DataSpaceArmR dataArmR;
+const DataSpaceBottem dataBottom;
+const DataSpaceHead dataHead;
+
 class Alien3: public Alien
 {
     float waitshoot;
@@ -24,11 +29,6 @@ class Alien3: public Alien
     Sprite ship;
     Sprite armL;
     Sprite armR;
-
-    const DataSpaceArmL dataArmL;
-    const DataSpaceArmR dataArmR;
-    const DataSpaceBottem dataBottom;
-    const DataSpaceHead dataHead;
 
 public:
     Alien3() : waitshoot(0), posTime(0), headTime(0) {}

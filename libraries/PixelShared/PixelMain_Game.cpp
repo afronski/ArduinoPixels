@@ -89,6 +89,8 @@
 #include "DataGirlCrouchWalk1.h"
 #include "DataGirlCrouchWalk2.h"
 
+Cloud _clouds[3];
+
 void PixelMain::allocGame()
 {
     if(jumpDataB!=0)return;
@@ -720,7 +722,7 @@ void PixelMain::setupGame()
         
         for (int j=0;j<3;j++)
         {
-            Cloud *c = new Cloud();
+            Cloud *c = &_clouds[i];
             c->currentData  = cloudData;
             c->fx = rand()%90;
             c->fy = rand()%5  -4+cloudData->height();

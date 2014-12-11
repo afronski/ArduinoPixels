@@ -99,7 +99,7 @@ public:
     
     Stage stageIntro;
     Sprite * invasionText;
-    SpaceShip *spaceShip;
+    SpaceShip spaceShip;
     Sprite *pressKeyText;
 
     #define MAX_STARS 20
