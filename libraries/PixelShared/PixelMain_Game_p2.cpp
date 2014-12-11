@@ -214,9 +214,7 @@ void PixelMain::setupGame2p()
     lifeBoyHolder2p->addChild(&lifeBoy2p);
     lifeGirlHolder2p->addChild(&lifeGirl2p);
 
-    
-    waterSplash2p =new WaterSplash();
-    stage2p.addChild( waterSplash2p);
+    stage2p.addChild(&waterSplash2p);
 
     
     for (int i=0;i<MAX_BLOOD;i++)
@@ -427,14 +425,11 @@ void PixelMain::updateGame2p (float timeElapsed)
     lifeBoy2p.update(timeElapsed);
     lifeGirl2p.update(timeElapsed);
 
-    
-    
     for (size_t i=0;i<bloodBuffer2p.size();i++)
     {
         bloodBuffer2p[i]->update(timeElapsed,stagefx);
-        
     }
-     waterSplash2p->update(timeElapsed,stagefx);
+     waterSplash2p.update(timeElapsed,stagefx);
     if( alienBoss2p->isDead && gameState ==STATE_GAME)
     {
         gameOverText.show(3);

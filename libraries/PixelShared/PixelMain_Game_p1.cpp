@@ -203,10 +203,8 @@ void PixelMain::setupGame1p()
     
     lifeBoyHolder1p->addChild(&lifeBoy1p);
     stage1p.addChild(lifeBoyHolder1p);
-    
-    
-    waterSplash1p =new WaterSplash();
-    stage1p.addChild( waterSplash1p);
+
+    stage1p.addChild(&waterSplash1p);
     
     
     for (int i=0;i<MAX_BLOOD;i++)
@@ -393,7 +391,7 @@ void PixelMain::updateGame1p (float timeElapsed)
         bloodBuffer1p[i]->update(timeElapsed,stagefx);
         
     }
-    waterSplash1p->update(timeElapsed,stagefx);
+    waterSplash1p.update(timeElapsed,stagefx);
     
     if( alienBoss1p->isDead && gameState ==STATE_GAME)
     {

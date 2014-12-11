@@ -311,7 +311,7 @@ public:
     Life lifeBoy1p;
   
     Vector<Live *>live1p;
-    WaterSplash * waterSplash1p;
+    WaterSplash waterSplash1p;
     //GAME 2 PLAYER
     
     void setupGame2p();
@@ -327,7 +327,7 @@ public:
     Life lifeBoy2p;
     Vector<Live *>live2p;
     Vector<DecorSprite *>decor2p;
-    WaterSplash * waterSplash2p;
+    WaterSplash waterSplash2p;
     //GAME VS
     
     void setupGameVS();

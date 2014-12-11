@@ -80,9 +80,6 @@
 #include "AlienPond.h"
 #include "DataPaddo.h"
 
-#include "DataSplash1.h"
-#include "DataSplash2.h"
-
 #include "DataManCrouchWalk1.h"
 #include "DataManCrouchWalk2.h"
 
@@ -90,6 +87,7 @@
 #include "DataGirlCrouchWalk2.h"
 
 Cloud _clouds[3];
+Sprite _backgroundGame[3];
 
 void PixelMain::allocGame()
 {
@@ -172,8 +170,6 @@ gotHit2G->centerY-=1;
     
      setHeroData(&heroVSF,1);
      setHeroData(&heroVSM,0);
-//    boyInterData = DataInterface();
-//    girlInterData = DataInterface2();
 
     lifeBoyHolder1p->currentData = &boyInterData;
 
@@ -184,13 +180,6 @@ gotHit2G->centerY-=1;
 
     setAliens(aliens1p);
     setAliens(aliens2p);
-    splashFrame1 = new DataSplash1();
-    splashFrame2 =new DataSplash2();
-    waterSplash1p->frame1 = splashFrame1;
-    waterSplash1p->frame2 = splashFrame2;
-    
-    waterSplash2p->frame1 = splashFrame1;
-    waterSplash2p->frame2 = splashFrame2;
 }
 
 void PixelMain::deallocGame()
@@ -390,15 +379,11 @@ void PixelMain::alienHitTest(Hero * hero,const Vector <Alien *> &aliens,const Ve
                 }
                 if(gameType == GAME_TYPE_1P)
                 {
-
-                    
-                    waterSplash1p->show(hero->fxReal);
+                    waterSplash1p.show(hero->fxReal);
                 }
                 if(gameType == GAME_TYPE_2P)
                 {
-                    
-                    
-                    waterSplash2p->show(hero->fxReal);
+                    waterSplash2p.show(hero->fxReal);
                 }
             
             }else{
@@ -715,7 +700,7 @@ void PixelMain::setupGame()
         
         //backGround
         
-        Sprite * backgroundGame = new  Sprite();
+        Sprite * backgroundGame = &_backgroundGame[i];
         backgroundGame->drawType =3;
         backgroundGame->currentData =backGrass;
         stage->addChild( backgroundGame);
