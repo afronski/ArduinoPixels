@@ -122,13 +122,13 @@ public:
     void deallocMenu();
     
     Stage stageMenu;
-    Sprite * backgroundMenu;
-    
-    Sprite * menuItem1;
-    Sprite * menuItem2;
-    Sprite * menuItem3;
-    Sprite *menuBack;
-    float menuSpeed  ;   int menuPos;
+    Sprite backgroundMenu;
+    Sprite menuItem1;
+    Sprite menuItem2;
+    Sprite menuItem3;
+    Sprite menuBack;
+    float menuSpeed;
+    int menuPos;
     
     
     ////////////////////////////////////////
