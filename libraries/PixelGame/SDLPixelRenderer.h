@@ -21,10 +21,10 @@ public:
 
     void draw();
 
-    void setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b, uint8_t a);
+    void setPixel(int x, int y, uint8_t r, uint8_t g , uint8_t b, uint8_t);
 
     void setPixel(int x, int y, uint32_t c);
-    void setBrightness(int val);
+    void setBrightness(int);
     void fade();
 
 private:
