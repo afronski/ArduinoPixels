@@ -85,9 +85,11 @@ The code is licensed under an MIT license, assets are licensed under Creative-Co
 Contributors
 ============
 
-- Kris Temmerman - original design and implementation
+- Kris Temmerman
+	+ original design and implementation
 
-- Michael Koetter - Ported to SDL2 for Linux compatibility
+- Michael Koetter 
+	+ Ported to SDL2 for Linux compatibility
 
 - Hans Robeers 
 	+ Ported to CMake
