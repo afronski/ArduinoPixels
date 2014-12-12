@@ -16,61 +16,43 @@ PixelMain::PixelMain(PixelRenderer *renderer)
 }
 void PixelMain::setGameState(int state)
 {
-
-  
-    if( state == STATE_INTRO)
+    switch (state)
     {
-      //  Serial.print("free ram");
-        //Serial.println( freeRam ());
-        deallocGame();
+    case STATE_INTRO:
         allocIntro();
         resetIntro();
         stageIntro.fy =0;
-    }else if(state == STATE_INTRO_TO_MENU  )
-    {
+        break;
+
+    case STATE_INTRO_TO_MENU:
         switchTime =1;
-        //cout << switchTime <<endl;
-        allocMenu();
-        
-          
-    
-    }else if(state == STATE_MENU )
-    {
-        deallocInto();
-        
+        break;
+
+    case STATE_MENU:
         stageMenu.fy =0;
-        
-        
-    }else if( state == STATE_MENU_TO_GAME)
-    {
-        
+        break;
+
+    case STATE_MENU_TO_GAME:
         allocGame();
         resetGame();
-      
         switchTime =1;
-        
-    }else if(state == STATE_GAME )
-    {
-        
-      // Serial.print("free ram");
-        //Serial.println( freeRam ());        //stage.fx =0;
-        
-    }else if(state == STATE_GAME_START)
-    {
-          deallocMenu();
-       
-        //stage.fx =0;
+        break;
+
+    case STATE_GAME:
+        break;
+
+    case STATE_GAME_START:
         switchTime =1;
-        
-    }else if(state == STATE_GAME_OVER)
-    {
-        
-        
-        //stage.fx =0;
+        break;
+
+    case STATE_GAME_OVER:
         switchTime =10;
-        
+        break;
+
+    default:
+        break;
     }
-  //  cout <<state<<endl ;
+
   gameState =state;
 }
 void PixelMain::setup()
@@ -89,8 +71,8 @@ void PixelMain::setup()
     setupGame();
     
     setupGame1p();
-   setupGame2p();
-   setupGameVS();
+    setupGame2p();
+    setupGameVS();
     
     setGameState(STATE_INTRO);
     
@@ -135,17 +117,17 @@ void PixelMain::setInput(int key)
 
         if(gameType ==GAME_TYPE_1P)
         {
-            boyHero =hero1pm;
+            boyHero = &hero1pm;
            
         } else if(gameType ==GAME_TYPE_VS)
         {
-            boyHero =heroVSM;
-            girlHero =heroVSF;
+            boyHero = &heroVSM;
+            girlHero = &heroVSF;
         }else if(gameType ==GAME_TYPE_2P)
         {
         
-            boyHero =hero2pM;
-            girlHero =hero2pF;
+            boyHero = &hero2pM;
+            girlHero = &hero2pF;
         
         }
 
@@ -308,7 +290,7 @@ void PixelMain::update(float timeElapsed)
     
     
 }
-void PixelMain::setWin(int heroType)
+void PixelMain::setWin(int /*heroType*/)
 {
 
 

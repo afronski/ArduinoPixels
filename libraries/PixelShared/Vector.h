@@ -9,6 +9,11 @@
 #ifndef PixelGameLocal_Vector_h
 #define PixelGameLocal_Vector_h
 
+#ifdef STL_VECTOR
+#include <vector>
+template<typename T>
+using Vector = std::vector<T>;
+#else
 // Minimal class to replace std::vector
 template<typename Data>
 class Vector {
@@ -16,17 +21,17 @@ class Vector {
     size_t d_capacity; // Stores allocated capacity
     Data *d_data; // Stores data
 public:
-    Vector() : d_size(0), d_capacity(0), d_data(0) {}; // Default constructor
+    Vector() : d_size(0), d_capacity(0), d_data(0) {} // Default constructor
     Vector(Vector const &other) : d_size(other.d_size), d_capacity(other.d_capacity), d_data(0)
     {
         d_data = (Data *)malloc(d_capacity*sizeof(Data));
         memcpy(d_data, other.d_data, d_size*sizeof(Data));
-    }; // Copy constuctor
+    } // Copy constuctor
     
     ~Vector()
     {
         free(d_data);
-    }; // Destructor
+    } // Destructor
     
     Vector &operator=(Vector const &other)
     {
@@ -36,29 +41,28 @@ public:
         d_data = (Data *)malloc(d_capacity*sizeof(Data));
         memcpy(d_data, other.d_data, d_size*sizeof(Data));
         return *this;
-    }; // Needed for memory management
+    } // Needed for memory management
     
     
     void push_back(Data const &x)
     {
         if (d_capacity == d_size) resize();
         d_data[d_size++] = x;
-    }; // Adds new value. If needed, allocates more space
+    } // Adds new value. If needed, allocates more space
     
     
     
     size_t size() const
     {
         return d_size;
-    }; // Size getter
+    } // Size getter
     
     
     Data const &operator[](size_t idx) const
     {
         return d_data[idx];
-    
-    }; // Const getter
-    Data &operator[](size_t idx) { return d_data[idx]; }; // Changeable getter
+    } // Const getter
+    Data &operator[](size_t idx) { return d_data[idx]; } // Changeable getter
     
     
     void eraseFirst()
@@ -80,7 +84,9 @@ private:
         memcpy(newdata, d_data, d_size * sizeof(Data));
         free(d_data);
         d_data = newdata;
-    };// Allocates double the old space
+    }// Allocates double the old space
 };
+
+#endif // STL_VECTOR
 
 #endif

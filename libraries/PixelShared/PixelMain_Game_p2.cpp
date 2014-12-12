@@ -7,18 +7,14 @@
 //
 
 #include "PixelMain.h"
-#include "Alien1.h"
-#include "Alien2.h"
-#include "AlienPond.h"
-#include "Alien3.h"
 #include "GameOverText.h"
 void PixelMain::setupGame2p()
 {
     int posCity [2] = {30,150};
-    for(int i=0;i<2;i++)
+    for(int i=0;i<MAX_CITIES;i++)
     {
-        DecorSprite * city  = new  DecorSprite();
-        city ->currentData =cityData;
+        DecorSprite * city = &_cities2p[i];
+        city ->currentData = &_cityData;
         
         city->fx = city->fxReal = posCity [i];
         
@@ -30,16 +26,16 @@ void PixelMain::setupGame2p()
     srand (5);
     int treePosS [15] = { 35,296,120,157,272,221,253,90,112,55,97,35,190,158,224};
     int treePosSH [15] = {-1,0,-1,-1,0,0,0,-1,-1,0,-1,-1,0,0,-1};
-    
-    for(int i=0;i<15;i++)
+
+    for(int i=0;i<MAX_FARTREES;i++)
     {
-        DecorSprite * treeFar  = new  DecorSprite();
-        treeFar ->currentData =treeFarData;
+        DecorSprite * treeFar = &_farTrees2p[i];
+        treeFar ->currentData = &_treeFarData;
         treeFar ->fx  =treeFar ->fxReal = treePosS[i];
         // cout << treeFar->fx<<",";
         int rPos = treePosSH[i];
         
-        treeFar ->fy = -rand()%2+treeFarData->height;
+        treeFar ->fy = -rand()%2+_treeFarData.height();
         treeFar ->depth=0.3;
         if( rPos ==-1) treeFar ->depth=0.25;
         
@@ -50,16 +46,16 @@ void PixelMain::setupGame2p()
     //srand (1);
     int treePos [8] = {50,233,270,400,430,250,252,147};
     int treePosH [8] = {-2,0,-1,-2,0,-2,-1,-1};
-    for(int i=0;i<8;i++)
+    for(int i=0;i<MAX_CLOSETREES;i++)
     {
-        DecorSprite * treeClose  = new  DecorSprite();
+        DecorSprite * treeClose = &_closeTrees2p[i];
         
-        treeClose->currentData =treeCloseData;
+        treeClose->currentData = &_treeCloseData;
         treeClose->fx = treeClose->fxReal = treePos [i];
         // cout << treeClose->fx<<",";
         int rPos = treePosH[i]  ;
         
-        treeClose->fy = rPos+treeCloseData->height-5;
+        treeClose->fy = rPos+_treeCloseData.height()-5;
         treeClose->depth =0.8;
         if( rPos ==-1)treeClose->depth=0.5;
         if( rPos ==-2)treeClose->depth=0.4;
@@ -67,10 +63,10 @@ void PixelMain::setupGame2p()
         decor2p.push_back(treeClose );
     }
     srand (1);
-    for(int i=0;i<20;i++)
+    for(int i=0;i<MAX_FLOWERS;i++)
     {
-        DecorSprite * flower  = new  DecorSprite();
-        flower ->currentData =flowerData;
+        DecorSprite * flower = &_flowers2p[i];
+        flower ->currentData = &_flowerData;
         
         flower->fx = flower->fxReal = rand()%600;
         int rPos = -rand()%3;
@@ -85,9 +81,9 @@ void PixelMain::setupGame2p()
     int posBush [] = {60,150, 400,470};
     for(int i=0;i<4;i++)
     {
-        DecorSprite * bush  = new  DecorSprite();
+        DecorSprite * bush = &_bushes2p[i];
         
-        bush->currentData =bushData;
+        bush->currentData = &_bushData;
         bush->fx = bush->fxReal = posBush[i];
         
         bush->fy = 13;
@@ -96,11 +92,11 @@ void PixelMain::setupGame2p()
     }
     
     int posPaddo[] = {250,320,550};
-    for(int i=0;i<3;i++)
+    for(int i=0;i<MAX_PADDOS;i++)
     {
-        DecorSprite * paddo = new  DecorSprite();
+        DecorSprite * paddo = &_paddos2p[i];
         
-        paddo->currentData =paddoData;
+        paddo->currentData = &_paddoData;
         paddo->fx = paddo->fxReal = posPaddo[i];
         
         paddo->fy = 13;
@@ -132,45 +128,30 @@ void PixelMain::setupGame2p()
     
     
     int posAlienPond [2] = {193,350};
-    for (int i=0;i<2;i++)
+    for (int i=0;i<MAX_ALIENPOND;i++)
     {
-        
-        AlienPond *alien  = new  AlienPond ();
+        AlienPond *alien = &_alienPonds[i];
         alien->setup();
         alien->fx  = alien->fxReal = posAlienPond [i];
         alien->fy =16;
-        aliens2p.push_back( alien);
-        stage2p.addChild(   alien);
-        live2p.push_back(   alien);
+        aliens2p.push_back(alien);
+        stage2p.addChild(alien);
+        live2p.push_back(alien);
     }
-    
-    
-    
-    
-    
-    
-    
-    for (int i=0;i<16;i++)
+
+    for (int i=0;i<MAX_ATTACKS;i++)
     {
-        SpecialAttack *attack =new SpecialAttack();
-        attack->girlShoot1 = girlShoot1;
-        attack->girlShoot2 = girlShoot2;
-        
-        attack->boyShoot1 = boyShoot1;
-        attack->boyShoot2 = boyShoot2;
-        
-        attack->alienShoot1 = alienShoot1;
-        attack->alienShoot2 = alienShoot2;
+        SpecialAttack *attack = &_specialAttacks[i];
 
         attack->setup();
         specialAttackBuffer2p.push_back(attack);
         stage2p.addChild( attack);
     }
     int posAlien1 [4] = {290,380, 451 , 500};
-    for (int i=0;i<4;i++)
+    for (int i=0;i<MAX_ALIEN;i++)
     {
         
-        Alien1 *alien  = new Alien1();
+        Alien1 *alien = &_alien1_2p[i];
         
         alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
         alien->fy =15;
@@ -182,122 +163,97 @@ void PixelMain::setupGame2p()
     }
     
     int posAlien2 [4] = {95,150, 250 , 420};
-    for (int i=0;i<4;i++)
+    for (int i=0;i<MAX_ALIEN;i++)
     {
-        
-        Alien2 *alien  = new Alien2();
+        Alien2 *alien = &_alien2_2p[i];
         
         alien->fx  = alien->fxReal =posAlien2[i];
         alien->fy =15;
         alien->setup();//setup after fx
-        aliens2p.push_back( alien);
-        stage2p.addChild(   alien);
-        live2p.push_back(   alien);
-        
+        aliens2p.push_back(alien);
+        stage2p.addChild(alien);
+        live2p.push_back(alien);
     }
 
    {
-       alienBoss2p  = new Alien3();
-        
-       alienBoss2p->fx  =  alienBoss2p->fxReal=600 ;//=600;//40+ rand()%200;
-          alienBoss2p->fy =15;
-          alienBoss2p->setup();//setup after fx
-       aliens2p.push_back(   alienBoss2p);
+        alienBoss2p  = &_alienBoss;
+
+        alienBoss2p->fx  =  alienBoss2p->fxReal=600 ;//=600;//40+ rand()%200;
+        alienBoss2p->fy =15;
+        alienBoss2p->setup();//setup after fx
+        aliens2p.push_back(   alienBoss2p);
         stage2p.addChild(     alienBoss2p);
         live2p.push_back(     alienBoss2p);
     }
 
-    hero2pF=new Hero();
-    stage2p.addChild(hero2pF);
-    hero2pF->setup(1);
-    live2p.push_back(hero2pF);
-    
-    
-    
-    hero2pM=new Hero();
-    stage2p.addChild(hero2pM);
-    hero2pM->setup(0);
-    live2p.push_back(hero2pM);
-    
-  
+    stage2p.addChild(&hero2pF);
+    hero2pF.setup(1);
+    live2p.push_back(&hero2pF);
 
-    
+    stage2p.addChild(&hero2pM);
+    hero2pM.setup(0);
+    live2p.push_back(&hero2pM);
+
+
     //life stuff
-    
-    lifeBoyHolder2p= new Sprite();
-    stage2p.addChild(lifeBoyHolder2p);
-    lifeBoyHolder2p->currentData =boyInterData;
-    lifeGirlHolder2p= new Sprite();
-    stage2p.addChild(lifeGirlHolder2p);
-    lifeGirlHolder2p->currentData =girlInterData;
-    lifeGirl2p =new Life();
-    lifeBoy2p =new Life();
-    setLifeData(lifeGirl2p);
-    setLifeData(lifeBoy2p);
-    lifeBoy2p->setup();
-    lifeGirl2p->setup();
-    lifeGirl2p->fx =1;
-    lifeGirl2p->fy=-2;
-    lifeBoy2p->fx =0;
-    lifeBoy2p->fy=-2;
-    lifeBoyHolder2p->addChild( lifeBoy2p);
-    lifeGirlHolder2p->addChild( lifeGirl2p);
+
+    stage2p.addChild(&lifeBoyHolder2p);
+    lifeBoyHolder2p.currentData = &boyInterData;
+    stage2p.addChild(&lifeGirlHolder2p);
+    lifeGirlHolder2p.currentData = &girlInterData;
+    lifeBoy2p.setup();
+    lifeGirl2p.setup();
+    lifeGirl2p.fx =1;
+    lifeGirl2p.fy=-2;
+    lifeBoy2p.fx =0;
+    lifeBoy2p.fy=-2;
+    lifeBoyHolder2p.addChild(&lifeBoy2p);
+    lifeGirlHolder2p.addChild(&lifeGirl2p);
+
+    stage2p.addChild(&waterSplash2p);
 
     
-    waterSplash2p =new WaterSplash();
-    stage2p.addChild( waterSplash2p);
-
-    
-    for (int i=0;i<8;i++)
+    for (int i=0;i<MAX_BLOOD;i++)
     {
-        Blood *blood =new Blood();
-        blood->frame1 = frame1b;
-        blood->frame2 = frame2b;
-        blood->frame3 = frame3b;
+        Blood *blood = &_bloods[i];
         blood->setup();
         bloodBuffer2p.push_back(blood);
-        
-        
-        
         stage2p.addChild( blood);
     }
 
     //gameOver
-    gameOverText2p = new GameOverText();
-    gameOverText2p->fy = 0;
-    gameOverText2p->fx = 0;
-    stage2p.addChild(   gameOverText2p );
-    
-  
+    gameOverText.fy = 0;
+    gameOverText.fx = 0;
+    stage2p.addChild(&gameOverText);
 }
 void PixelMain::resetGame2p()
 {
-    hero2pM->fxReal = 20;
-    hero2pM->fx =20;
-    hero2pM->fy = -16;
-    hero2pM->reset();
+    hero2pM.fxReal = 20;
+    hero2pM.fx =20;
+    hero2pM.fy = -16;
+    hero2pM.reset();
 
-    hero2pF->fxReal = 27;
-    hero2pF->fx =27;
-    hero2pF->fy = -16;
-    hero2pF->reset();
-hero2pF->groundY =14;
+    hero2pF.fxReal = 27;
+    hero2pF.fx =27;
+    hero2pF.fy = -16;
+    hero2pF.reset();
+hero2pF.groundY =14;
     
-    lifeBoyHolder2p->fx =-15;
-    lifeBoyHolder2p->fy =16;
-    lifeGirlHolder2p->fx =104;
-    lifeGirlHolder2p->fy =16;
-   lifeGirl2p->reset();
-    lifeBoy2p->reset();
+    lifeBoyHolder2p.fx =-15;
+    lifeBoyHolder2p.fy =16;
+    lifeGirlHolder2p.fx =104;
+    lifeGirlHolder2p.fy =16;
+   lifeGirl2p.reset();
+    lifeBoy2p.reset();
     for(size_t i=0;i< aliens2p.size();i++)
     {
         
         aliens2p[i]->reset();
         
     }
-    hero2pF->setLevelPos(stagefx);
+    hero2pF.setLevelPos(stagefx);
     
-    hero2pM->setLevelPos(stagefx);
+    hero2pM.setLevelPos(stagefx);
     
     for(size_t i=0;i< aliens2p.size();i++)
     {
@@ -322,11 +278,11 @@ void PixelMain::updateGame2p (float timeElapsed)
     if (gameState == STATE_GAME_OVER)
     {
         switchTime -=timeElapsed;
-          gameOverText2p->update(switchTime);
+          gameOverText.update(switchTime);
      
         if(switchTime<0)
         {
-            gameOverText2p->hide();
+            gameOverText.hide();
             setGameState(STATE_INTRO);
             return;
         }
@@ -336,14 +292,14 @@ void PixelMain::updateGame2p (float timeElapsed)
     {
         
         
-        lifeBoyHolder2p->fx = Sprite::linearEase(1-switchTime,-15,19,1);
-        lifeGirlHolder2p->fx = Sprite::linearEase(1-switchTime,104,-19,1);
+        lifeBoyHolder2p.fx = Sprite::linearEase(1-switchTime,-15,19,1);
+        lifeGirlHolder2p.fx = Sprite::linearEase(1-switchTime,104,-19,1);
         
         switchTime -=timeElapsed;
         if(switchTime<0){
             setGameState(STATE_GAME);
-            lifeBoyHolder2p->fx = 4;
-            lifeGirlHolder2p->fx = 85;
+            lifeBoyHolder2p.fx = 4;
+            lifeGirlHolder2p.fx = 85;
         }
             for (int i=0;i<3;i++)
         {
@@ -365,8 +321,8 @@ void PixelMain::updateGame2p (float timeElapsed)
     }
     
     
-    hero2pM->update(timeElapsed);
-    hero2pF->update(timeElapsed);
+    hero2pM.update(timeElapsed);
+    hero2pF.update(timeElapsed);
     
     resolveShoot(live2p,specialAttackBuffer2p);
       checkShoot(live2p,specialAttackBuffer2p,bloodBuffer2p);
@@ -380,27 +336,27 @@ void PixelMain::updateGame2p (float timeElapsed)
     }
     
     
-    if(hero2pM->fxReal < -10 )
+    if(hero2pM.fxReal < -10 )
     {
-        hero2pM->fxReal  =-10;
-        hero2pM->setKey(0);
+        hero2pM.fxReal  =-10;
+        hero2pM.setKey(0);
     }
     
-    if(hero2pF->fxReal < -10 )
+    if(hero2pF.fxReal < -10 )
     {
-        hero2pF->fxReal  =-10;
-        hero2pF->setKey(0);
+        hero2pF.fxReal  =-10;
+        hero2pF.setKey(0);
     }
     Hero * first;
      Hero *last;
-    if(hero2pM->fxReal >hero2pF->fxReal )
+    if(hero2pM.fxReal >hero2pF.fxReal )
     {
-        first = hero2pM;
-        last= hero2pF;
+        first = &hero2pM;
+        last= &hero2pF;
     }else
     {
-        first = hero2pF;
-        last= hero2pM;
+        first = &hero2pF;
+        last= &hero2pM;
     
     }
     
@@ -429,16 +385,16 @@ void PixelMain::updateGame2p (float timeElapsed)
         
     }
       // cout<<endl;
-    alienHitTest( hero2pM, aliens2p,bloodBuffer2p);
-     alienHitTest( hero2pF, aliens2p,bloodBuffer2p);
+    alienHitTest(&hero2pM, aliens2p,bloodBuffer2p);
+     alienHitTest(&hero2pF, aliens2p,bloodBuffer2p);
     resolveAttack(live2p,bloodBuffer2p);
     
     
     
     
-      hero2pF->setLevelPos(stagefx);
+      hero2pF.setLevelPos(stagefx);
     
-    hero2pM->setLevelPos(stagefx);
+    hero2pM.setLevelPos(stagefx);
     
     for(size_t i=0;i< aliens2p.size();i++)
     {
@@ -459,30 +415,27 @@ void PixelMain::updateGame2p (float timeElapsed)
         
     }
     
-    lifeBoy2p->setLife(hero2pM->life);
-    lifeGirl2p->setLife(hero2pF->life);
+    lifeBoy2p.setLife(hero2pM.life);
+    lifeGirl2p.setLife(hero2pF.life);
     
-    lifeBoy2p->update(timeElapsed);
-    lifeGirl2p->update(timeElapsed);
+    lifeBoy2p.update(timeElapsed);
+    lifeGirl2p.update(timeElapsed);
 
-    
-    
     for (size_t i=0;i<bloodBuffer2p.size();i++)
     {
         bloodBuffer2p[i]->update(timeElapsed,stagefx);
-        
     }
-     waterSplash2p->update(timeElapsed,stagefx);
+     waterSplash2p.update(timeElapsed,stagefx);
     if( alienBoss2p->isDead && gameState ==STATE_GAME)
     {
-        gameOverText2p->show(3);
+        gameOverText.show(3);
      
         setGameState(STATE_GAME_OVER);
         return;
     }
-    if(hero2pM->life<=0  && hero2pF->life<=0 && gameState ==STATE_GAME)
+    if(hero2pM.life<=0  && hero2pF.life<=0 && gameState ==STATE_GAME)
     {
-        gameOverText2p->show();
+        gameOverText.show();
   
         setGameState(STATE_GAME_OVER); ;
     }
