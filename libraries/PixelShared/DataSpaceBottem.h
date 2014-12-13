@@ -261,5 +261,6 @@ struct DataSpaceBottem : public PixelDataImpl<DataSpaceBottem> {
        static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _SpaceBottem_::indices; }
        static constexpr const uint8_t* color() { return _SpaceBottem_::color; }
+       constexpr DataSpaceBottem(){}
 };
 #endif

@@ -81,5 +81,6 @@ struct DataAlien2Dead : public PixelDataImpl<DataAlien2Dead> {
        static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _Alien2Dead_::indices; }
        static constexpr const uint8_t* color() { return _Alien2Dead_::color; }
+       constexpr DataAlien2Dead(){}
 };
 #endif

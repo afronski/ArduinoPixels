@@ -37,5 +37,6 @@ struct DataBackGrass : public PixelDataImpl<DataBackGrass> {
        static constexpr uint8_t height() { return 16; }
        static constexpr const uint8_t* indices() { return _BackGrass_::indices; }
        static constexpr const uint8_t* color() { return _BackGrass_::color; }
+       constexpr DataBackGrass(){}
 };
 #endif

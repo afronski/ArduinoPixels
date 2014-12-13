@@ -112,6 +112,7 @@ void setFile(rgba8_image_t &image, string name)
     oStream << "       static constexpr uint8_t height() { return "<< h <<"; }" <<endl;
     oStream << "       static constexpr const uint8_t* indices() { return _" << name << "_::indices; }" <<endl;
     oStream << "       static constexpr const uint8_t* color() { return _" << name << "_::color; }" <<endl;
+    oStream << "       constexpr Data"<< name <<"(){}" <<endl;
     oStream << "};"<< endl;
     oStream << "#endif" << endl;
 

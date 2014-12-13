@@ -49,5 +49,6 @@ struct DataBoyShoot2 : public PixelDataImpl<DataBoyShoot2> {
        static constexpr uint8_t height() { return 2; }
        static constexpr const uint8_t* indices() { return _BoyShoot2_::indices; }
        static constexpr const uint8_t* color() { return _BoyShoot2_::color; }
+       constexpr DataBoyShoot2(){}
 };
 #endif

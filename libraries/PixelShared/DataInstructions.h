@@ -961,5 +961,6 @@ struct DataInstructions : public PixelDataImpl<DataInstructions> {
        static constexpr uint8_t height() { return 11; }
        static constexpr const uint8_t* indices() { return _Instructions_::indices; }
        static constexpr const uint8_t* color() { return _Instructions_::color; }
+       constexpr DataInstructions(){}
 };
 #endif

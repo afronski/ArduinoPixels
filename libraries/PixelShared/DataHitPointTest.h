@@ -19,5 +19,6 @@ struct DataHitPointTest : public PixelDataImpl<DataHitPointTest> {
        static constexpr uint8_t height() { return 1; }
        static constexpr const uint8_t* indices() { return _HitPointTest_::indices; }
        static constexpr const uint8_t* color() { return _HitPointTest_::color; }
+       constexpr DataHitPointTest(){}
 };
 #endif

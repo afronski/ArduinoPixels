@@ -27,5 +27,6 @@ struct DataDuckSmall : public PixelDataImpl<DataDuckSmall> {
        static constexpr uint8_t height() { return 2; }
        static constexpr const uint8_t* indices() { return _DuckSmall_::indices; }
        static constexpr const uint8_t* color() { return _DuckSmall_::color; }
+       constexpr DataDuckSmall(){}
 };
 #endif

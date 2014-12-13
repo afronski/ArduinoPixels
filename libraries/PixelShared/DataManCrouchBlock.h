@@ -73,5 +73,6 @@ struct DataManCrouchBlock : public PixelDataImpl<DataManCrouchBlock> {
        static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _ManCrouchBlock_::indices; }
        static constexpr const uint8_t* color() { return _ManCrouchBlock_::color; }
+       constexpr DataManCrouchBlock(){}
 };
 #endif

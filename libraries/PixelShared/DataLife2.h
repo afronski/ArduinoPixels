@@ -50,5 +50,6 @@ struct DataLife2 : public PixelDataImpl<DataLife2> {
        static constexpr uint8_t height() { return 5; }
        static constexpr const uint8_t* indices() { return _Life2_::indices; }
        static constexpr const uint8_t* color() { return _Life2_::color; }
+       constexpr DataLife2(){}
 };
 #endif
