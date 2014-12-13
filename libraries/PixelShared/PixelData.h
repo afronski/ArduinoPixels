@@ -27,7 +27,7 @@ struct PixelData
         color(color), indices(indices), width(width), height(height), centerX(width/2), centerY(height) { }
     constexpr PixelData() : PixelData(nullptr, nullptr, 0, 0) { }
     constexpr PixelData(const PixelData &other) : PixelData(other.color, other.indices, other.width, other.height) { }
-    constexpr PixelData operator=(const PixelData &other) { return PixelData(other); }
+    constexpr PixelData operator=(const PixelData &other) const { return PixelData(other); }
 };
 
 //
