@@ -110,5 +110,6 @@ struct DataBush : public PixelDataImpl<DataBush> {
        static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _Bush_::indices; }
        static constexpr const uint8_t* color() { return _Bush_::color; }
+       constexpr DataBush(){}
 };
 #endif

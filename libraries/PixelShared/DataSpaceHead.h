@@ -97,5 +97,6 @@ struct DataSpaceHead : public PixelDataImpl<DataSpaceHead> {
        static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _SpaceHead_::indices; }
        static constexpr const uint8_t* color() { return _SpaceHead_::color; }
+       constexpr DataSpaceHead(){}
 };
 #endif

@@ -534,5 +534,6 @@ struct DataTextPressToPlay : public PixelDataImpl<DataTextPressToPlay> {
        static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _TextPressToPlay_::indices; }
        static constexpr const uint8_t* color() { return _TextPressToPlay_::color; }
+       constexpr DataTextPressToPlay(){}
 };
 #endif

@@ -18,5 +18,6 @@ struct DataStarSmall : public PixelDataImpl<DataStarSmall> {
        static constexpr uint8_t height() { return 1; }
        static constexpr const uint8_t* indices() { return _StarSmall_::indices; }
        static constexpr const uint8_t* color() { return _StarSmall_::color; }
+       constexpr DataStarSmall(){}
 };
 #endif

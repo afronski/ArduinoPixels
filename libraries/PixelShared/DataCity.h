@@ -176,5 +176,6 @@ struct DataCity : public PixelDataImpl<DataCity> {
        static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _City_::indices; }
        static constexpr const uint8_t* color() { return _City_::color; }
+       constexpr DataCity(){}
 };
 #endif

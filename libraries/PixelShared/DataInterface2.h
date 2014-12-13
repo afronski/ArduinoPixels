@@ -193,5 +193,6 @@ struct DataInterface2 : public PixelDataImpl<DataInterface2> {
        static constexpr uint8_t height() { return 16; }
        static constexpr const uint8_t* indices() { return _Interface2_::indices; }
        static constexpr const uint8_t* color() { return _Interface2_::color; }
+       constexpr DataInterface2(){}
 };
 #endif

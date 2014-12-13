@@ -635,5 +635,6 @@ struct DataTextGameOver : public PixelDataImpl<DataTextGameOver> {
        static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _TextGameOver_::indices; }
        static constexpr const uint8_t* color() { return _TextGameOver_::color; }
+       constexpr DataTextGameOver(){}
 };
 #endif

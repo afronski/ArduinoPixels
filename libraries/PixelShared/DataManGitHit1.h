@@ -89,5 +89,6 @@ struct DataManGitHit1 : public PixelDataImpl<DataManGitHit1> {
        static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _ManGitHit1_::indices; }
        static constexpr const uint8_t* color() { return _ManGitHit1_::color; }
+       constexpr DataManGitHit1(){}
 };
 #endif

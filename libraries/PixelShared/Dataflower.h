@@ -30,5 +30,6 @@ struct Dataflower : public PixelDataImpl<Dataflower> {
        static constexpr uint8_t height() { return 3; }
        static constexpr const uint8_t* indices() { return _flower_::indices; }
        static constexpr const uint8_t* color() { return _flower_::color; }
+       constexpr Dataflower(){}
 };
 #endif

@@ -1533,5 +1533,6 @@ struct DataTextYouWin : public PixelDataImpl<DataTextYouWin> {
        static constexpr uint8_t height() { return 16; }
        static constexpr const uint8_t* indices() { return _TextYouWin_::indices; }
        static constexpr const uint8_t* color() { return _TextYouWin_::color; }
+       constexpr DataTextYouWin(){}
 };
 #endif

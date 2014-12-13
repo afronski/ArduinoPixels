@@ -238,5 +238,6 @@ struct DataPond : public PixelDataImpl<DataPond> {
        static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _Pond_::indices; }
        static constexpr const uint8_t* color() { return _Pond_::color; }
+       constexpr DataPond(){}
 };
 #endif

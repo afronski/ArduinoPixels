@@ -59,5 +59,6 @@ struct DataManRay2 : public PixelDataImpl<DataManRay2> {
        static constexpr uint8_t height() { return 2; }
        static constexpr const uint8_t* indices() { return _ManRay2_::indices; }
        static constexpr const uint8_t* color() { return _ManRay2_::color; }
+       constexpr DataManRay2(){}
 };
 #endif

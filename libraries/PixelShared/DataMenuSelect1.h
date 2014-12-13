@@ -217,5 +217,6 @@ struct DataMenuSelect1 : public PixelDataImpl<DataMenuSelect1> {
        static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _MenuSelect1_::indices; }
        static constexpr const uint8_t* color() { return _MenuSelect1_::color; }
+       constexpr DataMenuSelect1(){}
 };
 #endif

@@ -93,5 +93,6 @@ struct DataPaddo : public PixelDataImpl<DataPaddo> {
        static constexpr uint8_t height() { return 6; }
        static constexpr const uint8_t* indices() { return _Paddo_::indices; }
        static constexpr const uint8_t* color() { return _Paddo_::color; }
+       constexpr DataPaddo(){}
 };
 #endif

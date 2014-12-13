@@ -52,5 +52,6 @@ struct DataAlien1Feed : public PixelDataImpl<DataAlien1Feed> {
        static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _Alien1Feed_::indices; }
        static constexpr const uint8_t* color() { return _Alien1Feed_::color; }
+       constexpr DataAlien1Feed(){}
 };
 #endif

@@ -565,5 +565,6 @@ struct DataMenuMain : public PixelDataImpl<DataMenuMain> {
        static constexpr uint8_t height() { return 6; }
        static constexpr const uint8_t* indices() { return _MenuMain_::indices; }
        static constexpr const uint8_t* color() { return _MenuMain_::color; }
+       constexpr DataMenuMain(){}
 };
 #endif

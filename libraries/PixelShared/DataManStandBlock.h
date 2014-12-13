@@ -85,5 +85,6 @@ struct DataManStandBlock : public PixelDataImpl<DataManStandBlock> {
        static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _ManStandBlock_::indices; }
        static constexpr const uint8_t* color() { return _ManStandBlock_::color; }
+       constexpr DataManStandBlock(){}
 };
 #endif

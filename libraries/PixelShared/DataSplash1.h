@@ -45,5 +45,6 @@ struct DataSplash1 : public PixelDataImpl<DataSplash1> {
        static constexpr uint8_t height() { return 4; }
        static constexpr const uint8_t* indices() { return _Splash1_::indices; }
        static constexpr const uint8_t* color() { return _Splash1_::color; }
+       constexpr DataSplash1(){}
 };
 #endif

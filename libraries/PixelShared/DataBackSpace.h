@@ -33,5 +33,6 @@ struct DataBackSpace : public PixelDataImpl<DataBackSpace> {
        static constexpr uint8_t height() { return 16; }
        static constexpr const uint8_t* indices() { return _BackSpace_::indices; }
        static constexpr const uint8_t* color() { return _BackSpace_::color; }
+       constexpr DataBackSpace(){}
 };
 #endif
