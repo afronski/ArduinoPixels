@@ -24,14 +24,13 @@ class Alien3: public Alien
 {
     float waitshoot;
     float posTime;
-    float headTime;
     Sprite head;
     Sprite ship;
     Sprite armL;
     Sprite armR;
 
 public:
-    Alien3() : waitshoot(0), posTime(0), headTime(0) {}
+    Alien3() : waitshoot(0), posTime(0) {}
     void setup(){
         
         heroType=4;
