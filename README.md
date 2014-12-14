@@ -57,6 +57,30 @@ Prerequisites:
 
 Run `build.sh` to compile everything. After that, start the binary `build/PixelApp`.
 
+Player Controls (SDL version)
+-----------------------------
+
+Player controls for the SDL version of the game:
+
+- Player 1 (Boy)
+    + Jump:     Arrow Up
+    + Crouch:   Arrow Down
+    + Left:     Arrow Left
+    + Right:    Arrow Right
+    + Punch:    Comma OR K
+    + Kick:     Period OR L
+    + Block:    Slash OR M OR Semicolon OR Minus
+
+- Player 2 (Girl)
+    + Jump:     E
+    + Crouch:   D
+    + Left:     S
+    + Right:    F
+    + Punch:    C
+    + Kick:     V
+    + Block:    B
+
+
 Hardware
 ========
 
