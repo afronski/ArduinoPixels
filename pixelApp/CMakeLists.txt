@@ -17,6 +17,16 @@ set(SRC
 set(HDR
 )
 
+if (EMSCRIPTEN)
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+
+    option(EMSCRIPTEN_SDL2_DIR "SDL-emscripten root dir." OFF)
+    if (EMSCRIPTEN_SDL2_DIR)
+        INCLUDE_DIRECTORIES("${EMSCRIPTEN_SDL2_DIR}/include")
+    else()
+        MESSAGE(FATAL_ERROR "Variable EMSCRIPTEN_SDL2_DIR is not defined")
+    endif()
+endif()
 
 #
 # The executable
@@ -39,4 +49,5 @@ add_subdirectory(../libraries/PixelShared "${CMAKE_SOURCE_DIR}/libraries/PixelSh
 
 target_link_libraries(PixelApp
     PixelShared
+    PixelGame
 )

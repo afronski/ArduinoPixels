@@ -9,7 +9,12 @@
 #include <chrono>
 #include <thread>
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#include "SDL.h"
+#else
 #include "SDL2/SDL.h"
+#endif
 
 #include "PixelGameInclude.h"
 #include "SDLPixelRenderer.h"
@@ -40,47 +45,60 @@ using namespace std;
 using namespace std::chrono;
 
 struct joystickState {
-	bool up, down, left, right;
+    bool up, down, left, right;
 } inputL, inputR;
 
 void handleKeyEvent(PixelMain &main, SDL_KeyboardEvent *key);
 void handleJoystick(PixelMain &main, joystickState &input, int offset);
+void renderloop();
+
+const int fps = 20;
+bool running;
+PixelMain *_pixelMain;
 
 int main(int /*argc*/, char** /*argv*/) {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		cout << "SDL_Init Error: " << SDL_GetError() << endl;
-		return 1;
-	}
-	atexit(SDL_Quit);
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        cout << "SDL_Init Error: " << SDL_GetError() << endl;
+        return 1;
+    }
+    atexit(SDL_Quit);
 
-	SDLPixelRenderer renderer(90, 16, 12);
-	PixelMain pixelMain(&renderer);
-	pixelMain.setup();
+    SDLPixelRenderer renderer(90, 16, 12);
+    PixelMain pixelMain(&renderer);
+    pixelMain.setup();
+    _pixelMain = &pixelMain;
 
-	bool running = true;
-	SDL_Event event;
-	int fps = 20;
+    running = true;
 
-	while (running) {
-		while(SDL_PollEvent(&event)) {
-			switch (event.type) {
-			case SDL_QUIT:
-				running = false;
-				break;
-			case SDL_KEYDOWN:
-			case SDL_KEYUP:
-				handleKeyEvent(pixelMain, &event.key);
-				break;
-			}
-		}
+#ifdef __EMSCRIPTEN__
+    emscripten_set_main_loop(renderloop, fps, true);
+#else
+    while (running) {
+        renderloop();
+        this_thread::sleep_for(milliseconds(1000 / fps));
+    }
+#endif
 
-		pixelMain.update(1.0f / fps);
-		pixelMain.draw();
+    return 0;
+}
 
-		this_thread::sleep_for(milliseconds(1000 / fps));
-	}
+void renderloop() {
+    SDL_Event event;
 
-	return 0;
+    while(SDL_PollEvent(&event)) {
+        switch (event.type) {
+        case SDL_QUIT:
+            running = false;
+            break;
+        case SDL_KEYDOWN:
+        case SDL_KEYUP:
+            handleKeyEvent(*_pixelMain, &event.key);
+            break;
+        }
+    }
+
+    _pixelMain->update(1.0f / fps);
+    _pixelMain->draw();
 }
 
 void handleKeyEvent(PixelMain &main, SDL_KeyboardEvent *key) {
