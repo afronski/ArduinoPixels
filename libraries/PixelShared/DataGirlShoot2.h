@@ -61,5 +61,6 @@ struct DataGirlShoot2 : public PixelDataImpl<DataGirlShoot2> {
        static constexpr uint8_t height() { return 4; }
        static constexpr const uint8_t* indices() { return _GirlShoot2_::indices; }
        static constexpr const uint8_t* color() { return _GirlShoot2_::color; }
+       constexpr DataGirlShoot2(){}
 };
 #endif

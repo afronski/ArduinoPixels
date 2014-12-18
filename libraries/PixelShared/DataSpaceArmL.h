@@ -25,5 +25,6 @@ struct DataSpaceArmL : public PixelDataImpl<DataSpaceArmL> {
        static constexpr uint8_t height() { return 2; }
        static constexpr const uint8_t* indices() { return _SpaceArmL_::indices; }
        static constexpr const uint8_t* color() { return _SpaceArmL_::color; }
+       constexpr DataSpaceArmL(){}
 };
 #endif

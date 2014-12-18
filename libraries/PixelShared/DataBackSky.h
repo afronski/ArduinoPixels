@@ -93,5 +93,6 @@ struct DataBackSky : public PixelDataImpl<DataBackSky> {
        static constexpr uint8_t height() { return 16; }
        static constexpr const uint8_t* indices() { return _BackSky_::indices; }
        static constexpr const uint8_t* color() { return _BackSky_::color; }
+       constexpr DataBackSky(){}
 };
 #endif

@@ -91,14 +91,21 @@ void handleKeyEvent(PixelMain &main, SDL_KeyboardEvent *key) {
 	switch( key->keysym.sym ){
 	case SDLK_ESCAPE:
 		main.setGameState(STATE_INTRO);
-		break;            
+        break;
+
+    // Player 1 controls
 	case SDLK_COMMA:
+    case SDLK_k:
 		main.setInput(OFFSET_BTN_R + BTN_RED + (pressed ? 1 : 0));
 		break;
 	case SDLK_PERIOD:
+    case SDLK_l:
 		main.setInput(OFFSET_BTN_R + BTN_BLUE + (pressed ? 1 : 0));
 		break;
 	case SDLK_MINUS:
+    case SDLK_SLASH:
+    case SDLK_m:
+    case SDLK_SEMICOLON:
 		main.setInput(OFFSET_BTN_R + BTN_YELLOW + (pressed ? 1 : 0));
 		break;
 	case SDLK_UP:
@@ -116,7 +123,35 @@ void handleKeyEvent(PixelMain &main, SDL_KeyboardEvent *key) {
 	case SDLK_RIGHT:
 		inputR.right = pressed;
 		handleJoystick(main, inputR, OFFSET_JS_R);
-		break;		
+        break;
+
+    // Player 2 controls
+    case SDLK_c:
+        main.setInput(OFFSET_BTN_L + BTN_RED + (pressed ? 1 : 0));
+        break;
+    case SDLK_v:
+        main.setInput(OFFSET_BTN_L + BTN_BLUE + (pressed ? 1 : 0));
+        break;
+    case SDLK_b:
+        main.setInput(OFFSET_BTN_L + BTN_YELLOW + (pressed ? 1 : 0));
+        break;
+    case SDLK_e:
+        inputL.up = pressed;
+        handleJoystick(main, inputL, OFFSET_JS_L);
+        break;
+    case SDLK_d:
+        inputL.down = pressed;
+        handleJoystick(main, inputL, OFFSET_JS_L);
+        break;
+    case SDLK_s:
+        inputL.left = pressed;
+        handleJoystick(main, inputL, OFFSET_JS_L);
+        break;
+    case SDLK_f:
+        inputL.right = pressed;
+        handleJoystick(main, inputL, OFFSET_JS_L);
+        break;
+
 	default:
 		break;
 	}

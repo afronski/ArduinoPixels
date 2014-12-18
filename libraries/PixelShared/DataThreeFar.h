@@ -96,5 +96,6 @@ struct DataThreeFar : public PixelDataImpl<DataThreeFar> {
        static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _ThreeFar_::indices; }
        static constexpr const uint8_t* color() { return _ThreeFar_::color; }
+       constexpr DataThreeFar(){}
 };
 #endif

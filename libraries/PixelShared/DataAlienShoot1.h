@@ -30,5 +30,6 @@ struct DataAlienShoot1 : public PixelDataImpl<DataAlienShoot1> {
        static constexpr uint8_t height() { return 3; }
        static constexpr const uint8_t* indices() { return _AlienShoot1_::indices; }
        static constexpr const uint8_t* color() { return _AlienShoot1_::color; }
+       constexpr DataAlienShoot1(){}
 };
 #endif

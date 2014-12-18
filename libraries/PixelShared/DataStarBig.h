@@ -26,5 +26,6 @@ struct DataStarBig : public PixelDataImpl<DataStarBig> {
        static constexpr uint8_t height() { return 3; }
        static constexpr const uint8_t* indices() { return _StarBig_::indices; }
        static constexpr const uint8_t* color() { return _StarBig_::color; }
+       constexpr DataStarBig(){}
 };
 #endif

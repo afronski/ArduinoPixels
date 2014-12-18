@@ -42,5 +42,6 @@ struct DataBlood2 : public PixelDataImpl<DataBlood2> {
        static constexpr uint8_t height() { return 5; }
        static constexpr const uint8_t* indices() { return _Blood2_::indices; }
        static constexpr const uint8_t* color() { return _Blood2_::color; }
+       constexpr DataBlood2(){}
 };
 #endif

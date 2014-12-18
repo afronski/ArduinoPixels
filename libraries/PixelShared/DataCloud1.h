@@ -149,5 +149,6 @@ struct DataCloud1 : public PixelDataImpl<DataCloud1> {
        static constexpr uint8_t height() { return 5; }
        static constexpr const uint8_t* indices() { return _Cloud1_::indices; }
        static constexpr const uint8_t* color() { return _Cloud1_::color; }
+       constexpr DataCloud1(){}
 };
 #endif
