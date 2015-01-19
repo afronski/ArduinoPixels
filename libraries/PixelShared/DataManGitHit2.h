@@ -5,75 +5,79 @@
 namespace _ManGitHit2_ {
     const uint8_t indices[64] = {
         255
-        ,0
-        ,0
-        ,0
-        ,0
         ,255
         ,255
         ,255
         ,255
-        ,0
-        ,0
-        ,0
-        ,0
+        ,255
+        ,255
         ,255
         ,255
         ,255
         ,0
         ,0
-        ,0
-        ,0
-        ,0
-        ,0
+        ,4
         ,255
         ,255
         ,255
         ,4
-        ,4
-        ,4
+        ,0
+        ,0
+        ,0
+        ,0
+        ,255
+        ,255
+        ,255
+        ,0
+        ,8
+        ,8
         ,8
         ,12
-        ,4
-        ,0
-        ,255
-        ,4
+        ,16
         ,8
-        ,4
-        ,4
+        ,20
+        ,24
+        ,8
         ,12
-        ,0
+        ,8
+        ,8
+        ,16
+        ,20
         ,255
         ,255
-        ,4
-        ,4
-        ,4
-        ,4
-        ,12
-        ,0
+        ,8
+        ,8
+        ,8
+        ,8
+        ,16
+        ,20
         ,255
         ,255
         ,255
         ,255
-        ,12
-        ,12
-        ,12
-        ,0
-        ,0
+        ,16
+        ,16
+        ,16
+        ,20
+        ,20
         ,255
         ,255
-        ,4
+        ,8
         ,255
         ,255
         ,255
         ,255
         ,255
     };
-    const uint8_t color[16] = {
-        0
-        ,0
+    const uint8_t color[28] = {
+        84
+        ,60
         ,0
         ,255
+        ,84
+        ,60
+        ,0
+        ,253
         ,255
         ,198
         ,135
@@ -82,10 +86,18 @@ namespace _ManGitHit2_ {
         ,134
         ,85
         ,255
-        ,34
-        ,59
-        ,169
+        ,35
+        ,35
+        ,35
         ,255
+        ,0
+        ,0
+        ,0
+        ,255
+        ,84
+        ,60
+        ,0
+        ,249
     };
 }
 struct DataManGitHit2 : public PixelDataImpl<DataManGitHit2> {
@@ -93,6 +105,5 @@ struct DataManGitHit2 : public PixelDataImpl<DataManGitHit2> {
        static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _ManGitHit2_::indices; }
        static constexpr const uint8_t* color() { return _ManGitHit2_::color; }
-       constexpr DataManGitHit2(){}
 };
 #endif

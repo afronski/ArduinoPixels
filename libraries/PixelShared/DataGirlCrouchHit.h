@@ -3,9 +3,18 @@
 #define _DataGirlCrouchHit_h
 #include "PixelData.h"
 namespace _GirlCrouchHit_ {
-    const uint8_t indices[54] = {
+    const uint8_t indices[63] = {
         255
         ,255
+        ,255
+        ,255
+        ,0
+        ,0
+        ,255
+        ,255
+        ,255
+        ,255
+        ,255
         ,0
         ,0
         ,0
@@ -28,10 +37,10 @@ namespace _GirlCrouchHit_ {
         ,8
         ,4
         ,8
+        ,255
+        ,255
+        ,255
         ,0
-        ,255
-        ,255
-        ,0
         ,0
         ,4
         ,4
@@ -50,18 +59,18 @@ namespace _GirlCrouchHit_ {
         ,255
         ,255
         ,255
-        ,16
+        ,8
         ,4
         ,255
-        ,20
-        ,16
+        ,255
+        ,8
         ,255
         ,255
         ,255
     };
-    const uint8_t color[24] = {
-        255
-        ,234
+    const uint8_t color[16] = {
+        125
+        ,90
         ,0
         ,255
         ,255
@@ -73,24 +82,15 @@ namespace _GirlCrouchHit_ {
         ,0
         ,255
         ,255
-        ,0
-        ,10
         ,255
-        ,39
-        ,15
-        ,2
+        ,204
         ,255
-        ,0
-        ,0
-        ,0
-        ,2
     };
 }
 struct DataGirlCrouchHit : public PixelDataImpl<DataGirlCrouchHit> {
        static constexpr uint8_t width() { return 9; }
-       static constexpr uint8_t height() { return 6; }
+       static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _GirlCrouchHit_::indices; }
        static constexpr const uint8_t* color() { return _GirlCrouchHit_::color; }
-       constexpr DataGirlCrouchHit(){}
 };
 #endif

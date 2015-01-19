@@ -3,13 +3,20 @@
 #define _DataGirlGotHit1_h
 #include "PixelData.h"
 namespace _GirlGotHit1_ {
-    const uint8_t indices[56] = {
+    const uint8_t indices[63] = {
         255
         ,255
-        ,0
-        ,0
         ,255
         ,255
+        ,255
+        ,255
+        ,255
+        ,255
+        ,255
+        ,0
+        ,0
+        ,0
+        ,0
         ,255
         ,255
         ,0
@@ -62,8 +69,8 @@ namespace _GirlGotHit1_ {
         ,255
     };
     const uint8_t color[20] = {
-        255
-        ,234
+        125
+        ,90
         ,0
         ,255
         ,255
@@ -75,20 +82,19 @@ namespace _GirlGotHit1_ {
         ,85
         ,255
         ,255
-        ,0
-        ,10
         ,255
-        ,39
-        ,15
-        ,2
+        ,204
+        ,255
+        ,0
+        ,0
+        ,0
         ,255
     };
 }
 struct DataGirlGotHit1 : public PixelDataImpl<DataGirlGotHit1> {
        static constexpr uint8_t width() { return 7; }
-       static constexpr uint8_t height() { return 8; }
+       static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _GirlGotHit1_::indices; }
        static constexpr const uint8_t* color() { return _GirlGotHit1_::color; }
-       constexpr DataGirlGotHit1(){}
 };
 #endif

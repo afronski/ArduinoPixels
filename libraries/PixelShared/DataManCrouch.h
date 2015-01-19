@@ -5,66 +5,74 @@
 namespace _ManCrouch_ {
     const uint8_t indices[48] = {
         255
+        ,255
+        ,255
+        ,255
+        ,255
+        ,255
+        ,255
+        ,255
+        ,0
+        ,0
+        ,0
+        ,255
+        ,0
         ,0
         ,0
         ,0
         ,0
         ,255
-        ,255
         ,0
-        ,0
-        ,0
-        ,0
-        ,255
-        ,0
-        ,0
-        ,0
-        ,0
-        ,0
-        ,0
-        ,255
         ,4
         ,4
         ,4
         ,4
         ,255
-        ,255
-        ,4
         ,0
         ,4
-        ,0
+        ,8
+        ,4
+        ,8
         ,255
         ,255
         ,4
         ,4
         ,4
         ,4
+        ,255
+        ,255
+        ,12
+        ,12
+        ,16
+        ,12
+        ,255
+        ,4
+        ,8
         ,255
         ,255
         ,8
-        ,8
-        ,8
-        ,8
-        ,255
-        ,4
-        ,0
-        ,255
-        ,255
-        ,0
         ,4
     };
-    const uint8_t color[12] = {
-        0
-        ,0
+    const uint8_t color[20] = {
+        84
+        ,60
         ,0
         ,255
         ,255
         ,198
         ,135
         ,255
-        ,34
-        ,59
-        ,169
+        ,0
+        ,0
+        ,0
+        ,255
+        ,35
+        ,35
+        ,35
+        ,255
+        ,255
+        ,255
+        ,255
         ,255
     };
 }
@@ -73,6 +81,5 @@ struct DataManCrouch : public PixelDataImpl<DataManCrouch> {
        static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _ManCrouch_::indices; }
        static constexpr const uint8_t* color() { return _ManCrouch_::color; }
-       constexpr DataManCrouch(){}
 };
 #endif

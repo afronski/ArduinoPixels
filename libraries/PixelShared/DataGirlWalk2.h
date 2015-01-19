@@ -89,6 +89,5 @@ struct DataGirlWalk2 : public PixelDataImpl<DataGirlWalk2> {
        static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _GirlWalk2_::indices; }
        static constexpr const uint8_t* color() { return _GirlWalk2_::color; }
-       constexpr DataGirlWalk2(){}
 };
 #endif

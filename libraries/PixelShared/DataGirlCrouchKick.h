@@ -3,8 +3,17 @@
 #define _DataGirlCrouchKick_h
 #include "PixelData.h"
 namespace _GirlCrouchKick_ {
-    const uint8_t indices[54] = {
+    const uint8_t indices[63] = {
         255
+        ,255
+        ,255
+        ,255
+        ,0
+        ,0
+        ,255
+        ,255
+        ,255
+        ,255
         ,255
         ,0
         ,0
@@ -16,57 +25,53 @@ namespace _GirlCrouchKick_ {
         ,255
         ,0
         ,4
-        ,8
-        ,8
-        ,8
+        ,4
+        ,4
+        ,4
         ,255
         ,255
         ,255
         ,255
         ,0
+        ,4
         ,8
+        ,4
+        ,8
+        ,255
+        ,255
+        ,255
+        ,0
+        ,0
+        ,4
+        ,4
+        ,4
+        ,4
+        ,12
         ,12
         ,8
+        ,255
+        ,255
+        ,12
+        ,12
+        ,12
         ,12
         ,255
         ,255
         ,255
-        ,0
-        ,0
+        ,255
+        ,4
         ,8
-        ,8
-        ,8
-        ,8
-        ,0
         ,255
         ,255
-        ,255
-        ,255
-        ,16
-        ,16
-        ,16
-        ,16
-        ,8
-        ,8
-        ,20
-        ,255
-        ,8
-        ,20
-        ,255
-        ,24
-        ,8
+        ,4
         ,255
         ,255
         ,255
     };
-    const uint8_t color[28] = {
-        255
-        ,234
+    const uint8_t color[16] = {
+        125
+        ,90
         ,0
-        ,255
-        ,255
-        ,201
-        ,135
         ,255
         ,255
         ,198
@@ -77,24 +82,15 @@ namespace _GirlCrouchKick_ {
         ,0
         ,255
         ,255
-        ,0
-        ,10
         ,255
-        ,39
-        ,15
-        ,2
+        ,204
         ,255
-        ,0
-        ,0
-        ,0
-        ,2
     };
 }
 struct DataGirlCrouchKick : public PixelDataImpl<DataGirlCrouchKick> {
        static constexpr uint8_t width() { return 9; }
-       static constexpr uint8_t height() { return 6; }
+       static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _GirlCrouchKick_::indices; }
        static constexpr const uint8_t* color() { return _GirlCrouchKick_::color; }
-       constexpr DataGirlCrouchKick(){}
 };
 #endif

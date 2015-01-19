@@ -93,6 +93,5 @@ struct DataManStand : public PixelDataImpl<DataManStand> {
        static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _ManStand_::indices; }
        static constexpr const uint8_t* color() { return _ManStand_::color; }
-       constexpr DataManStand(){}
 };
 #endif

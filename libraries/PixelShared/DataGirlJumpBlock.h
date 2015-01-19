@@ -3,72 +3,66 @@
 #define _DataGirlJumpBlock_h
 #include "PixelData.h"
 namespace _GirlJumpBlock_ {
-    const uint8_t indices[56] = {
+    const uint8_t indices[54] = {
         255
         ,255
+        ,255
+        ,0
+        ,0
+        ,255
+        ,255
         ,0
         ,0
         ,0
         ,0
         ,255
+        ,0
+        ,4
+        ,4
+        ,4
+        ,4
         ,255
         ,0
         ,4
         ,8
+        ,4
         ,8
-        ,8
-        ,255
         ,255
         ,0
-        ,8
+        ,4
+        ,4
+        ,4
+        ,4
+        ,0
+        ,255
         ,12
-        ,8
+        ,12
+        ,12
+        ,12
+        ,4
+        ,255
+        ,12
+        ,12
+        ,12
+        ,12
+        ,4
+        ,12
+        ,12
+        ,12
+        ,12
         ,12
         ,255
-        ,0
-        ,0
-        ,8
-        ,8
-        ,8
-        ,8
-        ,0
-        ,255
-        ,255
-        ,16
-        ,16
-        ,16
-        ,16
         ,8
         ,255
         ,255
-        ,16
-        ,16
-        ,16
-        ,16
+        ,255
         ,8
         ,255
-        ,16
-        ,16
-        ,16
-        ,16
-        ,16
-        ,255
-        ,255
-        ,20
-        ,255
-        ,255
-        ,255
-        ,255
-        ,20
     };
-    const uint8_t color[24] = {
-        255
-        ,234
+    const uint8_t color[16] = {
+        125
+        ,90
         ,0
-        ,255
-        ,255
-        ,201
-        ,135
         ,255
         ,255
         ,198
@@ -78,21 +72,16 @@ namespace _GirlJumpBlock_ {
         ,0
         ,0
         ,255
-        ,237
-        ,28
-        ,36
         ,255
-        ,39
-        ,15
-        ,2
+        ,255
+        ,204
         ,255
     };
 }
 struct DataGirlJumpBlock : public PixelDataImpl<DataGirlJumpBlock> {
-       static constexpr uint8_t width() { return 7; }
-       static constexpr uint8_t height() { return 8; }
+       static constexpr uint8_t width() { return 6; }
+       static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _GirlJumpBlock_::indices; }
        static constexpr const uint8_t* color() { return _GirlJumpBlock_::color; }
-       constexpr DataGirlJumpBlock(){}
 };
 #endif

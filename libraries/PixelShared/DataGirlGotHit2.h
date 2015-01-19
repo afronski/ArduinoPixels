@@ -3,70 +3,75 @@
 #define _DataGirlGotHit2_h
 #include "PixelData.h"
 namespace _GirlGotHit2_ {
-    const uint8_t indices[54] = {
+    const uint8_t indices[63] = {
         255
         ,255
+        ,255
+        ,255
+        ,0
+        ,0
+        ,255
+        ,255
+        ,255
+        ,255
+        ,255
         ,0
         ,0
         ,0
         ,0
         ,255
+        ,255
+        ,255
+        ,255
+        ,0
         ,4
-        ,255
+        ,8
+        ,8
+        ,12
+        ,16
+        ,8
+        ,20
         ,255
         ,0
         ,8
         ,12
-        ,12
+        ,8
+        ,8
+        ,0
         ,16
-        ,4
-        ,12
-        ,20
         ,255
         ,0
-        ,12
+        ,0
+        ,8
+        ,8
+        ,8
+        ,8
         ,16
-        ,12
-        ,12
-        ,0
-        ,4
-        ,255
-        ,0
-        ,0
-        ,12
-        ,12
-        ,12
-        ,12
-        ,4
-        ,4
+        ,16
         ,255
         ,255
         ,255
         ,255
         ,255
-        ,4
-        ,4
-        ,4
-        ,4
+        ,16
+        ,16
+        ,16
+        ,16
         ,20
         ,255
         ,255
         ,255
-        ,12
+        ,8
         ,255
         ,255
         ,255
-        ,4
+        ,16
         ,255
     };
     const uint8_t color[24] = {
-        255
-        ,234
+        125
+        ,90
         ,0
-        ,255
-        ,255
-        ,0
-        ,10
         ,255
         ,255
         ,201
@@ -80,17 +85,20 @@ namespace _GirlGotHit2_ {
         ,134
         ,85
         ,255
-        ,39
-        ,15
-        ,2
+        ,255
+        ,255
+        ,204
+        ,255
+        ,0
+        ,0
+        ,0
         ,255
     };
 }
 struct DataGirlGotHit2 : public PixelDataImpl<DataGirlGotHit2> {
        static constexpr uint8_t width() { return 9; }
-       static constexpr uint8_t height() { return 6; }
+       static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _GirlGotHit2_::indices; }
        static constexpr const uint8_t* color() { return _GirlGotHit2_::color; }
-       constexpr DataGirlGotHit2(){}
 };
 #endif

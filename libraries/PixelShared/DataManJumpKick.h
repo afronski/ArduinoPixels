@@ -105,6 +105,5 @@ struct DataManJumpKick : public PixelDataImpl<DataManJumpKick> {
        static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _ManJumpKick_::indices; }
        static constexpr const uint8_t* color() { return _ManJumpKick_::color; }
-       constexpr DataManJumpKick(){}
 };
 #endif

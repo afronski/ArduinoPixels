@@ -3,10 +3,19 @@
 #define _DataGirlJumpKick_h
 #include "PixelData.h"
 namespace _GirlJumpKick_ {
-    const uint8_t indices[72] = {
+    const uint8_t indices[81] = {
         255
         ,255
         ,255
+        ,255
+        ,0
+        ,0
+        ,255
+        ,255
+        ,255
+        ,255
+        ,255
+        ,255
         ,0
         ,0
         ,0
@@ -28,7 +37,7 @@ namespace _GirlJumpKick_ {
         ,4
         ,4
         ,8
-        ,0
+        ,255
         ,255
         ,255
         ,255
@@ -37,7 +46,7 @@ namespace _GirlJumpKick_ {
         ,8
         ,4
         ,4
-        ,255
+        ,0
         ,255
         ,255
         ,0
@@ -57,7 +66,7 @@ namespace _GirlJumpKick_ {
         ,12
         ,4
         ,4
-        ,16
+        ,8
         ,255
         ,4
         ,12
@@ -69,7 +78,7 @@ namespace _GirlJumpKick_ {
         ,255
         ,255
         ,255
-        ,16
+        ,8
         ,255
         ,255
         ,255
@@ -77,9 +86,9 @@ namespace _GirlJumpKick_ {
         ,255
         ,255
     };
-    const uint8_t color[20] = {
-        255
-        ,234
+    const uint8_t color[16] = {
+        125
+        ,90
         ,0
         ,255
         ,255
@@ -91,20 +100,15 @@ namespace _GirlJumpKick_ {
         ,0
         ,255
         ,255
-        ,0
-        ,10
         ,255
-        ,39
-        ,15
-        ,2
+        ,204
         ,255
     };
 }
 struct DataGirlJumpKick : public PixelDataImpl<DataGirlJumpKick> {
        static constexpr uint8_t width() { return 9; }
-       static constexpr uint8_t height() { return 8; }
+       static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _GirlJumpKick_::indices; }
        static constexpr const uint8_t* color() { return _GirlJumpKick_::color; }
-       constexpr DataGirlJumpKick(){}
 };
 #endif
