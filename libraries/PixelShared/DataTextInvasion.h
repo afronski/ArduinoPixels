@@ -689,5 +689,6 @@ struct DataTextInvasion : public PixelDataImpl<DataTextInvasion> {
        static constexpr uint8_t height() { return 8; }
        static constexpr const uint8_t* indices() { return _TextInvasion_::indices; }
        static constexpr const uint8_t* color() { return _TextInvasion_::color; }
+       constexpr DataTextInvasion(){}
 };
 #endif

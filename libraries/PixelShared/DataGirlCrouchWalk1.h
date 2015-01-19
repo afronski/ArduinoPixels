@@ -78,5 +78,6 @@ struct DataGirlCrouchWalk1 : public PixelDataImpl<DataGirlCrouchWalk1> {
        static constexpr uint8_t height() { return 7; }
        static constexpr const uint8_t* indices() { return _GirlCrouchWalk1_::indices; }
        static constexpr const uint8_t* color() { return _GirlCrouchWalk1_::color; }
+       constexpr DataGirlCrouchWalk1(){}
 };
 #endif

@@ -110,5 +110,6 @@ struct DataGirlJumpKick : public PixelDataImpl<DataGirlJumpKick> {
        static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _GirlJumpKick_::indices; }
        static constexpr const uint8_t* color() { return _GirlJumpKick_::color; }
+       constexpr DataGirlJumpKick(){}
 };
 #endif

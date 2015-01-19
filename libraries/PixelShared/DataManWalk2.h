@@ -93,5 +93,6 @@ struct DataManWalk2 : public PixelDataImpl<DataManWalk2> {
        static constexpr uint8_t height() { return 10; }
        static constexpr const uint8_t* indices() { return _ManWalk2_::indices; }
        static constexpr const uint8_t* color() { return _ManWalk2_::color; }
+       constexpr DataManWalk2(){}
 };
 #endif
