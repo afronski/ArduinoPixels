@@ -3,24 +3,28 @@
 #define _DataGirlJumpBlock_h
 #include "PixelData.h"
 namespace _GirlJumpBlock_ {
-    const uint8_t indices[54] = {
+    const uint8_t indices[63] = {
         255
         ,255
         ,255
+        ,255
+        ,0
+        ,0
+        ,255
+        ,255
+        ,255
+        ,0
+        ,0
         ,0
         ,0
         ,255
         ,255
         ,0
-        ,0
-        ,0
-        ,0
+        ,4
+        ,4
+        ,4
+        ,4
         ,255
-        ,0
-        ,4
-        ,4
-        ,4
-        ,4
         ,255
         ,0
         ,4
@@ -29,12 +33,21 @@ namespace _GirlJumpBlock_ {
         ,8
         ,255
         ,0
+        ,0
         ,4
         ,4
         ,4
         ,4
         ,0
         ,255
+        ,255
+        ,12
+        ,12
+        ,12
+        ,12
+        ,4
+        ,255
+        ,255
         ,12
         ,12
         ,12
@@ -45,12 +58,8 @@ namespace _GirlJumpBlock_ {
         ,12
         ,12
         ,12
-        ,4
         ,12
-        ,12
-        ,12
-        ,12
-        ,12
+        ,255
         ,255
         ,8
         ,255
@@ -79,7 +88,7 @@ namespace _GirlJumpBlock_ {
     };
 }
 struct DataGirlJumpBlock : public PixelDataImpl<DataGirlJumpBlock> {
-       static constexpr uint8_t width() { return 6; }
+       static constexpr uint8_t width() { return 7; }
        static constexpr uint8_t height() { return 9; }
        static constexpr const uint8_t* indices() { return _GirlJumpBlock_::indices; }
        static constexpr const uint8_t* color() { return _GirlJumpBlock_::color; }
