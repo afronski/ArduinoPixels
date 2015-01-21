@@ -13,12 +13,13 @@
 
 #include <iostream>
 
-const DataTextInvasion dataTextInvasion;
+DataTextInvasion dataTextInvasion;
 const DataTextPressToPlay dataTextPressToPlay;
 const DataBackSpace dataBackSpace;
 
 void PixelMain::allocIntro()
 {
+    dataTextInvasion.centerY = 9;
     invasionText.currentData = &dataTextInvasion;
     pressKeyText.currentData = &dataTextPressToPlay;
 }

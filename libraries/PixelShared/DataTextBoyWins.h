@@ -3,80 +3,8 @@
 #define _DataTextBoyWins_h
 #include "PixelData.h"
 namespace _TextBoyWins_ {
-    const uint8_t indices[468] = {
+    const uint8_t indices[396] = {
         255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
-        ,255
         ,255
         ,255
         ,255
@@ -502,7 +430,7 @@ namespace _TextBoyWins_ {
 }
 struct DataTextBoyWins : public PixelDataImpl<DataTextBoyWins> {
        static constexpr uint8_t width() { return 36; }
-       static constexpr uint8_t height() { return 13; }
+       static constexpr uint8_t height() { return 11; }
        static constexpr const uint8_t* indices() { return _TextBoyWins_::indices; }
        static constexpr const uint8_t* color() { return _TextBoyWins_::color; }
        constexpr DataTextBoyWins(){}

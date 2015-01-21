@@ -32,8 +32,8 @@ public:
         addChild(&textSprite);
 
         girlWins.centerY = 12;
-        boyWins.centerY = 12;
-        youWin.centerY = 13;
+        boyWins.centerY = 10;
+        youWin.centerY = 12;
 
         visible =false;
     }
