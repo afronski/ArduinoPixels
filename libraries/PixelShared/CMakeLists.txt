@@ -25,6 +25,7 @@ set(HDR
     Alien2.h
     Alien3.h
     AlienPond.h
+    Array.h
     Blood.h
     Cloud.h
     DataAlien1Dead.h

@@ -30,6 +30,24 @@ public:
     const PixelData * currentData = nullptr;
     int drawType = 0;
 
+    void reset()
+    {
+        intHidden = false;
+        x = 0;
+        y = 0;
+        fxReal = 0;
+        fx = 0;
+        fy = 0;
+        drawfY = 0;
+        drawfX = 0;
+        visible = true;
+        depth = 1;
+        hasHitRect = false;
+        hitRect = npRect();
+        currentData = nullptr;
+        drawType = 0;
+    }
+
     virtual void addChild(Sprite *child)
     {
         child->parent =this;

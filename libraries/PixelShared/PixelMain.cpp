@@ -33,8 +33,7 @@ void PixelMain::setGameState(int state)
         break;
 
     case STATE_MENU_TO_GAME:
-        allocGame();
-        resetGame();
+        initGame();
         switchTime =1;
         break;
 
@@ -70,17 +69,7 @@ void PixelMain::setup()
     setupMenu();
     setupGame();
     
-    setupGame1p();
-    setupGame2p();
-    setupGameVS();
-    
     setGameState(STATE_INTRO);
-    
-   
-       
-    
-   
-    
 }
 void PixelMain::setInput(int key)
 {
@@ -95,14 +84,27 @@ void PixelMain::setInput(int key)
     
     }else if(gameState==STATE_MENU)
     {
+        resetGame();
     
         if((key>=0 && key<6) || (key>=20 && key<26))
         {
         
         //select
-            if(menuPos==0){ gameType =GAME_TYPE_1P;}
-            else if(menuPos==1){ gameType =GAME_TYPE_2P;}
-            else{ gameType =GAME_TYPE_VS;}
+        switch (menuPos)
+        {
+        case 0:
+            gameType = GAME_TYPE_1P;
+            setupGame1p();
+            break;
+        case 1:
+            gameType = GAME_TYPE_2P;
+            setupGame2p();
+            break;
+        default:
+            gameType = GAME_TYPE_VS;
+            setupGameVS();
+            break;
+        }
             
             
          setGameState(STATE_MENU_TO_GAME);

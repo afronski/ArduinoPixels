@@ -152,7 +152,7 @@ const DataGirlWalk2 walk2DataG;
 const DataGirlWalk3 walk3DataG;
 const DataGirlDeath deathDataG;
 
-void PixelMain::allocGame()
+void PixelMain::initGame()
 {
     // boy
     jumpKickDataB.centerX-=1;
@@ -509,6 +509,8 @@ SpecialAttack * PixelMain::getSpecialAttack(const  Vector<SpecialAttack *> &atta
 
 void  PixelMain::resetGame()
 {
+    gameOverText.reset();
+
     endGame  =false;
     stagefx =0;
     resetGame1p();

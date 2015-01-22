@@ -13,7 +13,7 @@ void PixelMain::setupGame2p()
     int posCity [2] = {30,150};
     for(int i=0;i<MAX_CITIES;i++)
     {
-        DecorSprite * city = &_cities2p[i];
+        DecorSprite * city = &_cities[i];
         city ->currentData = &_cityData;
         
         city->fx = city->fxReal = posCity [i];
@@ -29,7 +29,7 @@ void PixelMain::setupGame2p()
 
     for(int i=0;i<MAX_FARTREES;i++)
     {
-        DecorSprite * treeFar = &_farTrees2p[i];
+        DecorSprite * treeFar = &_farTrees[i];
         treeFar ->currentData = &_treeFarData;
         treeFar ->fx  =treeFar ->fxReal = treePosS[i];
         // cout << treeFar->fx<<",";
@@ -48,7 +48,7 @@ void PixelMain::setupGame2p()
     int treePosH [8] = {-2,0,-1,-2,0,-2,-1,-1};
     for(int i=0;i<MAX_CLOSETREES;i++)
     {
-        DecorSprite * treeClose = &_closeTrees2p[i];
+        DecorSprite * treeClose = &_closeTrees[i];
         
         treeClose->currentData = &_treeCloseData;
         treeClose->fx = treeClose->fxReal = treePos [i];
@@ -65,7 +65,7 @@ void PixelMain::setupGame2p()
     srand (1);
     for(int i=0;i<MAX_FLOWERS;i++)
     {
-        DecorSprite * flower = &_flowers2p[i];
+        DecorSprite * flower = &_flowers[i];
         flower ->currentData = &_flowerData;
         
         flower->fx = flower->fxReal = rand()%600;
@@ -81,7 +81,7 @@ void PixelMain::setupGame2p()
     int posBush [] = {60,150, 400,470};
     for(int i=0;i<4;i++)
     {
-        DecorSprite * bush = &_bushes2p[i];
+        DecorSprite * bush = &_bushes[i];
         
         bush->currentData = &_bushData;
         bush->fx = bush->fxReal = posBush[i];
@@ -94,7 +94,7 @@ void PixelMain::setupGame2p()
     int posPaddo[] = {250,320,550};
     for(int i=0;i<MAX_PADDOS;i++)
     {
-        DecorSprite * paddo = &_paddos2p[i];
+        DecorSprite * paddo = &_paddos[i];
         
         paddo->currentData = &_paddoData;
         paddo->fx = paddo->fxReal = posPaddo[i];
@@ -151,7 +151,7 @@ void PixelMain::setupGame2p()
     for (int i=0;i<MAX_ALIEN;i++)
     {
         
-        Alien1 *alien = &_alien1_2p[i];
+        Alien1 *alien = &_alien1[i];
         
         alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
         alien->fy =15;
@@ -165,7 +165,7 @@ void PixelMain::setupGame2p()
     int posAlien2 [4] = {95,150, 250 , 420};
     for (int i=0;i<MAX_ALIEN;i++)
     {
-        Alien2 *alien = &_alien2_2p[i];
+        Alien2 *alien = &_alien2[i];
         
         alien->fx  = alien->fxReal =posAlien2[i];
         alien->fy =15;

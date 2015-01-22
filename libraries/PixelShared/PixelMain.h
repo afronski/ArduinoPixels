@@ -30,6 +30,7 @@
 #include "Life.h"
 #include "SpecialAttack.h"
 #include "Vector.h"
+#include "Array.h"
 
 #include "SpaceShip.h"
 #include "Star.h"
@@ -105,7 +106,7 @@ public:
     Sprite pressKeyText;
 
     #define MAX_STARS 20
-    Star _stars[MAX_STARS];
+    Array<Star, MAX_STARS> _stars;
     Vector <Star *> stars;
     
     Sprite backgroundIntro;
@@ -135,7 +136,7 @@ public:
     
     ////////////////////////////////////////
     //GAME STUFF SHARED
-    void allocGame();
+    void initGame();
 
     void setupGame();
     void updateGame(float);
@@ -150,9 +151,9 @@ public:
     GameOverText gameOverText;
 
     #define MAX_ATTACKS 16
-    SpecialAttack _specialAttacks[MAX_ATTACKS];
+    Array<SpecialAttack, MAX_ATTACKS> _specialAttacks;
     #define MAX_BLOOD 8
-    Blood _bloods[MAX_BLOOD];
+    Array<Blood, MAX_BLOOD> _bloods;
     
     Vector<SpecialAttack *>specialAttackBuffer1p;
     Vector<Blood *>bloodBuffer1p;
@@ -170,39 +171,23 @@ public:
     void alienHitTest(Hero * hero,const Vector<Alien *> &aliens,const Vector<Blood *> &_bloods);
     
     //shared
-
-    // TODO share data between games
-    // OR move to cpp files
     #define MAX_CITIES 2
-    DecorSprite _cities1p[MAX_CITIES];
-    DecorSprite _cities2p[MAX_CITIES];
-    DecorSprite _citiesVS[1];
+    Array<DecorSprite, MAX_CITIES> _cities;
     #define MAX_FARTREES 15
-    DecorSprite _farTrees1p[MAX_FARTREES];
-    DecorSprite _farTrees2p[MAX_FARTREES];
-    DecorSprite _farTreesVS[3];
+    Array<DecorSprite, MAX_FARTREES> _farTrees;
     #define MAX_CLOSETREES 8
-    DecorSprite _closeTrees1p[MAX_CLOSETREES];
-    DecorSprite _closeTrees2p[MAX_CLOSETREES];
-    DecorSprite _closeTreesVS[1];
+    Array<DecorSprite, MAX_CLOSETREES> _closeTrees;
     #define MAX_FLOWERS 20
-    DecorSprite _flowers1p[MAX_FLOWERS];
-    DecorSprite _flowers2p[MAX_FLOWERS];
-    DecorSprite _flowersVS[6];
+    Array<DecorSprite, MAX_FLOWERS> _flowers;
     #define MAX_BUSHES 4
-    DecorSprite _bushes1p[MAX_BUSHES];
-    DecorSprite _bushes2p[MAX_BUSHES];
-    DecorSprite _bushesVS[1];
+    Array<DecorSprite, MAX_BUSHES> _bushes;
     #define MAX_PADDOS 3
-    DecorSprite _paddos1p[MAX_PADDOS];
-    DecorSprite _paddos2p[MAX_PADDOS];
+    Array<DecorSprite, MAX_PADDOS> _paddos;
     #define MAX_ALIEN 4
-    Alien1 _alien1_1p[MAX_ALIEN];
-    Alien1 _alien1_2p[MAX_ALIEN];
-    Alien2 _alien2_1p[MAX_ALIEN];
-    Alien2 _alien2_2p[MAX_ALIEN];
+    Array<Alien1, MAX_ALIEN> _alien1;
+    Array<Alien2, MAX_ALIEN> _alien2;
     #define MAX_ALIENPOND 2
-    AlienPond _alienPonds[MAX_ALIENPOND];
+    Array<AlienPond, MAX_ALIENPOND> _alienPonds;
     Alien3 _alienBoss;
 
     const DataCity _cityData;

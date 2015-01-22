@@ -11,7 +11,7 @@
 void PixelMain::setupGameVS()
 {
    
-        DecorSprite * city = &_citiesVS[0];
+        DecorSprite * city = &_cities[0];
         city ->currentData = &_cityData;
         
         city->fx = city->fxReal = 30;
@@ -24,7 +24,7 @@ void PixelMain::setupGameVS()
     int posTreeFar [3] = { 16,25, 77 };
     for(int i=0;i<3;i++)
     {
-        DecorSprite * treeFar = &_farTreesVS[i];
+        DecorSprite * treeFar = &_farTrees[i];
         treeFar ->currentData = &_treeFarData;
         treeFar ->fx  =treeFar ->fxReal =  posTreeFar[i] ;
         int rPos = -rand()%2;
@@ -37,7 +37,7 @@ void PixelMain::setupGameVS()
     }
     
    
-        DecorSprite * treeClose = &_closeTreesVS[0];
+        DecorSprite * treeClose = &_closeTrees[0];
         
         treeClose->currentData = &_treeCloseData;
         treeClose->fx = treeClose->fxReal = 50;
@@ -51,7 +51,7 @@ void PixelMain::setupGameVS()
     
     
     
-    DecorSprite * bush = &_bushesVS[0];
+    DecorSprite * bush = &_bushes[0];
     
     bush->currentData = &_bushData;
     bush->fx = bush->fxReal = 35;
@@ -67,7 +67,7 @@ void PixelMain::setupGameVS()
    
     for(int i=0;i<6;i++)
     {
-        DecorSprite * flower = &_flowersVS[i];
+        DecorSprite * flower = &_flowers[i];
         flower ->currentData = &_flowerData;
         
         flower->fx = posFlower[i];
@@ -100,7 +100,7 @@ void PixelMain::setupGameVS()
         stageVS.addChild( decorVS[i]);
         
     }
-    
+
     for (int i=0;i<6;i++)
     {
         SpecialAttack *attack = &_specialAttacks[i];
