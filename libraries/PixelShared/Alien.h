@@ -24,9 +24,7 @@ public:
     virtual void reset()
     {
     }
-    virtual void update(float /*timeElapsed*/)
-    {
-    }
+    virtual void update(float /*timeElapsed*/) = 0;
     void setLevelPos(float levelfx)
     {
         fx =  fxReal-levelfx;

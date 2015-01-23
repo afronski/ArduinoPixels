@@ -39,7 +39,7 @@ public:
         feet.currentData = &feetData;
         addChild(&feet);
     }
-    virtual void reset()
+    virtual void reset() override
     {
         fxReal =fxStart;
         isDead =false;
@@ -47,7 +47,7 @@ public:
         fy =15;
          saveTime =-1;
     }
-    void update(float timeElapsed)
+    virtual void update(float timeElapsed) override
     {
       
         if(intHidden)return;

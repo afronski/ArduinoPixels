@@ -130,18 +130,18 @@ void PixelMain::setupGameVS()
     lifeBoyHolderVS.currentData = &boyInterData;
     stageVS.addChild(&lifeGirlHolderVS);
     lifeGirlHolderVS.currentData = &girlInterData;
-    lifeBoyVS.setup();
-    lifeGirlVS.setup();
-    lifeGirlVS.fx =1;
-    lifeGirlVS.fy=-2;
-    lifeBoyVS.fx =0;
-    lifeBoyVS.fy=-2;
-    lifeBoyHolderVS.addChild(&lifeBoyVS);
-    lifeGirlHolderVS.addChild(&lifeGirlVS);
+    lifeBoy.setup();
+    lifeGirl.setup();
+    lifeGirl.fx =1;
+    lifeGirl.fy=-2;
+    lifeBoy.fx =0;
+    lifeBoy.fy=-2;
+    lifeBoyHolderVS.addChild(&lifeBoy);
+    lifeGirlHolderVS.addChild(&lifeGirl);
 
-    gameOverText.fy = 0;
-    gameOverText.fx = 0;
-    stageVS.addChild(&gameOverText);
+    _gameOverText.fy = 0;
+    _gameOverText.fx = 0;
+    stageVS.addChild(&_gameOverText);
     
     
     
@@ -153,8 +153,8 @@ void PixelMain::resetGameVS()
     lifeBoyHolderVS.fy =16;
     lifeGirlHolderVS.fx =104;
     lifeGirlHolderVS.fy =16;
-    lifeGirlVS.reset();
-    lifeBoyVS.reset();
+    lifeGirl.reset();
+    lifeBoy.reset();
 
     lifeBoyHolder1p.fx =-15;
     lifeBoyHolder1p.fy =16;
@@ -176,7 +176,7 @@ void PixelMain::updateGameVS(float timeElapsed)
     if (gameState == STATE_GAME_OVER)
     {
         switchTime -=timeElapsed;
-        gameOverText.update(switchTime);
+        _gameOverText.update(switchTime);
        /* if( switchTime>8&& switchTime<9)
         {
         
@@ -188,7 +188,7 @@ void PixelMain::updateGameVS(float timeElapsed)
         }*/
         if(switchTime<0)
         {
-            gameOverText.hide();
+            _gameOverText.hide();
             setGameState(STATE_INTRO);
             return;
         }
@@ -298,20 +298,20 @@ void PixelMain::updateGameVS(float timeElapsed)
     }
     if(heroVSF.life==0 && gameState ==STATE_GAME)
     {
-        gameOverText.show(1);
+        _gameOverText.show(1);
         
         setGameState(STATE_GAME_OVER);
     }
     if(heroVSM.life==0&& gameState ==STATE_GAME)
     {
-        gameOverText.show(2);
+        _gameOverText.show(2);
         
         setGameState(STATE_GAME_OVER);
     }
-    lifeGirlVS.setLife(heroVSF.life);
-    lifeBoyVS.setLife(heroVSM.life);
+    lifeGirl.setLife(heroVSF.life);
+    lifeBoy.setLife(heroVSM.life);
     
-    lifeBoyVS.update(timeElapsed);
-    lifeGirlVS.update(timeElapsed);
+    lifeBoy.update(timeElapsed);
+    lifeGirl.update(timeElapsed);
   
 }

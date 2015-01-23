@@ -62,8 +62,7 @@ class PixelMain
 {
 public:
     SoundPlayer soundPlayer;
-    Alien3 *alienBoss2p;
-    Alien3 *alienBoss1p;
+    Alien3 *alienBoss;
     
     PixelRenderer * renderer;
     
@@ -148,7 +147,7 @@ public:
     Blood * getBlood(const Vector<Blood *> & _bloods);
     SpecialAttack * getSpecialAttack(const Vector<SpecialAttack *> &attacs);
     
-    GameOverText gameOverText;
+    GameOverText _gameOverText;
 
     #define MAX_ATTACKS 16
     Array<SpecialAttack, MAX_ATTACKS> _specialAttacks;
@@ -184,8 +183,8 @@ public:
     #define MAX_PADDOS 3
     Array<DecorSprite, MAX_PADDOS> _paddos;
     #define MAX_ALIEN 4
-    Array<Alien1, MAX_ALIEN> _alien1;
-    Array<Alien2, MAX_ALIEN> _alien2;
+    Array<Alien1, MAX_ALIEN> _aliens1;
+    Array<Alien2, MAX_ALIEN> _aliens2;
     #define MAX_ALIENPOND 2
     Array<AlienPond, MAX_ALIENPOND> _alienPonds;
     Alien3 _alienBoss;
@@ -198,6 +197,8 @@ public:
     const DataPaddo _paddoData;
 
     //////////////////////lifedata
+    Life lifeGirl;
+    Life lifeBoy;
     DataInterface boyInterData;
     DataInterface2 girlInterData;
 
@@ -218,7 +219,6 @@ public:
     
     Vector <Alien *> aliens1p;
     Sprite lifeBoyHolder1p;
-    Life lifeBoy1p;
   
     Vector<Live *>live1p;
     WaterSplash waterSplash1p;
@@ -233,8 +233,6 @@ public:
     Hero hero2pF;
     Sprite lifeBoyHolder2p;
     Sprite lifeGirlHolder2p;
-    Life lifeGirl2p;
-    Life lifeBoy2p;
     Vector<Live *>live2p;
     Vector<DecorSprite *>decor2p;
     WaterSplash waterSplash2p;
@@ -249,8 +247,6 @@ public:
     
     Sprite lifeBoyHolderVS;
     Sprite lifeGirlHolderVS;
-    Life lifeGirlVS;
-    Life lifeBoyVS;
     Vector<Live *>liveVS;
     Vector<DecorSprite *>decorVS;
     

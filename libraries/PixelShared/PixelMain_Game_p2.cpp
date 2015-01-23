@@ -151,7 +151,7 @@ void PixelMain::setupGame2p()
     for (int i=0;i<MAX_ALIEN;i++)
     {
         
-        Alien1 *alien = &_alien1[i];
+        Alien1 *alien = &_aliens1[i];
         
         alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
         alien->fy =15;
@@ -165,7 +165,7 @@ void PixelMain::setupGame2p()
     int posAlien2 [4] = {95,150, 250 , 420};
     for (int i=0;i<MAX_ALIEN;i++)
     {
-        Alien2 *alien = &_alien2[i];
+        Alien2 *alien = &_aliens2[i];
         
         alien->fx  = alien->fxReal =posAlien2[i];
         alien->fy =15;
@@ -176,14 +176,14 @@ void PixelMain::setupGame2p()
     }
 
    {
-        alienBoss2p  = &_alienBoss;
+        alienBoss  = &_alienBoss;
 
-        alienBoss2p->fx  =  alienBoss2p->fxReal=600 ;//=600;//40+ rand()%200;
-        alienBoss2p->fy =15;
-        alienBoss2p->setup();//setup after fx
-        aliens2p.push_back(   alienBoss2p);
-        stage2p.addChild(     alienBoss2p);
-        live2p.push_back(     alienBoss2p);
+        alienBoss->fx  =  alienBoss->fxReal=600 ;//=600;//40+ rand()%200;
+        alienBoss->fy =15;
+        alienBoss->setup();//setup after fx
+        aliens2p.push_back(   alienBoss);
+        stage2p.addChild(     alienBoss);
+        live2p.push_back(     alienBoss);
     }
 
     stage2p.addChild(&hero2pF);
@@ -201,14 +201,14 @@ void PixelMain::setupGame2p()
     lifeBoyHolder2p.currentData = &boyInterData;
     stage2p.addChild(&lifeGirlHolder2p);
     lifeGirlHolder2p.currentData = &girlInterData;
-    lifeBoy2p.setup();
-    lifeGirl2p.setup();
-    lifeGirl2p.fx =1;
-    lifeGirl2p.fy=-2;
-    lifeBoy2p.fx =0;
-    lifeBoy2p.fy=-2;
-    lifeBoyHolder2p.addChild(&lifeBoy2p);
-    lifeGirlHolder2p.addChild(&lifeGirl2p);
+    lifeBoy.setup();
+    lifeGirl.setup();
+    lifeGirl.fx =1;
+    lifeGirl.fy=-2;
+    lifeBoy.fx =0;
+    lifeBoy.fy=-2;
+    lifeBoyHolder2p.addChild(&lifeBoy);
+    lifeGirlHolder2p.addChild(&lifeGirl);
 
     stage2p.addChild(&waterSplash2p);
 
@@ -222,9 +222,9 @@ void PixelMain::setupGame2p()
     }
 
     //gameOver
-    gameOverText.fy = 0;
-    gameOverText.fx = 0;
-    stage2p.addChild(&gameOverText);
+    _gameOverText.fy = 0;
+    _gameOverText.fx = 0;
+    stage2p.addChild(&_gameOverText);
 }
 void PixelMain::resetGame2p()
 {
@@ -243,14 +243,9 @@ hero2pF.groundY =14;
     lifeBoyHolder2p.fy =16;
     lifeGirlHolder2p.fx =104;
     lifeGirlHolder2p.fy =16;
-   lifeGirl2p.reset();
-    lifeBoy2p.reset();
-    for(size_t i=0;i< aliens2p.size();i++)
-    {
-        
-        aliens2p[i]->reset();
-        
-    }
+    lifeGirl.reset();
+    lifeBoy.reset();
+
     hero2pF.setLevelPos(stagefx);
     
     hero2pM.setLevelPos(stagefx);
@@ -278,11 +273,11 @@ void PixelMain::updateGame2p (float timeElapsed)
     if (gameState == STATE_GAME_OVER)
     {
         switchTime -=timeElapsed;
-          gameOverText.update(switchTime);
+          _gameOverText.update(switchTime);
      
         if(switchTime<0)
         {
-            gameOverText.hide();
+            _gameOverText.hide();
             setGameState(STATE_INTRO);
             return;
         }
@@ -415,27 +410,27 @@ void PixelMain::updateGame2p (float timeElapsed)
         
     }
     
-    lifeBoy2p.setLife(hero2pM.life);
-    lifeGirl2p.setLife(hero2pF.life);
+    lifeBoy.setLife(hero2pM.life);
+    lifeGirl.setLife(hero2pF.life);
     
-    lifeBoy2p.update(timeElapsed);
-    lifeGirl2p.update(timeElapsed);
+    lifeBoy.update(timeElapsed);
+    lifeGirl.update(timeElapsed);
 
     for (size_t i=0;i<bloodBuffer2p.size();i++)
     {
         bloodBuffer2p[i]->update(timeElapsed,stagefx);
     }
      waterSplash2p.update(timeElapsed,stagefx);
-    if( alienBoss2p->isDead && gameState ==STATE_GAME)
+    if( alienBoss->isDead && gameState ==STATE_GAME)
     {
-        gameOverText.show(3);
+        _gameOverText.show(3);
      
         setGameState(STATE_GAME_OVER);
         return;
     }
     if(hero2pM.life<=0  && hero2pF.life<=0 && gameState ==STATE_GAME)
     {
-        gameOverText.show();
+        _gameOverText.show();
   
         setGameState(STATE_GAME_OVER); ;
     }

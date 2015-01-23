@@ -509,7 +509,10 @@ SpecialAttack * PixelMain::getSpecialAttack(const  Vector<SpecialAttack *> &atta
 
 void  PixelMain::resetGame()
 {
-    gameOverText.reset();
+    _gameOverText.reset();
+    _aliens1.reset();
+    _aliens2.reset();
+    _alienBoss.reset();
 
     endGame  =false;
     stagefx =0;

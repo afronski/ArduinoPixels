@@ -150,7 +150,7 @@ void PixelMain::setupGame1p()
     for (int i=0;i<MAX_ALIEN;i++)
     {
 
-        Alien1 *alien  = &_alien1[i];
+        Alien1 *alien  = &_aliens1[i];
 
         alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
         alien->fy =15;
@@ -164,7 +164,7 @@ void PixelMain::setupGame1p()
      int posAlien2 [4] = {95,150, 250 , 420};
     for (int i=0;i<MAX_ALIEN;i++)
     {
-        Alien2 *alien = &_alien2[i];
+        Alien2 *alien = &_aliens2[i];
       
         alien->fx  = alien->fxReal =posAlien2[i];
         alien->fy =15;
@@ -175,14 +175,14 @@ void PixelMain::setupGame1p()
 
     }     
     {
-    alienBoss1p = &_alienBoss;
-    
-    alienBoss1p->fx  =  alienBoss1p->fxReal =600;//40+ rand()%200;
-    alienBoss1p->fy =15;
-    alienBoss1p->setup();//setup after fx
-    aliens1p.push_back(alienBoss1p);
-    stage1p.addChild(alienBoss1p);
-    live1p.push_back(alienBoss1p);
+    alienBoss = &_alienBoss;
+
+    alienBoss->fx  =  alienBoss->fxReal =600;//40+ rand()%200;
+    alienBoss->fy =15;
+    alienBoss->setup();//setup after fx
+    aliens1p.push_back(alienBoss);
+    stage1p.addChild(alienBoss);
+    live1p.push_back(alienBoss);
     }
   
     
@@ -196,11 +196,11 @@ void PixelMain::setupGame1p()
     
     //life
     lifeBoyHolder1p.currentData = &boyInterData ;
-    lifeBoy1p.setup();
-    lifeBoy1p.fx =0;
-    lifeBoy1p.fy=-2;
+    lifeBoy.setup();
+    lifeBoy.fx =0;
+    lifeBoy.fy=-2;
     
-    lifeBoyHolder1p.addChild(&lifeBoy1p);
+    lifeBoyHolder1p.addChild(&lifeBoy);
     stage1p.addChild(&lifeBoyHolder1p);
 
     stage1p.addChild(&waterSplash1p);
@@ -213,32 +213,25 @@ void PixelMain::setupGame1p()
         bloodBuffer1p.push_back(blood);
         stage1p.addChild(blood);
     }
-    gameOverText.fy = 0;
-    gameOverText.fx =0;
-    stage1p.addChild(&gameOverText);
+    _gameOverText.fy = 0;
+    _gameOverText.fx =0;
+    stage1p.addChild(&_gameOverText);
     
     
 }
 void PixelMain::resetGame1p()
 {
-    lifeBoy1p.reset();
+    lifeBoy.reset();
     lifeBoyHolder1p.fx =-15;
     lifeBoyHolder1p.fy =16;
     hero1pm.fxReal = 20;
     hero1pm.fx =20;
     hero1pm.fy = -16;
     hero1pm.reset();
-    gameOverText.fy = 0;
-    for(size_t i=0;i< aliens1p.size();i++)
-    {
+    _gameOverText.fy = 0;
 
-        aliens1p[i]->reset();
-
-    }
-    
-    
     hero1pm.setLevelPos(stagefx);
-    
+
     for(size_t i=0;i< aliens1p.size();i++)
     {
 
@@ -258,11 +251,11 @@ void PixelMain::updateGame1p (float timeElapsed)
     if (gameState == STATE_GAME_OVER)
     {
         switchTime -=timeElapsed;
-        gameOverText.update(switchTime);
+        _gameOverText.update(switchTime);
     
         if(switchTime<0)
         {
-            gameOverText.hide();
+            _gameOverText.hide();
             setGameState(STATE_INTRO);
             return;
         
@@ -379,8 +372,8 @@ void PixelMain::updateGame1p (float timeElapsed)
         
     }
   
-    lifeBoy1p.setLife(hero1pm.life);
-    lifeBoy1p.update(timeElapsed);
+    lifeBoy.setLife(hero1pm.life);
+    lifeBoy.update(timeElapsed);
    
     
     
@@ -392,9 +385,9 @@ void PixelMain::updateGame1p (float timeElapsed)
     }
     waterSplash1p.update(timeElapsed,stagefx);
     
-    if( alienBoss1p->isDead && gameState ==STATE_GAME)
+    if( alienBoss->isDead && gameState ==STATE_GAME)
     {
-        gameOverText.show(3);
+        _gameOverText.show(3);
         
         setGameState(STATE_GAME_OVER);
         return;
@@ -402,7 +395,7 @@ void PixelMain::updateGame1p (float timeElapsed)
     
     if(&hero1pm.life==0  && gameState ==STATE_GAME)
     {
-        gameOverText.show();
+        _gameOverText.show();
       
          setGameState(STATE_GAME_OVER); ;
     }
