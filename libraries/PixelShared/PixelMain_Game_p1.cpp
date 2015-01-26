@@ -247,62 +247,57 @@ void PixelMain::resetGame1p()
 
 void PixelMain::updateGame1p (float timeElapsed)
 {
-    
-    if (gameState == STATE_GAME_OVER)
+    switch (gameState)
     {
-        switchTime -=timeElapsed;
-        _gameOverText.update(switchTime);
-    
-        if(switchTime<0)
-        {
-            _gameOverText.hide();
-            setGameState(STATE_INTRO);
-            return;
-        
-        }
-    }
-    if (gameState == STATE_GAME_START)
-    {
-        
-        
+    case STATE_GAME_START:
         lifeBoyHolder1p.fx = Sprite::linearEase(1-switchTime,-15,19,1);
-               
+
         switchTime -=timeElapsed;
         if(switchTime<0){
             setGameState(STATE_GAME);
             lifeBoyHolder1p.fx = 4;
         }
-               for (int i=0;i<3;i++)
-        {
+        for (int i=0;i<3;i++)
             clouds1p[i]->update(timeElapsed);
-            
+        return;
+
+    case STATE_GAME_OVER:
+        switchTime -=timeElapsed;
+        _gameOverText.update(switchTime);
+
+        if(switchTime<0)
+        {
+            _gameOverText.hide();
+            setGameState(STATE_INTRO);
+            return;
+        }
+        break;
+
+    case STATE_GAME:
+        if( alienBoss->isDead)
+        {
+            _gameOverText.show(3);
+
+            setGameState(STATE_GAME_OVER);
         }
 
-        
-        
-        
-        return;
-        
-    }
-  
-    for(size_t i=0;i< aliens1p.size();i++)
-    {
-    
-         aliens1p[i]->update(timeElapsed);
+        if(hero1pm.life==0)
+        {
+            _gameOverText.show();
 
+             setGameState(STATE_GAME_OVER);
+        }
+        break;
     }
-    
-    
-        hero1pm.update(timeElapsed);
-    
-    
+
+    for(size_t i=0;i< aliens1p.size();i++)
+        aliens1p[i]->update(timeElapsed);
+
+    hero1pm.update(timeElapsed);
+
     resolveShoot(live1p,specialAttackBuffer1p);
 
     checkShoot(live1p,specialAttackBuffer1p,bloodBuffer1p);
-
-
-
-
 
     if(hero1pm.fxReal < -10 )
     {
@@ -312,7 +307,6 @@ void PixelMain::updateGame1p (float timeElapsed)
     if(hero1pm.fxReal >550 )
     {
         endGame =true;
-       
     }
     if( endGame )
     {
@@ -330,77 +324,38 @@ void PixelMain::updateGame1p (float timeElapsed)
     if(hero1pm.fxReal > stagefx+60 )
     {
         stagefx += hero1pm.fxReal -( stagefx+60 );
-    
     }
     else  if(hero1pm.fxReal < stagefx+15)
     {
-        stagefx -= ( stagefx+15 )-hero1pm.fxReal ;
-        
+        stagefx -= ( stagefx+15 )-hero1pm.fxReal;
     }
-    
+
     for (size_t i=0;i<specialAttackBuffer1p.size();i++)
     {
         specialAttackBuffer1p[i]->update(timeElapsed, stagefx);
     }
-    //if(rand()%20==0)cout << hero1pm.fxReal <<endl;
-   alienHitTest(&hero1pm, aliens1p,bloodBuffer1p);
-    
+    alienHitTest(&hero1pm, aliens1p,bloodBuffer1p);
+
     resolveAttack(live1p,bloodBuffer1p);
-    
-    
-   
-    
-    
+
+
     hero1pm.setLevelPos(stagefx);
 
     for(size_t i=0;i< aliens1p.size();i++)
-    {
-        
         aliens1p[i]->setLevelPos(stagefx);
-        
-    }
-    
-    
-    
+
+
     for (size_t i=0;i<   decor1p.size();i++)
-    {
         decor1p[i]->setLevelPos(stagefx);
-    }
+
     for (int i=0;i<3;i++)
-    {
         clouds1p[i]->update(timeElapsed);
-        
-    }
-  
+
     lifeBoy.setLife(hero1pm.life);
     lifeBoy.update(timeElapsed);
-   
-    
-    
-    
+
     for (size_t i=0;i<bloodBuffer1p.size();i++)
-    {
         bloodBuffer1p[i]->update(timeElapsed,stagefx);
-        
-    }
+
     waterSplash1p.update(timeElapsed,stagefx);
-    
-    if( alienBoss->isDead && gameState ==STATE_GAME)
-    {
-        _gameOverText.show(3);
-        
-        setGameState(STATE_GAME_OVER);
-        return;
-    }
-    
-    if(&hero1pm.life==0  && gameState ==STATE_GAME)
-    {
-        _gameOverText.show();
-      
-         setGameState(STATE_GAME_OVER); ;
-    }
-    
-    
-    
-   
 }
