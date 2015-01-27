@@ -73,108 +73,168 @@ void PixelMain::setup()
 }
 void PixelMain::setInput(int key)
 {
-    
-    if( gameState == STATE_INTRO)
+    switch (gameState)
     {
-         switchTime =1;
-      setGameState(STATE_INTRO_TO_MENU);
-    }else if(gameState == STATE_INTRO_TO_MENU|| gameState == STATE_MENU_TO_GAME|| gameState == STATE_GAME_START)
-    {
-    //do nothing
-    
-    }else if(gameState==STATE_MENU)
-    {
+    case STATE_INTRO:
+        switchTime =1;
+        setGameState(STATE_INTRO_TO_MENU);
+        break;
+
+    case STATE_MENU:
         resetGame();
-    
+
         if((key>=0 && key<6) || (key>=20 && key<26))
         {
-        
-        //select
-        switch (menuPos)
-        {
-        case 0:
-            gameType = GAME_TYPE_1P;
-            setupGame1p();
-            break;
-        case 1:
-            gameType = GAME_TYPE_2P;
-            setupGame2p();
-            break;
-        default:
-            gameType = GAME_TYPE_VS;
-            setupGameVS();
-            break;
-        }
-            
-            
-         setGameState(STATE_MENU_TO_GAME);
-        
+            //select
+            switch (menuPos)
+            {
+            case 0:
+                gameType = GAME_TYPE_1P;
+                setupGame1p();
+                break;
+            case 1:
+                gameType = GAME_TYPE_2P;
+                setupGame2p();
+                break;
+            default:
+                gameType = GAME_TYPE_VS;
+                setupGameVS();
+                break;
+            }
+            setGameState(STATE_MENU_TO_GAME);
         }
         if(key==13|| key==33) menuRight();
         if(key==17|| key==37) menuLeft();
-    
-    }
-    else if(gameState==STATE_GAME|| gameState == STATE_GAME_OVER)
-    {
+        break;
 
-        if(gameType ==GAME_TYPE_1P)
+    case STATE_GAME:
+    case STATE_GAME_OVER:
+
+        switch (gameType)
         {
+        case GAME_TYPE_1P:
             boyHero = &hero1pm;
-           
-        } else if(gameType ==GAME_TYPE_VS)
-        {
-            boyHero = &heroVSM;
-            girlHero = &heroVSF;
-        }else if(gameType ==GAME_TYPE_2P)
-        {
-        
+            break;
+
+        case GAME_TYPE_2P:
             boyHero = &hero2pM;
             girlHero = &hero2pF;
-        
+            break;
+
+        case GAME_TYPE_VS:
+            boyHero = &heroVSM;
+            girlHero = &heroVSF;
+            break;
         }
 
-        if(key==0)boyHero->setKey(10);
-        if(key==1)boyHero->setKey(11);
-        if(key==2)boyHero->setKey(10);
-        if(key==3)boyHero->setKey(12);
-        if(key==4)boyHero->setKey(10);
-        if(key==5)boyHero->setKey(13);
-    
-    
-        if(key==10)boyHero->setKey(0);
-        if(key==11)boyHero->setKey(1);
-        if(key==12)boyHero->setKey(2);
-        if(key==13)boyHero->setKey(3);
-        if(key==14)boyHero->setKey(4);
-        if(key==15)boyHero->setKey(5);
-        if(key==16)boyHero->setKey(6);
-        if(key==17)boyHero->setKey(7);
-        if(key==18)boyHero->setKey(8);
-    
-        
+        switch (key)
+        {
+        case 0:
+            boyHero->setKey(10);
+            break;
+        case 1:
+            boyHero->setKey(11);
+            break;
+        case 2:
+            boyHero->setKey(10);
+            break;
+        case 3:
+            boyHero->setKey(12);
+            break;
+        case 4:
+            boyHero->setKey(10);
+            break;
+        case 5:
+            boyHero->setKey(13);
+            break;
+
+        case 10:
+            boyHero->setKey(0);
+            break;
+        case 11:
+            boyHero->setKey(1);
+            break;
+        case 12:
+            boyHero->setKey(2);
+            break;
+        case 13:
+            boyHero->setKey(3);
+            break;
+        case 14:
+            boyHero->setKey(4);
+            break;
+        case 15:
+            boyHero->setKey(5);
+            break;
+        case 16:
+            boyHero->setKey(6);
+            break;
+        case 17:
+            boyHero->setKey(7);
+            break;
+        case 18:
+            boyHero->setKey(8);
+            break;
+        }
+
         if(gameType !=GAME_TYPE_1P)
         {
-    
-            if(key==20)girlHero->setKey(10);
-            if(key==21)girlHero->setKey(11);
-            if(key==22)girlHero->setKey(10);
-            if(key==23)girlHero->setKey(12);
-            if(key==24)girlHero->setKey(10);
-            if(key==25)girlHero->setKey(13);
-    
-    
-            if(key==30)girlHero->setKey(0);
-            if(key==31)girlHero->setKey(1);
-            if(key==32)girlHero->setKey(2);
-            if(key==33)girlHero->setKey(3);
-            if(key==34)girlHero->setKey(4);
-            if(key==35)girlHero->setKey(5);
-            if(key==36)girlHero->setKey(6);
-            if(key==37)girlHero->setKey(7);
-            if(key==38)girlHero->setKey(8);
-        }
-    }
+            switch (key)
+            {
+            case 20:
+                girlHero->setKey(10);
+                break;
+            case 21:
+                girlHero->setKey(11);
+                break;
+            case 22:
+                girlHero->setKey(10);
+                break;
+            case 23:
+                girlHero->setKey(12);
+                break;
+            case 24:
+                girlHero->setKey(10);
+                break;
+            case 25:
+                girlHero->setKey(13);
+                break;
 
+            case 30:
+                girlHero->setKey(0);
+                break;
+            case 31:
+                girlHero->setKey(1);
+                break;
+            case 32:
+                girlHero->setKey(2);
+                break;
+            case 33:
+                girlHero->setKey(3);
+                break;
+            case 34:
+                girlHero->setKey(4);
+                break;
+            case 35:
+                girlHero->setKey(5);
+                break;
+            case 36:
+                girlHero->setKey(6);
+                break;
+            case 37:
+                girlHero->setKey(7);
+                break;
+            case 38:
+                girlHero->setKey(8);
+                break;
+            }
+        }
+        break;
+
+    default:
+        //do nothing
+        break;
+    }
 }
 void PixelMain::update(float timeElapsed)
 {

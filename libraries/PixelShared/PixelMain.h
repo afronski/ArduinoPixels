@@ -138,7 +138,7 @@ public:
     void initGame();
 
     void setupGame();
-    void updateGame(float);
+    void updateGame(float timeElapsed);
     void setHeroData(Hero * hero,int type);
     void setLifeData(Life * life);
     
@@ -212,7 +212,6 @@ public:
     void updateGame1p(float timeElapsed);
     void resetGame1p();
 
-    Vector<Cloud *>clouds1p;
     Vector<DecorSprite *>decor1p;
     
     Hero hero1pm;
@@ -227,7 +226,6 @@ public:
     void setupGame2p();
     void updateGame2p(float timeElapsed);
     void resetGame2p();
-    Vector<Cloud *>clouds2p;
     Vector <Alien *> aliens2p;
     Hero hero2pM;
     Hero hero2pF;
@@ -241,7 +239,6 @@ public:
     void setupGameVS();
     void updateGameVS(float timeElapsed);
     void resetGameVS();
-    Vector<Cloud *>cloudsVS;
     Hero heroVSM;
     Hero heroVSF;
     

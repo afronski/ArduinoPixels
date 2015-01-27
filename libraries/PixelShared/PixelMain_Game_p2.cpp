@@ -281,9 +281,6 @@ void PixelMain::updateGame2p (float timeElapsed)
             lifeBoyHolder2p.fx = 4;
             lifeGirlHolder2p.fx = 85;
         }
-        for (int i=0;i<3;i++)
-            clouds2p[i]->update(timeElapsed);
-
         return;
 
     case STATE_GAME_OVER:
@@ -369,13 +366,9 @@ void PixelMain::updateGame2p (float timeElapsed)
     
     for(size_t i=0;i< aliens2p.size();i++)
         aliens2p[i]->setLevelPos(stagefx);
-    
-    
+
     for (size_t i=0;i<   decor2p.size();i++)
         decor2p[i]->setLevelPos(stagefx);
-
-    for (int i=0;i<3;i++)
-        clouds2p[i]->update(timeElapsed);
     
     lifeBoy.setLife(hero2pM.life);
     lifeGirl.setLife(hero2pF.life);

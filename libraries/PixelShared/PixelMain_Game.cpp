@@ -87,8 +87,8 @@
 // Decor Data
 //
 
-Cloud _clouds[3];
-Sprite _backgroundGame[3];
+Array<Cloud,3> _clouds;
+Array<Sprite,3> _backgroundGame;
 const DataCloud1 _cloudData;
 const DataBackGrass _backGrass;
 
@@ -526,12 +526,20 @@ void PixelMain::setupGame()
     for(int i =0;i<3;i++)
     {
         Stage *stage = NULL;
-        if(i==0) stage  =&stage1p;
-        if(i==1) stage  =&stage2p;
-        if(i==2) stage  =&stageVS;
-        
-        
-        
+
+        switch (i)
+        {
+        case 0:
+            stage  =&stage1p;
+            break;
+        case 1:
+            stage  =&stage2p;
+            break;
+        case 2:
+            stage  =&stageVS;
+            break;
+        }
+
         //backGround
         
         Sprite * backgroundGame = &_backgroundGame[i];
@@ -546,14 +554,8 @@ void PixelMain::setupGame()
             c->fx = rand()%90;
             c->fy = rand()%5  -4+_cloudData.height();
             c->setup();
-            if(i==0) clouds1p.push_back(c);
-            if(i==1) clouds2p.push_back(c);
-            if(i==2) cloudsVS.push_back(c);
             stage->addChild(c);
         }
-       
-        
-        
     }
 }
 
@@ -626,6 +628,8 @@ void  PixelMain::setHeroData(Hero * hero,int type)
 
 
 }
-void PixelMain::updateGame(float /*timeElapsed*/)
+void PixelMain::updateGame(float timeElapsed)
 {
+    for (int i=0;i<3;i++)
+        _clouds[i].update(timeElapsed);
 }

@@ -261,9 +261,6 @@ void PixelMain::updateGameVS(float timeElapsed)
     for (size_t i=0;i<   decorVS.size();i++)
         decorVS[i]->setLevelPos(stagefx);
 
-    for (int i=0;i<3;i++)
-        cloudsVS[i]->update(timeElapsed);
-
     for (size_t i=0;i<bloodBufferVS.size();i++)
         bloodBufferVS[i]->update(timeElapsed,stagefx);
 

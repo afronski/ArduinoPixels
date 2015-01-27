@@ -257,8 +257,6 @@ void PixelMain::updateGame1p (float timeElapsed)
             setGameState(STATE_GAME);
             lifeBoyHolder1p.fx = 4;
         }
-        for (int i=0;i<3;i++)
-            clouds1p[i]->update(timeElapsed);
         return;
 
     case STATE_GAME_OVER:
@@ -347,9 +345,6 @@ void PixelMain::updateGame1p (float timeElapsed)
 
     for (size_t i=0;i<   decor1p.size();i++)
         decor1p[i]->setLevelPos(stagefx);
-
-    for (int i=0;i<3;i++)
-        clouds1p[i]->update(timeElapsed);
 
     lifeBoy.setLife(hero1pm.life);
     lifeBoy.update(timeElapsed);
