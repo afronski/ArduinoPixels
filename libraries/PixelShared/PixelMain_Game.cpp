@@ -624,10 +624,8 @@ void  PixelMain::setHeroData(Hero * hero,int type)
     }
 
     hero->currentData = hero->jumpData;
-
-
-
 }
+
 void PixelMain::updateGame(float timeElapsed)
 {
     for (int i=0;i<3;i++)

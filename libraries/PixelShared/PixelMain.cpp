@@ -238,71 +238,67 @@ void PixelMain::setInput(int key)
 }
 void PixelMain::update(float timeElapsed)
 {
-    
-  
-   renderer->setBrightness(brightness);
-    
-    if(gameState==STATE_INTRO)
+    renderer->setBrightness(brightness);
+
+    switch (gameState)
     {
-    
+    case STATE_INTRO:
         updateIntro( timeElapsed);
         stageIntro.int_update();
         stageIntro.draw(&stageIntro);
-    
-    } else if(gameState==STATE_INTRO_TO_MENU)
-    {
-        
+        break;
+
+    case STATE_INTRO_TO_MENU:
         updateIntro( timeElapsed);
         stageIntro.fy = Sprite::linearEase(1-switchTime,0,-16,1);;
         stageIntro.int_update();
         stageIntro.draw(&stageIntro);
-    //  cout << switchTime<< "-- "<< timeElapsed <<endl;
-        
+
         updateMenu( timeElapsed);
         stageMenu.fy = stageIntro.fy +16;
         stageMenu.int_update();
         stageMenu.draw(&stageMenu);
-       
+
         switchTime -=timeElapsed;
         if(switchTime<0)setGameState(STATE_MENU);
-        
-    }else if(gameState==STATE_MENU)
-    {
-         //renderer->setBrightness(brightness);
+        break;
+
+    case STATE_MENU:
         updateMenu( timeElapsed);
         stageMenu.int_update();
         stageMenu.draw(&stageMenu);
+        break;
 
-        
-    }else if(gameState==STATE_MENU_TO_GAME)
-    {
-        
+    case STATE_MENU_TO_GAME:
         updateMenu( timeElapsed);
         stageMenu.fy = Sprite::linearEase(1-switchTime,0,-16,1);;
         stageMenu.int_update();
         stageMenu.draw(&stageMenu);
-        
-        
+
+
         updateGame( timeElapsed);
-        
-        if(gameType == GAME_TYPE_1P){
-        
+
+        switch (gameType)
+        {
+        case GAME_TYPE_1P:
             stage1p.fy = stageMenu.fy +16;
             stage1p.int_update();
             stage1p.draw(&stage1p);
-        }
-        else  if(gameType == GAME_TYPE_2P){
-            
+            break;
+
+        case GAME_TYPE_2P:
             stage2p.fy = stageMenu.fy +16;
             stage2p.int_update();
             stage2p.draw(&stage2p);
-        }
-        if(gameType == GAME_TYPE_VS){
-            
+            break;
+
+        case GAME_TYPE_VS:
             stageVS.fy = stageMenu.fy +16;
             stageVS.int_update();
             stageVS.draw(&stageVS);
+            break;
         }
+
         switchTime -=timeElapsed;
         if(switchTime<0){
             setGameState(STATE_GAME_START);
@@ -310,61 +306,43 @@ void PixelMain::update(float timeElapsed)
             stage2p.fy =0;
             stage1p.fy =0;
         }
-        
-    }
-    else if (gameState==STATE_GAME || gameState==STATE_GAME_START || gameState==STATE_GAME_OVER )
-    {
-       
+        break;
 
-        if(gameType == GAME_TYPE_1P){
-                
+    case STATE_GAME:
+    case STATE_GAME_START:
+    case STATE_GAME_OVER:
+        switch(gameType)
+        {
+        case GAME_TYPE_1P:
             updateGame1p(timeElapsed);
             updateGame(timeElapsed);
-            if (gameState==STATE_GAME || gameState==STATE_GAME_START || gameState==STATE_GAME_OVER ){
             stage1p.int_update();
-                stage1p.draw(&stage1p);}
-            
-        }
-        else  if(gameType == GAME_TYPE_2P){
-                
+            stage1p.draw(&stage1p);
+            break;
+
+        case GAME_TYPE_2P:
             updateGame2p(timeElapsed);
             updateGame(timeElapsed);
-            if (gameState==STATE_GAME || gameState==STATE_GAME_START || gameState==STATE_GAME_OVER ){
             stage2p.int_update();
-                stage2p.draw(&stage2p);}
-        }
-        if(gameType == GAME_TYPE_VS){
-                
+            stage2p.draw(&stage2p);
+            break;
+
+        case GAME_TYPE_VS:
             updateGameVS(timeElapsed);
             updateGame(timeElapsed);
-            if (gameState==STATE_GAME || gameState==STATE_GAME_START || gameState==STATE_GAME_OVER ){
             stageVS.int_update();
-                stageVS.draw(&stageVS);}
+            stageVS.draw(&stageVS);
+            break;
         }
-      
-    
+        break;
     }
-    
-    
-   
-    
-            
-    
-    
 }
+
 void PixelMain::setWin(int /*heroType*/)
 {
-
-
 }
-
-
-
 
 void PixelMain::draw()
 {
-   
- renderer->draw();
-
-
+    renderer->draw();
 }
