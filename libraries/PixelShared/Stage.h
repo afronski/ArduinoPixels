@@ -30,46 +30,26 @@ public:
     
     
     PixelRenderer * renderer;
-    
-   
-    
-   
+
+    void draw()
+    {
+        for(size_t i=0;i<children.size();i++)
+        {
+           draw(children[i]);
+        }
+    }
+
     void draw(Sprite *child )
     {
         drawSprite( child);
         for(size_t i=0;i<child->children.size();i++)
         {
-           
            draw(child->children[i]);
         }
-      
-    
-    };
-    
+    }
+
     void drawSprite(Sprite * s )
     {
-       /* if(s->hasHitRect && s->currentData==0)
-        {
-            if(s->hitRect.isHit)
-            {
-                mixPixel(s->x+s->hitRect.x,s->y+s->hitRect.y, 255,0,255,255 );
-                mixPixel(s->x+s->hitRect.x+s->hitRect.width,s->y+s->hitRect.y+s->hitRect.height, 255,0,255,255 );
-                
-                
-            }else
-            {
-                mixPixel(s->x+s->hitRect.x,s->y+s->hitRect.y, 0,255,0,255 );
-                mixPixel(s->x+s->hitRect.x+s->hitRect.width,s->y+s->hitRect.y+s->hitRect.height, 0,255,0,255 );
-                mixPixel(s->x+s->hitRect.x+s->hitRect.width,s->y+s->hitRect.y, 0,255,0,255 );
-                mixPixel(s->x+s->hitRect.x,s->y+s->hitRect.y+s->hitRect.height, 0,255,0,255 );
-
-                
-            }
-
-        
-        
-        }*/
-        
         if(s->intHidden)return;
         if(!s->visible)return;
       

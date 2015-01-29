@@ -82,9 +82,8 @@ public:
     
     void setInput(int key);
     void setWin(int);
-    
-    Stage stage2p;
-    Stage stage1p;
+
+    Stage stage;
     Stage stageVS;
     
     float switchTime;
@@ -138,7 +137,9 @@ public:
     void initGame();
 
     void setupGame();
+    void setupAliensGame();
     void updateGame(float timeElapsed);
+    void updateAliensGame(float timeElapsed);
     void setHeroData(Hero * hero,int type);
     void setLifeData(Life * life);
     
@@ -211,8 +212,6 @@ public:
     void setupGame1p();
     void updateGame1p(float timeElapsed);
     void resetGame1p();
-
-    Vector<DecorSprite *>decor1p;
     
     Hero hero1pm;
     
@@ -232,7 +231,6 @@ public:
     Sprite lifeBoyHolder2p;
     Sprite lifeGirlHolder2p;
     Vector<Live *>live2p;
-    Vector<DecorSprite *>decor2p;
     WaterSplash waterSplash2p;
     //GAME VS
     

@@ -87,10 +87,12 @@
 // Decor Data
 //
 
-Array<Cloud,3> _clouds;
-Array<Sprite,3> _backgroundGame;
+Array<Cloud,6> _clouds;
+Array<Sprite,2> _backgroundGame;
 const DataCloud1 _cloudData;
 const DataBackGrass _backGrass;
+
+Vector<DecorSprite *>aliensDecor;
 
 
 //
@@ -519,43 +521,152 @@ void  PixelMain::resetGame()
     resetGame1p();
     resetGame2p();
     resetGameVS();
+
+    for (size_t i=0;i<aliensDecor.size();i++)
+        aliensDecor[i]->setLevelPos(stagefx);
 }
 
 void PixelMain::setupGame()
 {
-    for(int i =0;i<3;i++)
+    //backGround
+
+    for (int i=0; i<2; i++)
     {
-        Stage *stage = NULL;
+        _backgroundGame[i].drawType =3;
+        _backgroundGame[i].currentData = &_backGrass;
+    }
 
-        switch (i)
-        {
-        case 0:
-            stage  =&stage1p;
-            break;
-        case 1:
-            stage  =&stage2p;
-            break;
-        case 2:
-            stage  =&stageVS;
-            break;
-        }
+    stage.addChild(&_backgroundGame[0]);
+    stageVS.addChild(&_backgroundGame[1]);
 
-        //backGround
-        
-        Sprite * backgroundGame = &_backgroundGame[i];
-        backgroundGame->drawType =3;
-        backgroundGame->currentData = &_backGrass;
-        stage->addChild( backgroundGame);
-        
-        for (int j=0;j<3;j++)
+    for (int j=0;j<6;j++)
+    {
+        Cloud *c = &_clouds[j];
+        c->currentData  = &_cloudData;
+        c->fx = rand()%90;
+        c->fy = rand()%5  -4+_cloudData.height();
+        c->setup();
+
+        if (j<3) stage.addChild(c);
+        else stageVS.addChild(c);
+    }
+}
+
+void PixelMain::setupAliensGame()
+{
+    // Setup the 1p and 2p common game assets
+    int posCity [2] = {30,150};
+    for(int i=0;i<MAX_CITIES;i++)
+    {
+        DecorSprite * city = &_cities[i];
+        city ->currentData = &_cityData;
+
+        city->fx = city->fxReal = posCity [i];
+
+        city->fy =7;
+        city->depth =0.2;
+
+        aliensDecor.push_back(city);
+    }
+    srand (5);
+    int treePosS [15] = { 35,296,120,157,272,221,253,90,112,55,97,35,190,158,224};
+    int treePosSH [15] = {-1,0,-1,-1,0,0,0,-1,-1,0,-1,-1,0,0,-1};
+
+    for(int i=0;i<MAX_FARTREES;i++)
+    {
+        DecorSprite * treeFar = &_farTrees[i];
+        treeFar ->currentData = &_treeFarData;
+        treeFar ->fx  =treeFar ->fxReal = treePosS[i];
+       // cout << treeFar->fx<<",";
+        int rPos = treePosSH[i];
+
+        treeFar ->fy = -rand()%2+_treeFarData.height();
+        treeFar ->depth=0.3;
+        if( rPos ==-1) treeFar ->depth=0.25;
+
+
+        aliensDecor.push_back(treeFar );
+    }
+
+     //srand (1);
+    int treePos [8] = {50,233,270,400,430,250,252,147};
+    int treePosH [8] = {-2,0,-1,-2,0,-2,-1,-1};
+    for(int i=0;i<MAX_CLOSETREES;i++)
+    {
+        DecorSprite * treeClose = &_closeTrees[i];
+
+        treeClose->currentData = &_treeCloseData;
+        treeClose->fx = treeClose->fxReal = treePos [i];
+       // cout << treeClose->fx<<",";
+        int rPos = treePosH[i]  ;
+
+        treeClose->fy = rPos+_treeCloseData.height()-5;
+        treeClose->depth =0.8;
+        if( rPos ==-1)treeClose->depth=0.5;
+        if( rPos ==-2)treeClose->depth=0.4;
+
+        aliensDecor.push_back(treeClose );
+    }
+    srand (1);
+    for(int i=0;i<MAX_FLOWERS;i++)
+    {
+        DecorSprite * flower = &_flowers[i];
+        flower ->currentData = &_flowerData;
+
+        flower->fx = flower->fxReal = rand()%600;
+        int rPos = -rand()%3;
+         flower->fy = rPos+16;
+         flower->depth =1;
+        if( rPos ==-2)  flower->depth=0.98;
+        if( rPos ==-3)  flower->depth=0.95;
+
+
+        aliensDecor.push_back( flower);
+    }
+    int posBush [] = {60,150, 400,470};
+    for(int i=0;i<MAX_BUSHES;i++)
+    {
+        DecorSprite * bush = &_bushes[i];
+
+        bush->currentData = &_bushData;
+        bush->fx = bush->fxReal = posBush[i];
+
+        bush->fy = 13;
+        bush->depth =1;
+        aliensDecor.push_back( bush );
+    }
+
+    int posPaddo[] = {250,320,550};
+    for(int i=0;i<MAX_PADDOS;i++)
+    {
+        DecorSprite * paddo = &_paddos[i];
+
+        paddo->currentData = &_paddoData;
+        paddo->fx = paddo->fxReal = posPaddo[i];
+
+        paddo->fy = 13;
+        paddo->depth =1;
+        aliensDecor.push_back( paddo);
+    }
+
+    // slow sort ;)
+    bool sorted =false;
+    while(!sorted){
+        sorted  =true;
+        for (size_t i=0;i<   aliensDecor.size()-1;i++)
         {
-            Cloud *c = &_clouds[i];
-            c->currentData  = &_cloudData;
-            c->fx = rand()%90;
-            c->fy = rand()%5  -4+_cloudData.height();
-            c->setup();
-            stage->addChild(c);
+            if(aliensDecor[i]->depth >aliensDecor[i+1]->depth)
+            {
+                DecorSprite *temp = aliensDecor[i];
+                aliensDecor[i] = aliensDecor[i+1];
+                aliensDecor[i+1] = temp;
+                sorted  =false;
+            }
         }
+    }
+    for (size_t i=0;i<   aliensDecor.size();i++)
+    {
+        stage.addChild(aliensDecor[i]);
     }
 }
 
@@ -628,6 +739,18 @@ void  PixelMain::setHeroData(Hero * hero,int type)
 
 void PixelMain::updateGame(float timeElapsed)
 {
+    // Update the common game assets
     for (int i=0;i<3;i++)
         _clouds[i].update(timeElapsed);
+}
+
+void PixelMain::updateAliensGame(float timeElapsed)
+{
+    // Update the 1p and 2p common game assets
+
+    if (gameState != STATE_GAME_START)
+    {
+        for (size_t i=0;i<aliensDecor.size();i++)
+            aliensDecor[i]->setLevelPos(stagefx);
+    }
 }

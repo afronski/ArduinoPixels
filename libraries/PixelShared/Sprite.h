@@ -48,7 +48,7 @@ public:
         drawType = 0;
     }
 
-    virtual void addChild(Sprite *child)
+    void addChild(Sprite *child)
     {
         child->parent =this;
         children.push_back(child);
@@ -57,10 +57,8 @@ public:
     Vector<Sprite *> children;
     Sprite * parent = nullptr;
     
-    virtual void int_update()
+    void int_update()
     {
-       
-      
         if(parent==0)
         {
             drawfY = fy;
@@ -76,23 +74,13 @@ public:
             y = drawfY;
             intHidden = false;
             if(x>100 || x<-10)intHidden = true;
-
-
         }
         for(size_t i=0;i<children.size();i++)
         {
             children[i]->int_update();
         }
-    
     }
-    
-    
-  /* void updateLevelPos(float levelx)
-    {
-        x = fx - (levelx*depth);
-        y = fy;
-    
-    }*/
+
     bool hitTestRect(Sprite *s)
     {
         float x_1 =fxReal+hitRect.x ;
@@ -120,32 +108,8 @@ public:
         float y_t =fy+hitRect.y ;
         float x_r =x_l +hitRect.width ;
         float y_b =y_t+hitRect.height ;
-        if(hitPosX>= x_l && hitPosX<= x_r && hitPosY>= y_t && hitPosY<= y_b)return true;
-        
-       /*
-        int wLeft;
-        if(drawType==0){
-            wLeft = x-currentData->centerX;
-        }
-        else if (drawType==1){
-            wLeft = x-(currentData->width-currentData->centerX);
-        }
-        int wRight = wLeft +currentData->width;
-        
-        
-        if( hitPosX>=wLeft && hitPosX<=wRight)
-        {
-            
-            int hTop =y-currentData->centerY;
-            int hBottom  =hTop +currentData->height;
-            if( hitPosY>=hTop && hitPosY<=hBottom)
-            {
-                return true;
-            }
-            
-        
-        }
-    */
+        if(hitPosX>= x_l && hitPosX<= x_r && hitPosY>= y_t && hitPosY<= y_b)
+            return true;
         return false;
     }
 

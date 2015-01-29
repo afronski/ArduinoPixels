@@ -58,8 +58,8 @@ void PixelMain::setup()
 {
     renderer->setup();
    
-    stage1p.renderer =renderer;
-    stage2p.renderer =renderer;
+    stage.renderer =renderer;
+    stage.renderer =renderer;
     stageVS.renderer =renderer;
     stageIntro.renderer =renderer;
     stageMenu.renderer =renderer;
@@ -67,7 +67,6 @@ void PixelMain::setup()
     
     setupIntro();
     setupMenu();
-    setupGame();
     
     setGameState(STATE_INTRO);
 }
@@ -82,6 +81,7 @@ void PixelMain::setInput(int key)
 
     case STATE_MENU:
         resetGame();
+        setupGame();
 
         if((key>=0 && key<6) || (key>=20 && key<26))
         {
@@ -90,10 +90,12 @@ void PixelMain::setInput(int key)
             {
             case 0:
                 gameType = GAME_TYPE_1P;
+                setupAliensGame();
                 setupGame1p();
                 break;
             case 1:
                 gameType = GAME_TYPE_2P;
+                setupAliensGame();
                 setupGame2p();
                 break;
             default:
@@ -273,29 +275,28 @@ void PixelMain::update(float timeElapsed)
         updateMenu( timeElapsed);
         stageMenu.fy = Sprite::linearEase(1-switchTime,0,-16,1);;
         stageMenu.int_update();
-        stageMenu.draw(&stageMenu);
+        stageMenu.draw();
 
-
-        updateGame( timeElapsed);
+//        updateGame( timeElapsed);
 
         switch (gameType)
         {
         case GAME_TYPE_1P:
-            stage1p.fy = stageMenu.fy +16;
-            stage1p.int_update();
-            stage1p.draw(&stage1p);
+            stage.fy = stageMenu.fy +16;
+            stage.int_update();
+            stage.draw();
             break;
 
         case GAME_TYPE_2P:
-            stage2p.fy = stageMenu.fy +16;
-            stage2p.int_update();
-            stage2p.draw(&stage2p);
+            stage.fy = stageMenu.fy +16;
+            stage.int_update();
+            stage.draw();
             break;
 
         case GAME_TYPE_VS:
             stageVS.fy = stageMenu.fy +16;
             stageVS.int_update();
-            stageVS.draw(&stageVS);
+            stageVS.draw();
             break;
         }
 
@@ -303,8 +304,8 @@ void PixelMain::update(float timeElapsed)
         if(switchTime<0){
             setGameState(STATE_GAME_START);
             stageVS.fy =0;
-            stage2p.fy =0;
-            stage1p.fy =0;
+            stage.fy =0;
+            stage.fy =0;
         }
         break;
 
@@ -316,15 +317,17 @@ void PixelMain::update(float timeElapsed)
         case GAME_TYPE_1P:
             updateGame1p(timeElapsed);
             updateGame(timeElapsed);
-            stage1p.int_update();
-            stage1p.draw(&stage1p);
+            updateAliensGame(timeElapsed);
+            stage.int_update();
+            stage.draw(&stage);
             break;
 
         case GAME_TYPE_2P:
             updateGame2p(timeElapsed);
             updateGame(timeElapsed);
-            stage2p.int_update();
-            stage2p.draw(&stage2p);
+            updateAliensGame(timeElapsed);
+            stage.int_update();
+            stage.draw(&stage);
             break;
 
         case GAME_TYPE_VS:
