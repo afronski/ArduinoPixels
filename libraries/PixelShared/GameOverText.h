@@ -26,8 +26,13 @@ class GameOverText:public Sprite
 public:
     GameOverText()
     {
+        reset();
+    }
+    void reset()
+    {
+        textSprite.reset();
+
         drawType =3;
-        textSprite.currentData =0;
         textSprite.fx =45;
         addChild(&textSprite);
 

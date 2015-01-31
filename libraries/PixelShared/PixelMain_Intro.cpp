@@ -33,9 +33,7 @@ void PixelMain::setupIntro()
     {
         Star *s = &_stars[i];
         s->randomize();
-        
         stageIntro.addChild(s);
-        stars.push_back(s);
     }
 
     stageIntro.addChild(&invasionText);
@@ -81,51 +79,33 @@ void PixelMain::updateIntro(float timeElapsed)
     
     }
    
-    
-
-    if(step==1)
+    switch (step)
     {
-      
-       
+    case 1:
         invasionText.fx = Sprite::backEaseOut(stepTime,-45,90,1);
-    
-    }else if(step==4)
-    {
-    
+        break;
+    case 4:
         invasionText.fx = Sprite::linearEase(stepTime,45,90+45,1);
         spaceShip.fx = Sprite::linearEase(stepTime,-20,20+45+2,1);
-
-
-    }else if(step==5)
-    {
+        break;
+    case 5:
         spaceShip.showHead();
-        
-    }
-    else if(step==12)
-    {
+        break;
+    case 12:
         spaceShip.fx = Sprite::linearEase(stepTime,45+2,20+45,1);
+        break;
+    case 16:
+        resetIntro();
+        break;
+    default:
+        if (step>13&& step<16)
+            pressKeyText.visible = (stepTime<0.7);
+        break;
     }
-    else if(step>13&& step<16 )
-    {
-       
-        if(stepTime<0.7){
-            pressKeyText.visible =true;
-        }else
-        {
-        pressKeyText.visible =false;
-        }
-
-        
-        
-    }
-       else if(step==16)resetIntro();
     
     spaceShip.update(timeElapsed);
     
-    for (size_t i=0;i<stars.size();i++)
-    {
-        stars[i]->update(timeElapsed);
-    
-    }
+    for (size_t i=0;i<MAX_STARS;i++)
+        _stars[i].update(timeElapsed);
     
 }

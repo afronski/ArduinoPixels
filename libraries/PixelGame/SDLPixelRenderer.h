@@ -10,7 +10,12 @@
 
 #include "PixelRenderer.h"
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#include "/home/hans/development/lib/SDL-emscripten/include/SDL.h"
+#else
 #include "SDL2/SDL.h"
+#endif
 
 class SDLPixelRenderer: public PixelRenderer {
 public:
