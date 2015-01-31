@@ -37,15 +37,15 @@ public:
         fxStart =fxReal;
         
     }
-    virtual void reset()
+    virtual void resetImpl() override
     {
         fxReal =fxStart;
         isDead =false;
-          life =1;
+        life =1;
         fy =15;
         saveTime =-1;
     }
-    void update(float timeElapsed)
+    virtual void update(float timeElapsed) override
     {
         if(intHidden)return;
         if(isDead)

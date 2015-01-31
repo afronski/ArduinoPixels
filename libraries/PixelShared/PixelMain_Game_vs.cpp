@@ -11,7 +11,7 @@
 void PixelMain::setupGameVS()
 {
    
-        DecorSprite * city = &_citiesVS[0];
+        DecorSprite * city = &_cities[0];
         city ->currentData = &_cityData;
         
         city->fx = city->fxReal = 30;
@@ -24,7 +24,7 @@ void PixelMain::setupGameVS()
     int posTreeFar [3] = { 16,25, 77 };
     for(int i=0;i<3;i++)
     {
-        DecorSprite * treeFar = &_farTreesVS[i];
+        DecorSprite * treeFar = &_farTrees[i];
         treeFar ->currentData = &_treeFarData;
         treeFar ->fx  =treeFar ->fxReal =  posTreeFar[i] ;
         int rPos = -rand()%2;
@@ -37,7 +37,7 @@ void PixelMain::setupGameVS()
     }
     
    
-        DecorSprite * treeClose = &_closeTreesVS[0];
+        DecorSprite * treeClose = &_closeTrees[0];
         
         treeClose->currentData = &_treeCloseData;
         treeClose->fx = treeClose->fxReal = 50;
@@ -51,7 +51,7 @@ void PixelMain::setupGameVS()
     
     
     
-    DecorSprite * bush = &_bushesVS[0];
+    DecorSprite * bush = &_bushes[0];
     
     bush->currentData = &_bushData;
     bush->fx = bush->fxReal = 35;
@@ -67,7 +67,7 @@ void PixelMain::setupGameVS()
    
     for(int i=0;i<6;i++)
     {
-        DecorSprite * flower = &_flowersVS[i];
+        DecorSprite * flower = &_flowers[i];
         flower ->currentData = &_flowerData;
         
         flower->fx = posFlower[i];
@@ -100,14 +100,13 @@ void PixelMain::setupGameVS()
         stageVS.addChild( decorVS[i]);
         
     }
-    
+
     for (int i=0;i<6;i++)
     {
         SpecialAttack *attack = &_specialAttacks[i];
 
         attack->setup();
-        specialAttackBufferVS.push_back(attack);
-        stageVS.addChild( attack);
+        stageVS.addChild(attack);
     }
     
     
@@ -130,21 +129,18 @@ void PixelMain::setupGameVS()
     lifeBoyHolderVS.currentData = &boyInterData;
     stageVS.addChild(&lifeGirlHolderVS);
     lifeGirlHolderVS.currentData = &girlInterData;
-    lifeBoyVS.setup();
-    lifeGirlVS.setup();
-    lifeGirlVS.fx =1;
-    lifeGirlVS.fy=-2;
-    lifeBoyVS.fx =0;
-    lifeBoyVS.fy=-2;
-    lifeBoyHolderVS.addChild(&lifeBoyVS);
-    lifeGirlHolderVS.addChild(&lifeGirlVS);
+    lifeBoy.setup();
+    lifeGirl.setup();
+    lifeGirl.fx =1;
+    lifeGirl.fy=-2;
+    lifeBoy.fx =0;
+    lifeBoy.fy=-2;
+    lifeBoyHolderVS.addChild(&lifeBoy);
+    lifeGirlHolderVS.addChild(&lifeGirl);
 
-    gameOverText.fy = 0;
-    gameOverText.fx = 0;
-    stageVS.addChild(&gameOverText);
-    
-    
-    
+    _gameOverText.fy = 0;
+    _gameOverText.fx = 0;
+    stageVS.addChild(&_gameOverText);
 }
 
 void PixelMain::resetGameVS()
@@ -153,8 +149,8 @@ void PixelMain::resetGameVS()
     lifeBoyHolderVS.fy =16;
     lifeGirlHolderVS.fx =104;
     lifeGirlHolderVS.fy =16;
-    lifeGirlVS.reset();
-    lifeBoyVS.reset();
+    lifeGirl.reset();
+    lifeBoy.reset();
 
     lifeBoyHolder1p.fx =-15;
     lifeBoyHolder1p.fy =16;
@@ -173,145 +169,100 @@ void PixelMain::resetGameVS()
 }
 void PixelMain::updateGameVS(float timeElapsed)
 {
-    if (gameState == STATE_GAME_OVER)
+    switch (gameState)
     {
-        switchTime -=timeElapsed;
-        gameOverText.update(switchTime);
-       /* if( switchTime>8&& switchTime<9)
-        {
-        
-            gameOverText.fy = backEaseOut(1-(switchTime-8),0,15,1);
-        } if( switchTime<8)
-        {
-        
-            gameOverText.fy = 15;
-        }*/
-        if(switchTime<0)
-        {
-            gameOverText.hide();
-            setGameState(STATE_INTRO);
-            return;
-        }
-}
-    if (gameState == STATE_GAME_START)
-    {
-        
-        
+    case STATE_GAME_START:
         lifeBoyHolderVS.fx = Sprite::linearEase(1-switchTime,-15,19,1);
         lifeGirlHolderVS.fx = Sprite::linearEase(1-switchTime,104,-19,1);
-        
+
         switchTime -=timeElapsed;
         if(switchTime<0){
             setGameState(STATE_GAME);
             lifeBoyHolderVS.fx = 4;
             lifeGirlHolderVS.fx = 85;
         }
-        
-        
-        
-        
+
         return;
-        
+
+    case STATE_GAME_OVER:
+        switchTime -=timeElapsed;
+        _gameOverText.update(switchTime);
+
+        if(switchTime<0)
+        {
+            _gameOverText.hide();
+            setGameState(STATE_INTRO);
+            return;
+        }
+        break;
+
+    case STATE_GAME:
+        if(heroVSF.life==0)
+        {
+            _gameOverText.show(1);
+
+            setGameState(STATE_GAME_OVER);
+        }
+        if(heroVSM.life==0)
+        {
+            _gameOverText.show(2);
+
+            setGameState(STATE_GAME_OVER);
+        }
+        break;
     }
-    
-    
-    resolveShoot(liveVS,specialAttackBufferVS);
-  checkShoot(liveVS,specialAttackBufferVS,bloodBufferVS);
-    
-    
-    
+
+    resolveShoot(liveVS);
+    checkShoot(liveVS);
+
     heroVSM.update(timeElapsed);
     heroVSF.update(timeElapsed);
-    
- 
-    resolveAttack(liveVS,bloodBufferVS);
-    
-        
-    for (size_t i=0;i<specialAttackBufferVS.size();i++)
-    {
-        specialAttackBufferVS[i]->update(timeElapsed,stagefx);
-    }
-    
-    
-    
-    
+
+    resolveAttack(liveVS);
+
+    for (size_t i=0;i<MAX_ATTACKS;i++)
+        _specialAttacks[i].update(timeElapsed,stagefx);
+
     //
-    //chek hit etc
-    
+    //check hit etc
+    //
     
     if(heroVSM.hitTestRect(&heroVSF))
     {
-       //cout << "hit"<<endl;
         heroVSM.speed =0;
-        if(  heroVSM.fxReal< heroVSF.fxReal)
+        if(heroVSM.fxReal< heroVSF.fxReal)
         {
             heroVSM.fxReal-=0.5;
             heroVSF.fxReal+=0.5;
-        }else
+        }
+        else
         {
             heroVSM.fxReal+=0.5;
             heroVSF.fxReal-=0.5;
-        
         }
-    
-       
-
     }
 
     if(heroVSF.fxReal<5)
-    {
-    heroVSF.fxReal =84;
-    
-    }if(heroVSF.fxReal>85)
-    {
+        heroVSF.fxReal =84;
+
+    if(heroVSF.fxReal>85)
         heroVSF.fxReal =6;
-        
-    }
+
     if(heroVSM.fxReal<5)
-    {
         heroVSM.fxReal =84;
-        
-    }if(heroVSM.fxReal>85)
-    {
+
+    if(heroVSM.fxReal>85)
         heroVSM.fxReal =6;
-    }
-    //
-    //
+
     heroVSM.setLevelPos(stagefx);
     heroVSF.setLevelPos(stagefx);
-    
-   
 
     for (size_t i=0;i<   decorVS.size();i++)
-    {
         decorVS[i]->setLevelPos(stagefx);
-    }
-    for (int i=0;i<3;i++)
-    {
-        cloudsVS[i]->update(timeElapsed);
-        
-    }
-    for (size_t i=0;i<bloodBufferVS.size();i++)
-    {
-        bloodBufferVS[i]->update(timeElapsed,stagefx);
-        
-    }
-    if(heroVSF.life==0 && gameState ==STATE_GAME)
-    {
-        gameOverText.show(1);
-        
-        setGameState(STATE_GAME_OVER);
-    }
-    if(heroVSM.life==0&& gameState ==STATE_GAME)
-    {
-        gameOverText.show(2);
-        
-        setGameState(STATE_GAME_OVER);
-    }
-    lifeGirlVS.setLife(heroVSF.life);
-    lifeBoyVS.setLife(heroVSM.life);
+
+    lifeGirl.setLife(heroVSF.life);
+    lifeBoy.setLife(heroVSM.life);
     
-    lifeBoyVS.update(timeElapsed);
-    lifeGirlVS.update(timeElapsed);
-  
+    lifeBoy.update(timeElapsed);
+    lifeGirl.update(timeElapsed);
 }

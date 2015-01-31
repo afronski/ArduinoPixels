@@ -30,6 +30,7 @@
 #include "Life.h"
 #include "SpecialAttack.h"
 #include "Vector.h"
+#include "Array.h"
 
 #include "SpaceShip.h"
 #include "Star.h"
@@ -61,8 +62,7 @@ class PixelMain
 {
 public:
     SoundPlayer soundPlayer;
-    Alien3 *alienBoss2p;
-    Alien3 *alienBoss1p;
+    Alien3 *alienBoss;
     
     PixelRenderer * renderer;
     
@@ -82,9 +82,8 @@ public:
     
     void setInput(int key);
     void setWin(int);
-    
-    Stage stage2p;
-    Stage stage1p;
+
+    Stage stage;
     Stage stageVS;
     
     float switchTime;
@@ -105,8 +104,7 @@ public:
     Sprite pressKeyText;
 
     #define MAX_STARS 20
-    Star _stars[MAX_STARS];
-    Vector <Star *> stars;
+    Array<Star, MAX_STARS> _stars;
     
     Sprite backgroundIntro;
     
@@ -135,74 +133,49 @@ public:
     
     ////////////////////////////////////////
     //GAME STUFF SHARED
-    void allocGame();
+    void initGame();
 
     void setupGame();
-    void updateGame(float);
+    void setupAliensGame();
+    void updateGame(float timeElapsed);
+    void updateAliensGame(float);
     void setHeroData(Hero * hero,int type);
     void setLifeData(Life * life);
     
-    void setAliens(const Vector<Alien *> &aliens);
+    Blood * getBlood();
+    SpecialAttack * getSpecialAttack();
     
-    Blood * getBlood(const Vector<Blood *> & _bloods);
-    SpecialAttack * getSpecialAttack(const Vector<SpecialAttack *> &attacs);
-    
-    GameOverText gameOverText;
+    GameOverText _gameOverText;
 
     #define MAX_ATTACKS 16
-    SpecialAttack _specialAttacks[MAX_ATTACKS];
+    Array<SpecialAttack, MAX_ATTACKS> _specialAttacks;
     #define MAX_BLOOD 8
-    Blood _bloods[MAX_BLOOD];
-    
-    Vector<SpecialAttack *>specialAttackBuffer1p;
-    Vector<Blood *>bloodBuffer1p;
-    
-    Vector<SpecialAttack *>specialAttackBuffer2p;
-    Vector<Blood *>bloodBuffer2p;
-    
-    Vector<SpecialAttack *>specialAttackBufferVS;
-    Vector<Blood *>bloodBufferVS;
+    Array<Blood, MAX_BLOOD> _bloods;
 
-    void resolveShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs);
-    void checkShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs,const Vector<Blood *> &_bloods);
-    void resolveAttack(const Vector<Live *> &lives,const Vector<Blood *> &_bloods);
+    void resolveShoot(const StackVector<Live *> &lives);
+    void checkShoot(const StackVector<Live *> &lives);
+    void resolveAttack(const StackVector<Live *> &lives);
     
-    void alienHitTest(Hero * hero,const Vector<Alien *> &aliens,const Vector<Blood *> &_bloods);
+    void alienHitTest(Hero * hero);
     
     //shared
-
-    // TODO share data between games
-    // OR move to cpp files
     #define MAX_CITIES 2
-    DecorSprite _cities1p[MAX_CITIES];
-    DecorSprite _cities2p[MAX_CITIES];
-    DecorSprite _citiesVS[1];
+    Array<DecorSprite, MAX_CITIES> _cities;
     #define MAX_FARTREES 15
-    DecorSprite _farTrees1p[MAX_FARTREES];
-    DecorSprite _farTrees2p[MAX_FARTREES];
-    DecorSprite _farTreesVS[3];
+    Array<DecorSprite, MAX_FARTREES> _farTrees;
     #define MAX_CLOSETREES 8
-    DecorSprite _closeTrees1p[MAX_CLOSETREES];
-    DecorSprite _closeTrees2p[MAX_CLOSETREES];
-    DecorSprite _closeTreesVS[1];
+    Array<DecorSprite, MAX_CLOSETREES> _closeTrees;
     #define MAX_FLOWERS 20
-    DecorSprite _flowers1p[MAX_FLOWERS];
-    DecorSprite _flowers2p[MAX_FLOWERS];
-    DecorSprite _flowersVS[6];
+    Array<DecorSprite, MAX_FLOWERS> _flowers;
     #define MAX_BUSHES 4
-    DecorSprite _bushes1p[MAX_BUSHES];
-    DecorSprite _bushes2p[MAX_BUSHES];
-    DecorSprite _bushesVS[1];
+    Array<DecorSprite, MAX_BUSHES> _bushes;
     #define MAX_PADDOS 3
-    DecorSprite _paddos1p[MAX_PADDOS];
-    DecorSprite _paddos2p[MAX_PADDOS];
+    Array<DecorSprite, MAX_PADDOS> _paddos;
     #define MAX_ALIEN 4
-    Alien1 _alien1_1p[MAX_ALIEN];
-    Alien1 _alien1_2p[MAX_ALIEN];
-    Alien2 _alien2_1p[MAX_ALIEN];
-    Alien2 _alien2_2p[MAX_ALIEN];
+    Array<Alien1, MAX_ALIEN> _aliens1;
+    Array<Alien2, MAX_ALIEN> _aliens2;
     #define MAX_ALIENPOND 2
-    AlienPond _alienPonds[MAX_ALIENPOND];
+    Array<AlienPond, MAX_ALIENPOND> _alienPonds;
     Alien3 _alienBoss;
 
     const DataCity _cityData;
@@ -213,6 +186,8 @@ public:
     const DataPaddo _paddoData;
 
     //////////////////////lifedata
+    Life lifeGirl;
+    Life lifeBoy;
     DataInterface boyInterData;
     DataInterface2 girlInterData;
 
@@ -221,53 +196,40 @@ public:
     Hero * boyHero;
     Hero * girlHero;
 
+    StackVector<Alien*> aliens;
+    StackVector<Live *> live;
+
     //GAME 1PLAYER
     void setupGame1p();
     void updateGame1p(float timeElapsed);
     void resetGame1p();
-
-    Vector<Cloud *>clouds1p;
-    Vector<DecorSprite *>decor1p;
     
     Hero hero1pm;
-    
-    Vector <Alien *> aliens1p;
+
     Sprite lifeBoyHolder1p;
-    Life lifeBoy1p;
-  
-    Vector<Live *>live1p;
     WaterSplash waterSplash1p;
+
     //GAME 2 PLAYER
-    
     void setupGame2p();
     void updateGame2p(float timeElapsed);
     void resetGame2p();
-    Vector<Cloud *>clouds2p;
-    Vector <Alien *> aliens2p;
     Hero hero2pM;
     Hero hero2pF;
     Sprite lifeBoyHolder2p;
     Sprite lifeGirlHolder2p;
-    Life lifeGirl2p;
-    Life lifeBoy2p;
-    Vector<Live *>live2p;
-    Vector<DecorSprite *>decor2p;
     WaterSplash waterSplash2p;
+
     //GAME VS
-    
     void setupGameVS();
     void updateGameVS(float timeElapsed);
     void resetGameVS();
-    Vector<Cloud *>cloudsVS;
     Hero heroVSM;
     Hero heroVSF;
     
     Sprite lifeBoyHolderVS;
     Sprite lifeGirlHolderVS;
-    Life lifeGirlVS;
-    Life lifeBoyVS;
-    Vector<Live *>liveVS;
-    Vector<DecorSprite *>decorVS;
+    StackVector<Live *> liveVS;
+    StackVector<DecorSprite *>decorVS;
     
     void resetGame();
     bool readyToStart;

@@ -62,17 +62,17 @@ public:
         
         }
     
-    virtual void reset()
+    virtual void resetImpl() override
     {
         fxReal =fxStart;
         isDead =false;
         life =3;
         fy =15;
-         saveTime =-1;
+        saveTime =-1;
     }
        
     float fxStart;
-    void update(float timeElapsed)
+    virtual void update(float timeElapsed) override
     {
         
      

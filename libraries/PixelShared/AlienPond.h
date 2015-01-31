@@ -45,7 +45,7 @@ public:
         hitRect.height =2;
         
     }
-    void update(float timeElapsed)
+    virtual void update(float timeElapsed) override
     {
         currentTime+=timeElapsed;
         float dir =sin(currentTime);
