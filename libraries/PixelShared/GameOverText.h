@@ -14,7 +14,7 @@
 #include "DataTextBoyWins.h"
 #include "DataTextYouWin.h"
 #include "DataBackSpace.h"
-class GameOverText:public Sprite
+class GameOverText : public Sprite
 {
     const DataTextGameOver gameOver;
     DataTextGirlWins girlWins;
@@ -24,17 +24,13 @@ class GameOverText:public Sprite
     Sprite textSprite;
 
 public:
-    GameOverText()
-    {
-        reset();
-    }
-    void reset()
+    GameOverText() { }
+    virtual void resetImpl() override
     {
         textSprite.reset();
 
         drawType =3;
         textSprite.fx =45;
-        addChild(&textSprite);
 
         girlWins.centerY = 12;
         boyWins.centerY = 10;
@@ -44,6 +40,8 @@ public:
     }
     void show(int type =0)
     {
+        addChild(&textSprite);
+
         visible =true;
 
         switch (type) {
@@ -81,7 +79,7 @@ public:
     }
     void hide()
     {
-        visible =false;
+        reset();
     }
 };
 
