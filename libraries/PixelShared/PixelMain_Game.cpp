@@ -506,6 +506,8 @@ void  PixelMain::resetGame()
     liveVS.clear();
     decorVS.clear();
 
+    _gameOverText.reset();
+
     stage.reset();
     stageVS.reset();
 
@@ -793,7 +795,7 @@ void  PixelMain::setHeroData(Hero * hero,int type)
 void PixelMain::updateGame(float timeElapsed)
 {
     // Update the common game assets
-    for (int i=0;i<3;i++)
+    for (int i=0;i<6;i++)
         _clouds[i].update(timeElapsed);
 
     for (size_t i=0;i<MAX_BLOOD;i++)
