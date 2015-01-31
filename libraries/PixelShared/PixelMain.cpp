@@ -278,7 +278,7 @@ void PixelMain::update(float timeElapsed)
         stageMenu.int_update();
         stageMenu.draw();
 
-//        updateGame( timeElapsed);
+        updateGame( timeElapsed);
 
         switch (gameType)
         {
@@ -313,29 +313,29 @@ void PixelMain::update(float timeElapsed)
     case STATE_GAME:
     case STATE_GAME_START:
     case STATE_GAME_OVER:
+
+        updateGame(timeElapsed);
+
         switch(gameType)
         {
         case GAME_TYPE_1P:
             updateGame1p(timeElapsed);
-            updateGame(timeElapsed);
             updateAliensGame(timeElapsed);
             stage.int_update();
-            stage.draw(&stage);
+            stage.draw();
             break;
 
         case GAME_TYPE_2P:
             updateGame2p(timeElapsed);
-            updateGame(timeElapsed);
             updateAliensGame(timeElapsed);
             stage.int_update();
-            stage.draw(&stage);
+            stage.draw();
             break;
 
         case GAME_TYPE_VS:
             updateGameVS(timeElapsed);
-            updateGame(timeElapsed);
             stageVS.int_update();
-            stageVS.draw(&stageVS);
+            stageVS.draw();
             break;
         }
         break;
