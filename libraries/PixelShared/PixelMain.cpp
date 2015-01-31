@@ -80,11 +80,12 @@ void PixelMain::setInput(int key)
         break;
 
     case STATE_MENU:
-        resetGame();
-        setupGame();
 
         if((key>=0 && key<6) || (key>=20 && key<26))
         {
+            resetGame();
+            setupGame();
+
             //select
             switch (menuPos)
             {

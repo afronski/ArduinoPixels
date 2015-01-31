@@ -10,72 +10,13 @@
 #include "GameOverText.h"
 void PixelMain::setupGame2p()
 {
-    int posAlienPond [2] = {193,350};
-    for (int i=0;i<MAX_ALIENPOND;i++)
-    {
-        AlienPond *alien = &_alienPonds[i];
-        alien->setup();
-        alien->fx  = alien->fxReal = posAlienPond [i];
-        alien->fy =16;
-        aliens2p.push_back(alien);
-        stage.addChild(alien);
-        live2p.push_back(alien);
-    }
-
-    for (int i=0;i<MAX_ATTACKS;i++)
-    {
-        SpecialAttack *attack = &_specialAttacks[i];
-
-        attack->setup();
-        specialAttackBuffer2p.push_back(attack);
-        stage.addChild( attack);
-    }
-    int posAlien1 [4] = {290,380, 451 , 500};
-    for (int i=0;i<MAX_ALIEN;i++)
-    {
-        
-        Alien1 *alien = &_aliens1[i];
-        
-        alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
-        alien->fy =15;
-        alien->setup();
-        aliens2p.push_back( alien);
-        stage.addChild(   alien);
-        live2p.push_back(   alien);
-        
-    }
-    
-    int posAlien2 [4] = {95,150, 250 , 420};
-    for (int i=0;i<MAX_ALIEN;i++)
-    {
-        Alien2 *alien = &_aliens2[i];
-        
-        alien->fx  = alien->fxReal =posAlien2[i];
-        alien->fy =15;
-        alien->setup();//setup after fx
-        aliens2p.push_back(alien);
-        stage.addChild(alien);
-        live2p.push_back(alien);
-    }
-
-   {
-        alienBoss  = &_alienBoss;
-
-        alienBoss->fx = alienBoss->fxReal=600;
-        alienBoss->fy =15;
-        alienBoss->setup();
-        aliens2p.push_back(   alienBoss);
-        stage.addChild(     alienBoss);
-        live2p.push_back(     alienBoss);
-    }
-
     stage.addChild(&hero2pF);
     hero2pF.setup(1);
-    live2p.push_back(&hero2pF);
+    live.push_back(&hero2pF);
 
     stage.addChild(&hero2pM);
     hero2pM.setup(0);
-    live2p.push_back(&hero2pM);
+    live.push_back(&hero2pM);
 
 
     //life stuff
@@ -100,8 +41,7 @@ void PixelMain::setupGame2p()
     {
         Blood *blood = &_bloods[i];
         blood->setup();
-        bloodBuffer2p.push_back(blood);
-        stage.addChild( blood);
+        stage.addChild(blood);
     }
 
     //gameOver
@@ -133,9 +73,9 @@ void PixelMain::resetGame2p()
     
     hero2pM.setLevelPos(stagefx);
     
-    for(size_t i=0;i< aliens2p.size();i++)
+    for(size_t i=0;i< aliens.size();i++)
     {
-        aliens2p[i]->setLevelPos(stagefx);
+        aliens[i]->setLevelPos(stagefx);
     }
 }
 
@@ -184,17 +124,17 @@ void PixelMain::updateGame2p (float timeElapsed)
         break;
     }
 
-    for(size_t i=0;i< aliens2p.size();i++)
-        aliens2p[i]->update(timeElapsed);
+    for(size_t i=0;i< aliens.size();i++)
+        aliens[i]->update(timeElapsed);
     
     hero2pM.update(timeElapsed);
     hero2pF.update(timeElapsed);
     
-    resolveShoot(live2p,specialAttackBuffer2p);
-    checkShoot(live2p,specialAttackBuffer2p,bloodBuffer2p);
+    resolveShoot(live);
+    checkShoot(live);
 
-    for (size_t i=0;i<specialAttackBuffer2p.size();i++)
-        specialAttackBuffer2p[i]->update(timeElapsed,stagefx);
+    for (size_t i=0;i<MAX_ATTACKS;i++)
+        _specialAttacks[i].update(timeElapsed,stagefx);
 
     if(hero2pM.fxReal < -10 )
     {
@@ -228,25 +168,22 @@ void PixelMain::updateGame2p (float timeElapsed)
     if(last->fxReal < stagefx+5  )
         last->fxReal =stagefx+5;
 
-    alienHitTest(&hero2pM, aliens2p,bloodBuffer2p);
-    alienHitTest(&hero2pF, aliens2p,bloodBuffer2p);
-    resolveAttack(live2p,bloodBuffer2p);
+    alienHitTest(&hero2pM);
+    alienHitTest(&hero2pF);
+    resolveAttack(live);
 
     hero2pF.setLevelPos(stagefx);
     
     hero2pM.setLevelPos(stagefx);
     
-    for(size_t i=0;i< aliens2p.size();i++)
-        aliens2p[i]->setLevelPos(stagefx);
+    for(size_t i=0;i< aliens.size();i++)
+        aliens[i]->setLevelPos(stagefx);
     
     lifeBoy.setLife(hero2pM.life);
     lifeGirl.setLife(hero2pF.life);
     
     lifeBoy.update(timeElapsed);
     lifeGirl.update(timeElapsed);
-
-    for (size_t i=0;i<bloodBuffer2p.size();i++)
-        bloodBuffer2p[i]->update(timeElapsed,stagefx);
 
     waterSplash2p.update(timeElapsed,stagefx);
 

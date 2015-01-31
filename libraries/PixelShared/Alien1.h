@@ -37,11 +37,11 @@ public:
         fxStart =fxReal;
         
     }
-    virtual void reset() override
+    virtual void resetImpl() override
     {
         fxReal =fxStart;
         isDead =false;
-          life =1;
+        life =1;
         fy =15;
         saveTime =-1;
     }

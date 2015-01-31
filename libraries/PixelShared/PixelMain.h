@@ -105,7 +105,6 @@ public:
 
     #define MAX_STARS 20
     Array<Star, MAX_STARS> _stars;
-    Vector <Star *> stars;
     
     Sprite backgroundIntro;
     
@@ -139,14 +138,12 @@ public:
     void setupGame();
     void setupAliensGame();
     void updateGame(float timeElapsed);
-    void updateAliensGame(float timeElapsed);
+    void updateAliensGame(float);
     void setHeroData(Hero * hero,int type);
     void setLifeData(Life * life);
     
-    void setAliens(const Vector<Alien *> &aliens);
-    
-    Blood * getBlood(const Vector<Blood *> & _bloods);
-    SpecialAttack * getSpecialAttack(const Vector<SpecialAttack *> &attacs);
+    Blood * getBlood();
+    SpecialAttack * getSpecialAttack();
     
     GameOverText _gameOverText;
 
@@ -154,21 +151,12 @@ public:
     Array<SpecialAttack, MAX_ATTACKS> _specialAttacks;
     #define MAX_BLOOD 8
     Array<Blood, MAX_BLOOD> _bloods;
-    
-    Vector<SpecialAttack *>specialAttackBuffer1p;
-    Vector<Blood *>bloodBuffer1p;
-    
-    Vector<SpecialAttack *>specialAttackBuffer2p;
-    Vector<Blood *>bloodBuffer2p;
-    
-    Vector<SpecialAttack *>specialAttackBufferVS;
-    Vector<Blood *>bloodBufferVS;
 
-    void resolveShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs);
-    void checkShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs,const Vector<Blood *> &_bloods);
-    void resolveAttack(const Vector<Live *> &lives,const Vector<Blood *> &_bloods);
+    void resolveShoot(const StackVector<Live *> &lives);
+    void checkShoot(const StackVector<Live *> &lives);
+    void resolveAttack(const StackVector<Live *> &lives);
     
-    void alienHitTest(Hero * hero,const Vector<Alien *> &aliens,const Vector<Blood *> &_bloods);
+    void alienHitTest(Hero * hero);
     
     //shared
     #define MAX_CITIES 2
@@ -208,32 +196,30 @@ public:
     Hero * boyHero;
     Hero * girlHero;
 
+    StackVector<Alien*> aliens;
+    StackVector<Live *> live;
+
     //GAME 1PLAYER
     void setupGame1p();
     void updateGame1p(float timeElapsed);
     void resetGame1p();
     
     Hero hero1pm;
-    
-    Vector <Alien *> aliens1p;
+
     Sprite lifeBoyHolder1p;
-  
-    Vector<Live *>live1p;
     WaterSplash waterSplash1p;
+
     //GAME 2 PLAYER
-    
     void setupGame2p();
     void updateGame2p(float timeElapsed);
     void resetGame2p();
-    Vector <Alien *> aliens2p;
     Hero hero2pM;
     Hero hero2pF;
     Sprite lifeBoyHolder2p;
     Sprite lifeGirlHolder2p;
-    Vector<Live *>live2p;
     WaterSplash waterSplash2p;
+
     //GAME VS
-    
     void setupGameVS();
     void updateGameVS(float timeElapsed);
     void resetGameVS();
@@ -242,8 +228,8 @@ public:
     
     Sprite lifeBoyHolderVS;
     Sprite lifeGirlHolderVS;
-    Vector<Live *>liveVS;
-    Vector<DecorSprite *>decorVS;
+    StackVector<Live *> liveVS;
+    StackVector<DecorSprite *>decorVS;
     
     void resetGame();
     bool readyToStart;

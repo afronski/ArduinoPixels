@@ -106,8 +106,7 @@ void PixelMain::setupGameVS()
         SpecialAttack *attack = &_specialAttacks[i];
 
         attack->setup();
-        specialAttackBufferVS.push_back(attack);
-        stageVS.addChild( attack);
+        stageVS.addChild(attack);
     }
     
     
@@ -213,16 +212,16 @@ void PixelMain::updateGameVS(float timeElapsed)
         break;
     }
 
-    resolveShoot(liveVS,specialAttackBufferVS);
-    checkShoot(liveVS,specialAttackBufferVS,bloodBufferVS);
+    resolveShoot(liveVS);
+    checkShoot(liveVS);
 
     heroVSM.update(timeElapsed);
     heroVSF.update(timeElapsed);
 
-    resolveAttack(liveVS,bloodBufferVS);
+    resolveAttack(liveVS);
 
-    for (size_t i=0;i<specialAttackBufferVS.size();i++)
-        specialAttackBufferVS[i]->update(timeElapsed,stagefx);
+    for (size_t i=0;i<MAX_ATTACKS;i++)
+        _specialAttacks[i].update(timeElapsed,stagefx);
 
     //
     //check hit etc
@@ -260,9 +259,6 @@ void PixelMain::updateGameVS(float timeElapsed)
 
     for (size_t i=0;i<   decorVS.size();i++)
         decorVS[i]->setLevelPos(stagefx);
-
-    for (size_t i=0;i<bloodBufferVS.size();i++)
-        bloodBufferVS[i]->update(timeElapsed,stagefx);
 
     lifeGirl.setLife(heroVSF.life);
     lifeBoy.setLife(heroVSM.life);

@@ -93,7 +93,7 @@ public:
     const PixelData * gotHitData2;
     
     const PixelData * deathData;
-    Vector<int> lastKeys;
+    StackVector<int> lastKeys;
 };
 
 

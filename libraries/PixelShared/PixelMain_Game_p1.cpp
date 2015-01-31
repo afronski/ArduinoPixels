@@ -11,73 +11,12 @@
 #include "GameOverText.h"
 void PixelMain::setupGame1p()
 {
-    int posAlienPond [2] = {193,350};
-    for (int i=0;i<MAX_ALIENPOND;i++)
-    {
-        AlienPond *alien = &_alienPonds[i];
-        alien->setup();
-        alien->fx  = alien->fxReal = posAlienPond [i];
-        alien->fy =16;
-        aliens1p.push_back(alien);
-        stage.addChild(alien);
-        live1p.push_back(alien);
-    }
-
-    
-    for (int i=0;i<MAX_ATTACKS;i++)
-    {
-        SpecialAttack *attack = &_specialAttacks[i];
-
-        attack->setup();
-        specialAttackBuffer1p.push_back(attack);
-        stage.addChild(attack);
-    }
-       int posAlien1 [4] = {290,380, 451 , 500};
-    for (int i=0;i<MAX_ALIEN;i++)
-    {
-
-        Alien1 *alien  = &_aliens1[i];
-
-        alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
-        alien->fy =15;
-         alien->setup();
-        aliens1p.push_back(alien);
-        stage.addChild(alien);
-        live1p.push_back(alien);
-    
-    }
-    
-     int posAlien2 [4] = {95,150, 250 , 420};
-    for (int i=0;i<MAX_ALIEN;i++)
-    {
-        Alien2 *alien = &_aliens2[i];
-      
-        alien->fx  = alien->fxReal =posAlien2[i];
-        alien->fy =15;
-        alien->setup();//setup after fx
-        aliens1p.push_back(alien);
-        stage.addChild(alien);
-        live1p.push_back(alien);
-
-    }     
-    {
-    alienBoss = &_alienBoss;
-
-    alienBoss->fx = alienBoss->fxReal =600;
-    alienBoss->fy =15;
-    alienBoss->setup();
-    aliens1p.push_back(alienBoss);
-    stage.addChild(alienBoss);
-    live1p.push_back(alienBoss);
-    }
-  
-    
      ///hero
-   // setHeroData(&hero1pm,0);
+    // setHeroData(&hero1pm,0);
     stage.addChild(&hero1pm);
     hero1pm.setup(0);
    
-    live1p.push_back(&hero1pm);
+    live.push_back(&hero1pm);
     
     
     //life
@@ -96,7 +35,6 @@ void PixelMain::setupGame1p()
     {
         Blood *blood = &_bloods[i];
         blood->setup();
-        bloodBuffer1p.push_back(blood);
         stage.addChild(blood);
     }
     _gameOverText.fy = 0;
@@ -118,9 +56,9 @@ void PixelMain::resetGame1p()
 
     hero1pm.setLevelPos(stagefx);
 
-    for(size_t i=0;i< aliens1p.size();i++)
+    for(size_t i=0;i< aliens.size();i++)
     {
-        aliens1p[i]->setLevelPos(stagefx);
+        aliens[i]->setLevelPos(stagefx);
     }
 }
 
@@ -167,14 +105,13 @@ void PixelMain::updateGame1p (float timeElapsed)
         break;
     }
 
-    for(size_t i=0;i< aliens1p.size();i++)
-        aliens1p[i]->update(timeElapsed);
+    for(size_t i=0;i< aliens.size();i++)
+        aliens[i]->update(timeElapsed);
 
     hero1pm.update(timeElapsed);
 
-    resolveShoot(live1p,specialAttackBuffer1p);
-
-    checkShoot(live1p,specialAttackBuffer1p,bloodBuffer1p);
+    resolveShoot(live);
+    checkShoot(live);
 
     if(hero1pm.fxReal < -10 )
     {
@@ -207,25 +144,22 @@ void PixelMain::updateGame1p (float timeElapsed)
         stagefx -= ( stagefx+15 )-hero1pm.fxReal;
     }
 
-    for (size_t i=0;i<specialAttackBuffer1p.size();i++)
+    for (size_t i=0;i<MAX_ATTACKS;i++)
     {
-        specialAttackBuffer1p[i]->update(timeElapsed, stagefx);
+        _specialAttacks[i].update(timeElapsed, stagefx);
     }
-    alienHitTest(&hero1pm, aliens1p,bloodBuffer1p);
+    alienHitTest(&hero1pm);
 
-    resolveAttack(live1p,bloodBuffer1p);
+    resolveAttack(live);
 
 
     hero1pm.setLevelPos(stagefx);
 
-    for(size_t i=0;i< aliens1p.size();i++)
-        aliens1p[i]->setLevelPos(stagefx);
+    for(size_t i=0;i< aliens.size();i++)
+        aliens[i]->setLevelPos(stagefx);
 
     lifeBoy.setLife(hero1pm.life);
     lifeBoy.update(timeElapsed);
-
-    for (size_t i=0;i<bloodBuffer1p.size();i++)
-        bloodBuffer1p[i]->update(timeElapsed,stagefx);
 
     waterSplash1p.update(timeElapsed,stagefx);
 }

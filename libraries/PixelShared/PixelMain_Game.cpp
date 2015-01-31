@@ -92,7 +92,7 @@ Array<Sprite,2> _backgroundGame;
 const DataCloud1 _cloudData;
 const DataBackGrass _backGrass;
 
-Vector<DecorSprite *>aliensDecor;
+StackVector<DecorSprite *, 64> aliensDecor;
 
 
 //
@@ -193,7 +193,7 @@ void PixelMain::initGame()
     lifeBoyHolderVS.currentData = &boyInterData;
     lifeGirlHolderVS.currentData = &girlInterData;
 }
-void PixelMain::alienHitTest(Hero * hero,const Vector <Alien *> &aliens,const Vector<Blood *> &bloods)
+void PixelMain::alienHitTest(Hero * hero)
 {
     if(hero->saveTime >0)return;
     for(size_t i=0;i<aliens.size();i++)
@@ -253,7 +253,7 @@ void PixelMain::alienHitTest(Hero * hero,const Vector <Alien *> &aliens,const Ve
                 hero->hitFall =rand()%2;
                 hero->saveTime =0.8;
             
-                Blood * blood =getBlood(bloods);
+                Blood * blood =getBlood();
                 if(blood!=0)
                 {
                     blood->fxReal = hero->fxReal ;
@@ -272,7 +272,7 @@ void PixelMain::alienHitTest(Hero * hero,const Vector <Alien *> &aliens,const Ve
 }
 
 
-void  PixelMain::resolveAttack(const Vector<Live *> &lives,const Vector<Blood *> &bloods)
+void  PixelMain::resolveAttack(const StackVector<Live *> &lives)
 {
 
     for(size_t j=0;j<lives.size();j++)
@@ -349,7 +349,7 @@ void  PixelMain::resolveAttack(const Vector<Live *> &lives,const Vector<Blood *>
                         attackee->hitFall =rand()%2;
                        attackee->saveTime =0.8;
                         
-                        Blood * blood =getBlood(bloods);
+                        Blood * blood =getBlood();
                         if(blood!=0)
                         {
                             blood->fxReal = hitPosX;
@@ -368,21 +368,17 @@ void  PixelMain::resolveAttack(const Vector<Live *> &lives,const Vector<Blood *>
   
 
 }
-void  PixelMain::checkShoot(const Vector<Live *> &lives,const Vector<SpecialAttack *> &attacs,const Vector<Blood *> &bloods)
+void  PixelMain::checkShoot(const StackVector<Live *> &lives)
 {
-
-    for(size_t j=0;j<attacs.size();j++)
+    for(size_t j=0;j<MAX_ATTACKS;j++)
     {
-        if(attacs[j]->isUsed)
+        if(_specialAttacks[j].isUsed)
         {
-          
-            SpecialAttack * attack = attacs[j];
+            SpecialAttack * attack = &_specialAttacks[j];
             for(size_t i=0;i<lives.size();i++)
             {
-                
                 if(gameType == GAME_TYPE_2P)
                 {
-                    
                     if(attack->heroType==1 && lives[i]->heroType==0)
                     {
                         continue;
@@ -392,8 +388,6 @@ void  PixelMain::checkShoot(const Vector<Live *> &lives,const Vector<SpecialAtta
                         continue;
                         
                     }
-                    
-                    
                 }
 
                 if( attack->heroType>1 && lives[i]->heroType>1)continue;
@@ -441,7 +435,7 @@ void  PixelMain::checkShoot(const Vector<Live *> &lives,const Vector<SpecialAtta
                         attackee->hitFall =rand()%2;
                         attackee->saveTime =0.8;
                         
-                        Blood * blood =getBlood(bloods);
+                        Blood * blood =getBlood();
                         if(blood!=0)
                         {
                             blood->fxReal = attack->fxReal;
@@ -466,14 +460,14 @@ void  PixelMain::checkShoot(const Vector<Live *> &lives,const Vector<SpecialAtta
     }
 
 }
-void  PixelMain::resolveShoot(const Vector<Live *> &lives,const  Vector<SpecialAttack *> &attacts)
+void  PixelMain::resolveShoot(const StackVector<Live *> &lives)
 {
     for(size_t i=0;i< lives.size();i++)
     
     if(lives[i]->startShoot)
     {
         lives[i]->startShoot =false;
-        SpecialAttack * attack=getSpecialAttack(attacts);
+        SpecialAttack * attack=getSpecialAttack();
         if(attack){
             attack->fxReal =lives[i]->fxReal +4;
             if(lives[i]->drawType==1)attack->fxReal -=7;
@@ -487,37 +481,36 @@ void  PixelMain::resolveShoot(const Vector<Live *> &lives,const  Vector<SpecialA
 
 }
 
-Blood * PixelMain::getBlood(const Vector<Blood *> &bloods)
+Blood * PixelMain::getBlood()
 {
-    for (size_t i=0;i<bloods.size();i++)
-    {
-        if(!bloods[i]->isUsed) return bloods[i];
-        
-    }
-    return 0;
-}
-SpecialAttack * PixelMain::getSpecialAttack(const  Vector<SpecialAttack *> &attacts)
-{
-    
-    for (size_t i=0;i<attacts.size();i++)
-    {
-        if(!attacts[i]->isUsed) return attacts[i];
-        
-    }
-    return 0;
-    
-}
+    // TODO more random blood selection.
+    for (size_t i=0;i<MAX_BLOOD;i++)
+        if(!_bloods[i].isUsed) return &_bloods[i];
 
+    return 0;
+}
+SpecialAttack * PixelMain::getSpecialAttack()
+{
+    for (size_t i=0;i<MAX_ATTACKS;i++)
+        if(!_specialAttacks[i].isUsed) return &_specialAttacks[i];
+
+    return 0;
+}
 
 void  PixelMain::resetGame()
 {
-    _gameOverText.reset();
-    _aliens1.reset();
-    _aliens2.reset();
-    _alienBoss.reset();
+    // Clear the vectors
+    aliens.clear();
+    live.clear();
+    aliensDecor.clear();
+    liveVS.clear();
+    decorVS.clear();
 
-    endGame  =false;
-    stagefx =0;
+    stage.reset();
+    stageVS.reset();
+
+    endGame = false;
+    stagefx = 0;
     resetGame1p();
     resetGame2p();
     resetGameVS();
@@ -528,8 +521,6 @@ void  PixelMain::resetGame()
 
 void PixelMain::setupGame()
 {
-    //backGround
-
     for (int i=0; i<2; i++)
     {
         _backgroundGame[i].drawType =3;
@@ -615,11 +606,17 @@ void PixelMain::setupAliensGame()
 
         flower->fx = flower->fxReal = rand()%600;
         int rPos = -rand()%3;
-         flower->fy = rPos+16;
-         flower->depth =1;
-        if( rPos ==-2)  flower->depth=0.98;
-        if( rPos ==-3)  flower->depth=0.95;
+        flower->fy = rPos+16;
+        flower->depth =1;
 
+        switch (rPos) {
+        case -2:
+            flower->depth=0.98;
+            break;
+        case -3:
+            flower->depth=0.95;
+            break;
+        }
 
         aliensDecor.push_back( flower);
     }
@@ -664,10 +661,66 @@ void PixelMain::setupAliensGame()
             }
         }
     }
+
     for (size_t i=0;i<   aliensDecor.size();i++)
     {
         stage.addChild(aliensDecor[i]);
     }
+
+    int posAlienPond [2] = {193,350};
+    for (int i=0;i<MAX_ALIENPOND;i++)
+    {
+        AlienPond *alien = &_alienPonds[i];
+        alien->setup();
+        alien->fx  = alien->fxReal = posAlienPond [i];
+        alien->fy =16;
+        aliens.push_back(alien);
+        stage.addChild(alien);
+        live.push_back(alien);
+    }
+
+    int posAlien1 [4] = {290,380, 451 , 500};
+    for (int i=0;i<MAX_ALIEN;i++)
+    {
+        Alien1 *alien  = &_aliens1[i];
+
+        alien->fx  = alien->fxReal = posAlien1 [i]; // rand()%200;
+        alien->fy =15;
+        alien->setup();
+        aliens.push_back(alien);
+        stage.addChild(alien);
+        live.push_back(alien);
+    }
+
+    int posAlien2 [4] = {95,150, 250 , 420};
+    for (int i=0;i<MAX_ALIEN;i++)
+    {
+        Alien2 *alien = &_aliens2[i];
+
+        alien->fx  = alien->fxReal =posAlien2[i];
+        alien->fy =15;
+        alien->setup();//setup after fx
+        aliens.push_back(alien);
+        stage.addChild(alien);
+        live.push_back(alien);
+    }
+
+    for (int i=0;i<MAX_ATTACKS;i++)
+    {
+        SpecialAttack *attack = &_specialAttacks[i];
+
+        attack->setup();
+        stage.addChild(attack);
+    }
+
+    alienBoss = &_alienBoss;
+
+    alienBoss->fx = alienBoss->fxReal =600;
+    alienBoss->fy =15;
+    alienBoss->setup();
+    aliens.push_back(alienBoss);
+    stage.addChild(alienBoss);
+    live.push_back(alienBoss);
 }
 
 void  PixelMain::setHeroData(Hero * hero,int type)
@@ -742,9 +795,12 @@ void PixelMain::updateGame(float timeElapsed)
     // Update the common game assets
     for (int i=0;i<3;i++)
         _clouds[i].update(timeElapsed);
+
+    for (size_t i=0;i<MAX_BLOOD;i++)
+        _bloods[i].update(timeElapsed,stagefx);
 }
 
-void PixelMain::updateAliensGame(float timeElapsed)
+void PixelMain::updateAliensGame(float /*timeElapsed*/)
 {
     // Update the 1p and 2p common game assets
 

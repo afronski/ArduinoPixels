@@ -30,8 +30,11 @@ public:
     const PixelData * currentData = nullptr;
     int drawType = 0;
 
+    virtual void resetImpl() {}
     void reset()
     {
+        resetImpl();
+
         intHidden = false;
         x = 0;
         y = 0;
@@ -46,6 +49,10 @@ public:
         hitRect = npRect();
         currentData = nullptr;
         drawType = 0;
+
+        // Recursively reset & clear
+        children.resetAll();
+        children.clear();
     }
 
     void addChild(Sprite *child)
