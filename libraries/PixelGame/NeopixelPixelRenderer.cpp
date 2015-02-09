@@ -10,11 +10,6 @@
 
 #include "NeopixelPixelRenderer.h"
 
-NeopixelPixelRenderer::NeopixelPixelRenderer()
-{
-
-}
-
 void NeopixelPixelRenderer::setBrightness(int br)
 {
 	pixels->setBrightness(br);

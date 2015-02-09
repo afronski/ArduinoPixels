@@ -24,7 +24,7 @@ class NeopixelPixelRenderer : public PixelRenderer
 public:
     Adafruit_NeoMatrix *pixels;
     
-    NeopixelPixelRenderer();
+    NeopixelPixelRenderer() { }
    
     void setup();
    

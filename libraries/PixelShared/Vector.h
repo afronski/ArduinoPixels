@@ -129,17 +129,7 @@ public:
     
     }
 
-    // Call .reset() on each element
-    template <bool EnableBool = true>
-    inline typename std::enable_if<!std::is_pointer<Data>::value && EnableBool>::type
-    resetAll() {
-        for (unsigned int i=0; i<size(); i++)
-            d_data[i].reset();
-    }
-
-    template <bool EnableBool = true>
-    inline typename std::enable_if<std::is_pointer<Data>::value && EnableBool>::type
-    resetAll() {
+    inline void resetAll() {
         for (unsigned int i=0; i<size(); i++)
             if (d_data[i])
                 d_data[i]->reset();
