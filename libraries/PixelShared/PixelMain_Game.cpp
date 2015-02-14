@@ -182,9 +182,9 @@ void PixelMain::initGame()
 
     setHeroData(&hero2pF,1);
     setHeroData(&hero2pM,0);
-    
-     setHeroData(&heroVSF,1);
-     setHeroData(&heroVSM,0);
+
+    setHeroData(&heroVSF,1);
+    setHeroData(&heroVSM,0);
 
     lifeBoyHolder1p.currentData = &boyInterData;
 
