@@ -19,7 +19,7 @@ class PixelRenderer
 {
 public:
 
-    virtual ~PixelRenderer() {};
+    virtual ~PixelRenderer() {}
 
     virtual void setup() = 0;
 

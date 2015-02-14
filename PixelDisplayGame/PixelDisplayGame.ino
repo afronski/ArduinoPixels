@@ -22,31 +22,33 @@
 #include <PixelMain.h>
 #include <PixelGameInclude.h>
 #include <NeopixelPixelRenderer.h>
+#include <NeuroPixelRenderer.h>
 
-NeopixelPixelRenderer *renderer;
+PixelRenderer *renderer;
 PixelMain *pixelMain;
 
 int count =0;
 unsigned long secTime=0;
 unsigned long lastTime=0;
-boolean chekBrightness =false;
+boolean chekBrightness = true;
 void setup(){
-     Serial.begin(57600);
-     Serial3.begin(57600);
-     Serial.println("start2");
-   
-   renderer = new NeopixelPixelRenderer();
-   pixelMain = new PixelMain(renderer);
-   pixelMain->setup();
-secTime =millis();
-lastTime =millis(); 
+    Serial.begin(57600);
+    Serial3.begin(57600);
+    Serial.println("start2");
+
+    renderer = new NeopixelPixelRenderer();
+    pixelMain = new PixelMain(renderer);
+
+    pixelMain->setup();
+    secTime =millis();
+    lastTime =millis();
 }
-  int incomingByte = 0;
+
+int incomingByte = 0;
 void loop() {
 
   if(chekBrightness)
   {
-    
        pixelMain->brightness = analogRead(0)/4;
   }
   

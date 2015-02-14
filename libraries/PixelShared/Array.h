@@ -12,8 +12,6 @@
 #ifndef PixelGameLocal_Array_h
 #define PixelGameLocal_Array_h
 
-#include <type_traits>
-
 #ifdef DEBUG
     #include <assert.h>
 #endif
@@ -31,7 +29,7 @@ inline void assert_d(bool
 template<typename T, int Size>
 class Array
 {
-    T _array[Size] = {};
+    T _array[Size];
 
 public:
     inline T& operator[](int idx) {
@@ -46,17 +44,7 @@ public:
         return _array[idx];
     }
 
-    // Call .reset() on each element
-    template <bool EnableBool = true>
-    inline typename std::enable_if<!std::is_pointer<T>::value && EnableBool>::type
-    resetAll() {
-        for (int i=0; i<Size; i++)
-            _array[i].reset();
-    }
-
-    template <bool EnableBool = true>
-    inline typename std::enable_if<std::is_pointer<T>::value && EnableBool>::type
-    resetAll() {
+    inline void resetAll() {
         for (int i=0; i<Size; i++)
             if (_array[i])
                 _array[i]->reset();
