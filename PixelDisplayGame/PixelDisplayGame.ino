@@ -36,7 +36,7 @@ void setup(){
     Serial3.begin(57600);
     Serial.println("start2");
 
-    renderer = new NeopixelPixelRenderer();
+    renderer = new NeuroPixelRenderer();
     pixelMain = new PixelMain(renderer);
 
     pixelMain->setup();
