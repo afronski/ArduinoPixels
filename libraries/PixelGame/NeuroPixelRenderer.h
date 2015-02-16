@@ -35,7 +35,6 @@ public:
 
     virtual void setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b, uint8_t a);
 
-    virtual void setPixel(int x, int y, uint32_t c);
     virtual void setBrightness(int val);
     virtual void fade();
 };

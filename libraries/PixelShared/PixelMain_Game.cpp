@@ -100,24 +100,24 @@ StackVector<DecorSprite *, 64> aliensDecor;
 //
 
 const DataManJump jumpDataB;
-DataManJumpKick jumpKickDataB;
+const DataManJumpKick jumpKickDataB;
 const DataManJumpHit jumpHitDataB;
 const DataManJumpBlock jumpBlockDataB;
 
 const DataManCrouch crouchDataB;
 const DataManCrouchWalk1 crouchDataWalk1B;
 const DataManCrouchWalk2 crouchDataWalk2B;
-DataManCrouchKick crouchKickDataB;
-DataManCrouchHit crouchHitDataB;
+const DataManCrouchKick crouchKickDataB;
+const DataManCrouchHit crouchHitDataB;
 const DataManCrouchBlock crouchBlockDataB;
 
 const DataManStand standDataB;
 const DataManStandKick standKickDataB;
-DataManStandHit1 standHitData1B;
-DataManStandHit2 standHitData2B;
+const DataManStandHit1 standHitData1B;
+const DataManStandHit2 standHitData2B;
 const DataManStandBlock standBlockDataB;
 const DataManGitHit1 gotHit1B;
-DataManGitHit2 gotHit2B;
+const DataManGitHit2 gotHit2B;
 
 const DataManWalk1 walk1DataB;
 const DataManWalk2 walk2DataB;
@@ -130,24 +130,24 @@ const DataBoyDeath deathDataB;
 //
 
 const DataGirlJump jumpDataG;
-DataGirlJumpKick jumpKickDataG;
+const DataGirlJumpKick jumpKickDataG;
 const DataGirlJumpHit jumpHitDataG;
 const DataGirlJumpBlock jumpBlockDataG;
 
 const DataGirlCrouch crouchDataG;
 const DataGirlCrouchWalk1 crouchDataWalk1G;
 const DataGirlCrouchWalk2 crouchDataWalk2G;
-DataGirlCrouchKick crouchKickDataG;
-DataGirlCrouchHit crouchHitDataG;
+const DataGirlCrouchKick crouchKickDataG;
+const DataGirlCrouchHit crouchHitDataG;
 const DataGirlCrouchBlock crouchBlockDataG;
 
 const DataGirlStand standDataG;
-DataGirlStandKick standKickDataG;
-DataGirlStandHit1 standHitData1G;
-DataGirlStandHit2 standHitData2G;
+const DataGirlStandKick standKickDataG;
+const DataGirlStandHit1 standHitData1G;
+const DataGirlStandHit2 standHitData2G;
 const DataGirlStandBlock standBlockDataG;
 const DataGirlGotHit2 gotHit1G;
-DataGirlGotHit2 gotHit2G;
+const DataGirlGotHit2 gotHit2G;
 
 const DataGirlWalk1 walk1DataG;
 const DataGirlWalk2 walk2DataG;
@@ -156,27 +156,6 @@ const DataGirlDeath deathDataG;
 
 void PixelMain::initGame()
 {
-    // boy
-    jumpKickDataB.centerX-=1;
-
-    crouchKickDataB.centerX-=1;
-    crouchHitDataB.centerX-=1;
-
-    standHitData1B.centerX-=1;
-    standHitData2B.centerX-=1;
-    gotHit2B.centerY-=1;
-
-    // girl
-    jumpKickDataG.centerX-=1;
-
-    crouchKickDataG.centerX-=1;
-    crouchHitDataG.centerX-=1;
-
-    standKickDataG.centerX-=1;
-    standHitData1G.centerX-=1;
-    standHitData2G.centerX-=1;
-    gotHit2G.centerY-=1;
-
     //set the data
     setHeroData(&hero1pm,0);
 
