@@ -11,8 +11,6 @@
 #include "DataTextPressToPlay.h"
 #include "DataBackSpace.h"
 
-#include <iostream>
-
 const DataTextInvasion dataTextInvasion;
 const DataTextPressToPlay dataTextPressToPlay;
 const DataBackSpace dataBackSpace;
