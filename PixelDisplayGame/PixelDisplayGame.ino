@@ -1,9 +1,17 @@
+/////////////////////////
+// BEGIN CONFIGURATION //
+/////////////////////////
 
+#define RENDERER NeuroPixelRenderer // NeuroPixelRenderer | NeopixelPixelRenderer
+#define SERIAL_PORT Serial3         // Serial1 | Serial2 | Serial3
 
+const boolean check_brightness = true;   // Read potentiometer to adjust display brightness
+const unsigned int target_timestep = 33; // Limit the update rate (33ms ~= 30FPS)
+const unsigned int max_timestep = 50;    // Drop frames if updating slower (50ms = 20FPS)
 
-
-
-
+///////////////////////
+// END CONFIGURATION //
+///////////////////////
 
 
 #ifndef PSTR
@@ -13,10 +21,9 @@
  #define ARDUINOGAME
 #endif
 
-//#include <Adafruit_NeoPixel.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_NeoPixel.h>
 #include <Adafruit_NeoMatrix.h>
+#include <Adafruit_NeoPixel.h>
 
 #include <Hero.h>
 #include <PixelMain.h>
@@ -27,47 +34,62 @@
 PixelRenderer *renderer;
 PixelMain *pixelMain;
 
-int count =0;
-unsigned long secTime=0;
-unsigned long lastTime=0;
-boolean chekBrightness = true;
-void setup(){
-    Serial.begin(57600);
-    Serial3.begin(57600);
-    Serial.println("start2");
+const int ledPin = 13;
+unsigned long lastTime = 0;
 
-    renderer = new NeopixelPixelRenderer();
+void setup(){
+
+    pinMode(ledPin, OUTPUT);
+
+    SERIAL_PORT.begin(57600);
+
+    renderer = new RENDERER();
     pixelMain = new PixelMain(renderer);
 
     pixelMain->setup();
-    secTime =millis();
+
     lastTime =millis();
+
+    // Let's take a deep breath before diving in
+    delay(100);
 }
 
 int incomingByte = 0;
 void loop() {
+  unsigned long currentTime;
+  unsigned long timestep;
 
-  if(chekBrightness)
+  if (check_brightness)
+    pixelMain->brightness = analogRead(0)/4;
+
+  // Wait for target_timestep
+  do
   {
-       pixelMain->brightness = analogRead(0)/4;
+    delay(1); // some well deserved rest
+    currentTime = millis();
+    timestep  = currentTime-lastTime;
   }
-  
-  unsigned long  currentTime =millis();
-  float timestep  = currentTime-lastTime;
+  while (timestep < target_timestep);
   lastTime = currentTime;
-  
-  
-  
-  
-   if (Serial3.available() > 0) 
-   {
-              // chekBrightness =false;
-                incomingByte = Serial3.read();
-                pixelMain->setInput((int)incomingByte);
-    }
 
-    pixelMain->update(timestep /200);
-    pixelMain->draw();
+  // Read the input controls
+  if (SERIAL_PORT.available() > 0)
+  {
+    incomingByte = SERIAL_PORT.read();
+    pixelMain->setInput((int)incomingByte);
+  }
+
+  // Update the game
+  pixelMain->update(timestep / float(500));
+
+  // Drop frames if slower than max_timestep
+  if (timestep > max_timestep)
+  {
+    digitalWrite(ledPin, HIGH); // Indicate frame dropping by lighting up LED
+  }
+  else
+  {
+    digitalWrite(ledPin, LOW); // Disable frame drop indication
+    pixelMain->draw(); // Draw frame
+  }
 }
-  
-

@@ -10,7 +10,6 @@
 
 #ifndef PixelGame_NeopixelPixelRenderer_h
 #define PixelGame_NeopixelPixelRenderer_h
-#include "Adafruit_NeoMatrix.h"
 
 #include "PixelGameInclude.h"
 #include "PixelRenderer.h"
