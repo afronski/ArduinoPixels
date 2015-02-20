@@ -2,12 +2,12 @@
 // BEGIN CONFIGURATION //
 /////////////////////////
 
-#define RENDERER NeuroPixelRenderer // NeuroPixelRenderer | NeopixelPixelRenderer
-#define SERIAL_PORT Serial3         // Serial1 | Serial2 | Serial3
+#define RENDERER NeuroPixelRenderer       // NeuroPixelRenderer | NeopixelPixelRenderer
+#define SERIAL_PORT Serial3               // Serial1 | Serial2 | Serial3
 
-const boolean check_brightness = true;   // Read potentiometer to adjust display brightness
-const unsigned int target_timestep = 33; // Limit the update rate (33ms ~= 30FPS)
-const unsigned int max_timestep = 50;    // Drop frames if updating slower (50ms = 20FPS)
+const boolean check_brightness = true;    // Read potentiometer to adjust display brightness
+const unsigned int target_frametime = 33; // Limit the screen refresh rate (33ms ~= 30FPS)
+const unsigned int max_frametime = 50;    // Drop frames if updating slower (50ms = 20FPS)
 
 ///////////////////////
 // END CONFIGURATION //
@@ -38,7 +38,6 @@ const int ledPin = 13;
 unsigned long lastTime = 0;
 
 void setup(){
-
     pinMode(ledPin, OUTPUT);
 
     SERIAL_PORT.begin(57600);
@@ -49,41 +48,42 @@ void setup(){
     pixelMain->setup();
 
     lastTime =millis();
-
-    // Let's take a deep breath before diving in
-    delay(100);
 }
 
 int incomingByte = 0;
 void loop() {
   unsigned long currentTime;
-  unsigned long timestep;
+  unsigned long frametime;
+  unsigned long lastUpdate = lastTime;
 
   if (check_brightness)
     pixelMain->brightness = analogRead(0)/4;
 
-  // Wait for target_timestep
+  // Wait for target_frametime
   do
   {
-    delay(1); // some well deserved rest
+    delay(1); // Avoid 0ms timestep (currentTime - lastUpdate)
     currentTime = millis();
-    timestep  = currentTime-lastTime;
-  }
-  while (timestep < target_timestep);
-  lastTime = currentTime;
+    frametime  = currentTime-lastTime;
 
-  // Read the input controls
-  if (SERIAL_PORT.available() > 0)
-  {
-    incomingByte = SERIAL_PORT.read();
-    pixelMain->setInput((int)incomingByte);
+    // Read the input controls
+    if (SERIAL_PORT.available() > 0)
+    {
+      incomingByte = SERIAL_PORT.read();
+      pixelMain->setInput((int)incomingByte);
+      pixelMain->update(currentTime - lastUpdate / float(500));
+      lastUpdate = currentTime;
+    }
   }
+  while (frametime < target_frametime);
 
   // Update the game
-  pixelMain->update(timestep / float(500));
+  if (currentTime > lastUpdate)
+    pixelMain->update(currentTime - lastUpdate / float(500));
+  lastTime = currentTime;
 
-  // Drop frames if slower than max_timestep
-  if (timestep > max_timestep)
+  // Drop frames if slower than max_frametime
+  if (frametime > max_frametime)
   {
     digitalWrite(ledPin, HIGH); // Indicate frame dropping by lighting up LED
   }
