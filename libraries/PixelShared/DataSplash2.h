@@ -76,9 +76,12 @@ namespace _Splash2_ {
         ,255
     };
 }
-struct DataSplash2 : public PixelDataImpl<DataSplash2> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataSplash2 : public PixelDataImpl<DataSplash2<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 10; }
        static constexpr uint8_t height() { return 6; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _Splash2_::indices; }
        static constexpr const uint8_t* color() { return _Splash2_::color; }
        constexpr DataSplash2(){}

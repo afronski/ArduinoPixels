@@ -178,18 +178,18 @@ public:
     Array<AlienPond, MAX_ALIENPOND> _alienPonds;
     Alien3 _alienBoss;
 
-    const DataCity _cityData;
-    const DataThreeFar _treeFarData;
-    const DataThreeClose _treeCloseData;
-    const Dataflower _flowerData;
-    const DataBush _bushData;
-    const DataPaddo _paddoData;
+    const DataCity<> _cityData;
+    const DataThreeFar<> _treeFarData;
+    const DataThreeClose<> _treeCloseData;
+    const Dataflower<> _flowerData;
+    const DataBush<> _bushData;
+    const DataPaddo<> _paddoData;
 
     //////////////////////lifedata
     Life lifeGirl;
     Life lifeBoy;
-    DataInterface boyInterData;
-    DataInterface2 girlInterData;
+    const DataInterface<> boyInterData;
+    const DataInterface2<> girlInterData;
 
     //////////////////
     float stagefx;

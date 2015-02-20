@@ -88,9 +88,12 @@ namespace _ManGitHit2_ {
         ,255
     };
 }
-struct DataManGitHit2 : public PixelDataImpl<DataManGitHit2> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataManGitHit2 : public PixelDataImpl<DataManGitHit2<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 8; }
        static constexpr uint8_t height() { return 8; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _ManGitHit2_::indices; }
        static constexpr const uint8_t* color() { return _ManGitHit2_::color; }
        constexpr DataManGitHit2(){}

@@ -956,9 +956,12 @@ namespace _Instructions_ {
         ,255
     };
 }
-struct DataInstructions : public PixelDataImpl<DataInstructions> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataInstructions : public PixelDataImpl<DataInstructions<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 84; }
        static constexpr uint8_t height() { return 11; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _Instructions_::indices; }
        static constexpr const uint8_t* color() { return _Instructions_::color; }
        constexpr DataInstructions(){}

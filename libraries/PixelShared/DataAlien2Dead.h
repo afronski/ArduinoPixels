@@ -76,9 +76,12 @@ namespace _Alien2Dead_ {
         ,230
     };
 }
-struct DataAlien2Dead : public PixelDataImpl<DataAlien2Dead> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataAlien2Dead : public PixelDataImpl<DataAlien2Dead<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 8; }
        static constexpr uint8_t height() { return 7; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _Alien2Dead_::indices; }
        static constexpr const uint8_t* color() { return _Alien2Dead_::color; }
        constexpr DataAlien2Dead(){}

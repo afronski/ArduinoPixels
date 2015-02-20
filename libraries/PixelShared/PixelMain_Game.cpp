@@ -89,8 +89,8 @@
 
 Array<Cloud,6> _clouds;
 Array<Sprite,2> _backgroundGame;
-const DataCloud1 _cloudData;
-const DataBackGrass _backGrass;
+const DataCloud1<> _cloudData;
+const DataBackGrass<> _backGrass;
 
 StackVector<DecorSprite *, 64> aliensDecor;
 
@@ -99,60 +99,60 @@ StackVector<DecorSprite *, 64> aliensDecor;
 // Boy Data
 //
 
-const DataManJump jumpDataB;
-const DataManJumpKick jumpKickDataB;
-const DataManJumpHit jumpHitDataB;
-const DataManJumpBlock jumpBlockDataB;
+const DataManJump<> jumpDataB;
+const DataManJumpKick<> jumpKickDataB;
+const DataManJumpHit<> jumpHitDataB;
+const DataManJumpBlock<> jumpBlockDataB;
 
-const DataManCrouch crouchDataB;
-const DataManCrouchWalk1 crouchDataWalk1B;
-const DataManCrouchWalk2 crouchDataWalk2B;
-const DataManCrouchKick crouchKickDataB;
-const DataManCrouchHit crouchHitDataB;
-const DataManCrouchBlock crouchBlockDataB;
+const DataManCrouch<> crouchDataB;
+const DataManCrouchWalk1<> crouchDataWalk1B;
+const DataManCrouchWalk2<> crouchDataWalk2B;
+const DataManCrouchKick<> crouchKickDataB;
+const DataManCrouchHit<> crouchHitDataB;
+const DataManCrouchBlock<> crouchBlockDataB;
 
-const DataManStand standDataB;
-const DataManStandKick standKickDataB;
-const DataManStandHit1 standHitData1B;
-const DataManStandHit2 standHitData2B;
-const DataManStandBlock standBlockDataB;
-const DataManGitHit1 gotHit1B;
-const DataManGitHit2 gotHit2B;
+const DataManStand<> standDataB;
+const DataManStandKick<> standKickDataB;
+const DataManStandHit1<> standHitData1B;
+const DataManStandHit2<> standHitData2B;
+const DataManStandBlock<> standBlockDataB;
+const DataManGitHit1<> gotHit1B;
+const DataManGitHit2<> gotHit2B;
 
-const DataManWalk1 walk1DataB;
-const DataManWalk2 walk2DataB;
-const DataManWalk3 walk3DataB;
-const DataBoyDeath deathDataB;
+const DataManWalk1<> walk1DataB;
+const DataManWalk2<> walk2DataB;
+const DataManWalk3<> walk3DataB;
+const DataBoyDeath<> deathDataB;
 
 
 //
 // Girl Data
 //
 
-const DataGirlJump jumpDataG;
-const DataGirlJumpKick jumpKickDataG;
-const DataGirlJumpHit jumpHitDataG;
-const DataGirlJumpBlock jumpBlockDataG;
+const DataGirlJump<> jumpDataG;
+const DataGirlJumpKick<> jumpKickDataG;
+const DataGirlJumpHit<> jumpHitDataG;
+const DataGirlJumpBlock<> jumpBlockDataG;
 
-const DataGirlCrouch crouchDataG;
-const DataGirlCrouchWalk1 crouchDataWalk1G;
-const DataGirlCrouchWalk2 crouchDataWalk2G;
-const DataGirlCrouchKick crouchKickDataG;
-const DataGirlCrouchHit crouchHitDataG;
-const DataGirlCrouchBlock crouchBlockDataG;
+const DataGirlCrouch<> crouchDataG;
+const DataGirlCrouchWalk1<> crouchDataWalk1G;
+const DataGirlCrouchWalk2<> crouchDataWalk2G;
+const DataGirlCrouchKick<> crouchKickDataG;
+const DataGirlCrouchHit<> crouchHitDataG;
+const DataGirlCrouchBlock<> crouchBlockDataG;
 
-const DataGirlStand standDataG;
-const DataGirlStandKick standKickDataG;
-const DataGirlStandHit1 standHitData1G;
-const DataGirlStandHit2 standHitData2G;
-const DataGirlStandBlock standBlockDataG;
-const DataGirlGotHit2 gotHit1G;
-const DataGirlGotHit2 gotHit2G;
+const DataGirlStand<> standDataG;
+const DataGirlStandKick<> standKickDataG;
+const DataGirlStandHit1<> standHitData1G;
+const DataGirlStandHit2<> standHitData2G;
+const DataGirlStandBlock<> standBlockDataG;
+const DataGirlGotHit2<> gotHit1G;
+const DataGirlGotHit2<> gotHit2G;
 
-const DataGirlWalk1 walk1DataG;
-const DataGirlWalk2 walk2DataG;
-const DataGirlWalk3 walk3DataG;
-const DataGirlDeath deathDataG;
+const DataGirlWalk1<> walk1DataG;
+const DataGirlWalk2<> walk2DataG;
+const DataGirlWalk3<> walk3DataG;
+const DataGirlDeath<> deathDataG;
 
 void PixelMain::initGame()
 {

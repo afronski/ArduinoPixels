@@ -26,14 +26,14 @@ class SpecialAttack:public Sprite
     const PixelData * shoot1 ;
     const PixelData * shoot2 ;
 
-    const DataGirlShoot1 girlShoot1 ;
-    const DataGirlShoot2 girlShoot2 ;
+    const DataGirlShoot1<> girlShoot1 ;
+    const DataGirlShoot2<> girlShoot2 ;
 
-    const DataBoyShoot1 boyShoot1 ;
-    const DataBoyShoot2 boyShoot2;
+    const DataBoyShoot1<> boyShoot1 ;
+    const DataBoyShoot2<> boyShoot2;
 
-    const DataAlienShoot1 alienShoot1;
-    const DataAlienShoot2 alienShoot2;
+    const DataAlienShoot1<> alienShoot1;
+    const DataAlienShoot2<> alienShoot2;
 
     int _dir;
 

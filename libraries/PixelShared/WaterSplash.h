@@ -17,8 +17,8 @@
 
 class WaterSplash :public Sprite
 {
-    const DataSplash1 splash1;
-    const DataSplash2 splash2;
+    const DataSplash1<> splash1;
+    const DataSplash2<> splash2;
 
     float time;
     const PixelData * frame1;

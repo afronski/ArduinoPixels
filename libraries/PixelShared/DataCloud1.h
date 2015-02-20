@@ -144,9 +144,12 @@ namespace _Cloud1_ {
         ,255
     };
 }
-struct DataCloud1 : public PixelDataImpl<DataCloud1> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataCloud1 : public PixelDataImpl<DataCloud1<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 24; }
        static constexpr uint8_t height() { return 5; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _Cloud1_::indices; }
        static constexpr const uint8_t* color() { return _Cloud1_::color; }
        constexpr DataCloud1(){}

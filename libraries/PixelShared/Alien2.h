@@ -21,8 +21,8 @@ class Alien2 : public Alien
     float posOld;
     Sprite feet;
 
-    const DataAlien2Head headData;
-    const DataAlien2Feed feetData;
+    const DataAlien2Head<> headData;
+    const DataAlien2Feed<> feetData;
     
 public:
     Alien2() { }

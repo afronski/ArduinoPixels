@@ -27,15 +27,15 @@ class Life:public Sprite
 public:
     Life() {currentTime=0;}
         
-    const DataLife0 life0;
-    const DataLife1 life1;
-    const DataLife2 life2;
-    const DataLife3 life3;
-    const DataLife4 life4;
-    const DataLife5 life5;
-    const DataLife6 life6;
-    const DataLife7 life7;
-    const DataLifeLight lifeGlow;
+    const DataLife0<> life0;
+    const DataLife1<> life1;
+    const DataLife2<> life2;
+    const DataLife3<> life3;
+    const DataLife4<> life4;
+    const DataLife5<> life5;
+    const DataLife6<> life6;
+    const DataLife7<> life7;
+    const DataLifeLight<> lifeGlow;
 
     Sprite glow;
     float currentTime;

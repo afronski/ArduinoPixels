@@ -11,9 +11,9 @@
 #include "DataTextPressToPlay.h"
 #include "DataBackSpace.h"
 
-const DataTextInvasion dataTextInvasion;
-const DataTextPressToPlay dataTextPressToPlay;
-const DataBackSpace dataBackSpace;
+const DataTextInvasion<> dataTextInvasion;
+const DataTextPressToPlay<> dataTextPressToPlay;
+const DataBackSpace<> dataBackSpace;
 
 void PixelMain::allocIntro()
 {

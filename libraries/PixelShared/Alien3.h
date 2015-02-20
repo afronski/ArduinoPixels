@@ -15,10 +15,10 @@
 #include "DataSpaceHead.h"
 #include "DataSpaceBottem.h"
 
-const DataSpaceArmL dataArmL;
-const DataSpaceArmR dataArmR;
-const DataSpaceBottem dataBottom;
-const DataSpaceHead dataHead;
+const DataSpaceArmL<> dataArmL;
+const DataSpaceArmR<> dataArmR;
+const DataSpaceBottem<> dataBottom;
+const DataSpaceHead<> dataHead;
 
 class Alien3: public Alien
 {

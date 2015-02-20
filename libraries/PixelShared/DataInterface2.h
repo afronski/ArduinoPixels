@@ -188,9 +188,12 @@ namespace _Interface2_ {
         ,255
     };
 }
-struct DataInterface2 : public PixelDataImpl<DataInterface2> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataInterface2 : public PixelDataImpl<DataInterface2<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 9; }
        static constexpr uint8_t height() { return 16; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _Interface2_::indices; }
        static constexpr const uint8_t* color() { return _Interface2_::color; }
        constexpr DataInterface2(){}

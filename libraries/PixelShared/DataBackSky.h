@@ -88,9 +88,12 @@ namespace _BackSky_ {
         ,255
     };
 }
-struct DataBackSky : public PixelDataImpl<DataBackSky> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataBackSky : public PixelDataImpl<DataBackSky<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 1; }
        static constexpr uint8_t height() { return 16; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _BackSky_::indices; }
        static constexpr const uint8_t* color() { return _BackSky_::color; }
        constexpr DataBackSky(){}

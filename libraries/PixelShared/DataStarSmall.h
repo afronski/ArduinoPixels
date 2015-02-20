@@ -13,9 +13,12 @@ namespace _StarSmall_ {
         ,255
     };
 }
-struct DataStarSmall : public PixelDataImpl<DataStarSmall> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataStarSmall : public PixelDataImpl<DataStarSmall<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 1; }
        static constexpr uint8_t height() { return 1; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _StarSmall_::indices; }
        static constexpr const uint8_t* color() { return _StarSmall_::color; }
        constexpr DataStarSmall(){}

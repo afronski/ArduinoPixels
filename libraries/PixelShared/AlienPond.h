@@ -20,9 +20,9 @@ class AlienPond : public Alien
     Sprite duckSmallSprite;
     Sprite duckBigSprite;
 
-    const DataPond alienPond;
-    const DataDuckBig alienDuckBig;
-    const DataDuckSmall alienDuckSmall;
+    const DataPond<> alienPond;
+    const DataDuckBig<> alienDuckBig;
+    const DataDuckSmall<> alienDuckSmall;
     
 public:
     AlienPond(){ }

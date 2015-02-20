@@ -15,11 +15,11 @@
 #include "DataMenuSelect3.h"
 #include "DataBackSky.h"
 
-const DataBackSky dataBackSky;
-const DataMenuMain dataMenuMain;
-const DataMenuSelect1 dataMenuSelect1;
-const DataMenuSelect2 dataMenuSelect2;
-const DataMenuSelect3 dataMenuSelect3;
+const DataBackSky<> dataBackSky;
+const DataMenuMain<> dataMenuMain;
+const DataMenuSelect1<> dataMenuSelect1;
+const DataMenuSelect2<> dataMenuSelect2;
+const DataMenuSelect3<> dataMenuSelect3;
 
 void PixelMain::setupMenu()
 {
