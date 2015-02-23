@@ -100,24 +100,24 @@ StackVector<DecorSprite *, 64> aliensDecor;
 //
 
 const DataManJump<> jumpDataB;
-const DataManJumpKick<> jumpKickDataB;
+const DataManJumpKick<-1> jumpKickDataB;
 const DataManJumpHit<> jumpHitDataB;
 const DataManJumpBlock<> jumpBlockDataB;
 
 const DataManCrouch<> crouchDataB;
 const DataManCrouchWalk1<> crouchDataWalk1B;
 const DataManCrouchWalk2<> crouchDataWalk2B;
-const DataManCrouchKick<> crouchKickDataB;
-const DataManCrouchHit<> crouchHitDataB;
+const DataManCrouchKick<-1> crouchKickDataB;
+const DataManCrouchHit<-1> crouchHitDataB;
 const DataManCrouchBlock<> crouchBlockDataB;
 
 const DataManStand<> standDataB;
 const DataManStandKick<> standKickDataB;
-const DataManStandHit1<> standHitData1B;
-const DataManStandHit2<> standHitData2B;
+const DataManStandHit1<-1> standHitData1B;
+const DataManStandHit2<-1> standHitData2B;
 const DataManStandBlock<> standBlockDataB;
 const DataManGitHit1<> gotHit1B;
-const DataManGitHit2<> gotHit2B;
+const DataManGitHit2<0,-1> gotHit2B;
 
 const DataManWalk1<> walk1DataB;
 const DataManWalk2<> walk2DataB;
@@ -130,24 +130,24 @@ const DataBoyDeath<> deathDataB;
 //
 
 const DataGirlJump<> jumpDataG;
-const DataGirlJumpKick<> jumpKickDataG;
+const DataGirlJumpKick<-1> jumpKickDataG;
 const DataGirlJumpHit<> jumpHitDataG;
 const DataGirlJumpBlock<> jumpBlockDataG;
 
 const DataGirlCrouch<> crouchDataG;
 const DataGirlCrouchWalk1<> crouchDataWalk1G;
 const DataGirlCrouchWalk2<> crouchDataWalk2G;
-const DataGirlCrouchKick<> crouchKickDataG;
-const DataGirlCrouchHit<> crouchHitDataG;
+const DataGirlCrouchKick<-1> crouchKickDataG;
+const DataGirlCrouchHit<-1> crouchHitDataG;
 const DataGirlCrouchBlock<> crouchBlockDataG;
 
 const DataGirlStand<> standDataG;
-const DataGirlStandKick<> standKickDataG;
-const DataGirlStandHit1<> standHitData1G;
-const DataGirlStandHit2<> standHitData2G;
+const DataGirlStandKick<-1> standKickDataG;
+const DataGirlStandHit1<-1> standHitData1G;
+const DataGirlStandHit2<-1> standHitData2G;
 const DataGirlStandBlock<> standBlockDataG;
 const DataGirlGotHit2<> gotHit1G;
-const DataGirlGotHit2<> gotHit2G;
+const DataGirlGotHit2<0,-1> gotHit2G;
 
 const DataGirlWalk1<> walk1DataG;
 const DataGirlWalk2<> walk2DataG;
