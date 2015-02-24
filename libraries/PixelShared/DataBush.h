@@ -105,9 +105,12 @@ namespace _Bush_ {
         ,255
     };
 }
-struct DataBush : public PixelDataImpl<DataBush> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataBush : public PixelDataImpl<DataBush<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 11; }
        static constexpr uint8_t height() { return 7; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _Bush_::indices; }
        static constexpr const uint8_t* color() { return _Bush_::color; }
        constexpr DataBush(){}

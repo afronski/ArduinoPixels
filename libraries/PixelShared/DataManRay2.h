@@ -54,9 +54,12 @@ namespace _ManRay2_ {
         ,236
     };
 }
-struct DataManRay2 : public PixelDataImpl<DataManRay2> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataManRay2 : public PixelDataImpl<DataManRay2<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 13; }
        static constexpr uint8_t height() { return 2; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _ManRay2_::indices; }
        static constexpr const uint8_t* color() { return _ManRay2_::color; }
        constexpr DataManRay2(){}

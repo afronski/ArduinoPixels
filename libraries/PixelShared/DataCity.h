@@ -171,9 +171,12 @@ namespace _City_ {
         ,255
     };
 }
-struct DataCity : public PixelDataImpl<DataCity> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataCity : public PixelDataImpl<DataCity<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 21; }
        static constexpr uint8_t height() { return 7; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _City_::indices; }
        static constexpr const uint8_t* color() { return _City_::color; }
        constexpr DataCity(){}

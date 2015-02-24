@@ -23,10 +23,19 @@ struct PixelData
     uint8_t centerX;
     uint8_t centerY;
   
-    constexpr PixelData(const uint8_t *color, const uint8_t *indices, const uint8_t width, const uint8_t height) :
-        color(color), indices(indices), width(width), height(height), centerX(width/2), centerY(height) { }
-    constexpr PixelData() : PixelData(nullptr, nullptr, 0, 0) { }
-    constexpr PixelData(const PixelData &other) : PixelData(other.color, other.indices, other.width, other.height) { }
+    constexpr PixelData(const uint8_t *color, const uint8_t *indices,
+                        const uint8_t width, const uint8_t height,
+                        const uint8_t centerX, const uint8_t centerY) :
+        color(color), indices(indices),
+        width(width), height(height),
+        centerX(centerX), centerY(centerY) { }
+
+    constexpr PixelData() : PixelData(nullptr, nullptr, 0, 0, 0, 0) { }
+
+    constexpr PixelData(const PixelData &other) : PixelData(other.color, other.indices,
+                                                            other.width, other.height,
+                                                            other.centerX, other.centerY) { }
+
     constexpr PixelData operator=(const PixelData &other) const { return PixelData(other); }
 };
 
@@ -44,7 +53,9 @@ struct PixelDataImpl : public PixelData
     constexpr PixelDataImpl() : PixelData(T::color(),
                                           T::indices(),
                                           T::width(),
-                                          T::height()) { }
+                                          T::height(),
+                                          T::width()/2 + T::widthOffset(),
+                                          T::height() + T::heightOffset()) { }
 };
 
 #endif

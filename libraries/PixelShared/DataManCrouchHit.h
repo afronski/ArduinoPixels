@@ -92,9 +92,12 @@ namespace _ManCrouchHit_ {
         ,255
     };
 }
-struct DataManCrouchHit : public PixelDataImpl<DataManCrouchHit> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataManCrouchHit : public PixelDataImpl<DataManCrouchHit<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 8; }
        static constexpr uint8_t height() { return 8; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _ManCrouchHit_::indices; }
        static constexpr const uint8_t* color() { return _ManCrouchHit_::color; }
        constexpr DataManCrouchHit(){}

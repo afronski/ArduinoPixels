@@ -560,9 +560,12 @@ namespace _MenuMain_ {
         ,255
     };
 }
-struct DataMenuMain : public PixelDataImpl<DataMenuMain> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataMenuMain : public PixelDataImpl<DataMenuMain<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 86; }
        static constexpr uint8_t height() { return 6; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _MenuMain_::indices; }
        static constexpr const uint8_t* color() { return _MenuMain_::color; }
        constexpr DataMenuMain(){}

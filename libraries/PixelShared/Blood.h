@@ -19,9 +19,9 @@
 class Blood:public Sprite
 {
     float currentTime = 0;
-    const DataBlood1 frame1;
-    const DataBlood2 frame2;
-    const DataBlood3 frame3;
+    const DataBlood1<> frame1;
+    const DataBlood2<> frame2;
+    const DataBlood3<> frame3;
 public:
     float fxReal = 0;
     bool isUsed = false;

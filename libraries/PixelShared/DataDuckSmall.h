@@ -22,9 +22,12 @@ namespace _DuckSmall_ {
         ,255
     };
 }
-struct DataDuckSmall : public PixelDataImpl<DataDuckSmall> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataDuckSmall : public PixelDataImpl<DataDuckSmall<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 3; }
        static constexpr uint8_t height() { return 2; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _DuckSmall_::indices; }
        static constexpr const uint8_t* color() { return _DuckSmall_::color; }
        constexpr DataDuckSmall(){}

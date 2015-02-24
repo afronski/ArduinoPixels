@@ -15,11 +15,11 @@
 #include "DataMenuSelect3.h"
 #include "DataBackSky.h"
 
-const DataBackSky dataBackSky;
-const DataMenuMain dataMenuMain;
-const DataMenuSelect1 dataMenuSelect1;
-const DataMenuSelect2 dataMenuSelect2;
-const DataMenuSelect3 dataMenuSelect3;
+const DataBackSky<> dataBackSky;
+const DataMenuMain<> dataMenuMain;
+const DataMenuSelect1<> dataMenuSelect1;
+const DataMenuSelect2<> dataMenuSelect2;
+const DataMenuSelect3<> dataMenuSelect3;
 
 void PixelMain::setupMenu()
 {
@@ -88,32 +88,24 @@ void PixelMain::menuRight()
     menuItem2.visible =false;
     menuItem3.visible =false;
     menuPos--;
-    
-    if(  menuPos<0){
-        menuPos =2;
-         
-    }
-    
-    if(menuPos==0 )
-    {
-             menuItem1.visible =true ;
-    }
-    else  if(menuPos==1  )
-    {
-        menuItem2.visible =true ;
-    }
-    else if(menuPos==2 )
-    {
-             menuItem3.visible =true ;
-    }
 
-   //   cout << "gDown"<<  menuPos<< endl;
+    switch (menuPos)
+    {
+    case 0:
+        menuItem1.visible = true;
+        break;
+
+    case 1:
+        menuItem2.visible = true;
+        break;
+
+    default:
+        menuPos = 2;
+    case 2:
+        menuItem3.visible = true;
+        break;
+    }
 }
 void PixelMain::updateMenu(float /*timeElapsed*/)
 {
-    
-    
-    
-     
-    
 }

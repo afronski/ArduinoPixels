@@ -87,9 +87,12 @@ namespace _GirlWalk3_ {
         ,255
     };
 }
-struct DataGirlWalk3 : public PixelDataImpl<DataGirlWalk3> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataGirlWalk3 : public PixelDataImpl<DataGirlWalk3<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 7; }
        static constexpr uint8_t height() { return 9; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _GirlWalk3_::indices; }
        static constexpr const uint8_t* color() { return _GirlWalk3_::color; }
        constexpr DataGirlWalk3(){}

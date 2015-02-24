@@ -89,8 +89,8 @@
 
 Array<Cloud,6> _clouds;
 Array<Sprite,2> _backgroundGame;
-const DataCloud1 _cloudData;
-const DataBackGrass _backGrass;
+const DataCloud1<> _cloudData;
+const DataBackGrass<> _backGrass;
 
 StackVector<DecorSprite *, 64> aliensDecor;
 
@@ -99,92 +99,100 @@ StackVector<DecorSprite *, 64> aliensDecor;
 // Boy Data
 //
 
-const DataManJump jumpDataB;
-DataManJumpKick jumpKickDataB;
-const DataManJumpHit jumpHitDataB;
-const DataManJumpBlock jumpBlockDataB;
+const DataManJump<> jumpDataB;
+const DataManJumpKick<-1> jumpKickDataB;
+const DataManJumpHit<> jumpHitDataB;
+const DataManJumpBlock<> jumpBlockDataB;
 
-const DataManCrouch crouchDataB;
-const DataManCrouchWalk1 crouchDataWalk1B;
-const DataManCrouchWalk2 crouchDataWalk2B;
-DataManCrouchKick crouchKickDataB;
-DataManCrouchHit crouchHitDataB;
-const DataManCrouchBlock crouchBlockDataB;
+const DataManCrouch<> crouchDataB;
+const DataManCrouchWalk1<> crouchDataWalk1B;
+const DataManCrouchWalk2<> crouchDataWalk2B;
+const DataManCrouchKick<-1> crouchKickDataB;
+const DataManCrouchHit<-1> crouchHitDataB;
+const DataManCrouchBlock<> crouchBlockDataB;
 
-const DataManStand standDataB;
-const DataManStandKick standKickDataB;
-DataManStandHit1 standHitData1B;
-DataManStandHit2 standHitData2B;
-const DataManStandBlock standBlockDataB;
-const DataManGitHit1 gotHit1B;
-DataManGitHit2 gotHit2B;
+const DataManStand<> standDataB;
+const DataManStandKick<> standKickDataB;
+const DataManStandHit1<-1> standHitData1B;
+const DataManStandHit2<-1> standHitData2B;
+const DataManStandBlock<> standBlockDataB;
+const DataManGitHit1<> gotHit1B;
+const DataManGitHit2<0,-1> gotHit2B;
 
-const DataManWalk1 walk1DataB;
-const DataManWalk2 walk2DataB;
-const DataManWalk3 walk3DataB;
-const DataBoyDeath deathDataB;
+const DataManWalk1<> walk1DataB;
+const DataManWalk2<> walk2DataB;
+const DataManWalk3<> walk3DataB;
+const DataBoyDeath<> deathDataB;
 
 
 //
 // Girl Data
 //
 
-const DataGirlJump jumpDataG;
-DataGirlJumpKick jumpKickDataG;
-const DataGirlJumpHit jumpHitDataG;
-const DataGirlJumpBlock jumpBlockDataG;
+const DataGirlJump<0,1> jumpDataG;
+const DataGirlJumpKick<-1,1> jumpKickDataG;
+const DataGirlJumpHit<-1,1> jumpHitDataG;
+const DataGirlJumpBlock<0,1> jumpBlockDataG;
 
-const DataGirlCrouch crouchDataG;
-const DataGirlCrouchWalk1 crouchDataWalk1G;
-const DataGirlCrouchWalk2 crouchDataWalk2G;
-DataGirlCrouchKick crouchKickDataG;
-DataGirlCrouchHit crouchHitDataG;
-const DataGirlCrouchBlock crouchBlockDataG;
+const DataGirlCrouch<0,1> crouchDataG;
+const DataGirlCrouchWalk1<0,1> crouchDataWalk1G;
+const DataGirlCrouchWalk2<0,1> crouchDataWalk2G;
+const DataGirlCrouchKick<-1,1> crouchKickDataG;
+const DataGirlCrouchHit<-1,1> crouchHitDataG;
+const DataGirlCrouchBlock<0,1> crouchBlockDataG;
 
-const DataGirlStand standDataG;
-DataGirlStandKick standKickDataG;
-DataGirlStandHit1 standHitData1G;
-DataGirlStandHit2 standHitData2G;
-const DataGirlStandBlock standBlockDataG;
-const DataGirlGotHit2 gotHit1G;
-DataGirlGotHit2 gotHit2G;
+const DataGirlStand<0,1> standDataG;
+const DataGirlStandKick<-1,1> standKickDataG;
+const DataGirlStandHit1<-1,1> standHitData1G;
+const DataGirlStandHit2<-1,1> standHitData2G;
+const DataGirlStandBlock<0,1> standBlockDataG;
+const DataGirlGotHit2<0,1> gotHit1G;
+const DataGirlGotHit2<> gotHit2G;
 
-const DataGirlWalk1 walk1DataG;
-const DataGirlWalk2 walk2DataG;
-const DataGirlWalk3 walk3DataG;
-const DataGirlDeath deathDataG;
+const DataGirlWalk1<0,1> walk1DataG;
+const DataGirlWalk2<0,1> walk2DataG;
+const DataGirlWalk3<0,1> walk3DataG;
+const DataGirlDeath<0,1> deathDataG;
+
+//
+// GirlVS data
+//
+
+const DataGirlJump<> jumpDataG_VS;
+const DataGirlJumpKick<-1> jumpKickDataG_VS;
+const DataGirlJumpHit<-1> jumpHitDataG_VS;
+const DataGirlJumpBlock<> jumpBlockDataG_VS;
+
+const DataGirlCrouch<> crouchDataG_VS;
+const DataGirlCrouchWalk1<> crouchDataWalk1G_VS;
+const DataGirlCrouchWalk2<> crouchDataWalk2G_VS;
+const DataGirlCrouchKick<-1> crouchKickDataG_VS;
+const DataGirlCrouchHit<-1> crouchHitDataG_VS;
+const DataGirlCrouchBlock<> crouchBlockDataG_VS;
+
+const DataGirlStand<> standDataG_VS;
+const DataGirlStandKick<-1> standKickDataG_VS;
+const DataGirlStandHit1<-1> standHitData1G_VS;
+const DataGirlStandHit2<-1> standHitData2G_VS;
+const DataGirlStandBlock<> standBlockDataG_VS;
+const DataGirlGotHit2<> gotHit1G_VS;
+const DataGirlGotHit2<0,-1> gotHit2G_VS;
+
+const DataGirlWalk1<> walk1DataG_VS;
+const DataGirlWalk2<> walk2DataG_VS;
+const DataGirlWalk3<> walk3DataG_VS;
+const DataGirlDeath<> deathDataG_VS;
 
 void PixelMain::initGame()
 {
-    // boy
-    jumpKickDataB.centerX-=1;
-
-    crouchKickDataB.centerX-=1;
-    crouchHitDataB.centerX-=1;
-
-    standHitData1B.centerX-=1;
-    standHitData2B.centerX-=1;
-    gotHit2B.centerY-=1;
-
-    // girl
-    jumpKickDataG.centerX-=1;
-
-    crouchKickDataG.centerX-=1;
-    crouchHitDataG.centerX-=1;
-
-    standKickDataG.centerX-=1;
-    standHitData1G.centerX-=1;
-    standHitData2G.centerX-=1;
-    gotHit2G.centerY-=1;
-
     //set the data
     setHeroData(&hero1pm,0);
 
     setHeroData(&hero2pF,1);
     setHeroData(&hero2pM,0);
-    
-     setHeroData(&heroVSF,1);
-     setHeroData(&heroVSM,0);
+
+    setHeroData(&heroVSF,2);
+    setHeroData(&heroVSM,0);
 
     lifeBoyHolder1p.currentData = &boyInterData;
 
@@ -727,9 +735,9 @@ void PixelMain::setupAliensGame()
 
 void  PixelMain::setHeroData(Hero * hero,int type)
 {
-
-    if(type==0)
+    switch (type)
     {
+    case 0:
         hero->jumpData = &jumpDataB ;
         hero->jumpKickData = &jumpKickDataB;
         hero->jumpHitData= &jumpHitDataB;
@@ -755,11 +763,11 @@ void  PixelMain::setHeroData(Hero * hero,int type)
         hero->deathData = &deathDataB;
     
         hero->crouchWalk1Data = &crouchDataWalk1B;
-         hero->crouchWalk2Data = &crouchDataWalk2B;
-    }else if(type==1)
-    {
-    
-        hero->jumpData = &jumpDataG ;
+        hero->crouchWalk2Data = &crouchDataWalk2B;
+        break;
+
+    case 1:
+        hero->jumpData = &jumpDataG;
         hero->jumpKickData = &jumpKickDataG;
         hero->jumpHitData = &jumpHitDataG;
         hero->jumpBlockData = &jumpBlockDataG;
@@ -767,10 +775,10 @@ void  PixelMain::setHeroData(Hero * hero,int type)
         hero->crouchData = &crouchDataG;
         hero->crouchKickData = &crouchKickDataG;
         hero->crouchHitData = &crouchHitDataG;
-        hero->crouchBlockData = &crouchBlockDataG ;
+        hero->crouchBlockData = &crouchBlockDataG;
         
-        hero->standData = &standDataG ;
-        hero->standKickData = &standKickDataG ;
+        hero->standData = &standDataG;
+        hero->standKickData = &standKickDataG;
         hero->standHitData1 = &standHitData1G;
         hero->standHitData2 = &standHitData2G;
         hero->standBlockData = &standBlockDataG;
@@ -778,15 +786,43 @@ void  PixelMain::setHeroData(Hero * hero,int type)
         hero->crouchWalk1Data = &crouchDataWalk1G;
         hero->crouchWalk2Data = &crouchDataWalk2G;
         
-        hero->walk1Data = &walk1DataG ;
+        hero->walk1Data = &walk1DataG;
         hero->walk2Data = &walk2DataG;
         hero->walk3Data = &walk3DataG;
         hero->deathData = &deathDataG;
     
         hero->gotHitData1 = &gotHit1G;
         hero->gotHitData2 = &gotHit2G;
+        break;
 
-    
+    case 2:
+        hero->jumpData = &jumpDataG_VS;
+        hero->jumpKickData = &jumpKickDataG_VS;
+        hero->jumpHitData = &jumpHitDataG_VS;
+        hero->jumpBlockData = &jumpBlockDataG_VS;
+
+        hero->crouchData = &crouchDataG_VS;
+        hero->crouchKickData = &crouchKickDataG_VS;
+        hero->crouchHitData = &crouchHitDataG_VS;
+        hero->crouchBlockData = &crouchBlockDataG_VS;
+
+        hero->standData = &standDataG_VS;
+        hero->standKickData = &standKickDataG_VS;
+        hero->standHitData1 = &standHitData1G_VS;
+        hero->standHitData2 = &standHitData2G_VS;
+        hero->standBlockData = &standBlockDataG_VS;
+
+        hero->crouchWalk1Data = &crouchDataWalk1G_VS;
+        hero->crouchWalk2Data = &crouchDataWalk2G_VS;
+
+        hero->walk1Data = &walk1DataG_VS;
+        hero->walk2Data = &walk2DataG_VS;
+        hero->walk3Data = &walk3DataG_VS;
+        hero->deathData = &deathDataG_VS;
+
+        hero->gotHitData1 = &gotHit1G_VS;
+        hero->gotHitData2 = &gotHit2G_VS;
+        break;
     }
 
     hero->currentData = hero->jumpData;

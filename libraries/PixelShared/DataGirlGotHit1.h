@@ -91,9 +91,12 @@ namespace _GirlGotHit1_ {
         ,255
     };
 }
-struct DataGirlGotHit1 : public PixelDataImpl<DataGirlGotHit1> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataGirlGotHit1 : public PixelDataImpl<DataGirlGotHit1<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 7; }
        static constexpr uint8_t height() { return 9; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _GirlGotHit1_::indices; }
        static constexpr const uint8_t* color() { return _GirlGotHit1_::color; }
        constexpr DataGirlGotHit1(){}

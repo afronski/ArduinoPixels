@@ -140,7 +140,7 @@ void handleKeyEvent(PixelMain &main, SDL_KeyboardEvent *key) {
 		break;
 	case SDLK_RIGHT:
 		inputR.right = pressed;
-		handleJoystick(main, inputR, OFFSET_JS_R);
+        handleJoystick(main, inputR, OFFSET_JS_R);
         break;
 
     // Player 2 controls
@@ -172,31 +172,29 @@ void handleKeyEvent(PixelMain &main, SDL_KeyboardEvent *key) {
 
 	default:
 		break;
-	}
-	
-
+    }
 }
 
 void handleJoystick(PixelMain &main, joystickState &input, int offset) {
-	int js = offset + JS_NEUTRAL;
-	if (input.up) {
-		if (input.left)
-			js += JS_UP_LEFT;
-		else if (input.right)
-			js += JS_UP_RIGHT;
-		else
-			js += JS_UP;
-	} else if (input.down) {
-		if (input.left)
-			js += JS_DOWN_LEFT;
-		else if (input.right)
-			js += JS_DOWN_RIGHT;
-		else
-			js += JS_DOWN;
-	} else if (input.left) {
-		js += JS_LEFT;
-	} else if (input.right) {
-		js += JS_RIGHT;
-	}
-	main.setInput(js);
+    int js = offset + JS_NEUTRAL;
+    if (input.up) {
+        if (input.left)
+            js += JS_UP_LEFT;
+        else if (input.right)
+            js += JS_UP_RIGHT;
+        else
+            js += JS_UP;
+    } else if (input.down) {
+        if (input.left)
+            js += JS_DOWN_LEFT;
+        else if (input.right)
+            js += JS_DOWN_RIGHT;
+        else
+            js += JS_DOWN;
+    } else if (input.left) {
+        js += JS_LEFT;
+    } else if (input.right) {
+        js += JS_RIGHT;
+    }
+    main.setInput(js);
 }

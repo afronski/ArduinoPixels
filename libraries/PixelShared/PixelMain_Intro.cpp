@@ -11,15 +11,12 @@
 #include "DataTextPressToPlay.h"
 #include "DataBackSpace.h"
 
-#include <iostream>
-
-DataTextInvasion dataTextInvasion;
-const DataTextPressToPlay dataTextPressToPlay;
-const DataBackSpace dataBackSpace;
+const DataTextInvasion<0,-1> dataTextInvasion;
+const DataTextPressToPlay<> dataTextPressToPlay;
+const DataBackSpace<> dataBackSpace;
 
 void PixelMain::allocIntro()
 {
-    dataTextInvasion.centerY = 9;
     invasionText.currentData = &dataTextInvasion;
     pressKeyText.currentData = &dataTextPressToPlay;
 }

@@ -1165,9 +1165,12 @@ namespace _TextYouWin_ {
         ,255
     };
 }
-struct DataTextYouWin : public PixelDataImpl<DataTextYouWin> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataTextYouWin : public PixelDataImpl<DataTextYouWin<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 71; }
        static constexpr uint8_t height() { return 15; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _TextYouWin_::indices; }
        static constexpr const uint8_t* color() { return _TextYouWin_::color; }
        constexpr DataTextYouWin(){}

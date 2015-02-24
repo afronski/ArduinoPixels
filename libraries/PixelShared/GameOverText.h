@@ -16,10 +16,10 @@
 #include "DataBackSpace.h"
 class GameOverText : public Sprite
 {
-    const DataTextGameOver gameOver;
-    DataTextGirlWins girlWins;
-    DataTextBoyWins boyWins;
-    DataTextYouWin youWin;
+    const DataTextGameOver<> gameOver;
+    const DataTextGirlWins<0, -2> girlWins;
+    const DataTextBoyWins<0, -2> boyWins;
+    const DataTextYouWin<0, -3> youWin;
 
     Sprite textSprite;
 
@@ -31,11 +31,6 @@ public:
 
         drawType =3;
         textSprite.fx =45;
-
-        girlWins.centerY = 12;
-        boyWins.centerY = 10;
-        youWin.centerY = 12;
-
         visible =false;
     }
     void show(int type =0)

@@ -76,9 +76,12 @@ namespace _ManCrouchWalk1_ {
         ,255
     };
 }
-struct DataManCrouchWalk1 : public PixelDataImpl<DataManCrouchWalk1> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataManCrouchWalk1 : public PixelDataImpl<DataManCrouchWalk1<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 6; }
        static constexpr uint8_t height() { return 8; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _ManCrouchWalk1_::indices; }
        static constexpr const uint8_t* color() { return _ManCrouchWalk1_::color; }
        constexpr DataManCrouchWalk1(){}

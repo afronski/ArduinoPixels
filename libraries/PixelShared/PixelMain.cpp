@@ -13,6 +13,7 @@ PixelMain::PixelMain(PixelRenderer *renderer)
 {
 	this->renderer = renderer;
     brightness = 180;
+    initGame();
 }
 void PixelMain::setGameState(int state)
 {
@@ -33,7 +34,6 @@ void PixelMain::setGameState(int state)
         break;
 
     case STATE_MENU_TO_GAME:
-        initGame();
         switchTime =1;
         break;
 

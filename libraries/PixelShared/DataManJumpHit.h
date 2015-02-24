@@ -109,9 +109,12 @@ namespace _ManJumpHit_ {
         ,255
     };
 }
-struct DataManJumpHit : public PixelDataImpl<DataManJumpHit> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataManJumpHit : public PixelDataImpl<DataManJumpHit<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 9; }
        static constexpr uint8_t height() { return 9; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _ManJumpHit_::indices; }
        static constexpr const uint8_t* color() { return _ManJumpHit_::color; }
        constexpr DataManJumpHit(){}

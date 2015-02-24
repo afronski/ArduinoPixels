@@ -107,9 +107,12 @@ void setFile(rgba8_image_t &image, string name)
     oStream << "    };"<<endl;
     oStream << "}" << endl;
 
-    oStream << "struct Data"<< name <<" : public PixelDataImpl<Data" << name << "> {"<< endl;
+    oStream << "template<int8_t WidthOffset=0, int8_t HeightOffset=0>" << endl;
+    oStream << "struct Data"<< name <<" : public PixelDataImpl<Data" << name << "<WidthOffset, HeightOffset> > {"<< endl;
     oStream << "       static constexpr uint8_t width() { return "<< w <<"; }"<<endl;
     oStream << "       static constexpr uint8_t height() { return "<< h <<"; }" <<endl;
+    oStream << "       static constexpr int8_t widthOffset() { return WidthOffset; }"<<endl;
+    oStream << "       static constexpr int8_t heightOffset() { return HeightOffset; }" <<endl;
     oStream << "       static constexpr const uint8_t* indices() { return _" << name << "_::indices; }" <<endl;
     oStream << "       static constexpr const uint8_t* color() { return _" << name << "_::color; }" <<endl;
     oStream << "       constexpr Data"<< name <<"(){}" <<endl;

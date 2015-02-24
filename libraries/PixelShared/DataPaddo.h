@@ -88,9 +88,12 @@ namespace _Paddo_ {
         ,255
     };
 }
-struct DataPaddo : public PixelDataImpl<DataPaddo> {
+template<int8_t WidthOffset=0, int8_t HeightOffset=0>
+struct DataPaddo : public PixelDataImpl<DataPaddo<WidthOffset, HeightOffset> > {
        static constexpr uint8_t width() { return 6; }
        static constexpr uint8_t height() { return 6; }
+       static constexpr int8_t widthOffset() { return WidthOffset; }
+       static constexpr int8_t heightOffset() { return HeightOffset; }
        static constexpr const uint8_t* indices() { return _Paddo_::indices; }
        static constexpr const uint8_t* color() { return _Paddo_::color; }
        constexpr DataPaddo(){}

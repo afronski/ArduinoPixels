@@ -15,8 +15,8 @@
 
 class Alien1 : public Alien
 {
-    const DataAlien1Feed feet;
-    const DataAlien1Head head;
+    const DataAlien1Feed<> feet;
+    const DataAlien1Head<> head;
     Sprite headSprite;
     Sprite feetSprite;
     float shootTime ;

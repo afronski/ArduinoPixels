@@ -17,8 +17,8 @@ class Star: public Sprite
     float sx;
     float sy;
     float maxTime;
-    const DataStarSmall dataSmall;
-    const DataStarBig dataBig;
+    const DataStarSmall<> dataSmall;
+    const DataStarBig<> dataBig;
 
 public:
     Star(){}
