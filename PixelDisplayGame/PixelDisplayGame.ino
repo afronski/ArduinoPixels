@@ -8,6 +8,7 @@
 const boolean check_brightness = true;    // Read potentiometer to adjust display brightness
 const unsigned int target_frametime = 33; // Limit the screen refresh rate (33ms ~= 30FPS)
 const unsigned int max_frametime = 50;    // Drop frames if updating slower (50ms = 20FPS)
+const float game_speed_div = 500;         // Higher number -> slower game
 
 ///////////////////////
 // END CONFIGURATION //
@@ -71,7 +72,7 @@ void loop() {
     {
       incomingByte = SERIAL_PORT.read();
       pixelMain->setInput((int)incomingByte);
-      pixelMain->update(currentTime - lastUpdate / float(500));
+      pixelMain->update((currentTime - lastUpdate) / game_speed_div);
       lastUpdate = currentTime;
     }
   }
@@ -79,7 +80,7 @@ void loop() {
 
   // Update the game
   if (currentTime > lastUpdate)
-    pixelMain->update(currentTime - lastUpdate / float(500));
+    pixelMain->update((currentTime - lastUpdate) / game_speed_div);
   lastTime = currentTime;
 
   // Drop frames if slower than max_frametime
