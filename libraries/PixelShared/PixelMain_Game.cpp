@@ -131,7 +131,7 @@ const DataBoyDeath<> deathDataB;
 
 const DataGirlJump<> jumpDataG;
 const DataGirlJumpKick<-1> jumpKickDataG;
-const DataGirlJumpHit<> jumpHitDataG;
+const DataGirlJumpHit<-1> jumpHitDataG;
 const DataGirlJumpBlock<> jumpBlockDataG;
 
 const DataGirlCrouch<> crouchDataG;
