@@ -11,7 +11,7 @@
 #include <Adafruit_NeoMatrix.h>
 #include "NeopixelPixelRenderer.h"
 
-void NeopixelPixelRenderer::setBrightness(int br)
+void NeopixelPixelRenderer::setBrightness(uint8_t br)
 {
 	pixels->setBrightness(br);
 }

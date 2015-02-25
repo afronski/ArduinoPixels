@@ -50,7 +50,7 @@ void SDLPixelRenderer::setPixel(int x, int y, uint32_t c) {
 	SDL_UnlockSurface(surface);
 }
 
-void SDLPixelRenderer::setBrightness(int /*val*/) {
+void SDLPixelRenderer::setBrightness(uint8_t /*val*/) {
 	// not implemented
 }
 
