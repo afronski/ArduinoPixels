@@ -10,7 +10,7 @@
 
 #include "NeuroPixelRenderer.h"
 
-void NeuroPixelRenderer::setBrightness(int br)
+void NeuroPixelRenderer::setBrightness(uint8_t br)
 {
     strip1->setBrightness(br);
     strip2->setBrightness(br);

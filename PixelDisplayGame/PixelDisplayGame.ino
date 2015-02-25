@@ -9,6 +9,7 @@ const boolean check_brightness = true;    // Read potentiometer to adjust displa
 const unsigned int target_frametime = 33; // Limit the screen refresh rate (33ms ~= 30FPS)
 const unsigned int max_frametime = 50;    // Drop frames if updating slower (50ms = 20FPS)
 const float game_speed_div = 500;         // Higher number -> slower game
+const uint8_t max_brightness_step = 3;    // Maximum step in brightness per frame (reduce input noise flickering)
 
 ///////////////////////
 // END CONFIGURATION //
@@ -41,14 +42,15 @@ unsigned long lastTime = 0;
 void setup(){
     pinMode(ledPin, OUTPUT);
 
-    SERIAL_PORT.begin(57600);
-
     renderer = new RENDERER();
     pixelMain = new PixelMain(renderer);
 
     pixelMain->setup();
+    if (check_brightness) pixelMain->brightness = 0; // will be faded in
 
     lastTime =millis();
+
+    SERIAL_PORT.begin(57600);
 }
 
 int incomingByte = 0;
@@ -58,7 +60,17 @@ void loop() {
   unsigned long lastUpdate = lastTime;
 
   if (check_brightness)
-    pixelMain->brightness = analogRead(0)/4;
+  {
+    // Brightness difference
+    int16_t brDiff = analogRead(0)/4 - pixelMain->brightness;
+
+    // Clip the difference
+    if      (brDiff > max_brightness_step)  brDiff = max_brightness_step;
+    else if (brDiff < -max_brightness_step) brDiff = -max_brightness_step;
+
+    // Set the difference
+    pixelMain->brightness += brDiff;
+  }
 
   // Wait for target_frametime
   do

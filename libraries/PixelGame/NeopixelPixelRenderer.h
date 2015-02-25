@@ -25,15 +25,17 @@ public:
     
     NeopixelPixelRenderer() { }
    
-    void setup();
+    virtual void setup() override;
    
-    void draw();
+    virtual void draw() override;
         
-    void setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b, uint8_t a);
-       
+    virtual void setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b, uint8_t a) override;
+
+    virtual void setBrightness(uint8_t val) override;
+    virtual void fade() override;
+
+private:
     void setPixel(int x, int y, uint32_t c);
-    void setBrightness(int val);
-    void fade();
 };
 
 #endif // PixelGame_NeopixelPixelRenderer_h

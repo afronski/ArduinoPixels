@@ -29,14 +29,14 @@ public:
 
     NeuroPixelRenderer() { }
 
-    virtual void setup();
+    virtual void setup() override;
 
-    virtual void draw();
+    virtual void draw() override;
 
-    virtual void setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b, uint8_t a);
+    virtual void setPixel(int x,int y,uint8_t r, uint8_t g , uint8_t b, uint8_t a) override;
 
-    virtual void setBrightness(int val);
-    virtual void fade();
+    virtual void setBrightness(uint8_t val) override;
+    virtual void fade() override;
 };
 
 #endif
